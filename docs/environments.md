@@ -105,3 +105,33 @@ cat id_rsa.pub >> ~/.ssh/authorized_keys
 ```
 
 Make sure that the permission for `.ssh` both on the local machine and on PE are set to `700` and the files `id_rsa` on the local machine and `authorized_keys` on the remote machine are set to `600`.  Once set up, you need not enter your password every time you run `ssh` or `scp`.  
+
+## Troubleshooting
+
+Suppose you try to connect to `pe111` using either:
+```
+ssh pe111.comp.nus.edu.sg
+ssh -t sunfire.comp.nus.edu.sg ssh pe111.comp.nus.edu.sg
+ssh pe111.comp.nus.edu.sg -J sunfire.comp.nus.edu.sg
+```
+and you get the following error:
+
+1. `ssh: Could not resolve hostname pe111.comp.nus.edu.sg`
+
+	`ssh` cannot recognize the name `pe111`, it is likely that you are not connected to the SoC VPN.
+
+2. `Connection closed by 192.168.48.xxx port 22`
+
+    You have connected to the PE host, but you are kicked out because you have no permission to use the host.
+
+	Make sure you have activated your access to "SoC computer clusters" here: https://mysoc.nus.edu.sg/~myacct/services.cgi
+
+3. `Permission denied, please try again`
+
+    You did not enter the correct password or username.  Please use the username and password 
+of your SoC UNIX account which you have created here: https://mysoc.nus.edu.sg/~newacct/.   
+
+    Check that you have entered your username correctly.  It is _case sensitive_.
+
+    If you have lost your password, go here: https://mysoc.nus.edu.sg/~myacct/iforgot.cgi
+
