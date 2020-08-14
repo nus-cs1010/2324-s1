@@ -41,5 +41,4 @@ through a Web browser.
 
 ## Links to Join Zoom
 
-The Zoom session information will be/have been sent to you privately.  Check
-your email for information.
+The Zoom session information is shared privately on [Piazza](https://piazza.com/class/kdgunoizhic105?cid=7).
