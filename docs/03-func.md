@@ -68,33 +68,33 @@ To compute the standard deviation, we first need to compute $\mu$, the mean.   W
 - Given a list $L$ and a constant value $x$, subtract $x$ from every number in $L$, giving us a new list.
 - Given a list, square every number in the list, giving us a new list.
 
-For now, let's apply wishful thinking and assume that we know how to compute the above two steps with functions $substract(L, k, x)$ and $square(L, k)$, then, the formula $\sum_{i=0}^{k-1} (l_i - \mu)^2$ can be computed by the following steps:
+For now, let's apply wishful thinking and assume that we know how to compute the above two steps with functions $subtract(L, k, x)$ and $square(L, k)$, then, the formula $\sum_{i=0}^{k-1} (l_i - \mu)^2$ can be computed by the following steps:
 
 - set $\mu$ to $mean(L, k)$
-- set $L'$ to $substract(L, k, \mu)$
+- set $L'$ to $subtract(L, k, \mu)$
 - set $L''$ to $square(L', k)$
 - set $total$ to $sum(L'', k)$.
 
 We can also write it in one line:
 
-- set $total$ to $sum(square(substract(L, k, mean(L, k)), k), k)$
+- set $total$ to $sum(square(subtract(L, k, mean(L, k)), k), k)$
 
 Now, to compute the standard deviation, we need to divide $total$ by $k$ and find the square root.  But, finding $total$ and dividing the result by $k$ is just $mean$.  To compute square root, we again apply wishful thinking and assume that there is a function $sqrt$ to do so.
 
 We can now compute the standard deviation with one line:
 
-$$sqrt(mean(square(substract(L, k, mean(L, k)), k), k))$$
+$$sqrt(mean(square(subtract(L, k, mean(L, k)), k), k))$$
 
 Using functions, we can easily pass the output from one function as input to another, essentially chain the functions together, like Lego blocks, to solve problems.  We also see an example of _reuse_ here -- $mean$ is used twice with different inputs.
 
 !!! warning "Returning a list"
     While the above one-liner is an elegant solution, when we actually implement this in C later, it will not so simple and elegant.  Let's worry about that later.
 
-Now that we have seen how to compute standard deviation by breaking it down the four subproblems, $sqrt$, $mean$, $square$, and $substract$, we have to make sure that things we wish can be done can actually be done.  The C library, and many programming languages, provide a pre-defined method to compute $sqrt$.  We already know how to compute $mean$.  Computing $square$ can be done as follows:
+Now that we have seen how to compute standard deviation by breaking it down the four subproblems, $sqrt$, $mean$, $square$, and $subtract$, we have to make sure that things we wish can be done can actually be done.  The C library, and many programming languages, provide a pre-defined method to compute $sqrt$.  We already know how to compute $mean$.  Computing $square$ can be done as follows:
 
 ![Flowchart](figures/max-flowchart/max-flowchart.011.png)
 
-The implementation of $substract$ is similar.
+The implementation of $subtract$ is similar.
 
 ## Another Solution for Finding Maximum
 
