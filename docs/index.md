@@ -3,12 +3,12 @@
 !!! announcement "Lecture 1 "
 	Mon Aug 10 14:17:40 +08 2020
 
-    Lecture 1 has been recorded and posted.  [You can view it here](https://nus-sg.zoom.us/rec/play/vZN7c7qoqDk3ToCUsASDCvJ9W425Lf6shyMcr_ELnRuzBXkLYwWkM7BEYrOCZE_wQHzzKMUBbRPdY8I-?autoplay=true)
+    Lecture 1 has been recorded and posted.  [You can watch it here](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=2be0d84b-76d7-4bb0-a865-ac1300714e1d){target=_blank}.
 
 	Please read through the notes and watch the lecture.  After that, you can try the 
-	[post-lecture diagnostic quiz](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/quiz/fd0b97de-cfa4-4881-8860-19785b9510df/attempt) to test your own understanding.
+	[post-lecture diagnostic quiz](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/quiz/fd0b97de-cfa4-4881-8860-19785b9510df/attempt){target=_blank} to test your own understanding.
 
-	The [slides](https://nus-cs1010.github.io/2021-s1/slides/cs1010-lec1.html) are posted as well.
+	The [slides](slides/cs1010-lec1.html#1){target=_blank} are posted as well.
 
 !!! announcement "Notes for Lecture 1 Posted"
 	Sun Aug  9 07:20:35 +08 2020
