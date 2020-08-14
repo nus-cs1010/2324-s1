@@ -4,14 +4,14 @@
 
 This module introduces the fundamental concepts of problem solving by computing and programming using an imperative programming language. It is the first and foremost introductory course to computing. It is also the first part of a three-part series on introductory programming and problem solving by computing, which also includes CS2030 and CS2040. Topics covered include problem solving by computing, writing pseudo-codes, basic problem formulation and problem solving, program development, coding, testing and debugging, fundamental programming constructs (variables, types, expressions, assignments, functions, control structures, etc.), fundamental data structures: arrays, strings and structures, simple file processing, and basic recursion. This module is appropriate for SoC students.
 
-## Who/Where/When
+## Who/Where/When 
 
 - **Instructor**: Ooi Wei Tsang and Daren Ler
-- **Lecture Venue**: Online
+- **Lecture Venue**: Online ([Zoom link](https://piazza.com/class/kdgunoizhic105?cid=7))
 - **Lecture Time**: Every Monday, 12noon - 2pm
 - **Q&A Hour via Zoom**: 
-    - Every Tuesday, 4pm - 5pm (Wei Tsang)
-    - Every Friday, 4pm - 5pm (Daren)
+    - Wei Tsang: Every Tuesday, 4pm - 5pm ([Zoom link](https://piazza.com/class/kdgunoizhic105?cid=7))
+    - Daren: Every Friday, 4pm - 5pm ([Zoom link](https://piazza.com/class/kdgunoizhic105?cid=7))
 - **Student Tutors**:
 
     - Aaron Ong
@@ -24,6 +24,7 @@ This module introduces the fundamental concepts of problem solving by computing 
     - Felix Halim
     - Francisco Chensan
     - Georgie Lee
+	- Hou Rui
     - Hubertus Adhy Pratama Setiawan
     - Justin Tzuriel Krisnahadi
     - Jusuf Nathanael
