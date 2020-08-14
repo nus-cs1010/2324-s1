@@ -33,7 +33,8 @@ markdown_extensions:
   - pymdownx.highlight:
      linenums: true
   - footnotes
-  - pymdownx.arithmatex
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.betterem:
       smart_enable: all
   - pymdownx.caret
@@ -54,8 +55,6 @@ theme:
   name: material
   palette:
     primary: teal
-  features:
-    - instant
   shortcuts:
     previous: 72 #h
     next: 76 #l
@@ -64,7 +63,7 @@ theme:
 extra_javascript:
   - javascripts/config.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js
   - https://use.fontawesome.com/releases/v5.14.0/js/all.js
 
 extra_css:
