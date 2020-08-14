@@ -4,6 +4,8 @@ nav:
   - Notes: 
     - 1. What is a Program?: "01-program.md"
     - 2. Computational Problem & Algorithms: "02-algo.md"
+    - 3. Functions: "03-func.md"
+    - 4. Types: "04-type.md"
   - Learning Outcomes: 'outcomes.md'
   - Schedule: 'schedule.md'
   - Accounts: 'accounts.md'
@@ -28,7 +30,7 @@ use_directory_urls: false
 markdown_extensions:
   - admonition
   - attr_list
-  - codehilite:
+  - pymdownx.highlight:
      linenums: true
   - footnotes
   - pymdownx.arithmatex
@@ -62,13 +64,11 @@ theme:
 extra_javascript:
   - javascripts/config.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - https://use.fontawesome.com/releases/v5.14.0/js/all.js
-  - https://tikzjax.com/v1/tikzjax.js
 
 extra_css:
   - 'stylesheets/extra.css'
   - 'https://fonts.googleapis.com/css?family=Roboto:400,700'
-  - 'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap' 
+  - 'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap'
   - 'https://use.fontawesome.com/releases/v5.14.0/css/all.css'
-  - 'https://tikzjax.com/v1/fonts.css'
