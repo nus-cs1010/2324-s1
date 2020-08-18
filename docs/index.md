@@ -1,5 +1,16 @@
 # Announcements
 
+!!! announcement "Slides, Video, Quiz for Lecture 2"
+	Mon Aug 17 14:59:16 +08 2020
+
+	The [slides](slides/cs1010-lec2.html#1){target=_blank}, [video](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=aba5dda1-82ce-4fea-9867-ac1a0071d36c), and [post-lecture quiz](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/quiz/3b0b7775-68e2-4412-94fe-33ab4abc9ff6/attempt-secure) for Lecture 2 are now available.
+
+
+!!! announcement "Notes for Lecture 2 Posted"
+	Fri Aug 14 21:54:24 +08 2020
+
+    We will cover [Unit 3](03-func.md) and [Unit 4](04-type.md) in Lecture 2.  The notes have been posted.
+
 !!! announcement "Lecture 1 "
 	Mon Aug 10 14:17:40 +08 2020
 
