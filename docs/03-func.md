@@ -11,7 +11,7 @@ After this unit, students should:
 - apply wishful thinking in solving a problem recursively -- by making a function invokes itself to solve a simpler version of the same problem.
 
 
-### Problem: Finding the Range
+## Problem: Finding the Range
 
 Let's start with another problem.
 
@@ -53,7 +53,7 @@ Many programming languages, including C which we will be using in CS1010, come w
 
 Note, however, that in C, a function is more general than the description above: a C function may not take in any input, and it may not return any value.  
 
-### Problem: Finding Standard Deviation
+## Problem: Finding Standard Deviation
 
 Let's look at another problem: Given $L$, a finite list of at least one integers, find the standard deviation of the integers in $L$.  
 
@@ -110,7 +110,8 @@ Do we know how to solve $max'(L, i, j)$ without checking the integers in $L$ one
 
 Let's trace through the algorithm above, using our previous example: `4 1 -4 0 9 9 3 5 8`.  Given this list, we compare the first element, `4`, with the maximum of the rest of the list `1 -4 0 9 9 3 5 8`.  Since with wishful thinking, we know how to solve this already, we get `9` as the maximum value of `1 -4 0 9 9 3 5 8`.  Comparing `4` and `9`, `9` is larger. Thus, the maximum value for the whole list is `9`.
 
-### Example: Finding a Factorial
+## Example: Finding a Factorial
+
 Let us look at another example of a function before we move on to another topic.  Suppose we want to write a function $factorial(n)$ for an integer $n$ ($n \ge 0$) that computes $n!$. Recall that $n! = n \times n - 1 \times n - 2 \times ... 2 \times 1 = n \times (n-1)!$.  As a special case, $0!$ is defined to be $1$.
 
 The algorithm to do this can be expressed by the following diagram:
@@ -119,14 +120,14 @@ The algorithm to do this can be expressed by the following diagram:
 
 Let's look at an example.  Let's say we want to compute $factorial(4)$.  We assume we know how to solve this for a smaller problem --  $factorial(3)$, which is 6.  $factorial(4)$ is thus 4 $\times$ 6, i.e., 24.
 
-### Recursion: Function Calling Itself
+## Recursion: Function Calling Itself
 
 $max'$ and $factorial$ are examples of functions that calls itself to solve a simpler version of the problem.  This is known as _recursion_.  We will revisit this concept in much greater detail in the later part of CS1010.
 
 
 ## Problem Set
 
-#### Problem 3.1 : Getting MAD
+### Problem 3.1 : Getting MAD
 
 The mean absolute deviation, or MAD, of a set of integers measures how spread out a set of data is.  The _absolute deviation_ is the absolute difference between an element in the list with the mean of values of the list.  The mean absolute deviation is the mean of all the absolute difference.  In other words, given $L = \{l_0, ... l_{k-1}\}$, the MAD of $L$ is:
 
@@ -134,7 +135,7 @@ $$\frac{\sum_{i=0}^{k-1} |l_i - \mu|}{k}$$
 
 How do you find MAD by composing various functions we have seen?  Do you need a new function?
 
-#### Problem 3.2 : Ownself calls ownself
+### Problem 3.2 : Ownself calls ownself
 
 (a) Give an algorithm for finding the sum of all the integers in the list $L$ with $k$ ($k > 0$) integers that is recursive.
 
