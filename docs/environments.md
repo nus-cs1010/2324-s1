@@ -66,12 +66,12 @@ There are two ways to achieve this, and in both ways, it appears to the PE hosts
 
 Connect to sunfire at `sunfire.comp.nus.edu.sg` via command line `ssh` with the option `-t`.
 ```
-ssh -t sunfire.comp.nus.edu.sg ssh pe111.comp.nus.edu.sg
+ssh -t <username>@sunfire.comp.nus.edu.sg ssh pe111.comp.nus.edu.sg
 ```
 
 Alternatively:
 ```
-ssh pe111.comp.nus.edu.sg -J sunfire.comp.nus.edu.sg
+ssh pe111.comp.nus.edu.sg -J <username>@sunfire.comp.nus.edu.sg
 ```
 
 #### SSH Port Forwarding
@@ -135,3 +135,18 @@ of your SoC UNIX account which you have created here: https://mysoc.nus.edu.sg/~
 
     If you have lost your password, go here: https://mysoc.nus.edu.sg/~myacct/iforgot.cgi
 
+4. `ssh: connect to host sunfire.comp.nus.edu.sg port 22: Operation timed out`
+
+	It means that you failed to connect to `sunfire` via `ssh`.  There could be two reasons for this: (i) `sunfire` or its ssh service is down; (ii) you are connecting via a network where `sunfire` is not accessible (such as outside Singapore).  
+
+	The likelihood of (i) is small.  The more likely scenario is (ii), in which case, you should be able to solve it by connecting to NUS or SoC VPN.
+
+5. `Could not chdir to home directory /home/o/ooiwt: Permission denied`
+
+    This error means that you have successfully connect to the PE hosts, but you have no access to your own home directory. 
+
+	This should not happen.  Please send an email with the above error message to helpdesk@comp.nus.edu.sg, include the PE hosts that you
+	connected to with this error and your username.  The system administrator can reset the permission of your home directory for you.
+
+
+    
