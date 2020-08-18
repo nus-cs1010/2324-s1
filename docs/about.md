@@ -17,7 +17,7 @@ This module introduces the fundamental concepts of problem solving by computing 
     - Aaron Ong
     - Adi Nata
     - Bennett Clement
-    - Chan Jun Hui
+    - Chua Jun Hui
     - Christopher Goh Zhen Fung
     - Dao Ngoc Hieu 
     - David Livingstone
