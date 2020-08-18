@@ -14,6 +14,11 @@ This command should create an executable called `a.out` in the current directory
 ooiwt@pe118:~$ ./a.out
 ```
 
+!!! tips ""
+    If you are looking for a test `teh.c` to try this out, there is one
+	at `~cs1010/teh.c`, which you can copy over.
+
+
 ## 2. Renaming executable file
 
 The name `a.out` is an abbreviation for _assembler output_, a name that many compilers kept as the default output name since the 60s.  We should, however, give our executable more descriptive name, by using the `-o` flag.  (`o` is the mnemonic for output).
