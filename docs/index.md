@@ -1,5 +1,18 @@
 # Announcements
 
+!!! announcement "Notes for Lecture 3 and for Using C in CS1010"
+	Fri Aug 21 16:18:17 +08 2020
+
+	We will cover [Unit 5](05-first-c.md), [Unit 6](06-cs1010-io.md), and [Unit 7](07-arithmetic-ops.md) in Lecture 3.  
+	The notes have been posted.
+
+	We have also posted notes on using C in CS1010:
+	- [C in CS1010](c-in-cs1010.md) lists and explains the features of C that are banned or discouraged in this module;
+	- [CS1010 I/O library](library.md) documents the APIs provided by the `libcs1010` library, something that we provide to shield the pain and danger of using `printf` and `scanf` from you;
+	- [C Style](style.md) documents the programming style that we should all follow in CS1010.
+	- [Compiler Messages](messages.md) lists the common warnings and errors that students encounter in CS1010.  This list will be 
+	updated throughout the semester.
+
 !!! announcement "Slides, Video, Quiz for Lecture 2"
 	Mon Aug 17 14:59:16 +08 2020
 
