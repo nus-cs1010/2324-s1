@@ -18,9 +18,9 @@ shows the error in the file `error.c`, line 3, position 5.
 
 
 ## Variables
-### E1. Use of undeclared identifier
+### Error: Use of undeclared identifier
 
-C is a statically type language, and thus every variable used must be declared with its type.  
+C is a static type language, and thus every variable used must be declared with its type.  
 E.g.,
 
 ```C
@@ -46,7 +46,7 @@ int main()
 }
 ```
 
-### E2. Redefinition of a variable
+### Error: Redefinition of a variable
 
 Each variable should be declared exactly once within its scope (scoped by `{` and `}`).
 
@@ -72,9 +72,9 @@ x.c:3:10: note: previous definition is here
 
 To fix, check whether you intend the second declaration to be the same variable (in which case, remove the declaration) or a new one (in which case, give it a different name).
 
-### W. Unused Variable
+### Warning: Unused Variable
 
-Declaring variables that are not used clutter the code.  It is a good programming practice to only declare the variables that you need.  CS1010 insists on this.  If you declare variables that you end up not using, you will be penalized.
+Declaring variables that are not used clutters the code.  It is a good programming practice to only declare the variables that you need.  CS1010 insists on this.  If you declare variables that you end up not using, you will be penalized.
 
 ```C
 int main()
@@ -91,7 +91,7 @@ x.c:4:10: warning: unused variable 'x' [-Wunused-variable]
 
 To fix, go through all such warnings and remove any variables that you declared/initialized but never used.
 
-### W. Variable May Be Uninitialized
+### Warning: Variable May Be Uninitialized
 
 A variable is uninitialized if it is declared but not assigned any value.  This might lead to bugs in your code.
 
@@ -115,7 +115,7 @@ x.c:3:9: note: initialize the variable 'y' to silence this warning
 
 To fix, initialize the variable to appropriate value.
 
-### W. Declarations shadows a local variable.
+### Warning: Declarations shadows a local variable.
 
 Avoid naming a variable the same name as another variable in the outer scope. Doing so makes your code confusing to read.
 E.g.,
@@ -138,9 +138,9 @@ x.c:2:8: note: previous declaration is here
        ^
 ```
 
-### W. No previous extern declaration for non-static variable
+### Warning: No previous extern declaration for non-static variable
 
-A global variable is detected.  Use of global variable is bug prone and should be avoided.
+A global variable is detected.  The use of global variables is bug-prone and should be avoided.
 For instance,
 
 ```C
@@ -165,7 +165,7 @@ To fix, make the variable local and pass it around from function to function.
 
 ## Functions
 
-### W. Type specifier missing
+### Warning: Type specifier missing
 
 Functions must have a return type declared.  C, by default, treats all functions as returning `int` if the return type is not declared.  It is, however, a good programming practice to always declare the return type explicitly, even if it is returning `int`.  CS1010 insists on this and you will be penalized if you do not declare the return type.
 
@@ -183,7 +183,7 @@ main()
 ^
 ```
 
-### W. Implicit declaration of function
+### Warning: Implicit declaration of function
 
 All functions in C must be declared before they are used.  If the function is defined elsewhere, the header file containing the function declaration should be included.  Without the function declaration, the compile will guess the type of the arguments and its return type.  An incorrect guess would lead to buggy code and thus should be avoided.
 E.g.,
@@ -204,7 +204,7 @@ x.c:3:4: warning: implicitly declaring library function 'sqrt' with type 'double
 
 To fix, include the appropriate header file.
 
-### E. Undefined reference to a function
+### Error: Undefined reference to a function
 
 This error is usually accompanied by an "implicit declaration of function" warning.  During linking, `clang` tries to locate the definition of a function.  Calling a function that is not defined would lead to the error above. E.g.,
 
@@ -220,7 +220,7 @@ x.c:(.text+0xb): undefined reference to `foo'
 clang: error: linker command failed with exit code 1 (use -v to see invocation)u
 ```
 
-### E. Too many/few arguments to function call
+### Error: Too many/few arguments to a function call
 
 Each function should be called with exactly the number of arguments defined.
 
@@ -241,9 +241,9 @@ x.c:4:10: error: too few arguments to function call, single argument '__x' was n
 
 To fix, check the documentation or the `man` page of the function you are calling to understand the number of arguments needed.
 
-### W. Control reaches end of non-void function
+### Warning: Control reaches the end of non-void function
 
-Every non-void function, with the exception of `main`, must return a value.  If you define a non-void function but did not include a `return` statement, the compiler would warn you.  Failing the return the intended value means the caller would not receive the correct value back, leading to buggy code.
+Every non-void function, except `main`, must return a value.  If you define a non-void function but did not include a `return` statement, the compiler would warn you.  Failing the return the intended value means the caller would not receive the correct value back, leading to a buggy code.
 
 E.g.,
 
@@ -258,11 +258,11 @@ x.c:3:1: warning: control reaches end of non-void function [-Wreturn-type]
 }
 ```
 
-To fix this, double check if the function needs to return anything.  If not, change the return type to `void`.  Otherwise, return the appropriate value.
+To fix this, double-check if the function needs to return anything.  If not, change the return type to `void`.  Otherwise, return the appropriate value.
 
-### W. Parameter not declared, defaulting to type `int`
+### Warning: Parameter is not declared, defaulting to type `int`
 
-The type of each parameter to a function must be declared explicitly.  Not doing so would lead to code that are cognitively harder to understand and bug prone than necessary.
+The type of each parameter to a function must be declared explicitly.  Not doing so would lead to code that is cognitively harder to understand and bug-prone than necessary.
 
 For example,
 
@@ -280,7 +280,7 @@ int foo(x) {
 
 To fix, declare an appropriate type for each parameter.
 
-### W. Unused Parameter
+### Warning: Unused Parameter
 
 Every parameter that you pass into a function must serve a purpose and so should be used.
 
@@ -297,13 +297,13 @@ x.c:1:14: warning: unused parameter 'x' [-Wunused-parameter]
 int foo(long x) {
              ^
 ```
-To fix, either remove the parameter `x` if you do not need it, or check that you do not unintentionally leave `x` unused.
+To fix, either remove the parameter `x` if you do not need it or check that you do not unintentionally leave `x` unused.
 
 ## Logic
 
-### W. Expression result unused
+### Warning: Expression result unused
 
-Result of your expression should be used.  Otherwise the computation is wasted.
+The result of your expression should be used.  Otherwise, the computation is wasted.
 For instance:
 
 ```C
@@ -321,7 +321,7 @@ x.c:3:5: warning: expression result unused [-Wunused-value]
 
 To fix, check the expression is necessary.  If so, use it as intended. Otherwise, remove it.
 
-### W. Code/return/break will never be executed
+### Warning: Code/return/break will never be executed
 
 The execution flow of your code is incorrect.  Part of the code will never be executed and is redundant.
 
@@ -341,7 +341,7 @@ x.c:4:7: warning: code will never be executed [-Wunreachable-code]
 
 To fix, check the logic of your code and remove redundant code.
 
-### @. Comparing floating point with == or != is unsafe
+### Warning: Comparing floating point with == or != is unsafe
 
 Floating numbers should never be compared with `==` operator since the representation is not precise.
 
