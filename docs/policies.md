@@ -6,7 +6,10 @@
 
 * Please use email only for private matters.  Prefix your email subject with `[CS1010]`.
 
+* {++Please email to both instructors `ooiwt@comp.nus.edu.sg` and `dler@comp.nus.edu.sg` to make sure that the response to your email is not delayed.++}
+
 * Please use [Piazza](https://piazza.com/class/jkqlna92ju045j) for other matters related to the module.  If you email us privately and we feel that your questions/answers are useful to the rest of the class, we will publish it on Piazza, with anonymization when appropriate.
+
 
 ## Lab Sessions
 
