@@ -1,16 +1,24 @@
 nav:
   - Home: 'index.md'
-  - About CS1010: 'about.md'
+  - General: 
+    - About CS1010: 'about.md'
+    - Learning Outcomes: 'outcomes.md'
+    - Schedule: 'schedule.md'
+    - Accounts: 'accounts.md'
+    - Policies: 'policies.md'
   - Notes: 
     - 1. What is a Program?: "01-program.md"
     - 2. Computational Problem & Algorithms: "02-algo.md"
     - 3. Functions: "03-func.md"
     - 4. Types: "04-type.md"
-  - Learning Outcomes: 'outcomes.md'
-  - Schedule: 'schedule.md'
-  - Accounts: 'accounts.md'
-  - Policies: 'policies.md'
+    - 5. First C Program:  '05-first-c.md'
+    - 6. CS1010 I/O Library: '06-cs1010-io.md'
+    - 7. Arithmetic Operations: '07-arithmetic-ops.md'
   - Readings: 'readings.md'
+  - C in CS1010: 'c-in-cs1010.md'
+  - CS1010 I/O Library: 'library.md'
+  - C Style Convention: 'style.md'
+  - Compiler Messages: 'messages.md'
   - Software/Tools:
       - Programming Environments: 'environments.md'
       - UNIX: 'unix.md'
