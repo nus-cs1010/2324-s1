@@ -26,9 +26,16 @@ nav:
       - Vim: 'vim.md'
       - Zoom: 'zoom.md'
   - 18/19 Sem 1: '1819s1.md'
+        
+theme: 
+  name: material
+  palette:
+    primary: teal
+  shortcuts:
+    previous: 72 #h
+    next: 76 #l
+    search: 191 #/
 
-# pip install pymdown-extensions
-# pip install pygments
 site_name: CS1010 Programming Methodology
 # repo_url: https://github.com/nus-cs1010/1819-s1
 site_url: https://nus-cs1010.github.io/2021-s1
@@ -45,6 +52,8 @@ markdown_extensions:
       generic: true
   - pymdownx.betterem:
       smart_enable: all
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.inlinehilite
@@ -52,30 +61,17 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.superfences
-  - pymdownx.tasklist:
-      custom_checkbox: true
   - pymdownx.tilde
   - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
-  - fontawesome_markdown
-        
-theme: 
-  name: material
-  palette:
-    primary: teal
-  shortcuts:
-    previous: 72 #h
-    next: 76 #l
-    search: 191 #/
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 extra_javascript:
   - javascripts/config.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js
-  - https://use.fontawesome.com/releases/v5.14.0/js/all.js
 
 extra_css:
   - 'stylesheets/extra.css'
   - 'https://fonts.googleapis.com/css?family=Roboto:400,700'
   - 'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap'
-  - 'https://use.fontawesome.com/releases/v5.14.0/css/all.css'
