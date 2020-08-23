@@ -170,10 +170,11 @@ The `left_hand_side` must be the name of a variable.  We first evaluate the `rig
 
 Here, on the right-hand side, we call the function `square`, which we defined earlier.  We call `square` with _arguments_ `3` and `4` respectively.  When we call `square` with argument `3`, we are _assigning_ the parameter `x` to a value `3` before we execute the body of `square`.
 
-
 We use the operator `+` to add the two results together.  The right-hand side should give the value 25, which we then assign to the variable `hypotenuse_square`.
 
 Note that we use `=` equal sign for assignment, NOT for checking equality.  The C notation for checking for equality is `==` (we will come back to this later).
+
+{++All variables must have an assigned value before it is evaluated.  Otherwise, the variable holds an _indeterminate_ value.++}
 
 ### Recap
 
@@ -183,7 +184,7 @@ Before we move on, let's recap some concepts:
 - Each function is defined by its returned type, followed by its name, its parameter(s) (within a pair of parenthesis), and its body (within a pair of curly brackets).  
 - Each function must be defined or declared before it is used.  
 - The function body consists of one or more statements.  We have seen assignment statements (using the `=` operator) and return statements, using `return` as the keyword.
-- Each variable must be declared before it is used.  A declaration starts with its type followed by its name.  A variable is only visible within its scope.
+- Each variable must be declared before it is used.  A declaration starts with its type followed by its name.  A variable is only visible within its scope.  {++A variable must be assigned a value before it is evaluated.++}
 - Global variables are banned in CS1010.
 
 ### Example 2
