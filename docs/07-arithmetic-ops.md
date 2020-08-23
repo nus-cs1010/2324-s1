@@ -198,11 +198,13 @@ So, why aren't `++` and `--` welcomed in CS1010?  The `++` and `--` operators no
 You should realize by now that we are only using a subset of C and enforce a certain style of programming in CS1010.  We wish to move all of you away from common pitfalls in learning and writing C so that we can focus on using C as a tool to solve problems.   
 
 So far, you have seen that we are banning:
+
 - `++` and `--` operators
 - the types `int`, `short`, `float` etc. (with the returning type of `main()` as the exception)
 - global variables
 
-In addition, we discourage
+In addition, we discourage:
+
 - the use of `printf` and `scanf`
 - skipping parenthesis in writing arithmetic expression
 
