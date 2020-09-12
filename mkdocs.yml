@@ -1,5 +1,7 @@
 nav:
   - Home: 'index.md'
+  - Midterm: 'midterm.md'
+  - PE1: 'pe1.md'
   - General: 
     - About CS1010: 'about.md'
     - Learning Outcomes: 'outcomes.md'
@@ -14,6 +16,23 @@ nav:
     - 5. First C Program:  '05-first-c.md'
     - 6. CS1010 I/O Library: '06-cs1010-io.md'
     - 7. Arithmetic Operations: '07-arithmetic-ops.md'
+    - 8. Conditionals: '08-if-else.md'
+    - 9. Logical Expressions: '09-logical-exp.md'
+    - 10. Assertion: '10-assert.md'
+    - 11. Loops: '11-loop.md'
+    - 12. Loop Invariant: '12-invariant.md'
+    - 13. Call Stack: '13-call-stack.md'
+    - 14. Memory Addresses : '14-pointers.md'
+    - 15. Array: '15-array.md'
+    - 16. String : '16-string.md'
+  - Exercises: 
+    - 0. Echo, Divide, Quadratic: 'ex00.md' 
+    - 1. GCD, Day, Leap: 'ex01.md' 
+    - 2. Binary, Rectangle, Fibonacci: 'ex02.md'
+  - Assignments: 
+    - Overview: 'assignment.md'
+    - 1. Box, Digits, Suffix, Taxi: 'as01.md'
+    - 2. Collatz, Triangle, Prime, Pattern: 'as02.md'
   - Readings: 'readings.md'
   - C in CS1010: 'c-in-cs1010.md'
   - CS1010 I/O Library: 'library.md'
@@ -24,7 +43,9 @@ nav:
       - UNIX: 'unix.md'
       - CLang: 'clang.md'
       - Vim: 'vim.md'
+      - TMate: 'tmate.md'
       - Zoom: 'zoom.md'
+  - Older Announcements: 'archive.md'
   - 18/19 Sem 1: '1819s1.md'
         
 theme: 
