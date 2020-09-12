@@ -1,5 +1,25 @@
 # Announcements
 
+!!! announcement "Notes for Lecture 6"
+	Sat Sep 12 14:50:07 +08 2020
+
+	We will cover Units 13 - 16 in our last lecture before the break.  Check under Notes on the left menu for the notes. 
+
+!!! announcement "Assignment 2 Released"
+	Thu Sep 10 11:39:40 +08 2020
+
+	Here is your [Assignment 2](as02.md) on loops.
+
+!!! announcement "Exercise 2 Released"
+	Tue Sep  8 11:30:27 +08 2020
+
+	Here is your [ungraded Exercise 2](ex02.md) on loops.  This is for you to practice before Assignment 2 is released on Thursday.
+
+!!! announcement "Post-Lecture 5 Materials"
+	Sat Sep  5 19:35:57 +08 2020
+
+	Folks, here is your weekly dose of [lecture video :fontawesome-solid-play:](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=db69f139-180f-454b-b790-ac2f009896dd), [slides :fontawesome-solid-chalkboard:](https://nus-cs1010.github.io/2021-s1/slides/cs1010-lec5.html#1), and the [diagnostic quiz :fontawesome-solid-brain:](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/quiz/bcc5ed4c-231a-4599-b6f8-c05136f1d161/attempt-secure).
+
 !!! announcement "Notes for Lecture 5; Details about PE and Midterm "
 	Sat Sep  5 19:35:57 +08 2020
 
