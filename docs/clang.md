@@ -44,13 +44,20 @@ The command above would create an executable called `teh`.
 
 ## 3. Warning for possible bugs.
 
-The `clang` checks for syntax errors in your C files -- i.e., things that violate the C syntax rules.  The compiler, however, is smart enough to identify possible bugs -- errors that will cause your program to behave incorrectly, even if the syntax follows C's rules.  You can ask `clang` to warn you about this, using the `-W` flag (`W` is the mnemonic for warning -- note the capital W).  The manual for `clang` lists different types of warnings that `clang` can warn you about.  For simplicity, we will ask `clang` to warn us about everything, by enabling `all` warnings.  The command to do so is:
+The `clang` checks for syntax errors in your C files -- i.e., things that violate the C syntax rules.  The compiler, however, is smart enough to identify possible bugs -- errors that will cause your program to behave incorrectly, even if the syntax follows C's rules.  You can ask `clang` to warn you about this, using the `-W` flag (`W` is the mnemonic for warning -- note the capital W).  The manual for `clang` lists different types of warnings that `clang` can warn you about.  For instance, we can ask `clang` to warn us by enabling `-Wall` warnings.  The command to do so is:
 
 ```
 ooiwt@pe118:~$ clang -Wall teh.c -o teh
 ```
 
-For beginners, it is _highly recommended_ that you _always_ compile with `-Wall` flag.
+For beginners, it is _highly recommended_ that you _always_ compile with at least `-Wall`, `-Wextra`, and the `-Wpedantic` flag.
+
+!!! tips "clang warning flags"
+    `-Wall` in `clang` does not catually enable all warnings.
+	`-Weverything` enables every warning but it could be overwhelming
+	for beginners.   In CS1010 assignments, we will provide a `Makefile`
+	so that you can use `make` to automate the compilation process. 
+	Appropriate warning flags will be enabled for you.
 
 ## 4. Generating additional information for debugging.
 
@@ -78,4 +85,9 @@ If you use a third-party library, you usually need to tell `clang` where to look
 
 ```
 ooiwt@pe118:~$ clang -Wall -g -I ~/citadel/include -L ~/citadel/lib teh.c -o teh -lm -lcitadel
+```
+
+For instance, to link with the [CS1010 I/O library](library.md) on the PE nodes, you can run
+```bash
+ooiwt@pe118:~$ clang -Wall -g -I ~cs1010/include -L ~cs1010/lib teh.c -lcs1010
 ```
