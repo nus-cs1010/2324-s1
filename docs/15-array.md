@@ -358,7 +358,7 @@ Explain why the following would lead to senseless output:
 int main()
 {
   long a = 0;
-  printf("%ld\n", max(&a, 10));
+  cs1010_println_long(max(&a, 10));
 }
 ```
 
@@ -368,7 +368,7 @@ How about the following? Would the output be correct?
 int main()
 {
   long a = 0;
-  printf("%ld\n", max(&a, 1)); // change 10 to 1
+  cs1010_println_long(max(&a, 1)); // change 10 to 1
 }
 ```
 
