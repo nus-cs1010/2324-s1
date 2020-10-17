@@ -419,7 +419,7 @@ int main()
 
 int main()
 {
-  long square(long x) <-- define function within function.
+  long square(long x) // <-- define function within function.
   {
 	return x * x;
   }
@@ -429,6 +429,6 @@ int main()
     return sqrt(square(base) + square(height));
   }
 
-  hypotenuse_of(3, 4); // <-- use a different case
+  hypotenuse_of(3, 4);
 }
 ```
