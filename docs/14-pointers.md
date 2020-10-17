@@ -64,7 +64,7 @@ Your results will most likely be different since the OS allocates different regi
 
 ![pointers](figures/pointers/pointers.001.png)
 
-## The Deference Operator
+## The Dereference Operator
 
 The dereference operator is the reversed of address-of and is denoted by `*`.  I call it "location-of-address".  We use this operator in two places:
 
@@ -151,7 +151,7 @@ I am just doing it the complicated way (which you should avoid unless you have g
 	addr = &radius; // not ok
 	```
 
-	Line 4 above would lead to a compilation error since we try to point a `double` pointer to a `long`.  
+	Line {++5++} above would lead to a compilation error since we try to point a `double` pointer to a `long`.  
 
 2. We cannot change the address of a variable.  For instance
 
@@ -199,7 +199,7 @@ ptr = &x;
 ptrptr = &ptr;
 ```
 
-This deference can go on since `ptrptr` is also a variable and has been allocated in some memory location on the stack.  We rarely need to dereference more than twice in practice, but if the situation arises, such multiple layers of dereferencing are possible.
+This dereference can go on since `ptrptr` is also a variable and has been allocated in some memory location on the stack.  We rarely need to dereference more than twice in practice, but if the situation arises, such multiple layers of dereferencing are possible.
 
 ## The `NULL` Pointer
 
