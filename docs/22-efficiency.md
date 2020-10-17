@@ -21,7 +21,7 @@ Writing efficient code basically means that we should not write code that runs u
 bool is_prime(long n)
 {
   bool is_prime = true;
-  for (long i = 2; i <= n - 1; i++) {
+  for (long i = 2; i <= n - 1; i += 1) {
     if (n % i == 0) {
       is_prime = false;
     }
@@ -33,7 +33,7 @@ bool is_prime(long n)
 ```C
 bool is_prime(long n)
 {
-  for (long i = 2; i <= sqrt(n); i++) {
+  for (long i = 2; i <= sqrt(n); i += 1) {
     if (n % i == 0) {
       return false;
     }
@@ -174,7 +174,7 @@ There are a couple of things to note when expressing the running of an algorithm
 Now, consider the algorithm to compute the Kendall-Tau distance.  The code is given below.
 
 ```C
-long count_inversion(long i, long n, const long rank[n])
+long count_inversion(long i, long n, const long rank[])
 {
   long count = 0;
   for (long j = i + 1; j < n; j += 1) {
@@ -185,13 +185,13 @@ long count_inversion(long i, long n, const long rank[n])
   return count;
 }
 
-double kendall_tau(long n, const long rank[n])
+double kendall_tau(long n, const long rank[])
 {
   long count = 0;
   for (long i = 0; i < n - 1; i += 1) {
     count += count_inversion(i, n, rank);
   }
-  return 2.0*count/(n*(n - 1));
+  return 2.0 * count/(n * (n - 1));
 }
 ```
 
@@ -204,7 +204,7 @@ It is tempting to conclude that `kentall_tau` takes $O(n)$ steps here, but it wo
 Notice that Line 16 calls another function `count_inversion`.  What is the running time of `count_inversion`?  Inside `count_inversion`, there is another loop that repeats $n - i$ times.  Each time we call `count_inversion`, `i` increases, so the loop in `count_inversion` takes fewer steps each time the function is called.
 
 To calculate the total number of steps, we can compute the following sum
-$sum_{i = 0}^{n} (n - i)$, which is just $n + (n-1) + (n-2) + .. + 2 + 1$.
+$\sum_{i = 0}^{n} (n - i)$, which is just $n + (n-1) + (n-2) + .. + 2 + 1$.
 This sum is the sum of an arithmetic series and equals to $n(n+1)/2$.   Since we use the Big-O notation, we can focus on the term with the highest rate of growth, $n^2$, and ignore everything else.  We have obtained the running time for `kentall_tau` function above as $O(n^2)$.
 
 ## Example: Fibonacci
