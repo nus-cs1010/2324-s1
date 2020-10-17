@@ -102,9 +102,14 @@ free(line);
 
 ## Reading of Multiple Values
 
+!!! tips "Update to API"
+    In September AY20/21, we updated the API to take in a `long` instead of an `int` 
+	for `cs1010_read_*_array` functions, to be consistent with the rest of the CS1010
+	materials.
+
 The CS1010 library also supports reading of multiple values.  
 
-- `long* cs1010_read_long_array(int k)`<br>
+- `long* cs1010_read_long_array(long k)`<br>
 Returns `k` numbers of `long` values read from the standard input stored in an array.  An error message will be printed (to `stderr`) for each input that is not a valid `long` value -- in which case the value `LONG_MAX` will be populated in the corresponding array element.  Returns NULL if there is a memory allocation error.  If the returned value is non-NULL, the caller is responsible for freeing the memory allocated by calling `free`.
 ```C
 long* values = cs1010_read_long_array(10);
@@ -116,7 +121,7 @@ if (values != NULL) {
 }
 ```
 
-- `double* cs1010_read_double_array(int k)`<br>
+- `double* cs1010_read_double_array(long k)`<br>
 Returns `k` numbers of `double` values read from the standard input stored in an array.  An error message will be printed (to `stderr`) for each input that is not a valid `double` value -- in which case the value `DBL_MAX` will be populated in the corresponding array element.  
 Returns NULL if there is a memory allocation error.  If the returned value is non-NULL, the caller is responsible for freeing the memory allocated by calling `free`.
 ```C
@@ -129,7 +134,7 @@ if (values != NULL) {
 }
 ```
 
-- `char** cs1010_read_word_array(int k)`<br>
+- `char** cs1010_read_word_array(long k)`<br>
 Returns `k` white-space-separated words read from the standard input stored in an array.  The notion of "word" is the same to `cs1010_read_word()`.  
 Returns NULL if there is a memory allocation error.  If the returned value is non-NULL, the caller is responsible for freeing the memory allocated for each word and for the whole array by calling `free`.
 ```C
@@ -145,7 +150,7 @@ if (words != NULL) {
 }
 ```
 
-- `char** cs1010_read_line_array(int k)`<br>
+- `char** cs1010_read_line_array(long k)`<br>
 Returns `k` new-line-separated words read from the standard input stored in an array.  The notion of line is the same to `cs1010_read_line()`.  
 Returns NULL if there is a memory allocation error.  If the returned value is non-NULL, the caller is responsible for freeing the memory allocated for each line and for the whole array by calling `free`.
 ```C
@@ -160,6 +165,7 @@ if (lines != NULL) {
   free(lines);
 }
 ```
+
 
 ## Printing of a Single Value
 
@@ -188,6 +194,10 @@ Print a given string `str` to the standard output.  These functions are provided
 ```C
   cs1010_println_string("hello world!");
 ```
+
+!!! tip "Printing single character"
+    There is no `cs1010_print_char` method.  You can use `putchar` from the C standard library
+	for this purpose.
 
 ## Clearing screen
 
