@@ -359,27 +359,6 @@ class: middle
 - Return the first one that is valid
 
 ---
-class: middle
-
-.tiny[
-```C
-void queens(char q[], long len, long curr) {
-  if (curr == len - 1) {
-    if (is_valid(q)) {
-      cs1010_println_string(q);
-	}
-  }
-  queens(q, len, curr + 1));
-  for (long i = curr + 1; i < len; i += 1) {
-    swap(q, curr, i);
-	queens(q, len, curr + 1);
-    swap(q, i, curr);
-  }
-}
-```
-]
-
----
 class: bottom
 
 .tiny[
