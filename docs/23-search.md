@@ -32,7 +32,7 @@ But, do we always have to check every element in the list?  It turns out that, l
 
 Suppose that the input list is sorted in increasing order.  Pick a random element $x$ from the list.  Any element to the left of $x$ must be less than or equal to $x$, and any element to the right of $x$ must be greater or equal to $x$. 
 
-![property](figures/search-and-sort/search-and-sort.001.png{: style="width:300px"})
+![property](figures/search-and-sort/search-and-sort.001.png){: style="width:300px"}
 
 Suppose that $q > x$, then we know that $q$ must be to the right of $x$, there is no need to search to the left of $x$.  Otherwise, $q < x$, and $q$ must be to the left of $x$, and there is no need to search to the right of $x$.
 
@@ -96,13 +96,13 @@ Let's see how we ensure this assertion is true in the recursive call.
        :
 ```
 
-Line 3 of the snippet above is invoked only if `list[mid] > q`.  Since the array `list` is sorted, we know for sure that any element in `list[mid+1]`..`list[j]` is larger than $q$.  So, $q$ cannot be anywhere in that range.  We can assert, between Line 3 and Line 4 above:
+Line 3 of the snippet above is invoked only if `list[mid] > q`.  Since the array `list` is sorted, we know for sure that any element in `list[mid+1]`..`list[j]` is larger than $q$.  So, $q$ cannot be anywhere in that range.  We can assert, between {--Line 3 and Line 4--} Lines 2 and 3 above:
 
 ```C
 // { q is not in list[0]..list[i-1] and list[mid]..list[n-1] }
 ```
 
-Thus, when Line 4 is invoked, the same assertion holds true.  You can apply the same argument to the call:
+Thus, when {--Line 4--} Line 3 is invoked, the same assertion holds true.  You can apply the same argument to the call:
 
 ```C
   return search(list, mid+1, j, q);
@@ -145,11 +145,12 @@ With a sorted input and using binary search, however, we can do a better.  Let's
 
 ### Problem 23.1
 
-(a) 
-Rewrite the code for binary search above using a loop instead of recursion.
+{-- (a) 
+{Rewrite the code for binary search above using a loop instead of recursion.--}
 
 (b) 
-Instead of returning the position of the query `q`, modify the binary search algorithm in (a) such that it returns either:
+Instead of returning the position of the query `q`, modify {--the binary search algorithm in (a)--} an iterative version of the binary search such that it returns either:
 
 - a position `k`, such as `a[k] <= q <= a[k+1]`. 
-- -1 if `q < a[0]` or `q > a[n-1]`
+- -1 if `q < a[0]` 
+- {++n-1 if++} `q > a[n-1]`

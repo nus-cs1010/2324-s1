@@ -21,7 +21,7 @@ The placeholder `%s` is called a _format modifier_.  It controls how to interpre
 %[flags][field_width][.precision][length_modifier]specifier
 ```
 
-The letter after `%` controls the interpretation of the argument.  `s` for string, `c` for character, `d` for integer (base 10), `f` for floating-point number, `p` for pointer (base 16).  We can additionally prepend this with _length modifier_.  `ld` for `long` integer, `lld` for `long long`, and `lf` for `double`.
+The {--letter after `%`--} {++specifier++}  controls the interpretation of the argument.  `s` for string, `c` for character, `d` for integer (base 10), `f` for floating-point number, `p` for pointer (base 16).  We can additionally prepend this with _length modifier_.  `ld` for `long` integer, `lld` for `long long`, and `lf` for `double`.
 
 To format the output, we can prepend it with a number to indicate its _field width_, or minimum space used when printing.  E.g., `%3d` will pad the number printed with space if the number printed is less than 3 digits.  Adding a _flag_ 0 in front, `%03d`, will pad the number with 0s if the number printed is less than 3 digits.  Other flags include `+`, which tells `printf` to print a sign (`+` or `-`) for the number.  For floating-point numbers, we can additionally control the _precision_, or the number of digits printed after the decimal point.  `%3.4lf` will print a double to four decimal points.
 
@@ -55,7 +55,7 @@ Consider:
 printf("%d %s %s\n", 10);
 ```
 
-It would cause `printf` to access the memory content of the stack as strings. 
+It would cause `printf` to access the memory content of the stack as strings.
 
 
 ### Printing User Input
@@ -83,23 +83,23 @@ The function `scanf` is used to read inputs from the standard input.  It require
 %[*][field_width][length_modifier]specifier
 ```
 
-For instance, to read an integer, a floating-point number, and a string of at most 10 characters, 
+For instance, to read an integer, a floating-point number, and a string of at most 10 characters,
 
 ```C
 long l;
 double d;
-char s[11]; 
+char s[11];
 scanf("%ld %lf %10s", &l, &d, s);
 ```
 
 `scanf` scans the standard input, try to match it to the format specified.
 The space in between the format specifier matches zero or more white spaces (space, tab, newline).  Scanning stops when an input character does not match such a format character or when an input conversion fails.
 
-Adding a `*` to the format modifier means that scanf should consume the inputs but not store it in any variables.  This, combined with `%[``]` is useful to clear any remaining data from the standard input.
+Adding a `*` to the format modifier means that `scanf` should consume the inputs but not store it in any variables.  This, combined with `%[` `]` is useful to clear any remaining data from the standard input.
 
 ## Pitfalls When Using `scanf`
 
-### Checking for Error 
+### Checking for Error
 
 The function `scanf` fails silently when the input character does not match a format or when the input conversion fails.  It might return an unexpected input.  We should always check the return value of `scanf` to make sure that it is reading properly.
 
@@ -109,14 +109,14 @@ scanf("%ld", &a);
 printf("%ld", a);
 ```
 
-The code above might print uninitialized value if the input is not an integer.
+The code above might print an uninitialized value if the input is not an integer.
 
 We should check
 
 ```C
 long a;
 long result = scanf("%ld", &a);
-if (result != 1) {
+if (result == 1) {
   printf("%ld", a);
 }
 ```
@@ -128,7 +128,7 @@ To clear the input, we can use the `%*[^\n]` modifier, which read in any charact
 ```C
 long a;
 long result = scanf("%ld", &a);
-if (result != 1) {
+if (result == 1) {
   printf("%ld", a);
 } else {
   scanf("*[^\n]");
@@ -150,7 +150,7 @@ The compiler would not warn us since the type matches perfectly.  The program ma
 
 ### Buffer Overflow
 
-When we use `scanf` to read a string, it keeps reading until it reaches a space, and stores everything that it reads into an array.  The problem here is that we do not know when it will stop reading, and therefore how big is the array that we need to allocate for the input!
+When we use `scanf` to read a string, it keeps reading until it reaches space, and stores everything that it reads into an array.  The problem here is that we do not know when it will stop reading, and therefore how big is the array that we need to allocate for the input!
 
 Let's say we do:
 

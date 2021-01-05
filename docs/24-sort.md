@@ -134,8 +134,10 @@ In each loop, it finds the index of the maximum element among list[0] to list[le
 The `max` function has another for loop in it.  And it loops through the list $O(n - i)$ times.  The running time is thus:
 
 $$
-\sum_{i=0}^{n} (n - i) = n^2 - \frac{n(n+1)}{2} = \frac{n^2 - n}{2} = O(n^2)
+\sum_{i=0}^{n} (n - i) = (n+1)^2 - \frac{n(n+1)}{2} = \frac{n^2 + n}{2} = O(n^2)
 $$
+
+{++An earlier version of the note incorrectly express $\sum_{i=0}^n{n} as $n^2$.++}
 
 So selection sort takes O(n^2) time.
 
@@ -258,7 +260,7 @@ void insert(long a[], long curr)
 {
   long i = curr - 1;
   long temp = a[curr];
-  while (temp < a[i] && i >= 0) {
+  while (i >= 0 && temp < a[i]) {
     a[i+1] = a[i];
     i -= 1;
   }
@@ -272,6 +274,12 @@ void insertion_sort(long n, long a[]) {
 }
 ```
 
+{++Fix++} The original code uses the following as loop condition
+```
+  while (temp < a[i] && i >= 0) { .. }
+```
+which causes an access to `a[-1]`.  Even though this value is eventually discarded, to be polite we should not access memory locations where we have no permission to.
+ 
 ## Animation
 
 Animations for various sorting algorithms, including some which you will learn in CS2040C, are available online on [VisuAlgo](https://visualgo.net/bn/sorting)
