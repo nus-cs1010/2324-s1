@@ -1,98 +1,117 @@
 # Announcements
+!!! announcement "Video for Lecture 12"
+	Tue Nov 10 12:41:52 +08 2020
 
-!!! announcement "Notes for Lecture 6"
-	Sat Sep 12 14:50:07 +08 2020
+	Here is the video from [the last lecture](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=abe790da-2abb-4a06-947a-ac6f000b7c3a)
 
-	We will cover Units 13 - 16 in our last lecture before the break.  Check under Notes on the left menu for the notes. 
+!!! announcement "PE 2"
+    Sat Nov  7 14:18:02 +08 2020
 
-!!! announcement "Assignment 2 Released"
-	Thu Sep 10 11:39:40 +08 2020
+    You can now get the PE 2 skeleton just like other assignments.
+	[Accept](https://classroom.github.com/a/bWa2kiuE) it here, then 
+	run `~cs1010/get-pe02` on one of the PE nodes.
 
-	Here is your [Assignment 2](as02.md) on loops.
+!!! announcement "Assignment 9"
+    Thu Nov  5 11:57:56 +08 2020
 
-!!! announcement "Exercise 2 Released"
-	Tue Sep  8 11:30:27 +08 2020
+    Here is [the final assignment for CS1010](as09.md)!  It is just one huge question for you to apply everything that you have learned through out this journey, on a problem that you can impress your friends not taking CS1010 with :)
 
-	Here is your [ungraded Exercise 2](ex02.md) on loops.  This is for you to practice before Assignment 2 is released on Thursday.
+!!! announcement "Exercise 4"
+    Tue Nov  3 19:55:53 +08 2020
 
-!!! announcement "Post-Lecture 5 Materials"
-	Sat Sep  5 19:35:57 +08 2020
+    Here is [Exercise 4](ex04.md) for you to practice recursion and 2D arrays.
 
-	Folks, here is your weekly dose of [lecture video :fontawesome-solid-play:](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=db69f139-180f-454b-b790-ac2f009896dd), [slides :fontawesome-solid-chalkboard:](https://nus-cs1010.github.io/2021-s1/slides/cs1010-lec5.html#1), and the [diagnostic quiz :fontawesome-solid-brain:](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/quiz/bcc5ed4c-231a-4599-b6f8-c05136f1d161/attempt-secure).
+!!! announcement "Post-Lecture Materials for Lecture 11"
+    Mon Nov  2 20:24:52 +08 2020
 
-!!! announcement "Notes for Lecture 5; Details about PE and Midterm "
-	Sat Sep  5 19:35:57 +08 2020
+	Here is the [video](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=ce76c20c-5dfe-4fe9-92f7-ac67009d28f9), the [corresponding slides](https://nus-cs1010.github.io/2021-s1/slides/cs1010-lec11.html#1), and the [quiz](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/quiz/df0d385b-3bea-4db0-8cf5-47b37154589f/attempt-secure).
 
-	We will cover [Unit 11](11-loop.md) and [Unit 12](12-invariant.md) in Lecture 5.  We will also go through some important details about the upcoming [midterm](midterm.md) and [PE1](pe1.md).
+!!! announcement "Assignment 8 is Here" 
+    Thu Oct 29 19:09:40 +08 2020
 
-!!! announcement "Assignment 1 Release"
-	Thu Sep  3 10:28:04 +08 2020
+	[Assignment 8](as08.md) on complex recusion, is out.
 
-	Here is your [first graded programming assignment](as01.md).  Due next Tuesday (Sep 8) 23:59 SGT.
+!!! announcement "Practice Paper and Info for PE 2"
+	Wed Oct 28 10:48:04 +08 2020
 
-!!! announcement "Ungraded Exercise 1 Available"
-	Tue Sep  1 21:51:56 +08 2020
+	The practice paper for PE2 is now available, along with
+	important information about the PE.
 
-	If you would like to have more practices before Assignment 1, here is [Exercise 1](ex01.md), an ungraded exercise on conditionals and logical expression.
-
-!!! announcement "Post-Lecture Materials for Lecture 4 Available"
-	Mon Aug 31 18:33:02 +08 2020
-
-	Please enjoy the [video :fontawesome-solid-play:](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=14e02e60-d1cc-4630-950e-ac28009c26fc), [slides :fontawesome-solid-chalkboard:](https://nus-cs1010.github.io/2021-s1/slides/cs1010-lec4.html#1), and the [diagnostic quiz :fontawesome-solid-brain:](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/quiz/5dee6218-2cf3-4e09-a448-ac4b85a9f7e7/attempt-secure) for Lecture 4 today.
-
-	The older announcements below are moved to [the old announcements sections](archive.md) in the left bar.
+	[See here](pe2.md)
 
 
-!!! announcement "Notes for Lecture 4 Available"
-    Sat Aug 29 10:15:34 +08 2020
+!!! announcement "Diagnostic Quiz for Lecture 10"
+	Tue Oct 27 15:10:34 +08 2020
 
-	We will cover [Unit 8](08-if-else.md), [Unit 9](09-logical-exp.md), and [Unit 10](10-assert.md) in Lecture 4.  The notes have been posted.
+	The [quiz is now available](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/quiz/a169c1f0-3d77-49f5-8610-bcaac57bdba6/attempt-secure).
 
-!!! announcement "Catch Up Session"
-	Fri Aug 28 11:57:46 +08 2020
+!!! announcement "Slides and Video for Lecture 10"
+	Mon Oct 26 19:06:15 +08 2020
 
-	The [Piazza Q&A Page for tomorrow's catch-up session](https://piazza.com/class/kdgunoizhic105?cid=90#) is now open and will remain open for the next 24 hours.  
-
-	Please post your questions and vote for questions that you would like us to answer live tomorrow.
-
-	The link to Zoom can be found at [the usual place](https://piazza.com/class/kdgunoizhic105?cid=7).
-
-!!! announcement "Bonus Quiz: Using the CS1010 PE"
-
-	We added a [bonus diagnostic quiz](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/quiz/be9a394a-0887-45e6-b5a2-019d8c843dd5/attempt-secure) on using the CS1010 PE for you to self-diagnose your basic understanding of the usage of the CS1010 PE nodes.  This quiz is due next Thursday 10am as usual.
-
-	This quiz carries the same weight as the rest of the quizzes.  Recall
-	that we will take the best 10 out of all the quizzes in CS1010 to compute your marks.
-
-!!! announcement "Exercise 0 Posted"
-	Fri Aug 28 05:12:47 +08 2020
-
-	In case you missed the lab yesterday, here is [Exercise 0](ex00.md), a warm-up to get your ready to write some C code and prepare for the coming assignments.
-
-	Exercise 0 is not graded but it is important that you complete it before Assignment 1, which is going to be released next week.
-
-!!! announcement "Slides, Video, and Quiz for Lecture 3"
-	Mon Aug 24 17:24:46 +08 2020
-
-	Here you go: 
-	
-	- [Slides](slides/cs1010-lec3.html#1){target=_blank}, 
-	- [Video](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=67ba3d34-94a6-4469-9a14-ac2100749280){target=blank}
-	- [Quiz](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/quiz/9eb19ff0-601f-4fd3-aaa8-4ed1db83e1ef/attempt-secure)
+	Here is the [video recording](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=dd2832f5-83a0-4078-8aa1-ac60008d844e) of Lecture 10 and 
+	the [corresponding slides](https://nus-cs1010.github.io/2021-s1/slides/cs1010-lec10.html#1).
 
 
-!!! announcement "Notes for Lecture 3 and for Using C in CS1010"
-	Fri Aug 21 16:18:17 +08 2020
+!!! announcement "Notes for Lecture 10-11"
+    Sat Oct 24 13:36:34 +08 2020
 
-	We will cover [Unit 5](05-first-c.md), [Unit 6](06-cs1010-io.md), and [Unit 7](07-arithmetic-ops.md) in Lecture 3.  The notes have been posted.
+	During lecture 10, we are going to see how recursion can be used
+	in more complex settings: how we can solve [Tower of Hanoi](25-tower.md), [generate permutations](26-permutation.md), and search for a solution for [the N Queens problem](27-queens.md).
 
-	We have also posted notes on using C in CS1010:
+	Finally, in Lecture 11 (next week), we will show you how to [use `struct` in C](28-struct.md), and explain [how to use `printf` and `scanf`](29-stdio.md), as well as why you should avoid them in certain situations.
 
-	- [C in CS1010](c-in-cs1010.md) lists and explains the features of C that are banned or discouraged in this module;
-	- [CS1010 I/O library](library.md) documents the APIs provided by the `libcs1010` library, something that we provide to shield the pain and danger of using `printf` and `scanf` from you;
-	- [C Style](style.md) documents the programming style that we should all follow in CS1010.
-	- [Compiler Messages](messages.md) lists the common warnings and errors that students encounter in CS1010.  This list will be 
-	updated throughout the semester.
+!!! announcement "Assignment 7"
+	Thu Oct 22 08:07:33 +08 2020
+
+    Here is [this week's dose of programming questions](as07.md)!
+
+!!! announcement "Post-lecture Materials for Lecture 9"
+	Monday Oct 19 17:42:01 +08 2020
+
+	[Lecture video](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=5685e1e7-af46-4f84-8794-ac59009820dd), [quiz](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/quiz/e1c89934-3780-4e9f-a9dc-8157c1bc9ada/attempt-secure) and [slides](https://nus-cs1010.github.io/2021-s1/slides/cs1010-lec9.html#1) are now available.
+
+	Quiz for Lecture 10 will be released tomorrow.  Watch out this space for the announcement.
+
+!!! announcement "Notes for Lecture 9"
+	Sun Oct 18 07:58:13 +08 2020
+
+	Here is the notes on [searching](23-search.md) and [sorting](24-sort.md) for Lecture 9.
+
+!!! announcement "Assignment 6"
+	Thu Oct 15 12:59:21 +08 2020
+
+	[Assignment 6](as06.md) is out!  Counting the number of programming problems we have released (assignment, exercises, past year PE, PE), we 
+	have just crossed the threshold of 50!  Pat yourself on the back for making it this far. 
+
+!!! announcement "Post-Lecture 8 Materials"
+	Mon Sep 14 18:04:12 +08 2020
+
+	Here is the [lecture video :fontawesome-solid-play:](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=26c766dc-4673-4e28-960d-ac52008a2617), [slides :fontawesome-solid-chalkboard:](https://nus-cs1010.github.io/2021-s1/slides/cs1010-lec8.html#1), and the [diagnostic quiz :fontawesome-solid-brain:](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/quiz/04033c4d-cd7f-428b-857c-7037dea3064c/attempt-secure)
+
+!!! announcement "Notes for Lecture 8"
+	Sun Oct 11 12:44:14 +08 2020
+
+	We will introduce [the C preprocessor](20-macro.md), [the `assert` macro](21-assert.md) and the [big-O notation for measuring efficiency](22-efficiency.md) in Lecture 8.
+
+!!! announcement "Assignment 5 is out"
+	Thu Oct  8 14:27:43 +08 2020
+
+	[Assignment 5](as05.md) is out.  Note that the weightage for this assignment
+	is 4%, so it is slightly heavier than the past assignments.  It is due on 
+	Tuesday 13 October, 2359.
+
+!!! announcement "Post-Lecture Materials for Lecture 7"
+    Mon Oct  5 17:51:47 +08 2020
+
+	[Video](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=b84f0290-71e7-49e9-8e00-ac4b0087b720), [Quiz](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/quiz/a7b1035c-1405-419f-b7d7-aca0f0d374ef/attempt-secure),
+	[Slides](https://nus-cs1010.github.io/2021-s1/slides/cs1010-lec7.html#1).  You know the drill.
+
+!!! announcement "Lecture 7 on Unit 17-19"
+	Sun Oct  4 13:37:57 +08 2020
+
+	After a two-week break, we will resume the lecture this week.  The units covered are
+	[Unit 17](17-call-by-reference.md) on calling by reference, [Unit 18](18-heap.md) on 
+	heap memory allocation, and [Unit 19](19-md-array.md) on multi-dimensional arrays.
 
 
 [more..](archive.md)
