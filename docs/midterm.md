@@ -38,8 +38,10 @@ Note the following supplementary information to complete the E-exam procedure ab
 
 ## Zoom Session Assignment
 
-TBD.  Check back for an update.
+- Zoom session assignment is available internally via [LumiNUS](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/groups/class-groups/54a078dc-b356-4a89-836e-a90f3c5ff7f5)
+
+- Zoom link available via [Piazza](https://piazza.com/class/kdgunoizhic105?cid=301)
 
 ## Invigilators and Email Address
 
-TBD.  Check back for an update.
+Invigilators list available on [Piazza](https://piazza.com/class/kdgunoizhic105?cid=301)

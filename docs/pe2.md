@@ -1,31 +1,19 @@
-# Practice Exam 1
-
-## Questions
-
-You can accept the [PE1 questions on Github](https://classroom.github.com/a/OkHXpide) and run
-```
-~cs1010/get-pe01
-``` 
-and
-```
-~cs1010/submit-pe01
-```
-as usual, for practice.
+# Practice Exam 2
 
 ## Basic Info
 
-- Date: 3 October 2020 (Saturday)
+- Date: 7 November 2020 (Saturday)
 - Time: 9 am to 12noon (Report to invigilator at 9 am, exam starts at 9:30am)
-- Venue: Online (except those already informed)
-- Scope: Units 1-12, Assignments 1-2, Tutorials 1-4
+- Venue: Online 
+- Scope: Units 1-27, Assignments 1-8, Tutorials 1-10
 - 5 programming questions: from very easy to very hard
-- Criteria: correctness and style.  There will be one question where efficiency matters. 
+- Criteria: correctness, style, efficiency, and documentation.  These are applied differently to different question (e.g., efficiency is important only for some questions, documentation is required only for some questions).
 - Duration: 2 hours and 30 minutes
 - Open Book (You can refer to printed/written materials, but no online resources are allowed).
 
 ## Special Restrictions
 
-- You will be issued a special account for use on the day of the practical exam.   This should already been sent to your NUS email account and you should have already tested it during Thursday's tutorial session. 
+- You will be issued a special account for use on the day of the practical exam.   This will been sent to your NUS email account and you should will get a chance to test it during Thursday's tutorial session. 
 
 - You will need to log into a special set of PE nodes through `ssh` to solve the exam questions.  
 
@@ -59,6 +47,7 @@ Note the following supplementary information to complete the E-exam procedure ab
    - The terminal running on your PC must be in full-screen mode.  Terminal window/tab other than the one used to connect to the PE nodes are not allowed.  
    - You are allowed only one full-screen terminal window.  You may use split windows within `vim` to view the exam questions and your code side-by-side.
    - If you need to switch to other Windows (e.g., Zoom chat to ask question), you need to get permission from the invigilator.
+   - {++ Do note that failure to comply with proctoring requirements may require you to retake PE2 ++}
 
 ### 2.4. Seeking Clarifications on Exam Questions
 
@@ -70,15 +59,17 @@ Note the following supplementary information to complete the E-exam procedure ab
 
 ### 9.6. Completion of Exam
 
-   The folder to submit the your recording to is LumiNUS> CS1010 > Files > PE1 Screen Capture Video Submissiona.  You should submit it no later than 3 October 2020, 2359.  Note that failure to submit equates to you not being proctored for Practical Examination 1.
-   
+   The folder to submit the your recording to is LumiNUS> CS1010 > Files > PE2 Screen Capture Video Submission.  You should submit it no later than 7 November 2020, 2359.  Note that failure to submit equates to you not being proctored for Practical Examination 2.
+ 
 ## Zoom Session Assignment
 
-Please see https://piazza.com/class/kdgunoizhic105?cid=381
+- [Group assignment](https://luminus.nus.edu.sg/modules/c7b362a0-6aee-4b22-b4da-f9e8074249fd/groups/class-groups/c9273adc-94e7-4c08-90d9-a764182aea6c) is available on Luminus.
+
+- {++ Zoom sessions are available on [Piazza](https://piazza.com/class/kdgunoizhic105?cid=693) ++}
 
 ## Invigilators
 
-Please see https://piazza.com/class/kdgunoizhic105?cid=381
+TBD
 
 ## Emergency Contact (Examination issues)
 
@@ -102,15 +93,15 @@ Please see https://piazza.com/class/kdgunoizhic105?cid=381
 - There is one mark allocated to style for each question.  As long as you keep your code clean, neat, and readable, you will get this one mark, almost for free.  Review the CS1010 style guide so that you know what is expected in terms of coding style.
 - Don't start typing your code right away.  Think about the solution first -- what variables are needed?  What is the control flow (using branches and loops)?  Draw out the flowchart if it helps.  
 - Break down the problem into smaller ones if the problem is too complex to solve.
-- You are not allowed to start typing on the computer {--for the first 10 minutes of the practical exam, or--} until the invigilator announced that you can do so.
+- You are not allowed to start typing on the computer until the invigilator announced that you can do so.
 - Just like the assignments, you are not given all the test cases that we will be using during grading.  Please test your code against additional test cases, especially for boundary cases.
 
 ## Practice Paper
 
 You can use the PE question from 18/19 Semester 1 as the practice paper.
 
-- Download the [question paper](https://www.comp.nus.edu.sg/~ooiwt/cs1010/1819s1/pe1.pdf)
-- [Accept the assignment](https://classroom.github.com/a/vxBeWKnV) on GitHub
-- Run `~cs1010/get-pe18` on any PE host to get the skeleton code and test cases
-- Run `~cs1010/submit-pe18` to submit/archive your solution on GitHub
+- Download the [question paper](https://www.comp.nus.edu.sg/~ooiwt/cs1010/1819s1/pe2.pdf)
+- [Accept the assignment](https://classroom.github.com/a/o4OHFC_V) on GitHub
+- Run `~cs1010/get-pe19` on any PE host to get the skeleton code and test cases
+- Run `~cs1010/submit-pe19` to submit/archive your solution on GitHub
 
