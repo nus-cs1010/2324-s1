@@ -4,36 +4,6 @@ To help students get started with C programming without worrying too much about 
 
 The libraries are pre-installed in [CS1010 programming environments](environments.md), with `cs1010.h` located under `~cs1010/include` and `libcs1010.a` located under `~cs1010/lib`.
 
-# Installing the Library
-
-If you want to install the libraries on your own version of Ubuntu, do the following:
-
-1. To get an updated copy of the library, clone it from its git repo on GitHub with the command:
-
-```
-git clone https://github.com/nus-cs1010/libcs1010.git
-```
-
-It is recommended you do this in your home directory.
-
-You should see an output similar to:
-```
-Cloning into 'libcs1010'...
-remote: Counting objects: 6, done.
-remote: Compressing objects: 100% (3/3), done.
-remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
-Unpacking objects: 100% (6/6), done.
-```
-
-After that, you should see a subdirectory `libcs1010` created in your current directory.  Inside, there should be a file called `Makefile`, and two subdirectories called `include` and `src`.  
-
-2. To compile the library, run
-
-```
-make
-```
-
-This should compile the file `src/cs1010.c` and create a static C library named `libcs1010.a` under the `lib` directory.
 
 # Using the Library
 
@@ -49,19 +19,17 @@ at the top of your C program.
 
 ## Linking
 
-The CS1010 I/O library is provided as the file `libcs1010.a`.  To link to the library, you need to compile with `-lcs1010`.  Usually, you need to specify where you can find `cs1010.h` with the `-I` flag, and `libcs1010.a` with the `-L` flag.  Assuming that you are compiling in another subdirectory under your home and `libcs1010` are located under your home directory, the header file and the library file are in `../libcs1010/include` and `../libcs1010/lib` respectively.
+The CS1010 I/O library is provided as the file `libcs1010.a`.  To link to the library, you need to compile with `-lcs1010`.  Usually, you need to specify where you can find `cs1010.h` with the `-I` flag, and `libcs1010.a` with the `-L` flag.  
 
-So you compile using the command line:
+On the CS1010 programming environment, you would need to compile using the command line:
 
 ```
-clang -I../libcs1010/include -L../libcs1010/lib hello.c -lcs1010
+clang -I ~cs1010/include -L ~cs1010/lib hello.c -lcs1010
 ```
 
-{++
-Of course if your header and library files are located in another directory that is not `../libcs1010/include` and `../libcs1010/lib`, you should change the command above accordingly.
+Although it is a long string to type, you should type it once and use up arrow in bash to go back to this command over-and-over again.   For advanced students, we suggest that you put this in a shell script so that you just need to run the shell script to compile the program.  
 
-Although it is a long string to type, you should type it once and use up arrow in bash to go back to this command over-and-over again.   For advanced students, we suggest that you put this in a shell script so that you just need to run the shell script to compile the program.  We have also automate this for you for your assignments and exercises using the `make` command.
-++}
+We have also automated this for you for your assignments and exercises using the `make` command.
 
 ## Reading of a Single Value
 
@@ -101,11 +69,6 @@ free(line);
 ```
 
 ## Reading of Multiple Values
-
-!!! tips "Update to API"
-    In September AY20/21, we updated the API to take in a `long` instead of an `int` 
-	for `cs1010_read_*_array` functions, to be consistent with the rest of the CS1010
-	materials.
 
 The CS1010 library also supports reading of multiple values.  
 
@@ -169,7 +132,7 @@ if (lines != NULL) {
 
 ## Printing of a Single Value
 
-The CS1010 library provides a few convenince functions to format and print `long` and `double` values to the standard output.
+The CS1010 library provides a few convenience functions to format and print `long` and `double` values to the standard output.
 
 - `void cs1010_print_long(long value)` and `void cs1010_println_long(long value)`<br>
 Print `value` to the standard output (with printf format `%ld`).  
@@ -205,3 +168,35 @@ The CS1010 library provides a function to clear your screen.
 ```C
   cs1010_clear_screen();
 ```
+
+
+# Installing the Library
+
+If you want to install the libraries on your own computer for purposes other than CS1010, you can do the following:
+
+1. To get an updated copy of the library, clone it from its git repo on GitHub with the command:
+
+```
+git clone https://github.com/nus-cs1010/libcs1010.git
+```
+
+It is recommended you do this in your home directory.
+
+You should see an output similar to:
+```
+Cloning into 'libcs1010'...
+remote: Counting objects: 6, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (6/6), done.
+```
+
+After that, you should see a subdirectory `libcs1010` created in your current directory.  Inside, there should be a file called `Makefile`, and two subdirectories called `include` and `src`.  
+
+2. To compile the library, run
+
+```
+make
+```
+
+This should compile the file `src/cs1010.c` and create a static C library named `libcs1010.a` under the `lib` directory.

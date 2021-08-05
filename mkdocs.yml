@@ -1,9 +1,5 @@
 nav:
   - Home: 'index.md'
-  - Midterm: 'midterm.md'
-  - Final: 'final.md'
-  - PE1: 'pe1.md'
-  - PE2: 'pe2.md'
   - General: 
     - About CS1010: 'about.md'
     - Learning Outcomes: 'outcomes.md'
@@ -13,55 +9,12 @@ nav:
   - Notes: 
     - 1. What is a Program?: "01-program.md"
     - 2. Computational Problem & Algorithms: "02-algo.md"
-    - 3. Functions: "03-func.md"
-    - 4. Types: "04-type.md"
-    - 5. First C Program:  '05-first-c.md'
-    - 6. CS1010 I/O Library: '06-cs1010-io.md'
-    - 7. Arithmetic Operations: '07-arithmetic-ops.md'
-    - 8. Conditionals: '08-if-else.md'
-    - 9. Logical Expressions: '09-logical-exp.md'
-    - 10. Assertion: '10-assert.md'
-    - 11. Loops: '11-loop.md'
-    - 12. Loop Invariant: '12-invariant.md'
-    - 13. Call Stack: '13-call-stack.md'
-    - 14. Memory Addresses : '14-pointers.md'
-    - 15. Array: '15-array.md'
-    - 16. String : '16-string.md'
-    - 17. Call by Reference : '17-call-by-reference.md'
-    - 18. Heap: '18-heap.md'
-    - 19. Multi-dimensional Arrays: '19-md-array.md'
-    - 20. C Preprocessing: '20-macro.md'
-    - 21. The assert macro: '21-assert.md'
-    - 22. Efficiency: '22-efficiency.md'
-    - 23. Searching: '23-search.md'
-    - 24. Sorting: '24-sort.md'
-    - 25. Tower of Hanoi: '25-tower.md'
-    - 26. Permutation: '26-permutation.md'
-    - 27. N Queens: '27-queens.md'
-    - 28. Struct: '28-struct.md'
-    - 29. Standard I/O: '29-stdio.md'
-  - Exercises: 
-    - 0. Echo, Divide, Quadratic: 'ex00.md' 
-    - 1. GCD, Day, Leap: 'ex01.md' 
-    - 2. Binary, Rectangle, Fibonacci: 'ex02.md'
-    - 3. Weekday, Circle, Histogram: 'ex03.md'
-    - 4. Fill, Sudoku: 'ex04.md'
   - Assignments: 
     - Overview: 'assignment.md'
-    - 1. Box, Digits, Suffix, Taxi: 'as01.md'
-    - 2. Collatz, Triangle, Prime, Pattern: 'as02.md'
-    - 3. ID, Kendall, Max, CountingSort: 'as03.md'
-    - 4. SelectionSort, Mastermind: 'as04.md'
-    - 5. Contact, Social, Life: 'as05.md'
-    - 6. Add, Frequency, Permutation: 'as06.md'
-    - 7. Peak, Sort, Inversion: 'as07.md'
-    - 8. Walk, Maze: 'as08.md'
-    - 9. Digits: 'as09.md'
   - Readings: 'readings.md'
   - C in CS1010: 'c-in-cs1010.md'
   - CS1010 I/O Library: 'library.md'
   - C Style Convention: 'style.md'
-  - C Documentation Guide: 'documentation.md'
   - Compiler Messages: 'messages.md'
   - Software/Tools:
       - Programming Environments: 'environments.md'
@@ -70,13 +23,12 @@ nav:
       - Vim: 'vim.md'
       - TMate: 'tmate.md'
       - Zoom: 'zoom.md'
-  - Older Announcements: 'archive.md'
-  - 18/19 Sem 1: '1819s1.md'
-        
+  - 18/19 Semester 1: '1819s1.md' 
+
 theme: 
   name: material
   palette:
-    primary: teal
+    primary: blue grey
   shortcuts:
     previous: 72 #h
     next: 76 #l
@@ -84,8 +36,8 @@ theme:
 
 site_name: CS1010 Programming Methodology
 # repo_url: https://github.com/nus-cs1010/1819-s1
-site_url: https://nus-cs1010.github.io/2021-s1
-copyright: Copyright by Department of Computer Science, National University of Singapore 2020
+site_url: https://nus-cs1010.github.io/2122-s1
+copyright: Copyright by Department of Computer Science, National University of Singapore 2021
 # remote_branch: gh-pages
 use_directory_urls: false
 markdown_extensions:

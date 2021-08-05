@@ -166,7 +166,35 @@ Both styles are acceptable, but you should be consistent and should not mix both
 
 For close braces, they should be leading close braces aligned with the block of the construct. Close braces should NOT be trailing as that would make it hard to spot them.
 
-## 12. Comment Major Code Segments Adequately
+# 12. Avoid Else After Return
+
+Adding an `else` after a `return` statement in the `if` block is unnecessary and increases the indentation level.  If the last statement of the `if` block is a `return` statement, we should skip the `else` statement. 
+
+```C
+if (x == 1) {
+    return 10;
+} else {
+    if (y == 2) {
+        return 13;
+    } else {
+        return 89;
+    }
+} 
+```
+
+can be written as the following equivalent code:
+```C
+if (x == 1) {
+    return 10;
+} 
+if (y == 2) {
+    return 13;
+} 
+return 89;
+} 
+```
+
+## 13. Comment Major Code Segments Adequately
 
 Major segments of code should have explanatory comments. A major segment may be a loop block or a function block.
 
@@ -181,7 +209,7 @@ if (k < 0 || k >= MAX_LEN) {
 }
 ```
 
-## 13. Avoid Superfluous Comments
+## 14. Avoid Superfluous Comments
 
 A comment such as:
 
@@ -191,7 +219,7 @@ i += 1 // add one to i
 
 serves no purpose, adds clutter to a program and does more harm than good.
 
-## 14. Blank Lines
+## 15. Blank Lines
 
 It is good to add a blank line between two functions, or two long segments of code for readability.
 
@@ -223,7 +251,7 @@ statement12;
 However, guard against the use of excessive blank lines. Double blank lines and triply blank lines, or more, should not be present.
 
 
-## 15. Long Lines
+## 16. Long Lines
 
 If a line (be it a statement or a comment) is too long (more than 80 characters), do not let it run through the screen and wrap around. Instead, split it into a few lines.
 

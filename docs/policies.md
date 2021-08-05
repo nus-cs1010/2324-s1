@@ -2,26 +2,27 @@
 
 ## Email Communication
 
-* Please use only your official NUS email for communication with the teaching staff -- either the one with `@u.nus.edu` or `@comp.nus.edu.sg`.  
+* [Piazza](https://piazza.com/class/krfo8m0yrkv6t2#) is the preferred platform if you have questions to ask or issues to raise (either publicly to your classmates or privately to the instructors).
 
-* Please use email only for private matters.  Prefix your email subject with `[CS1010]`.
+* But if you must use email, please use only your official NUS email for communication with the teaching staff -- either the one with `@u.nus.edu` or `@comp.nus.edu.sg`.  
 
-* {++Please email to both instructors `ooiwt@comp.nus.edu.sg` and `dler@comp.nus.edu.sg` to make sure that the response to your email is not delayed.++}
+* Prefix your email subject with `[CS1010]`.
 
-* Please use [Piazza](https://piazza.com/class/jkqlna92ju045j) for other matters related to the module.  If you email us privately and we feel that your questions/answers are useful to the rest of the class, we will publish it on Piazza, with anonymization when appropriate.
+* If you email us privately and we feel that your questions/answers are useful to the rest of the class, we will publish it on Piazza, with anonymization when appropriate.
 
+## Tutorial and Lab Sessions
 
-## Lab Sessions
+* Attendance is not compulsory at NUS, but we do take attendance during the tutorial and lab sessions for contract tracing purposes.
 
-* Attendance is not compulsory at NUS, but we do take attendance during the tutorial sessions.
-
-* You should stick to your allocated time slot for tutorials.  If there is a strong reason for you to attend another tutorial session, please inform your tutor.
+* You should stick to your allocated time slot for labs and tutorials.  If there is a strong reason for you to attend another session, please inform your tutor.
 
 ## Late Submissions
 
 * All programming assignments must be submitted on time.  If you need an extension, please ask for one and provide a justification for approval.  Only academic reasons and compassionate reasons can be considered (e.g., representing NUS for a sports event is OK; Attending a wedding is not).
 
-* For late submission, there is a 1% penalty (of the total assessment grade) for every 5-minutes after the deadline, capped at 80%.  For example, if an assessment that was given 40 marks was submitted 100 minutes after the deadline, the student will get 32 marks instead (20% penalty).  If it is submitted 10 hours after the deadline, the student will get 8 marks (as the cap of 80% penalty has been reached).
+* For late submission, there is a 1% penalty (of the total assessment grade) for every 5-minutes after the deadline, capped at 80%.  For example, if an assessment that was given 40 marks was submitted 100 minutes after the deadline, the student will get 32 marks instead (20% penalty).  If it is submitted 10 hours after the deadline, the student will get 8 marks (as the cap of 80% penalty has been reached).  
+
+* No submission will be accepted a week after the deadline.
 
 ## Discussions and Plagiarism
 
@@ -31,18 +32,18 @@
 
 * I adopt a "no mercy" policy when it comes to disciplinary action on plagiarism.  Both parties, the student who copied, and the student who allowed others to copy, will be penalized equally.
 
-## Screencast
+## Lecture Video
 
-* Screencast will be recorded and posted online 3-4 days after the lecture.
-This will be done on a 'best effort' basis and screencast will not be guaranteed to be available on time or at all.  
+* The recorded zoom video will be recorded and posted online 1-2 days after the lecture.
+This will be done on a 'best effort' basis and lecture video will not be guaranteed to be available on time or at all.  
 
-* Posting of screencast is meant to help students who attended the lecture to recap the content or to help those who are not able to attend the lecture due to unexpected circumstances.  It does not mean that you should skip the lecture.  [Research](https://link.springer.com/article/10.1007/s10734-018-0275-9) has shown that the effect of over-reliance on screencast is negative.
+* Posting of video lecture is meant to help students who attended the lecture to recap the content or to help those who are not able to attend the lecture due to unexpected circumstances.  It does not mean that you should skip the lecture.  [Research](https://link.springer.com/article/10.1007/s10734-018-0275-9) has shown that the effect of over-reliance on lecture video is negative.
 
 ## Model Solutions and Slides
 
 * Slides will be posted _after_ the class.  Note that slides are used as a _visual aid_ to assist me during the lectures. It is not meant as a summary of lectures nor a replacement of lecture notes.
 
-* In a module like CS1010, there is often not a single correct answer.  Hence, there is no model solution for this module.  Sample solutions may be posted (both good and bad ones) for discussion.  I strongly encourage students to discuss your solution with the teaching team, instead of just comparing your solution with the sample solution.
+* In a module like CS1010, there is often not a single correct answer.  Hence, there is no model solution for this module.  Sample solutions _may_ be posted (both good and bad ones) for discussion.  I strongly encourage students to discuss your solution with the teaching team, instead of just comparing your solution with the sample solution.
 
 ## Grading
 

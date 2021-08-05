@@ -9,7 +9,7 @@ The school has provided a list of computing servers for you to use.  You can acc
 !!! note "pe115 and pe116"
     For this semester, the two servers `pe115` and `pe116` are not available.
 
-You can choose which of the {--10--} 8 hosts to use.  You share the same home directory across all the hosts (this home directory, however, is different from that of `sunfire`).
+You can choose which of the 8 hosts to use.  You share the same home directory across all the hosts (this home directory, however, is different from that of `stu`).
 
 For simplicity, the following guide uses `pe111` in all examples.  Do keep in mind that you can use other hosts for CS1010 to spread out the load.
 
@@ -41,10 +41,9 @@ After the command above, following the instructions on the screen.  The first ti
 
 ## Accessing The PE Hosts from Outside SoC
 
-The PE hosts can only be accessed from within the School of Computing networks.  If you want to access it from outside, there are several ways.
+The PE hosts can only be accessed from within the School of Computing networks.  If you want to access it from outside, you need to connect through SoC VPN.
 
-### Option 1: Using SoC VPN
-One way is to set up a Virtual Private Network (VPN) (See [instruction here](https://dochub.comp.nus.edu.sg/cf/guides/network/vpn)).  The staff at `helpdesk@comp.nus.edu.sg` or the IT helpdesk in COM1, Level 1, will be able to help with you setting up if needed.
+First, you need to set up a Virtual Private Network (VPN) (See [instruction here](https://dochub.comp.nus.edu.sg/cf/guides/network/vpn)).  The staff at `helpdesk@comp.nus.edu.sg` or the IT helpdesk in COM1, Level 1, will be able to help with you setting up if needed.
 
 !!! note "SoC VPN vs NUS VPN"
 
@@ -52,43 +51,7 @@ One way is to set up a Virtual Private Network (VPN) (See [instruction here](htt
 
 !!! warning "Windows 10 Users: FortiClient from Windows Store"
 
-    Students have reported that running FortiClient downloaded from the Windows Store does not allow one to `ssh` from WSL to `sunfire` as expected.  Therefore, you should download and install For Windows 10 users, please download and install FortiClient VPN directly from [FortiClient's website](https://forticlient.com/downloads).
-
-### Option 2: Tunneling through Sunfire
-
-The alternative is to use ssh tunnels.
-
-SoC's Sunfire (`sunfire.comp.nus.edu.sg`) is configured to allow your connection if it's originating from a local telco (See [more details here](https://dochub.comp.nus.edu.sg/cf/guides/unix/soc_unix_pass_your_direct_access_to_soc_unix_servers)).
-
-There are two ways to achieve this, and in both ways, it appears to the PE hosts that Sunfire is the client.
-
-#### SSH through sunfire
-
-Connect to sunfire at `sunfire.comp.nus.edu.sg` via command line `ssh` with the option `-t`.
-```
-ssh -t <username>@sunfire.comp.nus.edu.sg ssh pe111.comp.nus.edu.sg
-```
-
-Alternatively:
-```
-ssh pe111.comp.nus.edu.sg -J <username>@sunfire.comp.nus.edu.sg
-```
-
-#### SSH Port Forwarding
-
-SSH has built-in support for local and remote port forwarding, and local port forwarding can be used to connect to the programming environments.  Local port forwarding means that a port of the SSH client (your machine) is forwarded to the SSH server (`sunfire`), which opens a connection to a preset destination server (e.g., `pe111`).  This method causes the host to seem as if it is hosted on a local port, e.g. `localhost:7000`, allowing you to use your favorite SCP program (e.g. [FileZilla](https://filezilla-project.org/)) to access the PE host.
-
-To use local port forwarding (from local port `7000`), connect to `sunfire` using
-```
-ssh -L 7000:pe111.comp.nus.edu.sg:22 <username>@sunfire.comp.nus.edu.sg
-```
-This command opens an SSH tunnel from port `7000` of your machine to port `22` (the default SSH port) of `pe111.comp.nus.edu.sg` via `sunfire`.  After successful login, open a separate SSH (or SCP) connection from your machine to `localhost` at port `7000` to access the PE host:
-
-```
-ssh <username>@localhost -p 7000
-```
-
-[`PuTTY`](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) supports SSH port forwarding, so this setup can also be used on Windows.
+    Students have reported that running FortiClient downloaded from the Windows Store does not allow one to `ssh` from WSL to SoC hosts as expected.  Therefore, for Windows 10 users, please download and install FortiClient VPN directly from [FortiClient's website](https://forticlient.com/downloads).
 
 ## Setting up SSH Keys
 
@@ -106,13 +69,15 @@ cat id_rsa.pub >> ~/.ssh/authorized_keys
 
 Make sure that the permission for `.ssh` both on the local machine and on PE are set to `700` and the files `id_rsa` on the local machine and `authorized_keys` on the remote machine are set to `600`.  Once set up, you need not enter your password every time you run `ssh` or `scp`.  
 
+# Stability of Network Connection
+    
+Note that a stable network connection is required to use the PE hosts for a long period of time without interruption.   If you encounter frequent disconnections while working at home or on campus while connected wirelessly, please make sure that your WiFi signal is strong and there is no interference from other sources. 
+
 ## Troubleshooting
 
-Suppose you try to connect to `pe111` using either:
+Suppose you try to connect to `pe111` using:
 ```
 ssh pe111.comp.nus.edu.sg
-ssh -t sunfire.comp.nus.edu.sg ssh pe111.comp.nus.edu.sg
-ssh pe111.comp.nus.edu.sg -J sunfire.comp.nus.edu.sg
 ```
 and you get the following error:
 
@@ -135,18 +100,9 @@ of your SoC UNIX account which you have created here: https://mysoc.nus.edu.sg/~
 
     If you have lost your password, go here: https://mysoc.nus.edu.sg/~myacct/iforgot.cgi
 
-4. `ssh: connect to host sunfire.comp.nus.edu.sg port 22: Operation timed out`
-
-	It means that you failed to connect to `sunfire` via `ssh`.  There could be two reasons for this: (i) `sunfire` or its ssh service is down; (ii) you are connecting via a network where `sunfire` is not accessible (such as outside Singapore).  
-
-	The likelihood of (i) is small.  The more likely scenario is (ii), in which case, you should be able to solve it by connecting to NUS or SoC VPN.
-
-5. `Could not chdir to home directory /home/o/ooiwt: Permission denied`
+4. `Could not chdir to home directory /home/o/ooiwt: Permission denied`
 
     This error means that you have successfully connect to the PE hosts, but you have no access to your own home directory. 
 
 	This should not happen.  Please send an email with the above error message to helpdesk@comp.nus.edu.sg, include the PE hosts that you
 	connected to with this error and your username.  The system administrator can reset the permission of your home directory for you.
-
-
-    

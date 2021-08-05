@@ -6,49 +6,19 @@ This module introduces the fundamental concepts of problem solving by computing 
 
 ## Who/Where/When 
 
-- **Instructor**: Ooi Wei Tsang and Daren Ler
-- **Lecture Venue**: Online ([Zoom link](https://piazza.com/class/kdgunoizhic105?cid=7))
+- **Instructor**: Ooi Wei Tsang
+- **Lecture Venue**: Online ([Zoom link](https://piazza.com/class/krfo8m0yrkv6t2?cid=8))
 - **Lecture Time**: Every Monday, 12noon - 2pm
 - **Q&A Hour via Zoom**: 
     - Wei Tsang: Every Tuesday, 4pm - 5pm ([Zoom link](https://piazza.com/class/kdgunoizhic105?cid=7))
-    - Daren: Every Friday, 4pm - 5pm ([Zoom link](https://piazza.com/class/kdgunoizhic105?cid=7))
-- **Student Tutors**:
-
-    - Aaron Ong
-    - Adi Nata
-    - Bennett Clement
-    - Chua Jun Hui
-    - Christopher Goh Zhen Fung
-    - Dao Ngoc Hieu 
-    - David Livingstone
-    - Felix Halim
-    - Francisco Chensan
-    - Georgie Lee
-	- Hou Rui
-    - Hubertus Adhy Pratama Setiawan
-    - Justin Tzuriel Krisnahadi
-    - Jusuf Nathanael
-    - Khenus Tan Jia Liang
-    - Leah Roselyn James
-    - Liau Kai Jie
-    - Liu Zhuohao
-    - Muhammad Ahmed bin Anwar Bahajjaj
-    - Neil Banerjee
-    - Nicholas Teh
-    - Pang Jun Xian, Dylan
-    - Stefina Aryani Winoto 
-    - Sun Yu Cheng
-    - Vasavada Tejas 
-    - Wamika Malik
-    - Wang Zesong
-    - Xia Fuxi
-
 ## Important Dates
 
-- **Midterm Assessment**: Monday, 28 September, 2020 (12noon - 2pm)
-- **Final Assessment**: Tuesday, 24 Nov, 2020 (5pm - 7pm)
-- **Practical Exam 1**: Saturday, 3 October, 2020 (9am - 12noon)
-- **Practical Exam 2**: Saturday, 7 November, 2020 (9am - 12noon)
+- **Midterm Assessment**: Monday, 27 September, 2021 (12noon - 2pm)
+- **Practical Exam 1**: Saturday, 2 October, 2021 (9am - 12noon)
+- **Practical Exam 2**: Saturday, 6 November, 2021 (9am - 12noon)
+- **Final Assessment**: Tuesday, 25 November, 2021 (5pm - 7pm)
+
+All assessments below are conducted online.
 
 ## Assessment Weightage
 
@@ -58,4 +28,3 @@ This module introduces the fundamental concepts of problem solving by computing 
 - **Practical Exam 1**: 10%
 - **Practical Exam 2**: 15%
 - **Online Quizzes**: 10%
-

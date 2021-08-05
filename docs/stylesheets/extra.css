@@ -55,16 +55,16 @@ s {
 }
 .md-typeset .admonition.announcement,
 .md-typeset details.announcement {
-  border-color: rgb(33, 173, 168);
+  border-color: var(--md-primary-fg-color--light);
   font-size: .8rem;
 }
 .md-typeset .announcement > .admonition-title,
 .md-typeset .announcement > summary {
-  background-color: rgba(33, 173, 168, 0.1);
+  background-color: rgb(199, 219, 230);
 }
 .md-typeset .announcement > .admonition-title::before,
 .md-typeset .announcement > summary::before {
-  background-color: rgb(33, 173, 168);
+  background-color: var(--md-primary-fg-color);
   -webkit-mask-image: var(--md-admonition-icon--announcement);
           mask-image: var(--md-admonition-icon--announcement);
 }
