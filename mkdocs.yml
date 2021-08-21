@@ -9,6 +9,11 @@ nav:
   - Notes: 
     - 1. What is a Program?: "01-program.md"
     - 2. Computational Problem & Algorithms: "02-algo.md"
+    - 3. Functions: "03-func.md"
+    - 4. Types: "04-type.md"
+    - 5. First C Program: "05-first-c.md"
+    - 6. CS1010 I/O: "06-cs1010-io.md"
+    - 7. Arithmetic Operations: "07-arithmetic-ops.md"
   - Assignments: 
     - Overview: 'assignment.md'
   - Readings: 'readings.md'
