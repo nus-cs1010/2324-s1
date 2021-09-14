@@ -10,7 +10,8 @@ This module introduces the fundamental concepts of problem solving by computing 
 - **Lecture Venue**: Online ([Zoom link](https://piazza.com/class/krfo8m0yrkv6t2?cid=8))
 - **Lecture Time**: Every Monday, 12noon - 2pm
 - **Q&A Hour via Zoom**: 
-    - Wei Tsang: Every Tuesday, 4pm - 5pm ([Zoom link](https://piazza.com/class/kdgunoizhic105?cid=7))
+	- Wei Tsang: Every Tuesday, 4pm - 5pm, at AS6 #05-14 or ([Zoom link](https://piazza.com/class/krfo8m0yrkv6t2?cid=8))
+
 ## Important Dates
 
 - **Midterm Assessment**: Monday, 27 September, 2021 (12noon - 2pm)

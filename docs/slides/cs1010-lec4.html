@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+<title>CS1010 AY20/21 S1 Lecture 4</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 4
+
+### 30 August 2021
+
+**Admin Matters**<br>
+Unit 8: **Conditionals**<br>
+Unit 9: **Logical Expression**<br>
+Unit 10: **Assertion**<br>
+
+---
+class: middle
+
+## Exercises
+
+- Exercise 0 released last week
+- Exercise 1 after this class
+- Exercise 2 this Thursday (during lab)
+- 13 problems in total
+
+---
+class: middle
+
+## Assignment 1
+
+- Release this Thursday by noon
+- Due next Tuesday 23:59
+- 3% of your grade
+
+---
+class: middle
+
+## Please read
+
+- [How NOT to Go About a Programming Assignment](http://people.irisa.fr/Martin.Quinson/Teaching/how-not-to-code.pdf)
+- [About Assignments in CS1010](assignments.md)
+- [General CS1010 Policies](policy.md)
+
+---
+class: middle
+
+## Midterm and PE1 Preparation
+
+- [General SoC eExam Instructions](https://mysoc.nus.edu.sg/academic/e-exam-sop-for-students/)
+- Specific CS1010 instructions will be given next week
+
+---
+class: middle
+
+- Mock exam will be conducted 
+- Midterm will be done using LumiNUS Quiz
+- PE1 will be on CS1010 PE hosts (with special account)
+- Arrangement will be made for on-campus venues
+
+---
+class: middle
+<table width=100% height=100%>
+	<tr style="height: 50%">
+	<td style="border-right:solid 1px; border-bottom:solid 1px;">
+		<h5 style="margin:0px";>
+			Problem Solving
+		</h5>
+		<ul style="margin:1px;font-size:80%;">
+		<li>decomposition
+		<li>recursion
+		<li>flowchart
+		<li>
+		<li>
+		</ul>
+	</td>
+	<td style="border-bottom:solid 1px;">
+		<h5 style="margin:0px";>
+			C Language/Syntax
+		</h5>
+		<ul style="margin:1px;font-size:80%;">
+		<li>types 
+		<li>functions 
+		<li>arithmetic ops 
+		<li>
+		<li>
+		</ul>
+	</td>
+	</tr>
+	<tr style="height: 50%">
+	<td style="border-right:solid 1px; border-bottom:none;">
+		<h5 style="margin:0px";>
+			Behavioural/Mental Model
+		</h5>
+		<ul style="margin:1px;font-size:80%;">
+		<li>machine code
+		<li>data in memory
+		<li>types
+		</ul>
+	</td>
+	<td style="border-bottom:none;">
+		<h5 style="margin:0px";>
+			Tools/Good Practices
+		</h5>
+		<ul style="margin:1px;font-size:80%;">
+		<li>clang
+		<li>vim
+		<li>bash
+		</ul>
+	</td>
+	</tr>
+</table>
+---
+class: middle
+
+<table width=100% height=100%>
+	<tr style="height: 50%">
+	<td style="border-right:solid 1px; border-bottom:solid 1px;">
+		<h5 style="margin:0px";>
+			Problem Solving
+		</h5>
+		<ul style="margin:1px;font-size:80%;">
+		<li>decomposition
+		<li>recursion
+		<li>flowchart
+		<li>conditionals
+		<li>assertion
+		</ul>
+	</td>
+	<td style="border-bottom:solid 1px;">
+		<h5 style="margin:0px";>
+			C Language/Syntax
+		</h5>
+		<ul style="margin:1px;font-size:80%;">
+		<li>types 
+		<li>functions 
+		<li>arithmetic ops 
+		<li>if-else
+		<li>logical expression
+		</ul>
+	</td>
+	</tr>
+	<tr style="height: 50%">
+	<td style="border-right:solid 1px; border-bottom:none;">
+		<h5 style="margin:0px";>
+			Behavioural/Mental Model
+		</h5>
+		<ul style="margin:1px;font-size:80%;">
+		<li>machine code
+		<li>data in memory
+		<li>types
+		</ul>
+	</td>
+	<td style="border-bottom:none;">
+		<h5 style="margin:0px";>
+			Tools/Good Practices
+		</h5>
+		<ul style="margin:1px;font-size:80%;">
+		<li>clang
+		<li>vim
+		<li>bash
+		</ul>
+	</td>
+	</tr>
+</table>
+---
+class: middle,wide
+
+.fit[![max](figures/max-flowchart-dark/max-flowchart-dark.001.png)]
+
+---
+class: middle,wide
+
+.fit[![factorial](figures/max-flowchart-dark/max-flowchart-dark.005.png)]
+
+---
+class: middle
+
+| Score                       | Letter Grade |
+| --------------------------- | ------------ |
+| 8 or higher                 | A            |
+| Less than 8 but 5 or higher | B            |
+| Less than 5 but 3 or higher | C            |
+| Less than 3                 | D            |
+
+---
+class: middle
+
+
+| Score       | Letter Grade |
+| ----------- | ------------ |
+| 8 or higher | A            |
+| Less than 8 | See Table 1  |
+
+---
+class: middle
+
+Table 1 (less than 8)
+
+| Score       | Letter Grade |
+| ----------- | ------------ |
+| 5 or higher | B            |
+| Less than 5 | See Table 2  |
+
+---
+class: middle
+
+Table 2 (less than 5)
+
+| Score       | Letter Grade |
+| ----------- | ------------ |
+| 3 or higher | C            |
+| Less than 3 | D            |
+
+---
+class: middle,wide
+
+What will get printed if `score` is 5?
+
+.small[
+```C
+if (score >= 8)
+  if (late_penalty != 0)
+      cs1010_println_string("late submission");
+else
+  cs1010_println_string("you can do better!");
+```
+]
+
+---
+class: middle,center
+
+.fit[![meme](figures/meme/bad-good-curly.png)]
+
+---
+class: middle,center
+
+.fit[![meme](figures/meme/bad-good-return-else.png)]
+
+---
+class: middle,center
+
+.fit[![meme](figures/meme/bad-good-tertiary.png)]
+
+---
+class: middle,center
+
+.fit[![meme](figures/meme/bad-good-fp-equal.png)]
+
+---
+class: middle,center
+
+.fit[![meme](figures/meme/bad-good-bool.png)]
+
+---
+class: middle
+
+- Comparison operations : `>`, `<`, `>=`, `<=`, `==`, `!=`
+- Logical operators : `&&`, `||`, `!`
+
+---
+class: middle,center
+
+## De Morgan's Law
+
+`!(e1 && e2)`
+
+is the same as
+
+`(!e1) || (!e2)`
+
+---
+class: middle,center
+
+## De Morgan's Law
+
+`!(e1 || e2)`
+
+is the same as
+
+`(!e1) && (!e2)`
+
+---
+class: middle,center
+
+## Short Circuiting
+
+### `a && b`
+### `a || b`
+
+---
+class: middle
+
+### Which one is better?
+
+.small[
+```C
+if (number < 100000 && is_prime(number)) {
+ :
+}
+```
+]
+
+.small[
+```C
+if (is_prime(number) && number < 100000) {
+ :
+}
+```
+]
+
+---
+class: middle,center
+
+## Assertion
+
+```
+// { ... }
+```
+
+A logical expression that must always be true<br>
+at a given point in a program.
+
+---
+class: middle
+
+```C
+x = 1;
+// { x == 1 }
+```
+
+---
+class: middle
+
+```C
+if (x > y) {
+  max = x;
+} else {
+  max = y;
+}
+```
+
+how can we be sure that `max` is now the larger of the two?
+
+---
+class: middle
+
+```C
+if (x > y) {
+
+  max = x;
+
+} else {
+
+  max = y;
+
+}
+```
+---
+class: middle
+
+.tiny[
+```C
+  if (score >= 8) {
+    cs1010_println_string("A");
+  } else {
+    if (score >= 5) {
+      cs1010_println_string("B");
+    } else {
+      if (score >= 3) {
+        cs1010_println_string("C");
+      } else {
+        cs1010_println_string("D");
+      }
+    }
+  }
+```
+]
+
+When will `C` gets printed?
+
+---
+class: middle
+
+.tiny[
+```C
+  if (score >= 8) {
+    cs1010_println_string("A");
+  } else {
+
+    if (score >= 5) {
+      cs1010_println_string("B");
+    } else {
+
+      if (score >= 3) {
+
+        cs1010_println_string("C");
+      } else {
+        cs1010_println_string("D");
+      }
+    }
+  }
+```
+]
+
+When will `C` gets printed?
+
+---
+class: middle
+
+## Homework
+
+- **Tutorial 2**: Problem Sets 3 and 8 
+- **Lab 2**: Problem Set 5
+- **Quiz** as usual
+- **Exercises 0 and 1**
+
+---
+class: bottom
+
+.tiny[
+Version: 1.1
+
+Last Updated: Mon Aug 30 11:05:03 +08 2021
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'monokai',
+    slideNumberFormat: 'AY2122 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

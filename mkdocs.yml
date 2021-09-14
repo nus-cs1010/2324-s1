@@ -1,11 +1,14 @@
 nav:
   - Home: 'index.md'
+  - Midterm: 'midterm.md'
+  - PE1: 'pe1.md'
   - General: 
     - About CS1010: 'about.md'
     - Learning Outcomes: 'outcomes.md'
     - Schedule: 'schedule.md'
     - Accounts: 'accounts.md'
     - Policies: 'policies.md'
+    - Teaching Team: 'tutors.md'
   - Notes: 
     - 1. What is a Program?: "01-program.md"
     - 2. Computational Problem & Algorithms: "02-algo.md"
@@ -14,8 +17,24 @@ nav:
     - 5. First C Program: "05-first-c.md"
     - 6. CS1010 I/O: "06-cs1010-io.md"
     - 7. Arithmetic Operations: "07-arithmetic-ops.md"
+    - 8. Conditional Statement:  '08-if-else.md'
+    - 9. Logical Expression: '09-logical-exp.md'
+    - 10. Assertions: '10-assert.md'
+    - 11. Loops: '11-loop.md'
+    - 12. Invariant: '12-invariant.md'
+    - 13. Stack: '13-call-stack.md'
+    - 14. Array: '14-array.md'
+  - Exercises: 
+    - 0. Echo, Divide, Ones, BMI, Quadratic: "ex00.md" 
+    - 1. Odd, Sum, Triangle, Burger: "ex01.md"
+    - 2. Date, GCD, Leap, Multiple: "ex02.md"
+    - 3. Three, Factor, Parity, Nine, HDB: "ex03.md"
+    - 4. Binary, Onigiri, Fibonacci: "ex04.md"
+    - 5. Counter, Dot, Unit: "ex05.md"
   - Assignments: 
     - Overview: 'assignment.md'
+    - 1. Pyramid, Digits, Suffix, Taxi: "as01.md"
+    - 2. Collatz, Rectangle, Prime, Pattern: "as02.md"
   - Readings: 'readings.md'
   - C in CS1010: 'c-in-cs1010.md'
   - CS1010 I/O Library: 'library.md'
@@ -23,11 +42,14 @@ nav:
   - Compiler Messages: 'messages.md'
   - Software/Tools:
       - Programming Environments: 'environments.md'
+      - GitHub: 'github.md'
       - UNIX: 'unix.md'
       - CLang: 'clang.md'
       - Vim: 'vim.md'
+      - Make: 'make.md'
       - TMate: 'tmate.md'
       - Zoom: 'zoom.md'
+      - Panopto: 'panopto/panopto.md'
   - 18/19 Semester 1: '1819s1.md' 
 
 theme: 

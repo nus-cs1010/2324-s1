@@ -72,7 +72,7 @@ The English description above, however, is not detailed enough for computers to 
 Let's work out all the details.
 
 First, we need a concise way of representing the integers in the list.  Borrowing from mathematical notation, let's say that the list $L$ contains the integers 
-$l_0, l_1, ..., l_{k-1}$. To "check one-by-one," we introduce another notation $l_i$, which is the integer currently being "checked".  We begin with $i = 0$, then $i = 1$, then $i = 2$, etc, until $i = k-1$.  At every step, we increase $i$ by 1.
+$\langle l_0, l_1, ..., l_{k-1} \rangle$. To "check one-by-one," we introduce another notation $l_i$, which is the integer currently being "checked".  We begin with $i = 0$, then $i = 1$, then $i = 2$, etc, until $i = k-1$.  At every step, we increase $i$ by 1.
 
 Second, we need a concise way of keeping track of the maximum so far.  We introduce another notation, $m$, to represent the maximum value so far.  When $i = 0$, $m = l_0$.  Since we only scan a single integer, it has to be the maximum.  When we check another integer $l_i (i > 0)$, only two things can happen:
 

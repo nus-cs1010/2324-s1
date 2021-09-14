@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+<title>CS1010 AY20/21 S1 Lecture 6</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 6
+
+### 13 September 2021
+
+.smaller[
+Admin Matters<br>
+Unit 13: **Call Stack**<br>
+Unit 14: **Array**<br>
+]
+---
+class: middle
+
+### Assignment 2
+
+- Due tomorrow night (23:59)
+- Graded on correctness (including syntax, practices, approach, and logic), style, and efficiency.
+
+---
+class: middle
+
+### Reminders
+
+- Make sure that your submission compiles cleanly without errors or warnings.  (0 if cannot compile; -1 per warning)
+- Marks will be deducted if you do not demonstrate a full understanding of what we taught so far.
+
+---
+class: middle
+
+## Warning
+
+### Plagiarism will not be tolerated.   You may discuss how to solve the assignment, but make sure you code up the solution yourself.
+
+---
+
+### Upcoming releases:
+
+- Exercise 5 on Arrays today
+- Practical Exam I from 20/21 on Thursday
+- Midterm from 20/21 later today
+- Assignment 3 on Thursday
+    - Grading criteria: same as Assignment 2
+	- Due on 21 September
+
+---
+class: middle
+
+### Reminders
+
+- **Catch-up II**: 18 September, 2021 (Saturday) 10am
+- **Midterm**: 27 September, 2021 (Monday)
+- **PE I**: 2 October 2021 (Saturday)
+
+---
+class: middle
+
+## Warning
+
+### Pay attention to exam regulations.  Disciplinary actions will be taken against violators.
+
+---
+class: middle
+
+### Tutorial 4
+
+- Problem Sets 11-12
+
+---
+class: middle
+
+### Lab 4
+
+- Mock Midterm
+- PE I from 20/21
+
+---
+class: middle
+
+### Lab 5
+
+- Mock PE I
+- PE I from 18/19
+
+---
+class: middle
+
+### Anon. Feedback on Tutors
+
+- Please let us know how we are doing
+- Constructive criticism and encouragement are both welcome
+- Due This Friday
+
+---
+class: middle,center
+
+# Call Stack
+
+---
+.cols[
+.fifty[
+.smaller[
+```C
+int main() 
+{ 
+  long x = 1; 
+  long y; 
+}
+```
+]
+]
+.fifty[
+
+]]
+
+---
+.cols[
+.fifty[
+.smaller[
+```C
+long add(long a, long b)
+{    
+	long sum;    
+	sum = a + b;    
+	return sum;  
+} 
+
+int main()
+{    
+	long x = 1;    
+	long y;    
+	y = add(x, 10);  
+}
+```
+]
+]
+.fifty[
+
+]]
+
+---
+.cols[
+.fifty[
+.smaller[
+```C
+long add(long a, long b)
+{    
+	long sum;    
+	sum = a + b;    
+	a = 42;
+	return sum;  
+} 
+
+int main()
+{    
+	long x = 1;    
+	long y;    
+	y = add(x, 10);  
+}
+```
+]
+]
+.fifty[
+
+]]
+
+
+---
+.cols[
+.fifty[
+.smaller[
+```C
+void add(long sum, long a, 
+         long b)
+{
+  sum = a + b;
+}
+
+int main()
+{
+  long x = 1;
+  long sum;
+  add(sum, x, 10);
+}
+```
+]
+]
+.fifty[
+
+]]
+
+---
+class: middle, center
+
+# Array
+
+---
+class: middle, center
+
+Array is a _compound data type_ that stores multiple values of the same type
+
+---
+class: middle
+
+```C
+long list[10];
+```
+
+`list` is an array that stores 10 `long` values.
+
+---
+class: middle
+
+```C
+long list[10]; // declare
+list[4] = 100; // write
+```
+
+`list[4]` refers to the 5th element in the array `list`.
+
+
+---
+class: middle
+
+.small[
+```C
+long list[10] = {1, 2, 3, 1, 5, 10, 10, 4, };
+```
+]
+
+Unspecified elements initialized to 0.
+
+---
+class: middle
+
+### Array as Function Parameter
+
+.smaller[
+```C
+long max(long list[10]) { .. }
+long max(long len, long list[len]) { .. }
+long max(long len, long list[]) { .. }
+```
+]
+
+---
+class: middle
+
+### Pointers
+
+```C
+double *ptr;
+long *addr;
+```
+
+---
+
+An array is stored contiguously in memory.
+
+.fit[![array](figures/stack/stack.011.png)
+
+---
+
+### Array Decay
+
+```C
+long list[10];
+```
+`list` decays into the memory address of its first element.
+
+---
+class:middle
+
+.smaller[
+```C
+long a[2] = {0, 1};
+long b[2] = {0, 1};
+
+if (a == b) {  // always false
+  :
+}
+
+b = a; // not possible
+```
+]
+
+---
+class: middle
+.smaller[
+```C
+long max(long len, long list[len]) {
+  // only pointer is passed in
+}
+  :
+long list[10];
+max(10, list);  // passing in only the pointer
+```
+]
+
+---
+class: middle
+
+### Returning an Array 
+
+.smaller[
+```C
+long* square(const long len, long list[len]) {
+ :
+}
+```
+]
+
+---
+class: middle
+
+### Common bug: Index out of bound
+.smaller[
+```C
+int main()
+{
+  long a[10];
+  for (long i = 0; i <= 10; i += 1) {
+    a[i] = 1;
+  }
+}
+
+```
+]
+
+---
+class: bottom
+
+.tiny[
+Version: 1.1
+
+Last Updated: Mon Sep 14 11:12:21 +08 2020
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'monokai',
+    slideNumberFormat: 'AY2021 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

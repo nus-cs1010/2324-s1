@@ -14,7 +14,7 @@ Remember to spend some time thinking about the algorithm for each question.  Wri
 
 Incremental coding means do NOT type in the whole long program in a single session and then compile it. Instead, type your program in bits and pieces and compile it incrementally. Try to maintain a compilable program even while you are working on it. Submitting a compilable program that partially works is better than submitting an un-compilable one; this is especially important for your practical exams. 
 
-You should test your program thoroughly with your own test data before submission.  
+You should test your program thoroughly with your own test data before submission.
 
 Please note that:
 
@@ -60,7 +60,7 @@ Feedback will be provided by the tutors on GitHub.
 ## Use of Piazza
 If you have doubts about the problem statements of an assignment, you may raise them on Piazza.  But before that, please read through the problem statements carefully first, and check if the same questions have been asked and answered on the forum.
 
-Please exercise discretion when posting to Piazza.  
+Please exercise discretion when posting to Piazza.
 
 Before the deadline, you are NOT to post the solution to the assignment, complete or partial, on Piazza (or any publicly accessible online site).
 
@@ -73,6 +73,8 @@ You can find the list of banned and discouraged C features in the article "[C in
 You are NOT to copy from others or allow others to copy your programs.  We take plagiarism seriously.  See [our policies](policies.md) page for details.
 
 This means that you should also guard your solution carefully, not posting them to publicly accessible places, or change the permissions of the files on the CS1010 PE hosts so that it is accessible by others.
+
+In most cases, you can run `make`
 
 ---
 This guideline is adapted from Aaron Tan's CS1010 guideline.

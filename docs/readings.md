@@ -8,7 +8,7 @@
 
 ### Why C?
 
-- [Learn C programming and the rest will come, by Marty Jacobs](https://www.zeroequalsfalse.press/2017/11/29/c/index.html)
+- [Learn C programming and the rest will come, by Marty Jacobs](https://initialcommit.com/blog/learn-c-programming)
 - [The Resurgence of C Programming, by Mark Barlow](https://www.oreilly.com/learning/the-resurgence-of-c-programming)
 - [You Can't Dig Upwards, by Evan Miller](http://www.evanmiller.org/you-cant-dig-upwards.html)
 
@@ -32,9 +32,9 @@
 
 - [Vim for People Who Think Things like Vim and Weird and Hard](https://csswizardry.com/2014/06/vim-for-people-who-think-things-like-vim-are-weird-and-hard/) - by [Harry Roberts](https://csswizardry.com/). _"the fact that, yes, people still use an editor that is over 20 years old (in turn based on a tool from the 70s), and those people number in the hundreds of thousands, perhaps they might be onto something."_
 
-- [Why I use Vim](https://pascalprecht.github.io/posts/why-i-use-vim/) - Pascal Precht. "_once I was able to do some basic operations in Vim and actually started working again, I made almost as twice as much progress at work in about half the time. I know that sounds kind of crazy but I’m serious. And that convinced me that I made the right choice.
+- [Why I use Vim](https://pascalprecht.github.io/posts/why-i-use-vim/) - Pascal Precht. _"once I was able to do some basic operations in Vim and actually started working again, I made almost as twice as much progress at work in about half the time. I know that sounds kind of crazy but I’m serious. And that convinced me that I made the right choice._
 
-So, do yourself a favor and climb that mountain. Just remember that you can slide down afterwards._"
+_So, do yourself a favor and climb that mountain. Just remember that you can slide down afterwards."_
 
 ### Vim Video Tutorial (from Aaron Tan)
 

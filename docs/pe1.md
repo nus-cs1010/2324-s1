@@ -1,31 +1,23 @@
 # Practice Exam 1
 
-## Questions
-
-You can accept the [PE1 questions on Github](https://classroom.github.com/a/OkHXpide) and run
-```
-~cs1010/get-pe01
-``` 
-and
-```
-~cs1010/submit-pe01
-```
-as usual, for practice.
-
 ## Basic Info
 
-- Date: 3 October 2020 (Saturday)
+- Date: 2 October 2021 (Saturday)
 - Time: 9 am to 12noon (Report to invigilator at 9 am, exam starts at 9:30am)
 - Venue: Online (except those already informed)
-- Scope: Units 1-12, Assignments 1-2, Tutorials 1-4
+- Scope: Units 1-12, Assignments 1-2, Exercises 1-4
 - 5 programming questions: from very easy to very hard
 - Criteria: correctness and style.  There will be one question where efficiency matters. 
 - Duration: 2 hours and 30 minutes
 - Open Book (You can refer to printed/written materials, but no online resources are allowed).
 
+## Practice Paper
+
+To be available on Week 6.
+
 ## Special Restrictions
 
-- You will be issued a special account for use on the day of the practical exam.   This should already been sent to your NUS email account and you should have already tested it during Thursday's tutorial session. 
+- You will be issued a special account for use on the day of the practical exam.   This will be sent to your NUS email account and you will be able to test it during Week 7's lab session. 
 
 - You will need to log into a special set of PE nodes through `ssh` to solve the exam questions.  
 
@@ -33,11 +25,24 @@ as usual, for practice.
 
 ## Vim Configuration
 
-Your default account will have the same `.vimrc` as `~cs1010/.vimrc` on the CS1010 PE hosts.  
+Your default account will have the same `.vimrc` as `~cs1010/.vimrc` on the CS1010 PE hosts.
 
-You are free to edit this during the practical exams.  
+You are free to edit this during the practical exams.
 
-You, however, will not be able to download nor install `vim` plugins.
+You, however, will not be able to download `vim` plugins.  You can only install from a list of [approved `vim` plugins and installation instructions](https://nus-cs1010.github.io/2122-s1/vim.html#7-approved-plugins).
+
+After loggin in, you will be given 5 minutes to configure your `~/.vimrc` environment and set up allowed plugins.
+
+## General Advice
+
+- Save your program regularly.  We will use setup every account with `~/.vimrc` copied from `~cs1010/.vimrc`.  Thus, you can find the last saved version of your files under `~/.backup` if you accidentally deleted your code.
+- Plan your time properly.  Do not spend excessive time on any task.  Read through all questions and solved those that you are confident to solve first.
+- There are five questions, from very easy to very hard.  Solve as many as you can.  I expect most students will be able to solve 3 out of the 5 questions within the time limit.  You don't need to solve all questions to deserve an A grade.
+- There is one mark allocated to style for each question.  As long as you keep your code clean, neat, and readable, you will get this one mark, almost for free.  Review the CS1010 style guide so that you know what is expected in terms of coding style.
+- Don't start typing your code right away.  Think about the solution first -- what variables are needed?  What is the control flow (using branches and loops)?  Draw out the flowchart if it helps.  
+- Break down the problem into smaller ones if the problem is too complex to solve.
+- You are not allowed to start typing on the computer until the invigilator announced that you can do so.
+- Just like the assignments, you are not given all the test cases that we will be using during grading.  Please test your code against additional test cases, especially for boundary cases.
 
 ## E-Exam Procedure
 
@@ -49,7 +54,7 @@ Note the following supplementary information to complete the E-exam procedure ab
 
    You will use a terminal to `ssh` into your allocated PE nodes to take the practical exam.
 
-    You can only access the PE nodes for examination through either SoC VPN or tunnels through sunfire. 
+   You can only access the PE nodes for examination via SoC VPN or through SoC network.
 
 ### 2.2 Proctoring Protocol
 
@@ -68,24 +73,26 @@ Note the following supplementary information to complete the E-exam procedure ab
 
    There is only a single part with no break in between.
 
-### 9.6. Completion of Exam
+### 12. Screen Recording Software
 
-   The folder to submit the your recording to is LumiNUS> CS1010 > Files > PE1 Screen Capture Video Submissiona.  You should submit it no later than 3 October 2020, 2359.  Note that failure to submit equates to you not being proctored for Practical Examination 1.
-   
+   We recommend Penopto for screen recording.
+
+
 ## Zoom Session Assignment
 
-Please see https://piazza.com/class/kdgunoizhic105?cid=381
+- Zoom session assignment is available internally via [LumiNUS](https://luminus.nus.edu.sg/modules/600de8e9-67ec-47dd-b597-a2eeadb45792/groups/class-groups/6dccb622-bd40-481e-addd-655683f44956?listView=false)
 
-## Invigilators
+- Zoom links to be made available via Piazza (two days before the midterm)
 
-Please see https://piazza.com/class/kdgunoizhic105?cid=381
+## Invigilators and Email Address
+
+Invigilators list (to be made available on the day of the midterm)
 
 ## Emergency Contact (Examination issues)
 
 - Zoom Chat (when permission is given by the proctor)
-- If Zoom fails, MS Teams (when permission is given by the proctor)
+- If Zoom fails, use MS Teams (when permission is given by the proctor)
 - If Zoom/Teams fail, as a last resort, you may email the instructors/proctors
-- Find Proctor and Instructor Email Information on LumiNUS > CS1010 > Module Details > Facilitators (Top Menu) (note down the email before the exam in case Luminus fails)
 
 ##  Emergency Contact for Technical Issues 
 
@@ -93,24 +100,4 @@ Please see https://piazza.com/class/kdgunoizhic105?cid=381
 - Telephone: 6516 2736
 - Email: techsvc@comp.nus.edu.sg
 - Emergency Telephone: 6874 2736 (available only during emergencies and network outages)
-
-## General Advice
-
-- Save your program regularly.  We will use setup every account with `~/.vimrc` copied from `~cs1010/.vimrc`.  Thus, you can find the last saved version of your files under `~/.backup` if you accidentally deleted your code.
-- Plan your time properly.  Do not spend excessive time on any task.  Read through all questions and solved those that you are confident to solve first.
-- There are five questions, from very easy to very hard.  Solve as many as you can.  I expect most students will be able to solve 3 out of the 5 questions within the time limit.
-- There is one mark allocated to style for each question.  As long as you keep your code clean, neat, and readable, you will get this one mark, almost for free.  Review the CS1010 style guide so that you know what is expected in terms of coding style.
-- Don't start typing your code right away.  Think about the solution first -- what variables are needed?  What is the control flow (using branches and loops)?  Draw out the flowchart if it helps.  
-- Break down the problem into smaller ones if the problem is too complex to solve.
-- You are not allowed to start typing on the computer {--for the first 10 minutes of the practical exam, or--} until the invigilator announced that you can do so.
-- Just like the assignments, you are not given all the test cases that we will be using during grading.  Please test your code against additional test cases, especially for boundary cases.
-
-## Practice Paper
-
-You can use the PE question from 18/19 Semester 1 as the practice paper.
-
-- Download the [question paper](https://www.comp.nus.edu.sg/~ooiwt/cs1010/1819s1/pe1.pdf)
-- [Accept the assignment](https://classroom.github.com/a/vxBeWKnV) on GitHub
-- Run `~cs1010/get-pe18` on any PE host to get the skeleton code and test cases
-- Run `~cs1010/submit-pe18` to submit/archive your solution on GitHub
 

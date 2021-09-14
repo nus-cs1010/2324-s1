@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+<title>CS1010 AY20/21 S1 Lecture 5</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 5
+
+### 6 September 2021
+
+**Admin Matters**<br>
+**Unit 10:** Assertion<br>
+**Unit 11:** Loops<br>
+**Unit 12:** Loop Invariants<br>
+
+---
+class: middle
+
+### Reminders
+
+- Assignment 1 due tomorrow night (23:59)
+- Please read:
+    - [How Not to Go About a Programming Assignment](http://people.irisa.fr/Martin.Quinson/Teaching/how-not-to-code.pdf)
+    - [About Assignments in CS1010](assignments.md)
+    - [General CS1010 Policies](policy.md)
+
+---
+class: middle
+
+### Grading
+
+- Assignment 1 will be graded solely on correctness (including syntax, practices, approach, and logic) and whether the requirements given are followed.
+- One random question will be graded by tutors -- the rest by bot.
+
+---
+class: middle
+
+### Grading
+
+- Make sure that your submission compiles cleanly without errors or warnings.  (0 if cannot compile; -1 per warning)
+- Marks will be deducted if you do not demonstrate a full understanding of what we taught so far.  E.g., wrong type, redundant conditional checks.
+
+---
+
+### Upcoming releases:
+
+- Exercise 2 today
+- Exercise 3 on Thursday
+- Assignment 2 on Thursday
+    - Additional grading criteria: [style](style.md) and efficiency.
+- Anonymous feedback exercise on lab tutors and tutorial instructors on Friday
+- Last year's midterm question next week
+
+---
+class: middle
+
+.fit[![meme](figures/meme/midterm-is-coming.jpg)]
+
+---
+class: middle
+
+### Midterm
+
+- **Date**: 27 September, 2021 (Monday)
+- **Time**: 12noon to 2pm
+- **Duration**: 60 minutes
+- **Online** via Luminus Quiz
+- **10%** of your grade
+
+---
+class: middle
+
+### Midterm
+- **Scope:**
+    - Units 1-12
+	- Problem Set 1-12
+	- Assignments 1-2
+- **Format:** MCQs, MRQs, True/False, Fill-in-the-Blanks, and Short Structured Questions
+- Open book (printed/written notes ONLY)
+
+---
+class: middle
+
+### Read for more details:
+
+- [SoC E-Exam procedure](https://mysoc.nus.edu.sg/academic/e-exam-sop-for-students/)
+- [CS1010 midterm instructions](midterm.md)
+
+---
+class: middle
+
+### Taking Online Exam on Campus
+
+If you need to take the online midterm or online PE on campus, please fill up the LumiNUS Survey on "Taking Midterm/PE1 on Campus" before this Friday 23:59.
+ 
+---
+class: middle
+
+### Practical Exam I
+
+- Date: 2 October 2020 (Saturday)
+- Time: 9 am to 12noon
+- Duration: 2 hours 30 minutes
+- Online via `ssh` into restricted PE hosts
+- **10%** of your grade
+
+---
+class: middle
+
+### Practical Exam I
+
+- **Scope:** same as midterm
+- **Format:** Five programming problems 
+    - 3 on average, 4 to ace, 5 for glory
+- Open Book (printed/written notes only)
+- Calculator allowed
+- Criteria: correctness, style, and efficiency
+
+---
+class: middle
+
+### Read for more details:
+
+- [SoC E-Exam procedure](https://mysoc.nus.edu.sg/academic/e-exam-sop-for-students/)
+- [CS1010 PE1 instructions](pe1.md)
+
+---
+class: middle
+
+# Warning
+
+### Pay attention to exam regulations.  Disciplinary actions will be taken against violators.
+
+---
+class: middle
+
+### Tutorial 3
+
+- Problem Sets 9 - 10 (maybe 11)
+
+---
+class: middle
+
+### Lab 3
+
+- Assignment 1
+- Exercise 4
+- Preparing for Assignment 2
+
+---
+class: middle,center
+
+## Assertion
+
+```
+// { ... }
+```
+
+A logical expression that must always be true<br>
+at a given point in a program.
+
+---
+class: middle
+
+```C
+x = 1;
+// { x == 1 }
+```
+
+---
+class: middle
+
+```C
+if (x > y) {
+  max = x;
+} else {
+  max = y;
+}
+```
+
+how can we be sure that `max` is now the larger of the two?
+
+---
+class: middle
+
+```C
+if (x > y) {
+
+  max = x;
+
+} else {
+
+  max = y;
+
+}
+```
+---
+class: middle
+
+.tiny[
+```C
+  if (score >= 8) {
+    cs1010_println_string("A");
+  } else {
+    if (score >= 5) {
+      cs1010_println_string("B");
+    } else {
+      if (score >= 3) {
+        cs1010_println_string("C");
+      } else {
+        cs1010_println_string("D");
+      }
+    }
+  }
+```
+]
+
+When will `C` gets printed?
+
+---
+class: middle
+
+.tiny[
+```C
+  if (score >= 8) {
+    cs1010_println_string("A");
+  } else {
+
+    if (score >= 5) {
+      cs1010_println_string("B");
+    } else {
+
+      if (score >= 3) {
+
+        cs1010_println_string("C");
+      } else {
+        cs1010_println_string("D");
+      }
+    }
+  }
+```
+]
+
+When will `C` gets printed?
+
+---
+class: middle,center
+
+# Loops
+
+---
+class: bottom,center,wide
+background-image: url(figures/lec5/lec5.001.png)
+
+max(L,k)
+
+---
+class: bottom,center,wide
+background-image: url(figures/lec5/lec5.002.png)
+
+Loop body: what we do repeatedly
+
+---
+class: bottom,center,wide
+background-image: url(figures/lec5/lec5.003.png)
+
+Loop initialization: what we do to set up the loop
+
+---
+class: bottom,center,wide
+background-image: url(figures/lec5/lec5.004.png)
+
+Loop update: what changes from one iteration to the next?
+
+---
+class: bottom,center,wide
+background-image: url(figures/lec5/lec5.005.png)
+
+Terminating condition: when to stop repeating?
+
+---
+class: bottom,center,wide
+background-image: url(figures/lec5/lec5.012.png)
+
+Finding factorial recursively
+
+---
+
+---
+class: bottom,center,wide
+background-image: url(figures/lec5/lec5.006.png)
+
+Finding factorial with a loop
+
+---
+class: middle,wide
+background-image: url(figures/lec5/lec5.007.png)
+
+---
+class: bottom,wide
+background-image: url(figures/lec5/lec5.008.png)
+
+.smaller[
+```C
+for (initialize; condition; update) {
+   body;
+}
+```
+]
+
+---
+class: bottom,wide
+background-image: url(figures/lec5/lec5.008.png)
+
+.smaller[
+```C
+initialize;
+while (condition) {
+   body and update;
+}
+```
+]
+
+---
+class: middle
+
+.fit[![meme](figures/meme/for-while-the-same.jpg)]
+
+---
+class: bottom,wide
+background-image: url(figures/lec5/lec5.009.png)
+
+.smaller[
+```C
+initialize;
+do {
+   body and update;
+} while (condition);
+```
+]
+
+---
+class: middle,wide
+
+---
+class: middle,wide
+background-image: url(figures/lec5/lec5.010.png)
+
+---
+class: middle,center
+
+## Assertion
+
+```
+// { ... }
+```
+
+A logical expression that must be true at a given point in a program.
+
+---
+class: middle
+
+```C
+x = 1;
+// { x == 1 }
+```
+---
+class: middle
+
+.tiny[
+```C
+if (x > y) {
+  max = x;
+  // { (x > y) && (max == x) && (max > y) }
+} else {
+  max = y;
+  // { (x <= y) && (max == y) && (max >= x) }
+}
+// { ((max == x) || (max == y)) &&
+//   (max >= x) && (max >= y) }
+```
+]
+
+---
+class: middle
+
+What does `y` count?
+.tiny[
+```C
+long count(long n) {
+  long y = 0;
+  long x = n;
+
+  while (x > 0) {
+
+    x -= 1;
+
+    if (x % 5 == 0) {
+
+      y += 1;
+
+    }
+  }
+
+  return y;
+}
+```
+]
+---
+class: middle,center
+
+## Loop Invariant
+
+An assertion that holds (i) before the loop; (ii) after the loop; and (iii) after each iteration of the loop.
+
+(but may be temporarily false during the loop)
+
+---
+class: middle
+
+background-image: url(figures/lec5/lec5.008.png)
+
+---
+
+class: middle
+
+.tiny[
+```C
+long factorial(long n)
+{
+  if (n == 0) {
+      return 1;
+  }
+  long product = 1;
+  long i = 1;
+  while (i < n) {
+
+    i += 1;
+
+    product *= i;
+
+  }
+  return product;
+}
+
+```
+]
+---
+class: middle
+
+### Homework
+
+- Assignment 1 and 2
+- Quiz for Lecture 5
+- Surveys (On-Campus Exam and Anon Feedback)
+- Exercise 3 and 4
+- Problem Sets
+
+---
+class: bottom
+
+.tiny[
+Version: 1.1
+
+Last Updated: Mon Sep  6 11:28:13 +08 2021
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'monokai',
+    slideNumberFormat: 'AY2021 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

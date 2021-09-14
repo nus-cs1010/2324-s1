@@ -191,7 +191,6 @@ if (y == 2) {
     return 13;
 } 
 return 89;
-} 
 ```
 
 ## 13. Comment Major Code Segments Adequately

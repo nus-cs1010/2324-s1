@@ -69,7 +69,7 @@ cat id_rsa.pub >> ~/.ssh/authorized_keys
 
 Make sure that the permission for `.ssh` both on the local machine and on PE are set to `700` and the files `id_rsa` on the local machine and `authorized_keys` on the remote machine are set to `600`.  Once set up, you need not enter your password every time you run `ssh` or `scp`.  
 
-# Stability of Network Connection
+## Stability of Network Connection
     
 Note that a stable network connection is required to use the PE hosts for a long period of time without interruption.   If you encounter frequent disconnections while working at home or on campus while connected wirelessly, please make sure that your WiFi signal is strong and there is no interference from other sources. 
 
@@ -83,7 +83,7 @@ and you get the following error:
 
 1. `ssh: Could not resolve hostname pe111.comp.nus.edu.sg`
 
-	`ssh` cannot recognize the name `pe111`, it is likely that you are not connected to the SoC VPN.
+	`ssh` cannot recognize the name `pe111`, it is likely that you are not connected to the SoC VPN, {++or downloaded the wrong version of FortiClient VPN++}.
 
 2. `Connection closed by 192.168.48.xxx port 22`
 
@@ -94,11 +94,11 @@ and you get the following error:
 3. `Permission denied, please try again`
 
     You did not enter the correct password or username.  Please use the username and password 
-of your SoC UNIX account which you have created here: https://mysoc.nus.edu.sg/~newacct/.   
+of your SoC UNIX account which you have created here: https://mysoc.nus.edu.sg/~newacct/.
 
     Check that you have entered your username correctly.  It is _case sensitive_.
 
-    If you have lost your password, go here: https://mysoc.nus.edu.sg/~myacct/iforgot.cgi
+    If you have lost your password, go here: https://mysoc.nus.edu.sg/~myacct/resetpass.cgi
 
 4. `Could not chdir to home directory /home/o/ooiwt: Permission denied`
 

@@ -217,7 +217,144 @@ You can ++g++++g++++equal++++shift+g++ in command mode to auto-indent the whole 
 - `:vsp file.c` splits the `vim` window vertically
 - ++control+w++++control+w++ moves between the different `vim` viewports
 
-## 5. Plugins
+## 5. Color Schemes
+
+{++NEW++}
+
+We have installed [`vim-colorscheme`](https://github.com/flazz/vim-colorschemes) bundle under `~cs1010/.vim/vim-colorschemes/colors`.
+
+There are a few steps needed.  First, the standard .vimrc is designed for 16 colors, and some of these color schemes are more colorful than that.  You need to comment the following three lines from your `~/.vimrc`
+
+```
+" The following should give 16 colors
+" set t_AB=^[[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
+" set t_AF=^[[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
+" set t_Co=16
+```
+
+Then, run
+
+```
+mkdir -p ~/.vim
+ln -s ~cs1010/.vim/vim-colorschemes/colors ~/.vim/colors
+```
+
+After that, your can change your vim color scheme as usual.  For instance,
+
+```
+:color gruvbox
+```
+
+You can add the line `color gruvbox` to your `~/.vimrc` so that the color scheme is loaded at the start of every vim session.
+
+The bundle includes some of the popular color schemes among students, such as molokai, solarized, and gruvbox.   Some color schemes display differently depending on whether the background is set to `dark` or `light`
+
+Some examples, with `set background=dark` in `~/.vimrc`:
+
+The default color scheme:
+
+![default](figures/color-scheme-default.png)
+
+The molokai color scheme:
+
+![molokai](figures/color-scheme-molokai.png)
+
+The gruvbox color scheme 
+
+![gruvbox](figures/color-scheme-gruvbox.png)
+
+## 6. Recovery Files
+
+{++NEW++} Vim automatically saves the files you are editing into temporary _swap_ files, with extension `.swp`.  These files are hidden so you don't normally see them when you run `ls`.  (You need to run `ls -a` to view the hidden files)
+
+The swap files are useful if your editing session is disrupted before you save (e.g., the network is disconnected, you accidentally close the terminal, your OS crashes, etc.).
+
+When you launch `vim` to edit a file, say, `foo.c`.  `vim` will check if a swap file `.foo.c.swp` exist.  If it does, `vim` with display the following
+
+```
+Found a swap file by the name ".foo.c.swp"
+		  owned by: elsa   dated: Sat Aug 21 15:01:04 2021
+		 file name: ~elsa/foo.c
+          modified: no
+		 user name: elsa   host name: pe116
+        process ID: 7863 (STILL RUNNING)
+While opening file "foo.c"
+             dated: Mon Jul 12 18:38:37 2021
+
+(1) Another program may be editing the same file.  If this is the case,
+    be careful not to end up with two different instances of the same
+    file when making changes.  Quit, or continue with caution.
+(2) An edit session for this file crashed.
+    If this is the case, use ":recover" or "vim -r a.c"
+    to recover the changes (see ":help recovery").
+    If you did this already, delete the swap file ".a.c.swp"
+    to avoid this message.
+
+Swap file ".a.c.swp" already exists!
+[O]pen Read-Only, (E)dit anyway, (R)ecover, (Q)uit, (A)bort:
+```
+
+The messages above is self-explanatory.  Read it carefully.  Most of the time, you want to choose "R" to recover your edits, so that you can continue editing.  Remember to remove the file `.foo.c.swp` after you have recovered.  Otherwise `vim` will prompt you the above messages every time you edit `foo.c`.
+
+Warning: if `foo.c` is newer than the state saved in `.foo.c.swp`, and you recover from `.foo.c.swp`, you will revert back to the state of the file as saved in the swap file.  This can happen if (i) you edit the file without recovery, or (ii) you recover the file, continue editing, but did not remove the `.foo.c.swp` file after.
+
+## 7. Approved Plugins
+
+{++UPDATED++}
+
+The following plugins are approved for use during practical exams.  You will be given time to install them (only if you wish to use them) into your exam environment at the beginning of the practical exam.
+
+### DelimitMate
+
+`DelimitMate` is a plugin that automatically inserts a closing `}`, `)`, `>`, etc when you type the opening symbol.
+
+To install this plugin in the exam environment, run
+```
+ln -s ~cs1010/.vim/pack/plugins/start/delimitMate.vim ~/.vim/pack/plugins/start
+```
+
+### Vim-Rainbow
+
+`vim-rainbow` is a plugin that matches opening and closing brackets and colors the matching pairs with matching colors.
+
+To install this plugin in the exam environment, run
+```
+ln -s ~cs1010/.vim/pack/plugins/start/vim-rainbow ~/.vim/pack/plugins/start
+```
+
+The following line will be added on your `~/.vimrc` in the environment:
+
+```
+let g:rainbow_active = 1
+```
+
+### NERDTree
+
+NERDTree provides a file browsing pane on the left (activated with `:NERDTree`).
+
+To install this plugin in the exam environment, run
+```
+ln -s ~cs1010/.vim/pack/plugins/start/nerdtree ~/.vim/pack/plugins/start
+```
+
+### Lightline
+
+Lightline provides a more useful status line for `vim`.
+
+To install this plugin in the exam environment, run
+```
+ln -s ~cs1010/.vim/pack/plugins/start/lightline.vim ~/.vim/pack/plugins/start
+```
+
+### Unavailable Plugins
+
+The following plugins are not allowed as they provide too much help for writing Java programs.
+
+- `coc`
+- `syntastic`
+- `youcompleteme`
+
+## 8. Other Useful Plugins (Just Not for Exams)
 
 ### Syntax and Style Checker
 
@@ -259,57 +396,3 @@ We can do this by creating a file named `compile_flags.txt` in your working dire
 
 Note that `syntastic` is not one of the approved plugins during CS1010 practical exams.
 
-## 6. Color Schemes
-
-{++NEW++}
-
-We have installed [`vim-colorscheme`](https://github.com/flazz/vim-colorschemes) bundle under `~cs1010/.vim/vim-colorschemes/colors`.
-
-To use this, run
-
-```
-ln -s ~cs1010/.vim/vim-colorschemes/colors ~/.vim/colors
-```
-
-After that, your can change your vim color scheme as usual.  For instance,
-
-```
-:color gruvbox
-```
-
-The bundle includes some of the popular color schemes among students, such as monokai, solarized, and gruvbox
-
-## 7. Recovery Files
-
-{++NEW++} Vim automatically saves the files you are editing into temporary _swap_ files, with extension `.swp`.  These files are hidden so you don't normally see them when you run `ls`.  (You need to run `ls -a` to view the hidden files)
-
-The swap files are useful if your editing session is disrupted before you save (e.g., the network is disconnected, you accidentally close the terminal, your OS crashes, etc.).
-
-When you launch `vim` to edit a file, say, `foo.c`.  `vim` will check if a swap file `.foo.c.swp` exist.  If it does, `vim` with display the following
-
-```
-Found a swap file by the name ".foo.c.swp"
-		  owned by: elsa   dated: Sat Aug 21 15:01:04 2021
-		 file name: ~elsa/foo.c
-          modified: no
-		 user name: elsa   host name: pe116
-        process ID: 7863 (STILL RUNNING)
-While opening file "foo.c"
-             dated: Mon Jul 12 18:38:37 2021
-
-(1) Another program may be editing the same file.  If this is the case,
-    be careful not to end up with two different instances of the same
-    file when making changes.  Quit, or continue with caution.
-(2) An edit session for this file crashed.
-    If this is the case, use ":recover" or "vim -r a.c"
-    to recover the changes (see ":help recovery").
-    If you did this already, delete the swap file ".a.c.swp"
-    to avoid this message.
-
-Swap file ".a.c.swp" already exists!
-[O]pen Read-Only, (E)dit anyway, (R)ecover, (Q)uit, (A)bort:
-```
-
-The messages above is self-explanatory.  Read it carefully.  Most of the time, you want to choose "R" to recover your edits, so that you can continue editing.  Remember to remove the file `.foo.c.swp` after you have recovered.  Otherwise `vim` will prompt you the above messages every time you edit `foo.c`.
-
-Warning: if `foo.c` is newer than the state saved in `.foo.c.swp`, and you recover from `.foo.c.swp`, you will revert back to the state of the file as saved in the swap file.  This can happen if (i) you edit the file without recovery, or (ii) you recover the file, continue editing, but did not remove the `.foo.c.swp` file after.

@@ -152,7 +152,7 @@ hello.c
 ooiwt@pe111:~/tut01$ mv ../hello.c .
 ```
 
-Here, we tell `mv` to copy a file `hello.c` from the parent directory to the current directory.
+Here, we tell `mv` to {--copy--} {++move++} a file `hello.c` from the parent directory to the current directory.
 
 `mv` can also be used to rename files.
 
@@ -206,6 +206,8 @@ alias cp="cp -i"
 ```
 
 ## `cat`: CATenate file content to the screen
+
+To quickly take a look at the content of the file, use the `cat` command.
 
 ```bash
 ooiwt@pe111:~/tut01$ cat hello.c
