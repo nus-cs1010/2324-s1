@@ -453,6 +453,7 @@ int main()
 ```
 
 a. Show the content of the stack at Line A if the program above is executed.
+
 b. What is the content of array `a` at Line B?
 
 ### Problem 14.2
@@ -480,5 +481,7 @@ int main()
 ```
 
 a. Does the code compile cleanly?
+
 b. Show the content of the stack at Line A if the program above is executed.
+
 c. What is the content of array `a` at Line B?
