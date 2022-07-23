@@ -348,7 +348,7 @@ ln -s ~cs1010/.vim/pack/plugins/start/lightline.vim ~/.vim/pack/plugins/start
 
 ### Unavailable Plugins
 
-The following plugins are not allowed as they provide too much help for writing Java programs.
+The following plugins are not allowed as they provide too much help for writing C programs.
 
 - `coc`
 - `syntastic`

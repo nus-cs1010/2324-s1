@@ -5,9 +5,9 @@ To help students get started with C programming without worrying too much about 
 The libraries are pre-installed in [CS1010 programming environments](environments.md), with `cs1010.h` located under `~cs1010/include` and `libcs1010.a` located under `~cs1010/lib`.
 
 
-# Using the Library
+## Using the Library
 
-## Header
+### Header
 
 To use the CS1010 I/O library, you should `#include` the file `cs1010.h`, like this:
 
@@ -17,7 +17,7 @@ To use the CS1010 I/O library, you should `#include` the file `cs1010.h`, like t
 
 at the top of your C program.
 
-## Linking
+### Linking
 
 The CS1010 I/O library is provided as the file `libcs1010.a`.  To link to the library, you need to compile with `-lcs1010`.  Usually, you need to specify where you can find `cs1010.h` with the `-I` flag, and `libcs1010.a` with the `-L` flag.  
 
@@ -31,7 +31,7 @@ Although it is a long string to type, you should type it once and use up arrow i
 
 We have also automated this for you for your assignments and exercises using the `make` command.
 
-## Reading of a Single Value
+### Reading of a Single Value
 
 The CS1010 library supports reading of `long` value, `double` value, and strings (both space-separated words and newline-separated lines) from the standard input.  For `long` and `double`. The relevant methods are:
 
@@ -68,14 +68,23 @@ char* line = cs1010_read_line();
 free(line);
 ```
 
+- `size_t cs1010_read_size_t()`<br>
+({++NEW++}) Returns a `size_t` value from the standard input.  An error message will be printed (to `stderr`) if the input sequence is not a valid `size_t` value -- in which case the value `0` will be returned.  Example:
+```C
+size_t size = cs1010_read_size_t();
+```
+
 ## Reading of Multiple Values
 
-The CS1010 library also supports reading of multiple values.  
+The CS1010 library also supports reading of multiple values.
 
-- `long* cs1010_read_long_array(long k)`<br>
+({++NEW++}) These funtions takes in an argument of type `size_t` instead of `long`.
+
+- `long* cs1010_read_long_array(size_t k)`<br>
 Returns `k` numbers of `long` values read from the standard input stored in an array.  An error message will be printed (to `stderr`) for each input that is not a valid `long` value -- in which case the value `LONG_MAX` will be populated in the corresponding array element.  Returns NULL if there is a memory allocation error.  If the returned value is non-NULL, the caller is responsible for freeing the memory allocated by calling `free`.
 ```C
-long* values = cs1010_read_long_array(10);
+size_t k = cs1010_read_size_t();
+long* values = cs1010_read_long_array(k);
 if (values != NULL) {
   // Do something with array values
    :
@@ -84,11 +93,12 @@ if (values != NULL) {
 }
 ```
 
-- `double* cs1010_read_double_array(long k)`<br>
-Returns `k` numbers of `double` values read from the standard input stored in an array.  An error message will be printed (to `stderr`) for each input that is not a valid `double` value -- in which case the value `DBL_MAX` will be populated in the corresponding array element.  
+- `double* cs1010_read_double_array(size_t k)`<br>
+Returns `k` numbers of `double` values read from the standard input stored in an array.  An error message will be printed (to `stderr`) for each input that is not a valid `double` value -- in which case the value `DBL_MAX` will be populated in the corresponding array element.
 Returns NULL if there is a memory allocation error.  If the returned value is non-NULL, the caller is responsible for freeing the memory allocated by calling `free`.
 ```C
-double* values = cs1010_read_double_array(10);
+size_t k = cs1010_read_size_t();
+double* values = cs1010_read_double_array(k);
 if (values != NULL) {
   // Do something with array values
    :
@@ -97,36 +107,40 @@ if (values != NULL) {
 }
 ```
 
-- `char** cs1010_read_word_array(long k)`<br>
+- `char** cs1010_read_word_array(size_t k)`<br>
 Returns `k` white-space-separated words read from the standard input stored in an array.  The notion of "word" is the same to `cs1010_read_word()`.  
 Returns NULL if there is a memory allocation error.  If the returned value is non-NULL, the caller is responsible for freeing the memory allocated for each word and for the whole array by calling `free`.
 ```C
-char** words = cs1010_read_word_array(10);
+size_t k = cs1010_read_size_t();
+char** words = cs1010_read_word_array(k);
 if (words != NULL) {
   // Do something with array words
    :
    :
-  for (long i = 0; i < 10; i += 1) {
+  for (size_t i = 0; i < k; i += 1) {
     free(words[i]);
   }
   free(words);
 }
 ```
 
-- `char** cs1010_read_line_array(long k)`<br>
-Returns `k` new-line-separated words read from the standard input stored in an array.  The notion of line is the same to `cs1010_read_line()`.  
+- `char** cs1010_read_line_array(size_t k)`<br>
+Returns `k` new-line-separated words read from the standard input stored in an array.  The notion of line is the same to `cs1010_read_line()`. 
 Returns NULL if there is a memory allocation error.  If the returned value is non-NULL, the caller is responsible for freeing the memory allocated for each line and for the whole array by calling `free`.
 ```C
-char** lines = cs1010_read_line_array(10);
-if (lines != NULL) {
-  // Do something with array lines
-   :
-   :
-  for (long i = 0; i < 10; i += 1) {
-    free(lines[i]);
-  }
-  free(lines);
+size_t k = cs1010_read_size_t();
+char** lines = cs1010_read_line_array(k);
+if (lines == NULL) {
+  // Deal with error
+  return;
 }
+// Do something with array lines
+  :
+  :
+for (size_t i = 0; i < k; i += 1) {
+  free(lines[i]);
+}
+free(lines);
 ```
 
 
@@ -161,6 +175,13 @@ Print a given string `str` to the standard output.  These functions are provided
 !!! tip "Printing single character"
     There is no `cs1010_print_char` method.  You can use `putchar` from the C standard library
 	for this purpose.
+
+- `void cs1010_print_pointer(void *ptr)` and `void cs1010_println_pointer(void *ptr)`<br>
+({++NEW++}) Print a given pointer `ptr` to the standard output in decimal format.
+```C
+  long *x;
+  cs1010_println_pointer(&x);
+```
 
 ## Clearing screen
 

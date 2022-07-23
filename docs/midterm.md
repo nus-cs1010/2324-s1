@@ -62,11 +62,24 @@ Note the following supplementary information to complete the E-exam procedure ab
 
 - Zoom session assignment is available internally via [LumiNUS](https://luminus.nus.edu.sg/modules/600de8e9-67ec-47dd-b597-a2eeadb45792/groups/class-groups/6dccb622-bd40-481e-addd-655683f44956?listView=false)
 
-- Zoom links to be made available via Piazza (two days before the midterm)
+- Zoom links is now available [via Piazza](https://piazza.com/class/krfo8m0yrkv6t2?cid=8)
 
 ## Invigilators and Email Address
 
-Invigilators list (to be made available on the day of the midterm)
+```
+X01	Wang Chengxin        cwang@u.nus.edu
+X02	Alvin Heng Jun Ren   alvin.heng@u.nus.edu
+X03	Felix Halim          felix@u.nus.edu
+X04	Tean Wei Jun         e0540193@u.nus.edu
+X05	Liang Yuzhao         e0543802@u.nus.edu
+X06	Ng Cheng Yang, Titus titusng@u.nus.edu
+X07	Wong Zhen Wei        e0407196@u.nus.edu
+X08	Lok Ke Wen           kewen.lok@u.nus.edu
+X09	Hubertus Adhy Pratama Setiawan adhy.setiawan@u.nus.edu
+X10	Ling Yan Hao         lyanhao@comp.nus.edu.sg
+X11	Song Kai             song.kai@u.nus.edu
+X12	Luo Xinjian          xinjian.luo@u.nus.edu
+```
 
 ## Emergency Contact (Examination issues)
 
@@ -76,8 +89,4 @@ Invigilators list (to be made available on the day of the midterm)
 
 ##  Emergency Contact for Technical Issues 
 
-- School of Computing - Technical Services
-- Telephone: 6516 2736
-- Email: techsvc@comp.nus.edu.sg
-- Emergency Telephone: 6874 2736 (available only during emergencies and network outages)
-
+- Contact NUS IT Online Exam Support via [Microsoft Teams here]( https://teams.microsoft.com/l/chat/0/0?users=onlineexamsupport@nus.edu.sg)

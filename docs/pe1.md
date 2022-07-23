@@ -13,7 +13,8 @@
 
 ## Practice Paper
 
-To be available on Week 6.
+- [Exercise 6](ex06.md)
+- Exercise 7
 
 ## Special Restrictions
 
@@ -82,11 +83,24 @@ Note the following supplementary information to complete the E-exam procedure ab
 
 - Zoom session assignment is available internally via [LumiNUS](https://luminus.nus.edu.sg/modules/600de8e9-67ec-47dd-b597-a2eeadb45792/groups/class-groups/6dccb622-bd40-481e-addd-655683f44956?listView=false)
 
-- Zoom links to be made available via Piazza (two days before the midterm)
+- Zoom links to be made available via Piazza (two days before the PE1)
 
 ## Invigilators and Email Address
 
-Invigilators list (to be made available on the day of the midterm)
+```
+X01	Guo Ai			guo.ai@u.nus.edu
+X02	Luo Xinjian		xinjian.luo@u.nus.edu
+X03	Alvin Heng		alvin.heng@u.nus.edu
+X04	Song Kai		song.kai@u.nus.edu
+X05	Eric Bryan		e0555789@u.nus.edu
+X06	Tean Wei Jun	e0540193@u.nus.edu
+X07	Liang Yuzhao	e0543802@u.nus.edu
+X08	Felix Halim		e0407645@u.nus.edu
+X09	Xia Fuxi		e0426189@u.nus.edu
+X10 Ling Yan Hao	e0174827@u.nus.edu
+X11 Adi Nata		e0425080@u.nus.edu
+X12 Wang ChengXin	e0673190@u.nus.edu
+```
 
 ## Emergency Contact (Examination issues)
 
@@ -94,10 +108,9 @@ Invigilators list (to be made available on the day of the midterm)
 - If Zoom fails, use MS Teams (when permission is given by the proctor)
 - If Zoom/Teams fail, as a last resort, you may email the instructors/proctors
 
-##  Emergency Contact for Technical Issues 
+##  Emergency Contact (Technical Issues)
 
 - School of Computing - Technical Services
 - Telephone: 6516 2736
 - Email: techsvc@comp.nus.edu.sg
 - Emergency Telephone: 6874 2736 (available only during emergencies and network outages)
-

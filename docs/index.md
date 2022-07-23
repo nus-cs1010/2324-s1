@@ -1,4 +1,88 @@
 # Announcements
+!!! announcement "Assignment 9"
+
+	[Assignment 9](as09.md) is out.  This assignment is worth 3.5% and is due on Friday 11:59pm (but you can submit by next Tuesday 11:59pm without late penalty).
+
+!!! announcement "Lecture 12"
+
+	In this final lecture of CS1010, we will bridge you towards CS2040C and C in the real-world.  We will cover [C struct](27-struct.md) and [standard I/O](28-stdio.md). 
+
+    <a href="https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=6b8bef48-d370-4ee5-aa07-adda00aed65d">video</a> | <a href="https://nus-cs1010.github.io/2122-s1/slides/cs1010-lec12.html#1">slides</a> | <a href="https://luminus.nus.edu.sg/modules/600de8e9-67ec-47dd-b597-a2eeadb45792/quiz/1145f9c2-0761-4a90-a5b5-44fc98e5fd5e/attempt-secure">quiz</a>
+
+!!! announcement "Lecture 11"
+
+    Fun with past-year PE2 questions!
+
+    <a href="https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=d1a86768-b8e7-4c1b-963a-add300ea8ec7">video</a> | <a href="https://nus-cs1010.github.io/2122-s1/slides/cs1010-lec11.html#1">slides</a>
+
+!!! announcement "Assignment 8, Exercise 11, Exercise 12"
+
+	[Assignment 8](as08.md) is out.  This assignment is worth 4% and is due next Tuesday 11:59pm.
+
+	[Exercise 11](ex11.md) is also available.  This exercise contains PE2 questions from AY20/21.  
+	[Exercise 12](ex12.md) is the last exercise for CS1010 and contains two questions on recursion. We will go through one question from each of these exercises during the lab today.
+
+!!! announcement "Lecture 10"
+
+    We revisit recursion in this lecture.  We will look at more complex problems that
+	can be solved by using recursion.  In particularly, we will study the [Tower of Hanoi](24-tower.md) puzzle, the [generation of all possible permutations](25-permutation.md), and the [n-Queens puzzle](26-queens.md).
+
+!!! announcement "Deadline for Assignment 7"
+
+    As announced on Piazza, you can submit your Assignment 7 before 9 AM on Wednesday 27 October 2021 without penalty.
+
+    <a href="https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=abe7f7ae-3ba1-4a5d-9be6-adcc009ad83a">video</a> | <a href="https://nus-cs1010.github.io/2122-s1/slides/cs1010-lec10.html#1">slides</a> | <a href="https://luminus.nus.edu.sg/modules/600de8e9-67ec-47dd-b597-a2eeadb45792/quiz/2a750556-25ed-485b-a730-8759a7527530/attempt-secure">quiz</a>
+   
+!!! announcement "Assignment 7 and Exercise 10"
+
+	[Assignment 7](as07.md) is out.  This assignment is worth 3.5% and is due next Tuesday 11:59pm.  Start early!
+
+	[Exercise 10](ex10.md) is also available.  This exercise contains PE2 questions from AY18/19.  We will go through at least one question during the lab today.
+
+!!! announcement "Lecture 9"
+
+	In this lecture, we will explore two basic computing problems: [searching](22-search.md) and [sorting](23-sort.md).  In particular, 
+	you will learn about binary search, bubble sort, and insertion sort.
+
+    <a href="https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=cbd95e9c-7773-4931-b876-adc500cb455f">video</a> | <a href="https://nus-cs1010.github.io/2122-s1/slides/cs1010-lec9.html#1">slides</a> | <a href="https://luminus.nus.edu.sg/modules/600de8e9-67ec-47dd-b597-a2eeadb45792/quiz/603670f7-20db-43fa-8c54-4e441ffd701c/attempt-secure">quiz</a>
+
+!!! announcement "Assignment 6 and Exercise 9"
+
+	[Assignment 6](as06.md) has been released.  This assignment is worth 4% and is due next Tuesday 11:59pm.  Start early!
+
+	[Exercise 9](ex09.md) is also available to be completed during the lab session this week.
+
+!!! announcement "Lecture 8"
+
+	We will cover three different topics this week.  First, we will wrap up our discussion on arrays with Unit 19 on [multi-dimensional arrays](19-md-array.md).  Then, we will explore deeper into compilation process, particular on several useful [pre-processing directives](20-macro.md).  Finally, we will prepare you for the next segments of CS1010, by exploring how we can measure [the efficiency of an algorithm](21-efficiency.md) using the Big-O notation.
+
+    <a href="https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=d51419fb-d639-41cc-9fc3-adbe00854557">video</a> | <a href="https://nus-cs1010.github.io/2122-s1/slides/cs1010-lec8.html#1">slides</a> | <a href="https://luminus.nus.edu.sg/modules/600de8e9-67ec-47dd-b597-a2eeadb45792/quiz/02a58504-81dc-4840-8227-ba998aa0484e/attempt-secure">quiz</a>
+
+!!! announcement "Assignment 5"
+
+	[Assignment 5](as05.md) has been released.  This assignment is worth 3% and is due next Tuesday 11:59pm. 
+
+!!! announcement "Exercise 8"
+
+	[Exercise 8](ex08.md) is now posted.  This exercise consists of three questions on string operations.
+
+!!! announcement "Lecture 7"
+
+	In this jam-packed lecture, we delve deeper into pointers, memory, and arrays.  We will start by introducing [the referencing and dereferencing operators](15-pointers.md), and show how they can be used to [pass an argument by reference](16-call-by-reference.md).  We then explore [heap memory management](17-heap.md), and use it as the basis for dynamically-sized arrays. Finally, we will look at a special type of arrays -- [the strings](18-string.md).  THis lecture covers Units 15-18.
+
+    <a href="https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=34cd840e-8d54-4fda-b712-adb70097c3f3">video</a> | <a href="https://nus-cs1010.github.io/2122-s1/slides/cs1010-lec7.html#1">slides</a> | <a href="https://luminus.nus.edu.sg/modules/600de8e9-67ec-47dd-b597-a2eeadb45792/quiz/eb5656bc-e76f-448d-94a9-484570120d03/attempt-secure">quiz</a> 
+
+!!! announcement "Assignment 4"
+
+	[Assignment 4](as04.md) is posted.  Due to the coming PE, this assignment is released a day ealier, is due a day later, and has only two questions.  The assignment is due on _Wednesday_ midnight, on 6 October, 2359.
+
+!!! announcement "Assignment 3"
+
+	[Assignment 3](as03.md) is posted.  This assignment is due after the recess week, on 28 September, 2359.
+
+!!! announcement "Exercise 6"
+
+	[Exercise 6](ex06.md) is posted.  This consists of the PE I question from AY 2021/22 Semester 1.
 
 !!! announcement "Exercise 5"
 
@@ -8,7 +92,7 @@
 
 	Lecture 6 consists of two parts.  In Part 1, we will delve deeper into how functions are called in C (and other languages), to get a better understanding of the behavior of your program.  We will learn how [call stacks](13-call-stack.md) works. In Part 2, we will start exploring arrays in C.  We will focus on [fixed-length arrays](14-array.md) for this lecture.
 
-    <a href="https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=fe025367-18ae-45ce-8b3e-ada200b1a0ef">video</a> | <a ref="https://nus-cs1010.github.io/2122-s1/slides/cs1010-lec6.html#1">slides</a> | <a href="https://luminus.nus.edu.sg/modules/600de8e9-67ec-47dd-b597-a2eeadb45792/quiz/012b25da-c8ef-4322-9196-1a20d8770df3/attempt-secure">quiz</a> 
+    <a href="https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=fe025367-18ae-45ce-8b3e-ada200b1a0ef">video</a> | <a href="https://nus-cs1010.github.io/2122-s1/slides/cs1010-lec6.html#1">slides</a> | <a href="https://luminus.nus.edu.sg/modules/600de8e9-67ec-47dd-b597-a2eeadb45792/quiz/012b25da-c8ef-4322-9196-1a20d8770df3/attempt-secure">quiz</a> 
 
 !!! announcement "Exercise 3"
 

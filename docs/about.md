@@ -10,7 +10,7 @@ This module introduces the fundamental concepts of problem solving by computing 
 - **Lecture Venue**: Online ([Zoom link](https://piazza.com/class/krfo8m0yrkv6t2?cid=8))
 - **Lecture Time**: Every Monday, 12noon - 2pm
 - **Q&A Hour via Zoom**: 
-	- Wei Tsang: Every Tuesday, 4pm - 5pm, at AS6 #05-14 or ([Zoom link](https://piazza.com/class/krfo8m0yrkv6t2?cid=8))
+	- Wei Tsang: Every Tuesday, 4pm - 5pm, {--at AS6 #05-14 or--} ([Zoom link](https://piazza.com/class/krfo8m0yrkv6t2?cid=8))
 
 ## Important Dates
 
@@ -19,7 +19,7 @@ This module introduces the fundamental concepts of problem solving by computing 
 - **Practical Exam 2**: Saturday, 6 November, 2021 (9am - 12noon)
 - **Final Assessment**: Tuesday, 25 November, 2021 (5pm - 7pm)
 
-All assessments below are conducted online.
+All assessments above are conducted online.
 
 ## Assessment Weightage
 

@@ -1,4 +1,4 @@
-# Unit 14: Fixed-Length Array
+ Unit 14: Fixed-Length Array
 
 ## Learning Objectives
 
@@ -39,7 +39,7 @@ long list[10];
 
 We use the square bracket `[` and `]` to indicate that the variable `list` is an array.  The number `10` indicates that `marks` holds 10 `long` values.  The size of the array must be an integer value, not a variable.
 
-Just like any other local variables, declaring an array does not uninitialized it.  An uninitialized array contains whatever values happened to be in the memory at that time.
+Just like any other local variables, declaring an array does not {--uninitialized--} {++initialize++} it.  An uninitialized array contains whatever values happened to be in the memory at that time.
 
 ## Accessing the Array Elements
 
@@ -347,7 +347,7 @@ void square(const long length, long list[len])
 }
 ```
 
-and assign `a2` to `a` (if we want to store the squared list in `a2`).
+and assign {--`a2` to `a`--} {++`a` to `a2`++} (if we want to store the squared list in `a2`).
 
 ```C
   long a[5] = {1, 2, 3, 4, 5};

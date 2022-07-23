@@ -1,14 +1,14 @@
-# Panopto Guide for CS1010
+# Panopto Guide for CS2030S
 
 
 
 ## Installation
 
-1. In LumiNus, click CS1010 under **My Modules** > **Enrolled Modules**.
+1. In LumiNus, click CS2030S under **My Modules** > **Enrolled Modules**.
 
 2. Scroll down on the left-hand sidebar. Click **Multimedia**.
 
-3. Click on channel **eExam Screen Recording**.
+3. Click on channel **Screen Recordings**.
 
 4. Click on the **Create** button at the top of your page. Select "**Panopto for Windows**" or "**Panopto for Mac**". A popup window appears.
 
@@ -25,11 +25,11 @@
 
 ## Recording and Uploading Test
 
-1. In LumiNus, click CS1010 under **My Modules** > **Enrolled Modules**.
+1. In LumiNUS, click CS2030S under **My Modules** > **Enrolled Modules**.
 
 2. Scroll down on the left-hand sidebar. Click Multimedia.
 
-3. Click on channel "eExam Screen Recording".
+3. Click on channel "Screen Recordings".
 
 4. Click on folder "Panopto Testing".
 
@@ -92,7 +92,7 @@ Click **Done** on the popup.
 
     ![image not found](9-1.png)
 
-11. Your recording is currently being uploaded to the folder **eExam Screen Recording** > **Panopto Testing**. You should see the status of your recording similar to the screenshot below after the recording is uploaded successfully.
+11. Your recording is currently being uploaded to the folder **Screen Recordings** > **Panopto Testing**. You should see the status of your recording similar to the screenshot below after the recording is uploaded successfully.
 
     ![image not found](10-1.png)
 
@@ -102,4 +102,5 @@ Click **Done** on the popup.
 
 13. Congratulations you are done! You may delete your screen recording.
 
-Prepared by Song Kai, Luo Xinjian, Wang Chengxin
+Prepared by Song Kai, Luo Xinjian, Wang Chengxin for CS1010.
+Adapted by Wei Tsang for CS2030S

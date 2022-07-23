@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+<title>CS1010 AY21/22 Tutorial 6</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Tutorial 8
+
+### 20 October 2021
+
+---
+class: wide
+
+### 22.1: Rewrite using loops
+
+.tiny[
+```C
+long search(long list[], long i, long j, long q) {
+  if (i > j) {
+    return -1;
+  }
+  long mid = (i+j)/2;
+  if (list[mid] == q) {
+    return mid;
+  }
+  if (list[mid] > q) {
+    return search(list, i, mid-1, q);
+  }
+  return search(list, mid+1, j, q);
+}
+```
+]
+
+---
+class: wide
+
+### 22.1: Rewrite using loops
+
+.tiny[
+```C
+long search(const long list[], long len, long q) {
+  long i = 0;
+  long j = len-1;
+  while (i <= j) {
+    long mid = (i+j)/2;
+    if (list[mid] == q) {
+      return mid;
+    }
+    if (list[mid] > q) {
+      j = mid-1;
+    } else {
+      i = mid+1;
+    }
+  }
+  return -1;
+}
+```
+]
+---
+class: middle
+
+### 22.2
+
+Change the code so that it returns
+- `-1` if `k < a[0]`
+- `n-1` if `k > a[n-1]`
+- `k` if `a[k] <= q <= a[k+1]`
+
+---
+class: wide
+
+.tiny[
+```C
+long search(const long list[], long len, long q) {
+  long i = 0;
+  long j = len-1;
+  while (i <= j) {
+    long mid = (i+j)/2;
+    if (list[mid] == q) {
+      return mid;
+    }
+    if (list[mid] > q) {
+      j = mid-1;
+    } else {
+      i = mid+1;
+    }
+  }
+  return i-1;
+}
+```
+]
+
+---
+class: wide
+
+### 23.1
+
+In the implementation of bubble sort, we always make passes through the array. It is, however, possible to stop the whole sorting procedure, when a pass through the array does not lead to any swapping. Modify the code above to achieve this optimization.
+
+---
+class: wide
+
+.tiny[
+```C
+void bubble_pass(size_t last, long a[]) {
+  for (size_t i = 0; i < last; i += 1) {
+    if (a[i] > a[i+1]) {
+      swap(a, i, i+1);
+    }
+  }
+}
+
+void bubble_sort(size_t n, long a[n]) {
+  for (size_t last = n - 1; last > 0; last -= 1) {
+    bubble_pass(last, a);
+  }
+}
+```
+]
+
+---
+class: wide
+
+.tiny[
+```C
+void bubble_pass(size_t last, long a[]) {
+
+  for (size_t i = 0; i < last; i += 1) {
+    if (a[i] > a[i+1]) {
+      swap(a, i, i+1);
+
+    }
+  }
+
+}
+
+void bubble_sort(size_t n, long a[n]) {
+
+  for (size_t last = n - 1; last > 0               ; last -= 1) {
+               bubble_pass(last, a);
+  }
+}
+```
+]
+
+---
+class: wide
+
+### 23.2 (a) already sort?  (b) inversely sorted?
+
+.tiny[
+```C
+void insert(long a[], size_t curr)
+{
+  size_t i = curr;
+  long temp = a[curr];
+  while (i >= 1 && temp < a[i - 1]) {
+    a[i] = a[i - 1];
+    i -= 1;
+  }
+  a[i] = temp;
+}
+
+void insertion_sort(size_t n, long a[n]) {
+  for (size_t curr = 1; curr < n; curr += 1) {
+    insert(a, curr);
+  }
+}
+```
+]
+
+---
+class: wide
+
+### 23.3 Comparison vs. Assignments
+
+.tiny[
+```C
+void insert(long a[], size_t curr) {
+  size_t i = curr;
+  long temp = a[curr];
+  while (i >= 1 && temp < a[i - 1]) {
+    a[i] = a[i - 1];
+    i -= 1;
+  }
+  a[i] = temp;
+}
+
+void insertion_sort(size_t n, long a[n]) {
+  for (size_t curr = 1; curr < n; curr += 1) {
+    insert(a, curr);
+  }
+}
+```
+]
+
+---
+class: wide
+
+Repeat
+
+- take the first element X from unsorted partition
+- use binary search to find correct position to insert X
+- insert X into the right place
+
+until the unsorted partition is empty
+
+---
+class: wide
+
+### 23.3
+
+.tiny[
+```C
+void insert(long a[], size_t curr) {
+  long i = (long) curr;
+  long temp = a[curr];
+
+
+  while (               ) {
+    a[i] = a[i - 1];
+    i -= 1;
+  }
+  a[i] = temp;
+}
+
+void insertion_sort(size_t n, long a[n]) {
+  for (size_t curr = 1; curr < n; curr += 1) {
+    insert(a, curr);
+  }
+}
+```
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'monokai',
+    slideNumberFormat: 'AY2021 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+<title>CS1010 AY20/21 S1 Lecture 10</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 11
+
+### 1 November 2021
+
+.smaller[
+Admin Matters<br>
+PE2 PYQs<br>
+]
+---
+class: middle
+
+- Assignment 8: Due Tuesday night
+- Assignment 9: Release next Monday (due Friday night, extensible to following Tuesday in the reading week)
+
+---
+class: middle
+
+- No lab this week!  (Happy Deepavali/Diwali)
+- No quiz this week!
+- No problem set this week!
+
+---
+class: middle
+
+### Tutorial this week
+
+- We will go through how to solve `fill` and `maze`
+
+---
+class: middle,wide
+
+## PE2
+
+- This coming Saturday, 6 November, (9 AM - 12 NOON)
+- Scope: until Unit 26
+- Same rules and arrangement as PE1
+- Same username, password, host as PE1
+- Look out for important emails this week
+
+---
+class: middle,wide
+
+## PE1
+
+- Look out for PE1 results (via emails) today!
+- Comments on solution + common errors posted on Piazza
+
+---
+class: middle,wide
+background-image: url(figures/pe1.png)
+
+---
+class: bottom
+
+.tiny[
+Version: 1.0 Mon Nov  1 11:42:37 +08 2021
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'monokai',
+    slideNumberFormat: 'AY2122 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

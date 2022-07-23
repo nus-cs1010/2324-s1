@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+<title>CS1010 AY21/22 Tutorial 9</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Tutorial 11
+
+### 10 November 2021
+
+---
+class: wide
+
+### Question 1
+
+.tiny[
+```C
+long foo(long n) {
+  long res = 1;
+  for (long i = 1; i <= n; i += 1) {
+    if (n % i == 0) {
+      res *= n; // Line X
+    }
+  }
+  return res;
+}
+```
+]
+
+---
+class: wide
+
+.tiny[
+```C
+long goo(long n) {
+  long res = n;
+  long i = n;
+  do {
+    if (n % i == 0) {
+      res *= n;
+    }
+    i -= 1;
+  } while (i >= 1);
+  return res;
+}
+```
+]
+
+---
+class: wide
+
+.tiny[
+```C
+long hoo(long n) {
+  long res = 1;
+  long i = n;
+  do {
+    if (n % i == 0) {
+      res *= n;
+    }
+    i -= 1;
+  } while (i > 1);
+  return res;
+}
+```
+]
+
+---
+class: wide
+
+### 
+
+.tiny[
+```C
+long jj(long n, long i) {
+  if (i == 1) {
+    return n;
+  }
+  if (n % i == 0) {
+    return jj(n * n, i - 1);
+  }
+  return jj(n, i - 1);
+}
+
+long joo(long n)
+  return jj(n , n);
+}
+```
+]
+
+---
+class: wide
+
+.tiny[
+```C
+long kk(long n, long i) {
+  if (i == 1) {
+    return n;
+  }
+  if (n % i == 0) {
+    return n * kk(n, i - 1);
+  }
+  return kk(n, i - 1);
+}
+
+long koo(long n) {
+  return kk(n , n);
+}
+```
+]
+
+---
+class: wide
+
+### Question 2
+.moretiny[
+```C
+long bar(long n) {
+  long k = 0;
+  for (long i = 1; i < n*n; i += n) {
+     k += i;
+  }
+  return k;
+}
+long cat(long n) {
+   long k = 0;
+   for (long i = n; i > 0; i /= 2) {
+     k += i;
+   }
+   return k;
+}
+long dam(long n) {
+   long k = 0;
+   for (long i = 1; i < 1000; i += 1) {
+     k += n;
+   }
+   return k;
+}
+```
+]
+
+---
+class: wide
+
+### Question 3
+.tiny[
+```C
+char *foo(char *x) {
+  x = "cs1010";
+  // Line A
+  return x;
+}
+
+int main() {
+  char *c = malloc(4);
+  c = foo(c);
+  // Line B
+}
+```
+]
+
+---
+class: wide
+
+### Question 4
+.tiny[
+```C
+void qux() {
+  char c;
+  while (c > 0) {
+    c = 1;
+  }
+}
+```
+]
+
+
+---
+class: wide
+
+### Question 5
+
+.tiny[
+```C
+#define distance_square(a, b) (a*a + b*b)
+long a = 1;
+long b = 2;
+long x = distance_square(a + 2, b + 3);
+```
+]
+
+---
+class: wide
+
+### Question 6
+
+.tiny[
+```C
+long foo(long a, long *b, long **c) {
+  **c += 1;
+  *b += 2;
+  a += 4;
+  return a + *b + **c;
+}
+
+int main() {
+   long p;
+   long *q;
+   long **r;
+   p = 0;
+   q = &p;
+   r = &q;
+   cs1010_println_long(foo(p, q, r));
+}
+```
+]
+
+---
+class: wide
+
+### Question 7
+
+.tiny[
+```C
+long f(long n) {
+  if (n < 2) {
+    return 1;
+  }
+  for (long i = 0; i < n; i += 1) {
+    cs1010_println_string("hello");
+  }
+  return f(n/3) + f(n/3) + f(n/3);
+}
+```
+]
+
+---
+class: wide
+
+### Question 8
+
+.tiny[
+```C
+void f(long n, long a) {
+  if (n <= 0) {
+    return;
+  }
+  f(n - 1, a + 1);
+  cs1010_println_long(a);
+  f(n - 1, a - 1);
+}
+
+int main() {
+  f(3, 4);
+}
+```
+]
+
+---
+class: wide
+
+### Question 9
+
+.tiny[
+```C
+int main() {
+    long *p = bar();
+    cs1010_println_long(*p);
+}
+
+long *bar() {
+   long x = 10;
+   return &x;
+}
+```
+]
+
+---
+class: wide
+
+### Question 9
+
+.tiny[
+```C
+int main() {
+    long *p = bar();
+    cs1010_println_long(*p);
+}
+
+long *bar() {
+   long *px;
+   *px = 10;
+   return px;
+}
+```
+]
+
+---
+class: wide
+
+### Question 9
+
+.tiny[
+```C
+int main() {
+    long *p = bar();
+    cs1010_println_long(*p);
+}
+
+long *bar() {
+   long *px;
+   px = (long *)malloc(1);
+   *px = 10;
+   return px;
+}
+```
+]
+
+
+---
+class: wide
+
+### Question 9
+
+.tiny[
+```C
+int main() {
+    long *p = bar();
+    cs1010_println_long(*p);
+}
+
+long *bar() {
+   return (long *)10;
+}
+```
+]
+
+---
+class: wide
+
+### Question 10
+.moretiny[
+```C
+void merge(const long a1[], const long a2[], long out[], long len1, long len2) {
+  long i = 0;
+  long j = 0;
+  long k = 0;
+  while (i < len1 && j < len2) {
+	if (a1[i] < a2[j]) {
+	  out[k] = a1[i];
+	  i += 1;
+	} else {
+      out[k] = a2[j];
+      j += 1;
+    }
+    k += 1;
+  }
+  // { i != len1 ||  j < len2 }
+  // { i != len1 ||  k == len1 + j - 1 }
+  // { i != len1 ||  a1[len1 - 1] < a2[j] }
+  // { i != len1 ||  out[k] ==  a1[len1 - 1] }
+}
+```
+]
+
+---
+class: wide
+
+### Question 11
+
+.tiny[
+```C
+struct box {
+  long x;
+};
+
+void titi(struct box b) {
+  b.x = 1;
+}
+
+struct box b;
+titi(b);
+```
+]
+---
+class: wide
+
+### Question 11
+
+.tiny[
+```C
+void tutu(struct box *b) {
+  b->x = 1;
+}
+
+struct box b;
+tutu(&b);
+```
+]
+
+---
+class: wide
+
+### Question 11
+.tiny[
+```C
+struct box tata() {
+  struct box b;
+  b.x = 1;
+  return b;
+}
+
+struct box b = tata();
+```
+]
+
+---
+class: wide
+
+### Question 11
+.tiny[
+```C
+struct box b;
+
+void toto(long *x) {
+  *x = 1;
+}
+
+toto(&(b.x));
+```
+]
+
+---
+class: wide
+
+### Question 12
+
+.moretiny[
+```C
+char* quack(char *input, int i, int j) {
+  char* output = input;
+  output[j] = output[i];
+  output[i] = input[j];
+  return output;
+}
+
+int main() {
+  char input[] = "01234567";
+  char* output = quack (
+    quack (
+      quack (
+        quack (input, 3, 4),
+      2, 5),
+    1, 6),
+  0, 7);
+  cs1010_println_string(output);
+}
+```
+]
+
+---
+class: wide
+### Questions 13-18
+
+.tiny[
+```C
+void moo(long a[], long len) {
+  long i = 0;
+  while (i < len) {
+  
+    if (i == 0 || a[i] >= a[i - 1]) {
+
+      i += 1;
+
+    } else {
+
+      swap(a, i, i-1);
+
+      i -= 1;
+
+    }
+  }
+}
+```
+]
+
+---
+class: wide
+### Question 19
+
+.tiny[
+```C
+long masks(long n) {
+  if (n ==    ) {
+    return     
+  }
+
+
+
+  
+  return 
+}
+```
+]
+
+---
+class: top
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'monokai',
+    slideNumberFormat: 'AY2122 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

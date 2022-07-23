@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+<title>CS1010 AY21/22 S1 Lecture 12</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 12
+
+### 8 November 2021
+
+.smaller[
+Admin Matters<br>
+Unit 28: struct<br>
+Unit 29: stdio<br>
+Recap of CS1010<br>
+]
+---
+class: middle
+
+
+.fit[![meme](figures/meme/from-students/Man-of-Culture-from-Hao-Yi.jpg)]
+
+.tiny[Submitted by Hao Yi]
+
+---
+class: middle,bottom
+background-image: url(figures/meme/from-students/making-meme.jpg)
+
+.tiny[Submitted by Benjamin Poh]
+
+---
+![meme](figures/meme/from-students/memes-appear-from-Benjamin-Poh.png)
+
+.tiny[Submitted by Benjamin Poh]
+
+---
+class: middle
+
+### Last Catch-Up Session
+
+- This Saturday, 10 am - 12 noon
+- Q and A format, as usual
+- Watch out Piazza for Pigeonhole link
+
+---
+class: middle
+
+### Last Tutorial 
+
+- Final questions (from last AY)
+- Mounted as a ungraded Quiz
+
+---
+class: middle
+
+### Last Lab 
+
+- PE2 questions (last Saturday)
+
+---
+class: bottom
+background-image: url(figures/meme/from-students/wrong-test-case-Muthya.jpg)
+
+.tiny[Submitted by Muthya]
+
+---
+class: bottom
+background-image: url(figures/meme/from-students/pe2-two-from-Muthya.jpg)
+
+.tiny[Submitted by Muthya]
+
+---
+class: middle
+
+![two](figures/meme/from-students/pe2-empty-main-from-Hao-Yi.jpg)
+
+.tiny[Submitted by Hao Yi]
+
+---
+class: middle
+
+![5 mins](figures/meme/from-students/5-mins-before-pe2-from-Fuxi.png)
+
+.tiny[Submitted by Fuxi (Tutor)]
+
+---
+class: middle
+
+### Last Quiz
+
+- New self-diagnostic quiz for this week
+- All four self-diagnostic quizzes since midterm break re-opened
+- Due on Wednesday night as usual
+
+---
+class: middle
+
+### Last Assignment
+
+- Due Friday midnight (but you can submit before next Tuesday, 23:59 without penalty)
+
+---
+class: middle
+
+![two](figures/meme/from-students/assignment-weekend-wilson-ng.jpg)
+
+.tiny[Submitted by Wilson Ng]
+
+---
+class: middle
+
+### Final Exam
+
+- **THURSDAY**, 25 Nov, 2021 (5pm - 7pm)
+- Coverage: Everything (except stdio)
+- Open Book
+
+---
+class: middle,center
+background-image: url(figures/ceg-shirt.jpg)
+
+### `struct`
+
+---
+class: middle
+
+### Some things belong together
+
+- 1D array and its length
+- 2D array, its width, and its height
+- x and y position in a maze
+- r, g, b of a pixel
+
+---
+class: middle,center
+
+## Defining a `struct`
+
+---
+class: middle
+
+```C
+struct matrix {
+  double** array;
+  long num_of_rows;
+  long num_of_columns;
+};
+```
+
+
+---
+class: middle
+
+
+```C
+struct list {
+  char *array;
+  long length;
+};
+```
+
+---
+class: middle
+
+```C
+struct module {
+  char *code;
+  char *title;
+  long mc;
+};
+```
+---
+class: middle
+
+### Declaring a struct variable
+
+```C
+struct module cs1010;
+```
+
+---
+class: middle
+
+### Initializing a struct variable
+
+.tiny[
+```C
+struct module cs1010;
+cs1010.code = "CS1010";
+cs1010.title = "Programming Methodology";
+cs1010.mc = 4;
+```
+]
+
+---
+class: middle
+
+### Declaring AND Initializing a struct variable
+
+.tiny[
+```C
+struct module cs1010 = {
+  .code = "CS1010",
+  .title = "Programming Methodology",
+  .mc = 4
+};
+```
+]
+---
+class: middle
+
+### Reading and writing members of a `struct`
+
+.tiny[
+```C
+cs1010.mc = hours_spent_per_week/2.5;
+cs1010_println_long(cs1010.mc);
+```
+]
+
+---
+class: middle,wide
+
+### `struct` as pass-by-value parameters to a function
+
+.tiny[
+```C
+void update_mc(struct module cs1010, long weekly_hours_spent) {
+  cs1010.mc = weekly_hours_spent/2.5;
+}
+```
+]
+
+---
+class: middle,wide
+
+### `struct` as pass-by-reference parameters to a function
+
+.tiny[
+```C
+void update_mc(struct module *cs1010, long weekly_hours_spent) {
+  (*cs1010).mc = weekly_hours_spent/2.5;
+}
+```
+]
+
+---
+class: middle,wide
+
+### `struct` as pass-by-reference parameters to a function
+
+.tiny[
+```C
+void update_mc(struct module *cs1010, long weekly_hours_spent) {
+  cs1010->mc = weekly_hours_spent/2.5;
+}
+```
+]
+
+---
+class: middle,wide
+
+### How to pass multiple values back to caller (Method 1)
+
+.tiny[
+```C
+void find_max_steps(long n, long *max_n, long *max_num_steps) {
+  *max_num_steps = 0;
+  *max_n = 1;
+  for (long i = 1; i <= n; i += 1) {
+    long num_of_steps = count_num_of_steps(i);
+    if (num_of_steps >= *max_num_steps) {
+      *max_n = i;
+      *max_num_steps = num_of_steps;
+    }
+  }
+}
+```
+]
+
+---
+class: middle
+
+### How to pass multiple values back to caller (Method 2)
+
+```C
+struct answer {
+  long max_n;
+  long max_num_steps;
+};
+```
+
+---
+class: middle
+
+.tiny[
+```C
+struct answer find_max_steps(long n) {
+  struct answer ans = {
+    .max_n = 1,
+    .max_num_steps = 0
+  };
+  for (long i = 1; i <= n; i += 1) {
+    long num_of_steps = count_num_of_steps(i);
+    if (num_of_steps >= ans.max_num_steps) {
+      ans.max_n = i;
+      ans.max_num_steps = num_of_steps;
+    }
+  }
+  return ans;
+}
+```
+]
+
+---
+class: middle,center
+
+## Defining Your Own Type
+
+---
+class: middle
+
+.tiny[
+```C
+typedef unsigned long person_t;
+  :
+void is_contact(char **network, person_t i, person_t j) {
+  :
+}
+```
+]
+
+---
+class: middle
+
+```C
+typedef struct module {
+  char *code;
+  char *title;
+  long mc;
+} module;
+```
+
+---
+class: middle
+
+```C
+typedef struct {
+  char *code;
+  char *title;
+  long mc;
+} module;
+```
+
+---
+class: middle,wide
+
+.tiny[
+```C
+void update_mc(module cs1010, long weekly_hours_spent) {
+  cs1010.mc = weekly_hours_spent/2.5;
+}
+```
+]
+
+---
+class: middle,center
+
+## Reading and Printing without `libcs1010`
+
+---
+class: middle,center
+
+## `printf` and `scanf`
+
+---
+class: middle
+
+```C
+printf("%s is a %ld-MC module\n",
+   module.code, module.mc);
+```
+
+---
+class: middle
+
+.tiny[
+```
+%[flags][field_width][.precision][length_modifier]specifier
+```
+]
+
+---
+class: middle
+
+- `printf` behaves differently from functions that you have been writing.
+
+- It can take in different number of arguments of different type.
+
+---
+class: middle
+
+```C
+long width;
+long height;
+scanf("%ld %ld", &width, &height);
+```
+
+---
+class: middle
+
+.tiny[
+```
+%[*][field_width][length_modifier]specifier
+```
+]
+
+---
+class: middle
+
+- space in between the format specifier matches zero or more white spaces (space, tab, newline)
+
+- Scanning stops when an input character does not match such a format character or when an input conversion fails
+
+---
+class: middle,center
+
+## Recap of CS1010
+
+---
+class: middle,center
+
+## What Have You Learned?
+
+---
+class: middle, wide
+
+### 1. How to write C 
+
+- types, functions, arithmetic ops, if-else, logical expressions, loops, arrays, pointers, memory management, preprocessor, struct, I/O
+
+- Others we skipped: break/continue, switch, common C libraries API, bit operations, union, enum, argc/argv, separate compilation etc. 
+
+---
+class: bottom, right
+background-image: url(figures/meme/from-students/pointers-zhen-wei.jpg)
+
+.tiny[Submitted by Zhen Wei (Tutor)]
+
+---
+class: middle
+
+![pointers](figures/meme/from-students/mem-leak-from-Jialun.png)
+
+.tiny[Submitted by Jia Lun (Tutor)]
+
+---
+class: middle, wide
+
+### 2. How a C program behaves
+
+- machine code, data in memory, types, call stack, memory addr, call by value/ref, heap
+
+---
+class: middle
+
+### 3. Tools and Practices
+
+- `clang`, `vim`, `bash`, style, assertion, documentation, (some) testing, (some) secure programming
+
+- Others we skipped: debugger, valgrind, git, make
+
+---
+class: bottom
+background-image: url(figures/meme/from-students/clang-tidy-from-Hao-Yi.jpg)
+
+.tiny[Submitted by Hao Yi]
+
+---
+class: middle
+
+![pointers](figures/meme/from-students/wsl-from-Jialun.png)
+
+.tiny[Submitted by Jialun (Tutor)]
+
+---
+class: middle
+
+### 4. Problem Solving
+
+- decomposition, recursion, flowchart, conditionals, assertions, loops, invariants, running time analysis, sorting, searching, efficiency
+
+---
+class: bottom
+background-image: url(figures/meme/from-students/ash-Omn-from-Joo-Hoe.png)
+
+.tiny[Submitted by Joo Hoe]
+
+---
+class: middle
+
+![pointers](figures/meme/from-students/non-trivial-solution-from-Pereira.jpg)
+
+.tiny[Submitted by Pereira]
+
+---
+class: middle,center
+
+### Computational Thinking
+
+The mental process associated with computational problem solving
+
+---
+class: middle
+
+### Four Pillars of Computational Thinking
+
+- Decomposition
+- Pattern Recognition
+- Abstract
+- Algorithms
+
+(We have been teaching these without being explicit about it)
+
+---
+class: middle,center
+
+## Decomposition
+
+---
+class:middle
+
+### Find the Std Dev (Lecture 2)
+
+- Give an algorithm to find the standard deviation of a list $L$ of $k$ integers.
+
+$$\sqrt{\frac{\sum\_{i=0}^{k-1}(l\_i - \mu)^2}{k}}$$
+
+---
+class:middle,center
+
+### Decomposition makes a problem easier to solve
+
+---
+class:middle,wide
+
+### Taxi 
+
+.tiny[
+```C
+double surcharge(long day, long hour, long minute) {
+	if (is_weekday(day) && is_morning_peak(hour, minute)) {
+		return MORNING_SURCHARGE;  
+	}
+	if (is_evening_peak(hour)) {
+		return EVENING_SURCHARGE;  
+	}
+	if (is_midnight_peak(hour)) {
+		return MIDNIGHT_SURCHARGE;  
+	}
+	return 1.0; 
+}
+```
+]
+
+---
+class:middle,wide
+
+.tiny[
+```C
+bool is_weekday(long day) { 
+  return (day >= 1 && day <= 5);
+}
+bool is_morning_peak(long hour, long minute) {
+  return (hour >= 6 && hour < 9) || 
+		 (hour == 9 && minute <= 29);
+}
+bool is_evening_peak(long hour) { 
+  return (hour >= 18 && hour <= 23); 
+} 
+bool is_midnight_peak(long hour) { 
+  return (hour >= 0 && hour < 6);
+}
+```
+]
+
+---
+class: middle,wide
+
+### Social 
+
+.tiny[
+```C
+// is i and j connected through some m at h+1 hops?
+char is_connected(long n, char **degree_1, 
+		          char **degree_h, long i, long j) {
+	for (long m = 0; m < n; m += 1) { 
+		if (is_friend(degree_1, i, m) && 
+		    is_friend(degree_h, m, j)) {
+			return FRIEND;    
+		}  
+	} 
+	return STRANGER;
+}
+```
+]
+
+---
+class: middle,wide
+
+### Social
+
+.tiny[
+```C
+bool is_friend(char **network, int i, int j) {
+   if (i >= j) {
+      return network[i][j] == FRIEND;  
+   } 
+   return network[j][i] == FRIEND;
+}
+```
+]
+
+---
+class: middle,center
+
+### Decomposition
+
+Break complex problems down into "bite-size" sub-problems that you can solve
+
+---
+class: middle,center,wide
+
+### Decomposition
+
+George Polya said: "If you can't solve a problem, there is an easier problem that you can solve: find it"
+
+---
+class: middle
+
+### Decomposition
+
+- Solve the easier problem first, then generalized.
+- E.g., `social`: find two-hops friends, then generalized to k hops
+- E.g., `pattern`: draw the left most cell, then generalized
+
+---
+class: middle
+
+### Recursion
+
+- Assume the easier problem is solved, then generalized.
+- E.g., `reverse`: assume we can reverse the rest of the numbers, then reverse the number
+- E.g., `tower of hanoi`: assume we know how to move k-1 discs, then solve for k disc.
+
+---
+class: middle
+
+### Four Pillars of Computational Thinking
+
+- Decomposition
+- Pattern Recognition
+- Abstract
+- Algorithms
+
+---
+class: middle,center
+
+## Pattern Recognition
+
+---
+class: middle,center
+
+### Pattern Recognition
+
+Observe trends and patterns, then generalized
+
+---
+class: middle
+
+### Taxi 
+
+- The first 1 km or less (Flag Down) 	$3.20
+- Every 400 m thereafter or less, up to 10 km 	$0.22
+- Every 350 m thereafter or less, after 10 km 	$0.22
+
+(See the pattern?)
+
+---
+class: middle
+
+### Taxi
+
+| unit dist | max dist  | fare |
+|-----------|-----------|------|
+| Every 1000 m | next 1 km | $3.20 |
+| Every 400 m  | next 9 km | $0.22 |
+| Every 350 m  | next $\infty$ km | $0.22 |
+
+
+---
+class: middle, wide
+
+.tiny[
+```C
+double fare = 0;
+for (int i = 0; i < NUM_TIERS; i += 1) {
+    if (distance < 0) {
+		  return fare;
+    }
+	long min_dist = min(distance, tiers[i].max_distance);
+	double units = ceil(min_dist*1.0/ tiers[i].unit_distance);
+	fare += tiers[i].fare * units;
+	distance -= tiers[i].max_distance;   
+}
+```
+]
+
+---
+class: middle,center)
+
+### Inversion 
+
+![inversion](../figures/scripts/scripts.002.png)
+
+---
+class: middle,center
+
+### Identifying loop invariants is partly about pattern recognition!
+
+---
+class: middle
+
+## Abstraction
+
+---
+class: middle
+
+### Abstraction
+
+- Identifying and abstracting relevant information
+- Hide details
+- Adapt to change
+- Generalize to other domain
+
+---
+class: middle,center
+
+### Data Abstraction
+
+Model the problem with only the necessary information
+
+---
+class: middle,center
+
+.fit[
+![queens](figures/recursion/recursion.007.png)
+]
+---
+class: middle
+
+### Peak
+
+- Only an array of numbers is required to model the problem.
+
+---
+class: middle,center
+
+### Functional Abstraction
+
+Hide details and focus on higher-level logic
+
+---
+class:middle,wide
+
+What if the peak hours are extended?  surchange increases?  
+
+.tiny[
+```C
+double surcharge(long day, long hour, long minute) {
+	if (is_weekday(day) && is_morning_peak(hour, minute)) {
+		return MORNING_SURCHARGE;  
+	}
+	if (is_evening_peak(hour)) {
+		return EVENING_SURCHARGE;  
+	}
+	if (is_midnight_peak(hour)) {
+		return MIDNIGHT_SURCHARGE;  
+	}
+	return 1.0; 
+}
+```
+]
+
+---
+class:middle,wide
+
+Does it matter (to this code) if jagged or rectangular array is used?
+
+.tiny[
+```C
+// is i and j connected through some m at h+1 hops?
+char is_connected(long n, char **degree_1, 
+		          char **degree_h, long i, long j) {
+	for (long m = 0; m < n; m += 1) { 
+		if (is_friend(degree_1, i, m) && 
+		    is_friend(degree_h, m, j)) {
+			return FRIEND;    
+		}  
+	} 
+	return STRANGER;
+}
+```
+]
+
+---
+class: middle
+
+from Lecture 1..
+
+### Work hard
+### Work very very hard
+
+---
+class: bottom
+background-image: url(figures/meme/from-students/cs1010s-from-Leonardo.png)
+
+.tiny[Submitted by Leonardo]
+
+---
+class: bottom
+background-image: url(figures/meme/from-students/hard-to-swallow-Hao-Yi.jpg)
+
+.tiny[Submitted by Hao Yi]
+
+---
+class: bottom
+background-image: url(figures/meme/from-students/GPA-wilson.jpg)
+
+.tiny[Submitted by Wilson Ng]
+
+---
+class: center,middle
+
+## What doesn't kill you only makes you stronger
+
+---
+class: middle
+
+Special Thanks to 
+
+- All the students
+- All the tutors
+- The e-exam logistic team (Song Kai, Xinjian, Chengxin)
+- Mr. Tan Hsiao Wei and his team of sys admin
+
+---
+class: middle
+
+.fit[![TAs](figures/tutors/group1.png)]
+
+---
+class: middle
+
+.fit[![TAs](figures/tutors/group2.png)]
+
+---
+class: center,middle
+
+![meme](figures/meme/goodbye-cs1010.jpg)
+
+
+class: bottom
+
+.tiny[
+Version: 1.0
+
+Last Updated: Sun Nov  1 11:59:04 +08 2020
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'monokai',
+    slideNumberFormat: 'AY2122 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

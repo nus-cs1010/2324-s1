@@ -24,6 +24,20 @@ nav:
     - 12. Invariant: '12-invariant.md'
     - 13. Stack: '13-call-stack.md'
     - 14. Array: '14-array.md'
+    - 15. Pointer: '15-pointers.md'
+    - 16. Call-by-Reference: '16-call-by-reference.md'
+    - 17. Heap: '17-heap.md'
+    - 18. String: '18-string.md'
+    - 19. ND Array: '19-md-array.md'
+    - 20. C preprocessor: '20-macro.md'
+    - 21. Efficiency: '21-efficiency.md'
+    - 22. Searching: '22-search.md'
+    - 23. Sorting: '23-sort.md'
+    - 24. Tower of Hanoi: '24-tower.md'
+    - 25. Permutattion: '25-permutation.md'
+    - 26. N-Queens: '26-queens.md'
+    - 27. Struct: '27-struct.md'
+    - 28. Standard I/O: '28-stdio.md'
   - Exercises: 
     - 0. Echo, Divide, Ones, BMI, Quadratic: "ex00.md" 
     - 1. Odd, Sum, Triangle, Burger: "ex01.md"
@@ -31,15 +45,29 @@ nav:
     - 3. Three, Factor, Parity, Nine, HDB: "ex03.md"
     - 4. Binary, Onigiri, Fibonacci: "ex04.md"
     - 5. Counter, Dot, Unit: "ex05.md"
+    - 6. Error, Twilight, Reverse, Unique, LookNSay: "ex06.md"
+    - 8. Length, Concat, Search: "ex08.md"
+    - 9. Echo, Subtract, Line: "ex09.md"
+    - 10. Transpose, Palindrome, Rotate, Marnell, Bracket: "ex10.md"
+    - 11. TicTacToe, Sun, Replace, Soil, Substring: "ex11.md"
+    - 12. Walk, Sudoku: "ex12.md"
   - Assignments: 
     - Overview: 'assignment.md'
     - 1. Pyramid, Digits, Suffix, Taxi: "as01.md"
     - 2. Collatz, Rectangle, Prime, Pattern: "as02.md"
+    - 3. Days, ID, Max, Padovan: "as03.md"
+    - 4. Selection, Mastermind: "as04.md"
+    - 5. Kendall, CountingSort, Add: "as05.md"
+    - 6. Contact, Social, Life, : "as06.md"
+    - 7. Peak, Sort, Inversion, : "as07.md"
+    - 8. Fill, Maze, : "as08.md"
+    - 9. Digits, : "as09.md"
   - Readings: 'readings.md'
   - C in CS1010: 'c-in-cs1010.md'
-  - CS1010 I/O Library: 'library.md'
   - C Style Convention: 'style.md'
-  - Compiler Messages: 'messages.md'
+  - C Documentation: 'documentation.md'
+  - C Compiler Messages: 'messages.md'
+  - CS1010 I/O Library: 'library.md'
   - Software/Tools:
       - Programming Environments: 'environments.md'
       - GitHub: 'github.md'

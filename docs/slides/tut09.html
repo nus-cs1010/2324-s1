@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+<title>CS1010 AY21/22 Tutorial 9</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Tutorial 9
+
+### 27 October 2021
+
+---
+class: wide
+
+### 24.1
+
+.tiny[
+```C
+void solve(long k, char source, char dest, char placeholder) {
+  if (k == 1) {
+    print(k, source, dest);
+  } else {
+    solve(k - 1, source, placeholder, dest);
+    print(k, source, dest);
+    solve(k - 1, placeholder, dest, source);
+  }
+}
+```
+]
+
+---
+class: wide
+
+What if, we are only allowed to move a disk either to Peg B from another peg, or from Peg B to another peg? 
+
+(Not between Peg A and Peg C directly?)
+
+---
+class: wide
+
+---
+class: middle
+
+.tiny[
+```C
+void solve(long k, char source, char dest, char placeholder) {
+  if (k == 1) {
+    move(k, source, placeholder);
+    move(k, placeholder, dest);
+    return;
+  }
+  solve(k - 1, source, dest, placeholder);
+  move(k, source, placeholder);
+  solve(k - 1, dest, source, placeholder);
+  move(k, placeholder, dest);
+  solve(k - 1, source, dest, placeholder);
+}
+```
+]
+
+---
+class: top
+
+How many times?  
+
+---
+
+class: top, wide
+
+### 25.1
+
+What if, the input to `permutate` contains duplicate?  E.g.,
+
+```
+abcbe
+```
+
+---
+class: wide
+
+.tiny[
+```C
+void permute(char a[], size_t len, size_t curr) {
+  if (curr == len-1) {
+    cs1010_println_string(a);
+    return;
+  }
+
+  for (size_t i = curr; i < len; i += 1) {
+    if (...) { // Line A
+      swap(a, curr, i);
+      permute(a, len, curr + 1);
+      swap(a, i, curr);
+    }
+  }
+}
+```
+]
+
+---
+class: wide
+
+.tiny[
+```C
+// a[i] appears in a[k]..a[i-1]?
+bool appear_before(char a[], size_t k, size_t i) {
+  for (size_t j = k; j < i; j += 1) {
+    if (a[j] == a[i]) {
+      return true;
+    }
+  }
+  return false;
+}
+
+```
+]
+
+---
+class: wide
+
+.tiny[
+```C
+void permute(char a[], size_t len, size_t curr) {
+  if (curr == len-1) {
+    cs1010_println_string(a);
+    return;
+  }
+
+  for (size_t i = curr; i < len; i += 1) {
+    if (!appear_before(a, curr, i)) { // Line A
+      swap(a, curr, i);
+      permute(a, len, curr + 1);
+      swap(a, i, curr);
+    }
+  }
+}
+```
+]
+
+---
+class: middle
+
+## 26.2
+
+Restrict the permutations to those where the same character does not appear next to each other. 
+
+---
+class: middle
+
+## 26.1
+
+Identify the repetitive work being done in the calls `threaten_each_other_diagonally`.  Suggest a way to remove the repetitive work. 
+
+---
+class: middle
+
+.tiny[
+```C
+void nqueens(char queens[], size_t n, size_t row) {
+  if (row == n-1) {
+    if (!threaten_each_other_diagonally(queens, n)) {
+      cs1010_println_string(queens);
+    }
+    return;
+  }
+
+  for (size_t i = row; i < n; i += 1) {
+    swap(queens, row, i);
+    if (!threaten_each_other_diagonally(queens, row)) {
+      nqueens(queens, n, row + 1);
+    }
+    swap(queens, i, row);
+  }
+}
+```
+]		  
+
+---
+class: middle
+
+.tiny[
+```C
+bool threaten_each_other_diagonally(char queens[], size_t len) {
+  for (size_t i = 0; i < len; i += 1) {
+    // for each queen in row i, check rows i+1 onwards, 
+    // on both left (-=1) and right (+=1) side, if there 
+    // is a queen in that column.
+    if (has_a_queen_in_diagonal(queens, len, i)) {
+      return true;
+    }
+  }
+  return false;
+}
+```
+]
+
+---
+class: middle
+
+
+---
+class: top
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'monokai',
+    slideNumberFormat: 'AY2021 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

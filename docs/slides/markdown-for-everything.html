@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+<title>
+	Using Markdown for (Almost) Everything
+</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## Using Markdown for (Almost) Everything
+
+#### Ooi Wei Tsang
+#### Computer Science
+
+---
+class: middle,center
+
+### Markdown is a _human-readable_ markup language for formatting and styling.
+
+
+---
+class: middle
+
+```TeX
+\subsection{List of Items}
+\begin{itemize}
+  \item Item 1
+  \item Item 2
+  \begin{itemize}
+    \item Item 2a
+    \item Item 2b
+  \end{itemize}
+\end{itemize}
+```
+
+---
+class: middle
+
+```HTML
+<h3>List of Items</h3>
+<ul>
+	<li>Item 1</li>
+	<li>Item 2</li>
+	<ul>
+		<li>Item 2a</li>
+		<li>Item 2b</li>
+	</ul>
+</ul>
+```
+
+---
+class: middle
+
+```Markdown
+### List of Items
+* Item 1
+* Item 2
+    - Item 2a
+	- Item 2b
+```
+
+
+---
+class: middle
+
+### List of Items
+* Item 1
+* Item 2
+    - Item 2a
+	- Item 2b
+
+---
+class: middle,center
+
+### `remarkjs`: Markdown for Slides
+
+---
+class: middle
+
+- Single, self-contained, HTML file
+
+- Except `head` and `script` tags, everything else is markdown
+
+---
+class: middle
+
+Syntax highlighting
+
+.small[
+```C
+long factorial(long n)
+{
+  if (n == 0) {
+    return 1;
+  }
+  return n * factorial(n - 1);
+}
+```
+]
+---
+class: middle
+
+$\LaTeX$
+
+$$\sqrt{\frac{\sum_{i=0}^{k-1} (l_i - \mu)^2}{k}}$$
+
+---
+class: top
+
+`remarkjs` also supports:
+
+- build ups of slides
+--
+
+- presenter mode with notes
+
+???
+You can have a separate Window showing the next slide with notes.
+
+---
+class: middle
+
+Since it is an HTML file, we can customize the CSS and embed Javascript.
+
+---
+class: middle,center
+
+<center>
+<div style="position: relative; width:550px">
+<canvas id="assessment"></canvas>
+</div>
+</center>
+
+---
+class: middle
+
+### What does it mean?
+
+- Can use version control on slides
+- Every slide has a URL
+- Consistent styling across slide decks
+- Less time in fiddling with slides.
+- Can fall back to writing HTML code if needed
+
+---
+class: middle
+
+### Caveat
+
+- Works best for text-heavy slides
+- Some HTML/CSS knowledge is useful
+
+---
+class: middle
+
+#### Using Markdown for Notes and Tutorial Questions (with `mkdocs`)
+
+<iframe src="https://nus-cs1010.github.io/2122-s1/12-invariant.html" width="100%" height="400">
+</iframe>
+
+(also checkout `markbind` -- an SoC production!)
+---
+class: middle
+
+#### Using Markdown for Piazza Forum
+
+<iframe src="https://piazza.com/class/krfo8m0yrkv6t2?cid=1322" width="100%" height="400">
+</iframe>
+
+---
+class: middle
+
+#### Using Markdown for Assessments and Assignments
+
+.fit[![img](Question-md.png)]
+
+---
+class: middle
+
+#### Using Markdown for Assessments and Assignments
+
+.fit[![img](Question-md-rendered.png)]
+
+---
+class: middle
+
+#### Using Markdown for LumiNUS Quiz, etc, etc,
+
+---
+class: middle
+
+### Summary
+
+- Markdown is simple language for producing formatted text.
+- I found out how to use it for slides, notes, assessments, forums, and almost everything.
+- I hope you find it useful too.
+
+---
+class: top
+
+</textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+	remark.macros.scale = function (percentage) {
+			var url = this;
+			return '<img src="' + url + '" style="width: ' + percentage + '" />';
+		};
+	// ![:scale 50%](image.jpg)
+
+	var slideshow = remark.create({
+			navigation: {
+					scroll: false
+				},
+			ratio: '16:9',
+			highlightStyle: 'tomorrow-night',
+			slideNumberFormat: 'AY2122 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+		});
+	// Setup MathJax
+	MathJax.Hub.Config({
+			tex2jax: {
+					jax: ["input/TeX","output/SVG"],
+					inlineMath: [['$', '$']],
+					// inlineMath: [['$', '$'], ['\\(', '\\)']],
+					displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+					skipTags: ['script', 'noscript', 'style', 'pre']
+				},
+			"HTML-CSS": {
+					preferredFont: "TeX",
+				},
+			SVG: {
+					scale: 120,
+					font: "Latin-Modern"
+				}
+	});
+
+	MathJax.Hub.Configured();
+
+	var ctx = document.getElementById('assessment').getContext('2d');
+	var data = {
+			datasets: [{ data: [10, 30, 10, 25, 10, 15],
+					borderColor: '#eee',
+					backgroundColor: [
+							'rgba(255, 100, 0, 1)',
+							'rgba(100, 255, 0, 1)',
+							'rgba(100, 0, 255, 1)',
+							'rgba(100, 255, 255, 1)',
+							'rgba(255, 255, 100, 1)',
+							'rgba(255, 100, 255, 1)',
+						],
+				}],
+			// These labels appear in the legend and in the tooltips when hovering different arcs
+			labels: [ 'Quizzes (10%)', 'Assignments (30%)', 'Midterm (10%)', 'Final (25%)', 'PE1 (10%)', 'PE2 (15%)' ]
+		};
+
+	// For a pie chart
+	var myPieChart = new Chart(ctx, {
+			type: 'pie',
+			data: data,
+			options: {
+					tooltips: {
+							mode: 'nearest',
+							intersect: false
+						},
+					borderWidth: 1,
+					defaultFontStyle: 'Roboto',
+					responsive: true,
+					plugins: {
+							legend: {
+									position: 'right',
+									labels: {
+											font: {
+													size: 20,
+													family: 'Roboto',
+												},
+											color: '#fff',
+										}
+								}
+						}
+				}
+		});
+
+</script>
+</body>
+</html>
