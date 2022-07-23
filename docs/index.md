@@ -92,7 +92,7 @@
 
 	Lecture 6 consists of two parts.  In Part 1, we will delve deeper into how functions are called in C (and other languages), to get a better understanding of the behavior of your program.  We will learn how [call stacks](13-call-stack.md) works. In Part 2, we will start exploring arrays in C.  We will focus on [fixed-length arrays](14-array.md) for this lecture.
 
-    <a href="https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=fe025367-18ae-45ce-8b3e-ada200b1a0ef">video</a> | <a href="https://nus-cs1010.github.io/2122-s1/slides/cs1010-lec6.html#1">slides</a> | <a href="https://luminus.nus.edu.sg/modules/600de8e9-67ec-47dd-b597-a2eeadb45792/quiz/012b25da-c8ef-4322-9196-1a20d8770df3/attempt-secure">quiz</a> 
+	<a href="https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=fe025367-18ae-45ce-8b3e-ada200b1a0ef">video</a> | <a href="https://nus-cs1010.github.io/2122-s1/slides/cs1010-lec6.html#1">slides</a> | <a href="https://luminus.nus.edu.sg/modules/600de8e9-67ec-47dd-b597-a2eeadb45792/quiz/012b25da-c8ef-4322-9196-1a20d8770df3/attempt-secure">quiz</a> 
 
 !!! announcement "Exercise 3"
 
