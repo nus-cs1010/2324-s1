@@ -69,7 +69,7 @@ Try this exercise: At the end of the file `jfk.txt`, there are some typos:
 ```
 libertyi. liberty.
 ```
-Change `libertyi. liberty.` to `libtery.` by positioning the cursor on the second `i` and delete it.  Then use ++shift+d++ to delete the extra `liberty.` at the end of the sentence.
+Change `libertyi. liberty.` to `libtery.` by positioning the cursor on the second `i` and deleting it.  Then use ++shift+d++ to delete the extra `liberty.` at the end of the sentence.
 
 ### Visual Mode
 
@@ -96,7 +96,7 @@ But, let's try the following:
 :'<,'>!fmt
 ```
 
-`!fmt` tells `vim` to invoke the shell and run `fmt`.  `fmt` is another simple small Unix utility that takes in a text (from standard input) and spew out formatted text in the standard output.  You will see that the width of the text has changed to the default of 65.
+`!fmt` tells `vim` to invoke the shell and run `fmt`.  `fmt` is another simple small Unix utility that takes in a text (from standard input) and spews out formatted text in the standard output.  You will see that the width of the text has changed to the default of 65.
 
 You can try something that we have seen before.  Reselect the text, and hit
 ```
@@ -115,7 +115,7 @@ The `:` command also opens up a large number of actions you can do in `vim`.  He
 - To open another file, hit ++colon++ and then type in `e <filename>`
 - To find help on a topic, hit ++colon++ and then type in `help <keyword>`
 
-Other advanced features such as search-and-replace, changing preferences, splitting windows, opening new tabs, are also accessible from the `:` command.
+Other advanced features such as search-and-replace, changing preferences, splitting windows, and opening new tabs, are also accessible from the `:` command.
 
 The `:` command prompt supports ++control+p++ and ++control+n++ for navigating back and forth your command history, just like `bash`.  It also supports ++tab++ for auto-completion.
 
@@ -130,7 +130,7 @@ You just added some text to the file.
 
 Place your cursor anywhere, hit ++a++ (append), and start typing, when you are done.  Hit ++esc++.  ++a++ appends the text to the end of the current line.
 
-Hit ++o++ (open) and start typing, when you are done.  Hit ++esc++.  ++o++ opens up a new line for the your text.
+Hit ++o++ (open) and start typing, when you are done.  Hit ++esc++.  ++o++ opens up a new line for your text.
 
 Hit ++s++ (substitute) and start typing, when you are done.  Hit ++esc++.  ++s++ substitute the current character with your text.
 
@@ -138,7 +138,7 @@ Now try it with ++shift++ and see the difference in behavior.
 
 ## Learning More
 
-You can run `vimtutor` to learn more about `vim`.  Check out [the tips that we have collected for CS2030S](vim-tips.md), or watch the various tutorials online.  In addition to the [introduction to vim](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=85be23af-8b65-4d5f-a164-acaa001edc74) by Yong Qi, some interesting ones are:
+You can run `vimtutor` to learn more about `vim`.  Check out [the tips that we have collected for CS1010](vim-tips.md), or watch the various tutorials online.  Here are some interesting ones are:
 
 - [Vim: Precision Editing at the Speed of Thought](https://vimeo.com/53144573): A talk by Drew Neil
 - [Vim Adventure](https://www.vim-adventures.com): An adventure game for learning `vim`
