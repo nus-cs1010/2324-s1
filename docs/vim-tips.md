@@ -2,17 +2,13 @@
 
 I collected some tips on `vim` that I find helpful.  If you are new to `vim`, please try out the command `vimtutor` on any machine where `vim` is installed, and check out the nice article [Learn vim Progressively](http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/).  
 
+In `vim,` you can always look up a particular topic or command with `:help <topic>`. Example, `:help backup`.
+
 ## 1. Useful Configuration
 
 You can configure your `vim` by putting your configuration options and scripts in the `~/.vimrc` file (a hidden file named `.vimrc` in your home directory).  This file will be loaded whenever you start `vim`.
 
-You can copy a sample `.vimrc` file from `~cs1010/.vimrc` to your home directory.
-You can edit this file `~/.vimrc` just like any other file, using `vim`.
-
-### Help
-
-In `vim,` the command `:help <topic>` shows help about a particular topic in `vim`.  Example, `:help backup`.
-
+You can copy a sample `.vimrc` file from `~cs1010/.vimrc` to your home directory. You can edit this file `~/.vimrc` just like any other file, using `vim`.
 
 ### Syntax Highlighting
 
