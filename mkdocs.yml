@@ -8,8 +8,16 @@ nav:
     - 5. First C Program: "05-first-c.md"
     - 6. CS1010 I/O: "06-cs1010-io.md"
     - 7. Arithmetic Operations: "07-arithmetic-ops.md"
-  - PE Guides: 
-    - Basic Unix Commands: "unix.md"
+  - Guides: 
+    - Unix
+      - Background: "unix-background.md"
+      - Essentials: "unix-essentials.md"
+      - Advanced: "unix-advanced.md"
+    - Vim
+      - Philosophy: "vim-philosophy.md"
+      - Setup: "vim-setup.md"
+      - Quick Lesson: "vim-lessons.md"
+      - Tips: "vim-tips.md"
     - Programming Environments: "environments.md"
     - Linking GitHub to PE: "github.md"
 
