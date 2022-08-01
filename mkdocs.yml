@@ -8,10 +8,13 @@ nav:
     - 5. First C Program: "05-first-c.md"
     - 6. CS1010 I/O: "06-cs1010-io.md"
     - 7. Arithmetic Operations: "07-arithmetic-ops.md"
-  - C in CS1010: 'c-in-cs1010.md'
-  - Guides: 
-    - Unix: "unix.md"
+  - PE Guides: 
+    - Basic Unix Commands: "unix.md"
+    - Programming Environments: "environments.md"
     - Linking GitHub to PE: "github.md"
+
+  - C Guides: 
+    - C in CS1010: 'c-in-cs1010.md'
 
 theme: 
   name: material
