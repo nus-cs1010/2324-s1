@@ -9,6 +9,9 @@ nav:
     - 6. CS1010 I/O: "06-cs1010-io.md"
     - 7. Arithmetic Operations: "07-arithmetic-ops.md"
   - C in CS1010: 'c-in-cs1010.md'
+  - Guides: 
+    - Unix: "unix.md"
+    - Linking GitHub to PE: "github.md"
 
 theme: 
   name: material

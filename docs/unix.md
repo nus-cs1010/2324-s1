@@ -20,7 +20,7 @@ This interface is provided by a UNIX bash -- this shell sits in a loop and waits
 
 _The following is adapted for CS1010 from [the instructions created by Aaron Tan](http://www.comp.nus.edu.sg/~cs1020/4_misc/cs1010_lect/2014/intro_lab/gettingStarted.html). Bugs are mine._  
 
-The power of UNIX stems from the many commands it offers. The following are a few commonly used commands. This list is by no means exhaustive and you are urged to explore on your own. Note that UNIX commands are _case-sensitive_.
+The power of UNIX stems from the many commands it offers. The following are a few commonly used commands. This list is by no means exhaustive, and you are urged to explore on your own. Note that UNIX commands are _case-sensitive_.
 
 All commands are to be entered after the UNIX prompt of the form
 
@@ -44,7 +44,7 @@ ooiwt@pe111:~$ pwd
 /home/o/ooiwt
 ```
 
-UNIX uses forward slash `/` to deliminate different parts of the directory structure.  This is the same notation as URLs so you should already be familiar with it.
+UNIX uses forward slash `/` to delimit different parts of the directory structure.  This is the same notation as URLs, so you should already be familiar with it.
 
 ## `ls`: LiSt files
 
@@ -181,7 +181,7 @@ ooiwt@pe111:~/tut01$
 ```
 
 !!! warning "rm -rf *"
-    While Unix command line provides lots of flexibility and power, with great power comes great responsibility.  Some of the commands are extremely dangerous.  `rm -rf *` is the most famous one.  The notation `*` refers to all files, and the flag `-f` means forceful deletion (no question asked!), and `-r` means remove recursively everything under the current directory tree.  Accidentally running this command has ruined many files.  [Read more here](https://www.quora.com/What-are-some-crazy-rm-rf-stories-you-have-heard-about)
+    While Unix command line provides lots of flexibility and power, with great power comes great responsibility.  Some commands are extremely dangerous.  `rm -rf *` is the most famous one.  The notation `*` refers to all files, and the flag `-f` means forceful deletion (no question asked!), and `-r` means remove recursively everything under the current directory tree.  Accidentally running this command has ruined many files.  [Read more here](https://www.quora.com/What-are-some-crazy-rm-rf-stories-you-have-heard-about)
 
 `rm` comes with a `-i` flag that interactively asks you if you are sure if you want to delete a file.  It is a good idea to always run `rm -i`.  On `pe111`, we have configured everyone's account so that `rm` is aliased to `rm -i` by default.  So when you run `rm hello.c`, it actually runs `rm -i hello.c`.  
 
@@ -213,7 +213,7 @@ To quickly take a look at the content of the file, use the `cat` command.
 ooiwt@pe111:~/tut01$ cat hello.c
 ```
 
-`less` is variant of `cat` that includes features to read each page leisurely)
+`less` is variant of `cat` that includes features to read each page leisurely.
 ```bash
 ooiwt@pe111:~/tut01$ less hello.c
 ```
@@ -252,7 +252,7 @@ chmod a+x <file>
 
 This would change the permission from `-rw-rw-rw-` to `-rwxrwxrwx`, or from `-rwxr--r--` to `rwxr-xr-x`, and so on.  You get the idea.
 
-Another way to change the permission is to set the permission directly, instead of adding with `+` and removing with `-`.  To do this, one convenient way is to treat the permission for each class of user as a 3-bit binary number between 0 to 7.  So, `rwx` is 7, `rw-` is 6, `-w-` is 2, `---` is 0, etc.  
+Another way to change the permission is to set the permission directly, instead of adding with `+` and removing with `-`.  To do this, one convenient way is to treat the permission for each class of user as a 3-bit binary number between 0 and 7.  So, `rwx` is 7, `rw-` is 6, `-w-` is 2, `---` is 0, etc.  
 
 To set the permission of a file to `-r--r--r--` (readable by everyone), run:
 

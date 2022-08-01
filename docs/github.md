@@ -3,7 +3,7 @@
 ## Prerequisites
 
 1. You should already have your SoC Unix account, cluster access, and SoC VPN set up, and be able to `ssh` into one of the CS1010 PE nodes.  If you are not able to do this, please look at the guide on [CS1010 programming environments](environments.md)
-2. You should be comfortable with running basic UNIX commands.  If you have not gone through the UNIX guide and get your hands dirty, please [look at the guide and play with the various basic Unix commands](unix.md).
+2. You should feel comfortable running basic UNIX commands.  If you have not gone through the UNIX guide and get your hands dirty, please [look at the guide and play with the various basic Unix commands](unix.md).
 3. You should already have a GitHub account and can log into [GitHub.com](https://www.github.com).
 
 ## Purpose
@@ -22,7 +22,7 @@ Create and edit a file called `.gitconfig` in **your home directory on the PE ho
   user = Your GitHub ID
 ```
 
-Your email should be whatever you used to sign up GitHub (which may not be your SoC or NUS email).
+Your email should be whatever you used to sign up on GitHub (which may not be your SoC or NUS email).
 
 For example, a sample `.gitconfig` looks like this:
 
@@ -40,23 +40,19 @@ After saving this file, run:
 git config --get github.user
 ```
 
-It should return your GitHub user id.
+It should return your GitHub username.
 
-It should print your GitHub user id as already set.  If there is a typo, you need to edit `.gitconfig` again and reload it by repeating the command above.
+It should print your GitHub username as already set.  If there is a typo, you need to edit `.gitconfig` again and reload it by repeating the command above.
 
 ## 2. Setting up Password-less Login
 
-Every time we run `git`, we need to authenticate ourselves to GitHub, with GitHub moving to use a personal authentication token instead of a password for authentication, this can be a bit tedious, and could add to the stress especially if you are trying to submit your assignment 30 seconds before the deadline.
-
-We, therefore, recommend setting up password-less login to GitHub using SSH keys.
-
 ### Basic of SSH Keys
 
-SSH uses _public-key cryptography_ for authentication.  The keys come in pairs: a public key and a private key.  The private key must be kept safe and known only to you.  You should keep the private key in your account, and not share it with others.
+SSH uses _public-key cryptography_ for authentication.  The keys come in pairs: a public key and a private key.  The private key must be kept safe and known only to you.  You should keep the private key in your PE account, and not share it with others.
 
 To authenticate yourself to another host or service, you configure the host/service with your public key.  When it is time for you to log in, your private key is "matched"[^1] with your public key.  Since only you know your private key, the service or the host can be sure that you are you and not someone else.
 
-Suppose you want to log in from host X to host Y without a password.  You generate a pair of keys on X, then keep the private keys on X and store the public keys on Y.  If you want to [setup SSH Keys](environments.md#setting-up-ssh-keys) so that you can log into CS1010 PE nodes from your computer without a password, for example, you generate the pair of keys on your computer (X) and then copy the public key to CS1010 PE nodes.
+Suppose you want to log in from host X to host Y without a password.  You generate a pair of keys on X, then keep the private keys on X and store the public keys on Y.  If you want to [set up SSH Keys](environments.md#setting-up-ssh-keys) so that you can log into CS1010 PE nodes from your computer without a password, for example, you generate the pair of keys on your computer (X) and then copy the public key to CS1010 PE nodes.
 
 Our goal now is to authenticate ourselves to GitHub from the CS1010 PE nodes.  So, X is the PE nodes, and Y is GitHub.
 
@@ -68,7 +64,7 @@ On any of the PE nodes, run
 ```
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
-where `your_email@example.com` is the email your associate with you used to sign up your GitHub account (i.e., the same one you entered in `.gitconfig`).
+where `your_email@example.com` is the email your associate with you, when you signed up for your GitHub account (i.e., the same one you entered in `.gitconfig`).
 
 The command will prompt you where to save the key.  Just press ++enter++ to save into the default location, which is `$HOME/.ssh/id_ed25519`.
 
@@ -102,7 +98,7 @@ The key's randomart image is:
 ### Adding Your CS1010 Public Key to Your GitHub Account
 
 
-The next step involves logging into GitHub.com, click on your avatar on the top right corner, and choose "Settings".  Then choose "SSH and GPG keys" on the sidebar.
+The next step involves logging into GitHub.com: click on your avatar in the top right corner, and choose "Settings".  Then choose "SSH and GPG keys" on the sidebar.
 
 Then, click either "New SSH key" or "Add SSH key".  Enter an appropriate title for the key (e.g., "CS1010 PE Hosts").
 
