@@ -13,7 +13,7 @@ After reading this article, students should
 
 # Composing Programs with `|`
 
-Another key innovation of Unix is that led to its success is the invention of the `|` operator.  
+Another key innovation of Unix that led to its success is the invention of the `|` operator.  
 
 Before Unix, operating systems tend to provide complex, monolithic, programs.  The philosophy of Unix, however, is to provide many small, simple, utility programs, that can be composed to complete a more complex task.  These small programs each do one thing only (and do it well) and so are easier to write and less prone to bugs.
 
@@ -45,7 +45,7 @@ $ cat test.txt foo.txt bar.txt | wc
        3      33     192
 ```
 
-Here, `cat` read the three files, concatenate their content, and pass the output to `wc` for counting.
+Here, `cat` reads the three files, concatenates their content, and passes the output to `wc` for counting.
 
 ## Useful Utilities
 
@@ -53,7 +53,7 @@ Before we see more interesting examples of using `|`, let's move beyond `cat` an
 
 ### `head` and `tail`
 
-`head` and `tail` prints out the first $k$ lines and last $k$ lines from a file (or standard input if the file name is not given).  By default, $k$ is 10, but you can pass in an argument to specify $k$.
+`head` and `tail` print out the first $k$ lines and last $k$ lines from a file (or standard input if the file name is not given).  By default, $k$ is 10, but you can pass in an argument to specify $k$.
 
 ```
 $ cat test.txt foo.txt bar.txt
@@ -122,7 +122,7 @@ hit ++control+d++ when you are done.
 
 ## Pipe Example
 
-To give you an example of how useful `|` is, here is a real example.  When processing the registration of the workshop, I have quite a few registrations that are duplicates -- students registered more than ones.  I need a quick way to count how many unique registrants are there.
+To give you an example of how useful `|` is, here is a real example.  When processing the registration of the workshop, I have quite a few registrations that are duplicates -- students registered more than once.  I need a quick way to count how many unique registrants are there.
 So I keep the student ID of all registrants in a file called `ID`.  For instance, the file `ID` contains (not real data, of course)
 
 ```
@@ -152,7 +152,7 @@ $ cat ID | sort | uniq | grep CEG | wc -l
 
 # Pattern Matching in `bash`
 
-We now show you another productivity shortcut.  In an example earlier, you have seen how we passed in more than one file names into `cat`.  Recall that we can use ++tab++ to auto-complete the file names, so we can hit fewer keys on the keyboards.  
+We now show you another productivity shortcut.  In an example earlier, you have seen how we passed in more than one file name into `cat`.  Recall that we can use ++tab++ to auto-complete the file names, so we can hit fewer keys on the keyboards.  
 Now, we show you there is an even faster way.
 
 Instead of
@@ -190,7 +190,7 @@ $ ls [f-t]*t
 foo.txt test.txt
 ```
 
-The expression `[f-t]*t` matches all file names the start with alphabet `f`, `g`, etc., until `t`, followed by zero or more characters, followed by `t`.
+The expression `[f-t]*t` matches all file names that start with the alphabet `f`, `g`, etc., until `t`, followed by zero or more characters, followed by `t`.
 
 #### Example 3:
 ```
@@ -214,7 +214,7 @@ Why is this a big deal?  Let's look at the image of the keyboard below:
 
 ![keyboard](figures/keyboard.png)
 
-We only need to use the keys colored in pink.  And since these keys concentrated in a small region on the keyboard, for most of us, we can reach the keys if we just position our hands over the keyboard[^1], we only need to move _our fingers_ to type.  
+We only need to use the keys colored in pink.  And since these keys are concentrated in a small region on the keyboard, for most of us, we can reach the keys if we just position our hands over the keyboard[^1], we only need to move _our fingers_ to type.  
 
 [^1]: The recommended placement of hands over the keyboard is so that the thumbs are over the ++space++ bar, the left fingers are over ++a++ ++s++ ++d++ ++f++, and the right fingers are over ++j++ ++k++ ++l++ ++semicolon++.
 
@@ -257,9 +257,9 @@ $ bash < hello.sh
 hello!
 ```
 
-Recall that we said Unix shells do not necessarily interact with the users?  This is an example.  We pass the file `hello.sh` to _a new instance of `bash`_, asking it to interpret the lines inside this file as commands to execute.  
+Recall that we said Unix shells do not necessarily interact with the users.  This is an example.  We pass the file `hello.sh` to _a new instance of `bash`_, asking it to interpret the lines inside this file as commands to execute.  
 
-Remember that we want to minimize typing, so can we run it with less typing?  What if we can just pass the filename directly to `bash` to execute?
+Remember that we want to minimize typing.  What if we can just pass the filename directly to `bash` to execute?
 
 ```
 $ ./hello.sh
