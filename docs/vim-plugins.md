@@ -1,80 +1,56 @@
-# Vim Plugins/Extensions on PE Hosts
+# Vim Extensions on PE Hosts
 
-We allow the following plugins on the PE nodes during the practical exams.
+CS1010 provides a minimal set of vim extensions (i.e., plugins and color schemes) officially.  At the beginning of the semester, students can install the same set of extensions following the [vim setup](vim-setup.md) procedure.
+The same set of official extensions will be made available during the practical exams.
 
-Note that for your labs, you are free to install any plugins you find useful.
+Students are free to install any additional color schemes or plugins if they wish.  These additional extensions, however, are not allowed and will not be available during the practical exams.
 
-## Background
-
-`vim` plugins are installed under `~/.vim/pack/plugins/start`.  We will auto-create this directory for you in the exam environment.
-
-`vim` colorschemes are installed under `~/.vim/colors`.  You put `<scheme>.vim` under `~/.vim/colors` directly.
+The following are the officially supported vim extensions in CS1010.
 
 ## Color Schemes
 
-We have installed the [Sweeter-than-Fiction](https://vimawesome.com/plugin/vim-colorschemes-sweeter-than-fiction) colorscheme bundle under `~cs1010/.vim/colors`.
+We installed three color schemes `~cs1010/.vim/colors`.  You may copy them over to your own home directory, by running
 
-To use this, run
 ```
-ln -s ~cs1010/.vim/vim-colorschemes/colors ~/.vim/colors
+mkdir -p ~/.vim
+cp -r ~cs1010/.vim/colors ~/.vim
 ```
 
-After that, your can change your vim color scheme as usual. 
+The three color schemes are:
+
+- [gruvbox](https://github.com/morhetz/gruvbox)
+- [molokai](https://github.com/tomasr/molokai)
+- [onedark](https://github.com/joshdick/onedark.vim)
+
+You can change your vim color scheme using the `:color` command.  For instance,
+
 ```
 :color gruvbox
 ```
 
-The bundle includes some popularly requested color schemes, such as `monokai`, `solarized`, and `gruvbox`
+You can add the line `color gruvbox` (without `:`) to your `~/.vimrc` so that the color scheme is loaded at the start of every vim session.
 
-## Approved Plugins
+Some color schemes display differently depending on whether the background is set to `dark` or `light`
 
-### DelimitMate
+Some examples, with `set background=dark` in `~/.vimrc`:
 
-`DelimitMate` is a plugin that automatically inserts a closing `}`, `)`, `>`, etc. when you type the opening symbol.
+The default color scheme:
 
-To install this plugin in the exam environment, run
-```
-ln -s ~cs1010/.vim/vim-plugins/delimitMate ~/.vim/pack/plugins/start
-```
+![default](figures/color-scheme-default.png)
 
-### Vim-Rainbow
+The molokai color scheme:
 
-`vim-rainbow` is a plugin that matches opening and closing brackets and colors the matching pairs with matching colors.
+![molokai](figures/color-scheme-molokai.png)
 
-To install this plugin in the exam environment, run
-```
-ln -s ~cs1010/.vim/vim-plugins/vim-rainbow ~/.vim/pack/plugins/start
-```
+The gruvbox color scheme 
 
-The following line will be added on your `~/.vimrc` in the environment:
+![gruvbox](figures/color-scheme-gruvbox.png)
 
-```
-let g:rainbow_active = 1
-```
 
-### NERDTree
+## Plugins
 
-NERDTree provides a file browsing pane on the left (activated with `:NERDTree`).
+`vim` plugins are installed under `~/.vim/pack/plugins/start`.
 
-To install this plugin in the exam environment, run
-```
-ln -s ~cs1010/.vim/vim-plugins/nerdtree ~/.vim/pack/plugins/start
-```
+CS1010 supports only one plugin: [syntastic](https://github.com/vim-syntastic/syntastic), which automatically checks for syntax and style errors every time a file is saved (when you run `:w`).
 
-### Lightline
-
-Lightline provides a more useful status line for `vim`.
-
-To install this plugin in the exam environment, run
-```
-ln -s ~cs1010/.vim/vim-plugins/lightline ~/.vim/pack/plugins/start
-```
-
-## Unavailable Plugins
-
-The following plugins are not allowed as they provide too much help for writing Java programs.
-
-- `coc`
-- `syntastic`
-- `youcompleteme`
-
+The syntastic configuration in the CS1010 `~/.vimrc` has been made to work with the exercise/assignment setups. As such, it might not work as intended if you edit a C file outside the CS1010 setup.

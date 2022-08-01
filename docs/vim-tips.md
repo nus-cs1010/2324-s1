@@ -193,46 +193,7 @@ You can ++g++++g++++equal++++shift+g++ in command mode (i.e., type out `gg=G`) t
 
 Alternatively, run `vim -O file1 file2` to immediately open both files in two different viewpoints.
 
-### Jump to `Foo.java`
-
-Place your cursor on the class name, e.g., `Foo`.  Then hit ++g++ ++f++.
-
-## 5. Color Schemes
-
-We have installed [`vim-colorscheme`](https://github.com/flazz/vim-colorschemes) bundle under `~cs1010/.vim/vim-colorschemes/colors`.
-
-Run
-
-```
-mkdir -p ~/.vim
-ln -s ~cs1010/.vim/vim-colorschemes/colors ~/.vim/colors
-```
-
-After that, your can change your vim color scheme as usual.  For instance,
-
-```
-:color gruvbox
-```
-
-You can add the line `color gruvbox` to your `~/.vimrc` so that the color scheme is loaded at the start of every vim session.
-
-The bundle includes some popular color schemes among students, such as `molokai`, `solarized`, and `gruvbox`.   Some color schemes display differently depending on whether the background is set to `dark` or `light`
-
-Some examples, with `set background=dark` in `~/.vimrc`:
-
-The default color scheme:
-
-![default](figures/color-scheme-default.png)
-
-The molokai color scheme:
-
-![molokai](figures/color-scheme-molokai.png)
-
-The gruvbox color scheme 
-
-![gruvbox](figures/color-scheme-gruvbox.png)
-
-## 6. Recovery Files
+## 5. Recovery Files
 
 Vim automatically saves the files you are editing into temporary _swap_ files, with the extension `.swp`.  These files are hidden, so you don't normally see them when you run `ls`.  (You need to run `ls -a` to view the hidden files)
 
