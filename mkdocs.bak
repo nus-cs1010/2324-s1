@@ -1,0 +1,122 @@
+nav:
+  - Home: 'index.md'
+  - Notes: 
+    - 1. What is a Program?: "01-program.md"
+    - 2. Computational Problems: "02-algo.md"
+    - 3. Functions: "03-func.md"
+    - 4. Types: "04-type.md"
+    - 5. First C Program: "05-first-c.md"
+    - 6. CS1010 I/O: "06-cs1010-io.md"
+    - 7. Arithmetic Operations: "07-arithmetic-ops.md"
+    - 8. Conditional Statement:  '08-if-else.md'
+    - 9. Logical Expression: '09-logical-exp.md'
+    - 10. Assertions: '10-assert.md'
+    - 11. Loops: '11-loop.md'
+    - 12. Invariant: '12-invariant.md'
+    - 13. Stack: '13-call-stack.md'
+    - 14. Array: '14-array.md'
+    - 15. Pointer: '15-pointers.md'
+    - 16. Call-by-Reference: '16-call-by-reference.md'
+    - 17. Heap: '17-heap.md'
+    - 18. String: '18-string.md'
+    - 19. ND Array: '19-md-array.md'
+    - 20. C preprocessor: '20-macro.md'
+    - 21. Efficiency: '21-efficiency.md'
+    - 22. Searching: '22-search.md'
+    - 23. Sorting: '23-sort.md'
+    - 24. Tower of Hanoi: '24-tower.md'
+    - 25. Permutattion: '25-permutation.md'
+    - 26. N-Queens: '26-queens.md'
+    - 27. Struct: '27-struct.md'
+    - 28. Standard I/O: '28-stdio.md'
+  - Exercises: 
+    - 0. Echo, Divide, Ones, BMI, Quadratic: "ex00.md" 
+    - 1. Odd, Sum, Triangle, Burger: "ex01.md"
+    - 2. Date, GCD, Leap, Multiple: "ex02.md"
+    - 3. Three, Factor, Parity, Nine, HDB: "ex03.md"
+    - 4. Binary, Onigiri, Fibonacci: "ex04.md"
+    - 5. Counter, Dot, Unit: "ex05.md"
+    - 6. Error, Twilight, Reverse, Unique, LookNSay: "ex06.md"
+    - 8. Length, Concat, Search: "ex08.md"
+    - 9. Echo, Subtract, Line: "ex09.md"
+    - 10. Transpose, Palindrome, Rotate, Marnell, Bracket: "ex10.md"
+    - 11. TicTacToe, Sun, Replace, Soil, Substring: "ex11.md"
+    - 12. Walk, Sudoku: "ex12.md"
+  - Assignments: 
+    - Overview: 'assignment.md'
+    - 1. Pyramid, Digits, Suffix, Taxi: "as01.md"
+    - 2. Collatz, Rectangle, Prime, Pattern: "as02.md"
+    - 3. Days, ID, Max, Padovan: "as03.md"
+    - 4. Selection, Mastermind: "as04.md"
+    - 5. Kendall, CountingSort, Add: "as05.md"
+    - 6. Contact, Social, Life, : "as06.md"
+    - 7. Peak, Sort, Inversion, : "as07.md"
+    - 8. Fill, Maze, : "as08.md"
+    - 9. Digits, : "as09.md"
+  - Readings: 'readings.md'
+  - C in CS1010: 'c-in-cs1010.md'
+  - C Style Convention: 'style.md'
+  - C Documentation: 'documentation.md'
+  - C Compiler Messages: 'messages.md'
+  - CS1010 I/O Library: 'library.md'
+  - Software/Tools:
+      - Programming Environments: 'environments.md'
+      - GitHub: 'github.md'
+      - UNIX: 'unix.md'
+      - CLang: 'clang.md'
+      - Vim: 'vim.md'
+      - Make: 'make.md'
+      - TMate: 'tmate.md'
+      - Zoom: 'zoom.md'
+      - Panopto: 'panopto/panopto.md'
+
+theme: 
+  name: material
+  palette:
+    primary: deep purple
+    accent: deep purple
+  shortcuts:
+    previous: 72 #h
+    next: 76 #l
+    search: 191 #/
+
+site_name: CS1010 Programming Methodology
+# repo_url: https://github.com/nus-cs1010/1819-s1
+site_url: https://nus-cs1010.github.io/2223-s1
+copyright: Copyright by Department of Computer Science, National University of Singapore 2022
+# remote_branch: gh-pages
+use_directory_urls: false
+markdown_extensions:
+  - md_in_html
+  - admonition
+  - attr_list
+  - pymdownx.highlight:
+     linenums: true
+  - footnotes
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.superfences
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+extra_javascript:
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js
+
+extra_css:
+  - 'stylesheets/extra.css'
+  - 'https://fonts.googleapis.com/css?family=Roboto:400,700'
+  - 'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap'

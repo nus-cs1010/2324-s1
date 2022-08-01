@@ -53,14 +53,16 @@ First, you need to set up a Virtual Private Network (VPN) (See [instructions her
     Note that SoC VPN is different from NUS VPN.  Connecting to NUS VPN only allows you access to the NUS internal network, but not the SoC internal network.
 ## Setting up SSH Keys
 
-Once you are comfortable with UNIX, you can set up a pair of public/private keys for authentication.  
+The next step is not required but is a time-saver and a huge quality-of-life improvement.  You need to be familiar with basic Unix commands, including how to copy files to remote hosts (using `scp`) and how to check/change file permissions (using `ls -l` and `chmod`).  If you are still not comfortable with these commands, make sure you play with the [basic Unix commands](unix.md) first.  You can come back and complete this step later. 
 
-You can use
+Our goal here is to set up a pair of public/private keys for authentication so that you do not need to type your password every time you log into a PE host.
+
+You can use the following command on your local computer to generate a pair of keys:
 ```
 ssh-keygen -t rsa
 ```
 
-to generate a pair of keys on your local computer.  Keep the private key `id_rsa` on your local machine in the hidden `~/.ssh` directory, and copy the public key `id_rsa.pub` to your home directory on PE `pe111`.  On `pe111`, run
+This command will generate two keys, a private key `id_rsa` and a public key `id_rsa.pub`.  Keep the private key `id_rsa` on your local machine in the hidden `~/.ssh` directory, and copy the public key `id_rsa.pub` to your home directory on PE `pe111`.  On `pe111`, run
 ```
 cat id_rsa.pub >> ~/.ssh/authorized_keys
 ```
