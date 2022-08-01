@@ -40,7 +40,7 @@ if I want to connect to `pe112.comp.nus.edu.sg`.
 
 After the command above, follow the instructions on the screen.  The first time you ever connect to `pe112.comp.nus.edu.sg`, you will be warned that you are connecting to a previously unknown host.  Answer `yes`.  After that, you will be prompted with your SoC UNIX password.  Note that nothing is shown on the screen when your password is being entered.
 
-[![asciicast](https://asciinema.org/a/4rtH1KENV6QOdKtlY0T7mce0M.svg)](https://asciinema.org/a/4rtH1KENV6QOdKtlY0T7mce0M)
+<script id="asciicast-4rtH1KENV6QOdKtlY0T7mce0M" src="https://asciinema.org/a/4rtH1KENV6QOdKtlY0T7mce0M.js" async></script>
 
 ## Accessing The PE Hosts from Outside SoC
 
