@@ -5,7 +5,7 @@ held in August 2020.
 
 After reading this article, students should
 
-- appreciate the philosophy of Unix where small utitilies program can be composed together to perform a complex task using the pipe `|` operator
+- appreciate the philosophy of Unix where small utility programs can be composed together to perform a complex task using the pipe `|` operator
 - be aware of basic Unix utilities: `echo`, `sort`, `uniq`, `grep`, `head`, and `tail`.
 - be able to use basic pattern matching `*` `?` `[]` and `{}` in `bash`
 - know how to use ++tab++, ++ctrl+p++, and ++ctrl+n++ to work more efficiently in `bash`
@@ -123,7 +123,7 @@ hit ++control+d++ when you are done.
 ## Pipe Example
 
 To give you an example of how useful `|` is, here is a real example.  When processing the registration of the workshop, I have quite a few registrations that are duplicates -- students registered more than ones.  I need a quick way to count how many unique registrants are there.
-So I keep the student id of all registrants in a file called `ID`.  For instance, the file `ID` contains (not real data, of course)
+So I keep the student ID of all registrants in a file called `ID`.  For instance, the file `ID` contains (not real data, of course)
 
 ```
 A1234567X,CS
@@ -190,7 +190,7 @@ $ ls [f-t]*t
 foo.txt test.txt
 ```
 
-The expression `[f-t]*t` matches all file names the start with alphabet `f`, `g`, etc, until `t`, followed by zero or more characters, followed by `t`.
+The expression `[f-t]*t` matches all file names the start with alphabet `f`, `g`, etc., until `t`, followed by zero or more characters, followed by `t`.
 
 #### Example 3:
 ```
@@ -214,8 +214,7 @@ Why is this a big deal?  Let's look at the image of the keyboard below:
 
 ![keyboard](figures/keyboard.png)
 
-We only need to use the keys colored in pink.  And since these keys concentrated in a small region on the keyboard, for most of us, we can reach the keys if we just position our hands over the keyboard[^1], we
-only need move _our fingers_ to type.  
+We only need to use the keys colored in pink.  And since these keys concentrated in a small region on the keyboard, for most of us, we can reach the keys if we just position our hands over the keyboard[^1], we only need to move _our fingers_ to type.  
 
 [^1]: The recommended placement of hands over the keyboard is so that the thumbs are over the ++space++ bar, the left fingers are over ++a++ ++s++ ++d++ ++f++, and the right fingers are over ++j++ ++k++ ++l++ ++semicolon++.
 
@@ -227,9 +226,9 @@ We can even minimize the movement of our fingers in several ways by typing less.
 
 - Unix commands are named economically -- they are often only a few characters long.
 - We can use ++tab++ to auto-complete a command or a file name.
-- We can use ++control+p++ or ++control+n++ to repeat a previous commands.
+- We can use ++control+p++ or ++control+n++ to repeat a previous command.
 
-There are many more `bash` shortcuts for productivity, if you are keen, take a look at (this cheat sheet](https://github.com/fliptheweb/bash-shortcuts-cheat-sheet).
+There are many more `bash` shortcuts for productivity, if you are keen, take a look at [this cheat sheet](https://github.com/fliptheweb/bash-shortcuts-cheat-sheet).
 
 You have also seen that Unix has many small, simple, utilities that we can compose to solve a task.  But composing them requires much typing:
 
@@ -245,7 +244,7 @@ $ cat > hello.sh
 echo hello!^D
 ```
 
-The extension `.sh` is not necessary but it is just something I use so that I can tell that this file contains a shell script.  In the example above, `cat` will wait for me to enter something on the keyboard.  So I entered `echo hello!` followed by ++control+d++ to indicate the end of the input.
+The extension `.sh` is not necessary, but it is just something I use so that I can tell that this file contains a shell script.  In the example above, `cat` will wait for me to enter something on the keyboard.  So I entered `echo hello!` followed by ++control+d++ to indicate the end of the input.
 
 Now, to execute this file, we run:
 ```

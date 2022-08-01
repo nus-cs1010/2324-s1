@@ -1,7 +1,6 @@
 # Unix CLI: The Essentials
 
-This article is adapted from the notes of the [Unix@Home Workshop](https://nus-unix-workshop.github.io/2021-s1) 
-held in August 2020.  It contains the essential knowledge that a CS2030S students need to survive using the PE nodes to do the labs (and to use a Unix CLI in general).
+This article is adapted from the notes of the [Unix@Home Workshop](https://nus-unix-workshop.github.io/2021-s1) held in August 2020.  It contains the essential knowledge that a CS2030S students need to survive using the PE nodes to do the labs (and to use a Unix CLI in general).
 
 After following this article, students should be able to:
 
@@ -23,7 +22,7 @@ This structure is also known as a _directory tree_.
 There are two important directories that you need to know.
 
 ### Root Directory
-The root directory is the directory at the top of the directory tree[^1]. It is simply referred to as `/`, without any name.  Under the root directory are many other systems directory, which a casual user does not normally need to (and have no permission to) modify.
+The root directory is the directory at the top of the directory tree[^1]. It is simply referred to as `/`, without any name.  Under the root directory are many other system directory, which a casual user does not normally need to (and have no permission to) modify.
 
 [^1]: In computing, trees are upside down with the root at the top and leaves at the bottom!
 
@@ -61,8 +60,7 @@ To specify a directory or a file in the Unix directory tree, we can use either t
 
 ### Absolute path
 
-The absolute path is constructed as follows, starting from the root of the directory structure, find a path (a sequence of directories) to the location that you want to specify, then concatenate the names of the directories together, separated by the forward-slash `/`.  This is a similar notation used for Web site URLs so you should already be familiar with it.  For instance, the path
-`/home/o/ooiwt` is the absolute path of the directory named `ooiwt` in the figure above.
+The absolute path is constructed as follows, starting from the root of the directory structure, find a path (a sequence of directories) to the location that you want to specify, then concatenate the names of the directories together, separated by the forward-slash `/`.  This is a similar notation used for Website URLs, so you should already be familiar with it.  For instance, the path `/home/o/ooiwt` is the absolute path of the directory named `ooiwt` in the figure above.
 
 An absolute path is independent of the current working directory and always start with `/` or `~`
 
@@ -76,14 +74,11 @@ A relative path never starts with `/`.
 
 ## Directory-related Commands
 
-Now, let's take a look at some basic commands available in `bash` that
-deals with navigation and directories.
+Now, let's take a look at some basic commands available in `bash` that deals with navigation and directories.
 
 ### `pwd`: Print Current Working directory
 
-`pwd` shows you which directory you are currently in.  
-Type `pwd` into the command prompt, and it will print the absolute path to your current working directory. For instance,
-Suppose you are in `/home/o/ooiwt`, entering
+`pwd` shows you which directory you are currently in.  Type `pwd` into the command prompt, and it will print the absolute path to your current working directory. For instance, Suppose you are in `/home/o/ooiwt`, entering
 ```Bash
 pwd
 ```
@@ -99,7 +94,7 @@ The `ls` list the content in the current working directory.
 !!! note "Rule of Silence"
     Unix follows the economical _rule of silence_: programs should not print unnecessary output, to allow other programs and users to easily parse the output from one program.  So, if `ls` has nothing to list, it will list nothing (as opposed to, say, printing "This is an empty directory.")
 
-{++Added++} In Unix, a file or directory with a name that starts with `.` is hidden from `ls`.  Common hidden files are `.vimrc`, the configuration file for `vim`, and `.ssh`, the directory to store your SSH keys and configuration.  To view all the files, including hidden files, run `ls` with the `-a` flag (`a` stands for all).  
+In Unix, a file or directory with a name that starts with `.` is hidden from `ls`.  Common hidden files are `.vimrc`, the configuration file for `vim`, and `.ssh`, the directory to store your SSH keys and configuration.  To view all the files, including hidden files, run `ls` with the `-a` flag (`a` stands for all).  
 
 ### `mkdir`: MaKe a subDIRectory
 
@@ -158,13 +153,11 @@ will remove the directory that you just created.
 
 ## File Management
 
-This note assumes that you are familiar with navigation with
-the Unix directory structure.
+This note assumes that you are familiar with navigation with the Unix directory structure.
 
 We will now learn some commands to help us deal with files.
 
-Let's recreate the `workshop` directory in case you have already
-deleted it with the `rmdir` at the end of the last unit.
+Let's recreate the `workshop` directory in case you have already deleted it with the `rmdir` at the end of the last unit.
 
 ```
 $ mkdir -p workshop
@@ -172,7 +165,7 @@ $ cd workshop
 $ ls
 ```
 
-All of the above commands should complete successfully and `silently`.  Let's populate the directory with a new file.  Cut-and-paste the command below into the command prompt :
+All the above commands should complete successfully and _silently_.  Let's populate the directory with a new file.  Cut-and-paste the command below into the command prompt:
 
 ```
 wget https://raw.githubusercontent.com/nus-unix-workshop/2021-s1/master/test.txt
@@ -229,7 +222,7 @@ $ cp -r ../workshop .
 
 The command `cp` takes in two arguments, the first is the source, and the second is the destination.
 
-Note that we use `.` above to indicate that we wish to copy the whole sub-tree of `workshop` over the current directory.  The command should complete without any message.  Upon completion, you can run `ls` to double-check that the workshop directory exists under `workshop`.
+Note that we use `.` above to indicate that we wish to copy the whole subtree of `workshop` over the current directory.  The command should complete without any message.  Upon completion, you can run `ls` to double-check that the workshop directory exists under `workshop`.
 
 !!! Warning: `cp` Overwrites
     If there is an existing file with the same name, `cp` will overwrite
@@ -279,8 +272,7 @@ Here, you can see that we have moved `foo.txt` over to the current directory.
 
 ### `rm`: ReMove files
 
-We can use `rm` to remove files.
-Be careful with this command -- files deleted cannot be restored.  There is no trash or recycled bin like in Mac or Windows.
+We can use `rm` to remove files.  Be careful with this command -- files deleted cannot be restored.  There is no trash or recycled bin like in Mac or Windows.
 
 ```bash
 $ ls
@@ -290,8 +282,8 @@ $ ls
 bar.txt test.txt
 ```
 
-!!! warning "rm -rf "
-    While the Unix command line provides lots of flexibility and power, with great power comes great responsibility.  Some of the commands are extremely dangerous.  `rm -rf *` is the most famous one.  The notation `*` refers to all files, and the flag `-f` means forceful deletion (no question asked!), and `-r` means remove recursively everything under the current directory tree.  Accidentally running this command has ruined many lives.  [Read more here](https://www.quora.com/What-are-some-crazy-rm-rf-stories-you-have-heard-about)
+!!! warning "rm -rf"
+    While the Unix command line provides lots of flexibility and power, with great power comes great responsibility.  Some commands are extremely dangerous.  `rm -rf *` is the most famous one.  The notation `*` refers to all files, and the flag `-f` means forceful deletion (no question asked!), and `-r` means remove recursively everything under the current directory tree.  Accidentally running this command has ruined many lives.  [Read more here](https://www.quora.com/What-are-some-crazy-rm-rf-stories-you-have-heard-about)
 
 `rm` comes with a `-i` flag that interactively asks you if you are sure if you want to delete a file.  It is a good idea to always run `rm -i`.
 
@@ -325,7 +317,7 @@ An online help facility is available in Unix via the `man` command (`man` stands
 
 ## File Permission Management
 
-File permissions determine _who_ can do _what_ to a file.  Typically, you do not need to fiddle with the file permission, but when you need to, it is usually for an important reason and it is critical to do it right.
+File permissions determine _who_ can do _what_ to a file.  Typically, you do not need to fiddle with the file permission, but when you need to, it is usually for an important reason, and it is critical to do it right.
 
 ### The _What_ of File Permissions
 Let's look at _what_ you can do to a file first.  Unix file permissions allow control of three actions: `r` (read), `w` (write) and `x` (execute).  These permission settings allow the following different actions to be done for regular files and directories.
@@ -380,14 +372,14 @@ $ ls -l test.txt
 ```
 would change add the permission `w` to both group and other users[^1].
 
-An alternative way is to just specify the changes.  To remove the write permission from others, you can write:
+An alternative way is to just specify the changes.  To remove the permission to write from others, you can run:
 ```
 $ chmod o-w test.txt
 $ ls -l test.txt
 -rw-rw-r--@ 1 ooiwt  staff  64 Jul 28 09:52 test.txt
 ```
 
-[^1]: Giving write permission to other users is a security risk and you should not do this unless you know what you are doing.
+[^1]: Giving write permission to other users is a security risk.  You should not do this unless you know what you are doing.
 
 ### Common Scenarios for `chmod`
 
@@ -493,4 +485,3 @@ In most CS programming assignments, however, to keep things simple, you will be 
 ## Other Useful Online Tools
 
 - [explainshell](https://explainshell.com/) explain each shell command for you
-
