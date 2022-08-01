@@ -34,22 +34,80 @@
 ## Basic C
 <div class="grid cards" markdown>
 
-- #### __Unit 5__: First C Program
+- #### __5. First C Program__
 
     Introducing basic C syntax and writing our first C program.
 
     [Read more..](05-first-c.md)
 
-- #### __Unit 6__: CS1010 I/O
+- #### __6. CS1010 I/O__
 
     Reading from the stdin and printing to the stdout using the CS1010 library.
 
     [Read more..](06-cs1010-io.md)
 
-- #### __Unit 7__: Arithmetic Operations
+- #### __7. Arithmetic Operations__
 
     Performing basic computation with arithmetic operations with C.
 
     [Read more..](07-arithmetic-ops.md)
+
+</div>
+
+## Unix
+<div class="grid cards" markdown>
+
+- #### Background
+
+    Understand the design principles of Unix and its power through its historical background.
+
+    [Read more..](unix-background.md)
+
+- #### Essential Commands
+
+    Learn the essential commands to perform day-to-day operations in a Unix shell.
+
+    [Read more..](unix-essential.md)
+
+- #### Advanced Commands
+
+    Level-up your productivity when operating in a Unix shell.
+
+	[Read more..](unix-advanced.md)
+
+</div>
+
+## Vim
+<div class="grid cards" markdown>
+
+- #### Philosophy of Vim
+
+    Understand the philosophy behind the design of Vim and why it is useful.
+
+    [Read more..](vim-philosophy.md)
+
+- #### Quick Vim Lessons
+
+    Learn the basic commands of Vim for navigation and editing.
+
+    [Read more..](vim-quick-lessons.md)
+
+- #### Vim Setup
+
+    Setup your Vim properly for CS1010.
+
+	[Read more..](vim-setup.md)
+
+- #### Vim Extensions
+
+    Learn about Vim extensions officially supported by CS1010.
+
+	[Read more..](vim-plugins.md)
+
+- #### Vim Tips for CS1010
+
+    Read about useful `vim` tips for CS1010.
+
+	[Read more..](vim-tips.md)
 
 </div>

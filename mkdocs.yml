@@ -15,8 +15,9 @@ nav:
       - Advanced: "unix-advanced.md"
     - Vim:
       - Philosophy: "vim-philosophy.md"
-      - Setup: "vim-setup.md"
       - Quick Lesson: "vim-quick-lessons.md"
+      - Setup: "vim-setup.md"
+      - Extensions: "vim-plugins.md"
       - Tips: "vim-tips.md"
     - Programming Environments: "environments.md"
     - Linking GitHub to PE: "github.md"
