@@ -9,11 +9,11 @@ nav:
     - 6. CS1010 I/O: "06-cs1010-io.md"
     - 7. Arithmetic Operations: "07-arithmetic-ops.md"
   - Guides: 
-    - Unix
+    - Unix:
       - Background: "unix-background.md"
       - Essentials: "unix-essentials.md"
       - Advanced: "unix-advanced.md"
-    - Vim
+    - Vim:
       - Philosophy: "vim-philosophy.md"
       - Setup: "vim-setup.md"
       - Quick Lesson: "vim-lessons.md"
