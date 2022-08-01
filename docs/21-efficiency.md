@@ -58,7 +58,7 @@ The two techniques we employed above behave slightly differently.  For (i), we _
 
 The second technique is more interesting and more fruitful.  With a little math, we can show that we only need to check for the divisor up to $\sqrt{n}$.  Here, we are improving the _worst case_ performance of `is_prime`, so whether the input is prime or not, we always have a speedup.
 
-How much is the speed up in the worst case?  In the input above, with the original slow code, in the worst case, I need to check through ~10,000,000,001 divisors.  With the faster version, I only need to check ~$\sqrt{10,000,000,001}$ = ~10,000 divisors.  That's where the five orders of magnitude speedup come from!
+How much is the speedup in the worst case?  In the input above, with the original slow code, in the worst case, I need to check through ~10,000,000,001 divisors.  With the faster version, I only need to check ~$\sqrt{10,000,000,001}$ = ~10,000 divisors.  That's where the five orders of magnitude speedup come from!
 
 ## No Duplication
 
@@ -107,7 +107,7 @@ long fib(long n)
 }
 ```
 
-This solution is short and follows directly from the definition of Fibonacci numbers.  Running this, however, reveals something very disturbing.  Let's say we call `fib(n)`.  This invocation in turns calls `fib(n-1)` and `fib(n-2)`.  `fib(n-1)` then calls `fib(n-2)` and `fib(n-3)`.   So, `fib(n-2)` will be called twice -- so we are repeating ourselves, violating the no duplication principles.  We will invoke `fib()` a large number of times.
+This solution is short and follows directly from the definition of Fibonacci numbers.  Running this, however, reveals something very disturbing.  Let's say we call `fib(n)`.  This invocation in turns calls `fib(n-1)` and `fib(n-2)`.  `fib(n-1)` then calls `fib(n-2)` and `fib(n-3)`.   So, `fib(n-2)` will be called twice -- so we are repeating ourselves, violating the no duplication principles.  We will invoke `fib()` many times.
 
 ## Big-O Notation
 

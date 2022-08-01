@@ -4,17 +4,17 @@
 
 After this unit, students should:
 
-- be able to define arithmetic expressions in C programs that include the use of the following arithmetic operators for:
+- be able to define arithmetic expressions in C programs that include the use of the following arithmetic operators:
     - addition ( `+` ),
     - subtraction ( `-` ),
     - multiplication ( `*` ),
     - division ( `/` ), and
-    - modulo ( `%` );
+    - remainder ( `%` );
 - be aware of the numeric types that may be used with arithmetic operators in C programs;
 - be aware of the value range restrictions on the various numeric types in C;
 - be able to use compound operators in C programs;
 - be aware of the difference between division and integer division, and when the latter occurs within arithmetic expressions; and
-- be aware that there exist pitfalls in using `++` and `--` operators and they are not allowed in CS1010.
+- be aware that there exist pitfalls in using `++` and `--` operators, and they are not allowed in CS1010.
 
 ## Operators
 
@@ -37,9 +37,9 @@ hypotenuse = sqrt(square(base) + square(height));
 
 You have also seen the multiplication operator `*`.  It can be used in the same way as the `+` operator.  Three other useful operators are:
 
-- `/` - division (e.g., `double half_x = x / 2;`)
-- `-` - subtraction (e.g., `long deducted = income - 100`)
-- `%` - modulo (e.g, `long last_digit = number % 10`);
+- `/` - division (e.g., `#!C double half_x = x / 2;`)
+- `-` - subtraction (e.g., `#!C long deducted = income - 100;`)
+- `%` - remainder (e.g, `#!c long last_digit = number % 10;`)
 
 The `+`, `-`, `*`, and `/` operators work on both integer types (`char`, `short`, `int`, `long`, `long long`) and real numbers (`float`, `double`).  The module operator `%` works only on integer types.
 
@@ -53,9 +53,9 @@ long c = 2;
 long a = b + 2 * c / 4;
 ```
 
-When we have multiple operations appearing, however, it becomes harder to trace the sequence of evaluation.  What is the value of `a` after the three lines above are executed?
+When we have multiple operations appearing, however, it becomes harder to trace the sequence of evaluation.  What is the value of `a` after the three lines above are executed?  There is some ambiguity: do we evaluate from left to right (in which case the answer is 6) or do we multiply and device first before adding (in which case the answer is 11)? 
 
-C actually has well-defined rules to the order of evaluation for the operators: `*`, `/`, and `%` take precedence over `+` and `-`, and the operators are evaluated from left to right.  
+C has well-defined rules for the order of evaluation for the operators: `*`, `/`, and `%` take precedence over `+` and `-`, and the operators are evaluated from left to right.  
 
 Thus, in the example above, `a` will be 11 instead of 6 after the execution.
 
@@ -66,11 +66,13 @@ long a = (b + 2) * c / 4; // 6
 long a = b + (2 * c / 4); // 11
 ```
 
-The expression in the parenthesis will be evaluated first.  To make your code easier to understand, _you should add parenthesis even if the order of evaluation is from left to right_ to make the order of evaluation explicit.
+The expression in the parenthesis will be evaluated first.  To make your code easier to understand, _you should add parenthesis even if the order of evaluation is according to the order of precedence_ to make the order of evaluation explicit[^1].
+
+[^1]: Interested students may refer to [the Wikipedia article on C operators](https://en.wikipedia.org/wiki/Operators_in_C_and_C%2B%2B#Operator_precedence) on the complete rules for precedence.  But for beginners like us, using parentheses to explicitly indicate the order in which we wish to evaluate our computation suffices.
 
 ## Compound Operators
 
-It is common to modify the value of a variable and store new value back to the same variable.  For example,
+It is common to modify the value of a variable and store a new value back in the same variable.  For example,
 
 ```C
 index = index + 1;  // increment the variable index
@@ -104,8 +106,7 @@ Let's look at two common gotchas.
 
 ### Overflow
 
-Consider the type `uint8_t`, which represents an unsigned 8-bit integer
-and the following code:
+Consider the type `uint8_t`, which represents an unsigned 8-bit integer, and the following code:
 
 ```C
 uint8_t c = 255;
@@ -128,13 +129,13 @@ Now, let's consider the following code:
 double half = 3/2;
 ```
 
-What is the value of variable `half` after the operation above?
+What is the value of the variable `half` after the operation above?
 
 It got to be 1.5, right?  
 
 It turns out that, after executing the code above, the value of `half` is 1.0.  :open_mouth:
 
-To understand this, first, let's see what happen when we assign a floating-point number to an integer type:
+To understand this, first, let's see what happens when we assign a floating-point number to an integer type:
 
 ```C
 int x = 1.5;
@@ -142,7 +143,9 @@ int x = 1.5;
 
 C truncates the floating number and only stores the integer part of the value, 1 in this case, in `x`.
 
-Second, when we perform an arithmetic operation, the resulting value will be an integer if both values are integer types.  If one of the operands is a floating-point number, the result will be a floating-point number[^1].
+Second, when we perform an arithmetic operation, the resulting value will be an integer if both values are integer types.  If one of the operands is a floating-point number, the result will be a floating-point number[^2].
+
+[^2]: The actual rules used by C, called _integer promotion_ and _usual arithmetic conversion_, are much more complex and are outside the scope of CS1010.  You should take note of this, however, and in a later part of your study or career, if you need to delve deeper into writing or debugging C code, take a look at [this](https://wiki.sei.cmu.edu/confluence/display/c/INT02-C.+Understand+integer+conversion+rules).
 
 Since 3 and 2 are both integers, the resulting value 1.5 is stored in an integer, which causes it to become 1.  We then store 1 into a `double` variable, causing the value of `half` to become `1.0`.
 
@@ -159,9 +162,21 @@ or
 double half = 3/(double)2;
 ```
 
-The second fix above explicitly converts the type, or _casts_ the type of value 2 into a `double`.
+The second fix above explicitly converts the type or _casts_ the type of value 2 into a `double`.
 
-[^1]: The actual rules used by C, called _integer promotion_ and _usual arithmetic conversion_, are much more complex and are outside the scope of CS1010.  You should take note of this, however, and in a later part of your study or career, if you need to delve deeper into writing or debugging C code, take a look at [this](https://wiki.sei.cmu.edu/confluence/display/c/INT02-C.+Understand+integer+conversion+rules).
+## The % Operator
+
+It is commonly misunderstood that the `%` operator is equivalent to the modulo operation in number theory, where the operator always gives a positive remainder.   
+
+This equivalence holds when the two operands are positive. E.g., `#!C 9 % 4` gives `#!C 1` as the answer.  But, when one of the operands is negative, the `%` operator may return a negative number.  
+
+The `%` operator in C is defined as follows: `#!C x % n` is equivalent to `#!C x - ((x / n) * n)` (where `#!C /` is the integer division operator).
+
+For instance, `#!C -9 % 4` is evaluated as `#!C -9 - ((-9 / 4) * 4)` which is `#!C -9 - (-8)`, and gives `#!C  -1`.
+
+On the other hand, `#!C 9 % -4` is evaluated as `#!C 9 - ((9 / -4) * -4)`, which gives `#!C  9 - 8`, or `#!C  1`.  
+
+To avoid confusion between the `%` operator in C and the modulo operation in number theory, we will call the `%` as the _remainder_ operator. 
 
 ## Avoid Increment / Decrement Operator
 
@@ -173,7 +188,7 @@ index += 1;
 
 can be further shortened into
 
-```
+```C
 index++;
 ```
 
@@ -185,13 +200,13 @@ index -= 1;
 
 can be further shortened into
 
-```
+```C
 index--;
 ```
 
-Using these two operators only shorten your code by two characters per statement, but introduces several issues.  As such, we _ban the use of both increment and decrement operator in CS1010_.
+Using these two operators only shortens your code by two characters per statement, but introduces several issues.  As such, we _ban the use of both increment and decrement operators in CS1010_.
 
-So, why aren't `++` and `--` welcomed in CS1010?  The `++` and `--` operators not only modify the value of the operand, but it also returns a value.  We can write `j = i++;` to both increment `i` and assign the pre-incremented value of `i` to `j`.  In C, we can also write `j = ++i;`, which again, increment `i`, and assign the post-incremented value of `i` to `j`.  Things get tricky, when we write `i = i++;`, it is not clear how to interpret this.  The C standard leaves this behavior undefined and leaves it to the compiler to define its behavior.  Introducing all these complexities just to save two characters is not warranted.
+So, why aren't `++` and `--` welcomed in CS1010?  The `++` and `--` operators not only modify the value of the operand, but it also returns a value.  We can write `j = i++;` to both increment `i` and assign the pre-incremented value of `i` to `j`.  In C, we can also write `j = ++i;`, which again, increment `i`, and assign the post-incremented value of `i` to `j`.  Things get tricky when we write `i = i++;`, it is not clear how to interpret this.  The C standard leaves this behavior undefined and leaves it to the compiler to define its behavior.  Introducing all these complexities just to save two characters is not warranted.
 
 ## List of C features banned in CS1010
 
@@ -200,7 +215,7 @@ You should realize by now that we are only using a subset of C and enforce a cer
 So far, you have seen that we are banning:
 
 - `++` and `--` operators
-- the types `int`, `short`, `float` etc. (with the returning type of `main()` as the exception)
+- the types `int`, `short`, `float`, etc. (with the returning type of `main()` as the exception)
 - global variables
 
 In addition, we discourage:

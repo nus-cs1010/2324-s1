@@ -29,7 +29,7 @@ In this unit, we will write and compile your first C program.  You have already 
 
 To start, let's look at a simple snippet of C code:
 
-```C
+```C title="A trivial function to square an integer"
 int square(int x)
 {
   return x * x;
@@ -38,21 +38,25 @@ int square(int x)
 
 The code above defines a function named `square`.  The word `int` appears _before_ the name `square`.  `int` is used to signify an integer type.  Appearing before the name `square` tells the compiler that `square` is returning a value of type `int`.
 
-After the word `square`, we write the parameters to the function in parenthesis `(` and `)`.  In between `(` and `)` is `int x`: `x` is the name of the parameter, `int` is the type of that parameter.
+After the word `square`, we write the parameters to the function in parentheses `(` and `)`.  In between `(` and `)` is `int x`: `x` is the name of the parameter, `int` is the type of that parameter.  Here, `x` is a variable that stores the value that we wish to compute the square of.
 
 To summarize, in Line 1, `int square(int x)` defines a function named `square` that takes in an integer parameter `x` and is returning a value, which is also an integer.  This line is known as the _header_ of the function.
 
-The next three lines are written in between curly brackets `{` and `}`.  You will see these used a lot in C and other programming languages with C-like syntaxes, such as Javascript, C++, and Java.  These curly brackets group a _block_ of _statements_ together.  In this example, this block defines how the function `square` computes the square of `x`, and what it returns.  This is the _body_ of the function.
+The next three lines are written in between curly brackets `{` and `}`.  You will see these used a lot in C and other programming languages with C-like syntaxes, such as JavaScript, C++, and Java.  These curly brackets group a _block_ of _statements_ together.  In this example, this block defines how the function `square` computes the square of `x`, and what it returns.  This is the _body_ of the function.
 
-In this function body, there is only one statement `return x * x;`  within the block.  A _statement_ is a unit in a programming language that expresses either a command to be executed or declares a new variable or function.  The word `return` says that this function `square` should return the following value, computed as `x * x` (`x` multiply by `x`).  This statement is terminated by a semicolon `;`.
+In this function body, there is only one statement `return x * x;` within the block.  A _statement_ is a unit in a programming language that expresses either a command to be executed or declares a new variable or function.  The word `return` says that this function `square` should return the following value, computed as `x * x` (`x` multiply by `x`).  This statement is terminated by a semicolon `;`.
+
+![function anatomy](figures/function-anatomy/function-anatomy.001.png)
 
 You also see that the line that starts with `return` is indented.  We use indentation extensively to indicate the body of a block.  Since we can have nested blocks, indentation makes our code easier to read and understand.
 
 The words `int` and `return` that appear above are _keywords_ defined in the C programming language, and they are reserved for the special meaning that they represent (a type and a command to return a value from a function).  We cannot repurpose keywords in C.  For instance, we cannot introduce a variable called `int`.
 
+## Your First C Program
+
 We are now ready to write our first C program.  The first program computes the square of the hypotenuse of a right-angled triangle with a base of 4 and a height of 3.
 
-```C
+```C title="Calculating the hypotenuse of a triangle with base 4 and height 3."
 int square(int x)
 {
   return x * x;
@@ -78,7 +82,7 @@ int main()
 
 `main` returns an integer of type `int` to the operating system, to signal to the operating system whether the program exits successfully or not.  In this case, we always return `0` (success) assuming that nothing goes wrong for simplicity.  This is the second example where you see the keyword `return` in action.
 
-In modern C, the main always returns 0 when it exits.  So, we will skip this statement `return 0;` from now on.
+In modern C, the `main` function always returns 0 when it exits.  So, we will skip this statement `return 0;` from the `main` function from now on.
 
 ### Variable Declaration
 
@@ -90,15 +94,17 @@ int hypotenuse_square;
 
 This is a declaration statement (terminated with a semicolon, again).  Each statement declares a variable with its corresponding type (`int` here).  We gave each variable a name, here we call the variable `hypotenuse_square`.
 
-_All variables must be declared with its corresponding type before used in C_.  What declaration does is that it causes a slot in the computing device memory to be reserved for the value of this variable.  The type indicates how many bits should be reserved (i.e., how big should the slot be).
+We have said in [Unit 2](02-algo.md) that a variable is a location in memory that holds a value.  There are two main approaches to access this value.  The first is through the address of the memory location.  We will examine this way of accessing a value in great details in [Unit 15](15-pointers.md).  The second approach, which is much more direct and convenient, is to give this location a descriptive variable name, and access the value through its name.  The latter approach is what we will use most of the time.
+
+_All variables must be declared with its corresponding type before used in C_.  Indicating the type during declaration lets the computing device running the program knows how much memory should be reserved for the value of this variable, and subsequently, how to interpret the binary sequence stored associated with this variable. 
 
 Each declaration is valid only within the _scope_ of its declaration.  A variable is only visible within the innermost block that encloses the declaration, as specified by the `{` and `}`.
 
 In the example above, the variable `hypotenuse_square` is visible only in the body of `main`, but not in the body of `square`.
 
-We cannot redeclare the same variable (i.e., with the same name), with the same type or otherwise, within the same scope.  Two variables in different blocks, however, are allowed to have the same name.
+We cannot re-declare the same variable (i.e., with the same name), with the same type or otherwise, within the same scope.  Two variables in different blocks, however, are allowed to have the same name.
 
-```C
+```C title="Example of variable REdeclaration."
 int main()
 {
   int hypotenuse_square;
@@ -109,11 +115,11 @@ int main()
 }
 ```
 
-The example above would lead to an error on Line 7.
+Compiling the code above would lead to an error on Line 7.
 
-The C language allows the declaration of a variable outside of any block.  In this case, the scope of the variable is the entire file -- which means that the variable can be accessed and modified from anywhere in the code.  Such a variable is called _global variable_.
+The C language allows the declaration of a variable outside any block.  In this case, the scope of the variable is the entire file -- which means that the variable can be accessed and modified from anywhere in the code.  Such a variable is called _global variable_.
 
-```C
+```C title="Example of a global variable"
 int square(int x)
 {
   return x * x;
@@ -128,13 +134,13 @@ int main()
 }
 ```
 
-While C allows global variables to be declared and used.  The use of global variables is _banned_ in CS1010.  CS1010 allows only a subset of C to be used.  Particularly, C features that are common pitfalls for beginners and bug-prone are banned.  This is so that we can focus this module on problem-solving techniques, rather than the idiosyncrasy of C.
+While C allows global variables to be declared and used, the use of global variables is _banned_ in CS1010.  CS1010 allows only a subset of C to be used.  Particularly, C features that are common pitfalls for beginners and bug-prone are banned.  This is so that we can focus this module on problem-solving techniques, rather than the idiosyncrasy of C.
 
 ### Function Declaration
 
-In C, a function must be either defined or declared before used as well.  In the example above, we define `square` before `main`.  If we switch the order of the two, the compiler will complain.  Unless we declare the function first.  Declaring a function means that we simply state the return type, the name, and the parameters, _without_ the body.  Here is an example:
+In C, a function must be either defined or declared before used as well.  In the example above, we define `square` before `main`.  If we switch the order of the two, the compiler will complain,  unless we declare the function first.  Declaring a function means that we simply state the return type, the name, and the parameters, _without_ the body.  Here is an example:
 
-```C
+```C title="Declaring a function square before its use and its definition"
 int square(int x); // declaring the function square
 
 int main()
@@ -149,7 +155,6 @@ int square(int x)  // defining the function square
 {
   return x * x;
 }
-
 ```
 
 ### Assignment Statement
@@ -163,7 +168,7 @@ The next line of the code shows an example of an assignment statement.
 An assignment operator takes the form of:
 
 ```C
-  left_hand_side = right_hand_side;
+left_hand_side = right_hand_side;
 ```
 
 The `left_hand_side` must be the name of a variable.  We first evaluate the `right_hand_side` of the assignment statement, find its value, then assign the value to the variable named on the `left_hand_side`.  Essentially, this step updates the bits in the memory location reserved for the variable `left_hand_side` to the given value.
@@ -203,7 +208,7 @@ double sqrt(double x);
 
 The `sqrt` function returns a `double` precision real number.  We can now modify the program above to the following:
 
-```C
+```C title="Declaring a function defined externally"
 double sqrt(double x); // not recommended
 
 long square(long x)
@@ -224,7 +229,7 @@ int main()
 
 Note that the first line declares the function `sqrt` because we need to declare a function before it is used.  Since `sqrt` is pre-defined elsewhere, we do not have to supply the function body here.  Such practice of declaring a predefined function ourselves, however, is not recommended.  Different platforms, compilers, libraries, may provide a different specification for the same function.  As such, it is better to use the declaration from the library that provides the predefined function itself.  A library usually provides one or more _header files_, a set of files that contain function declarations, type definitions, and constant definitions.  In the case of `sqrt`, its declaration is contained in a header file called `math.h` (which we found out through consulting the `man` pages).  To include this file, you add the line `#include <math.h>` at the top of the program.
 
-```C
+```C title="Including header files for declaration of external functions"
 #include <math.h>
 
 long square(long x)
@@ -243,8 +248,6 @@ int main()
 }
 ```
 
-You might notice the same line appear in the man page for `sqrt`.  Thus, the man pages tell us which header file to include if you want to use a certain function.
-
 !!! tips "File Extension"
     The convention for file extension for a C program is `.c` and for a C header file is `.h`.  Even though you are allowed to name the files with any extension you like, you should stick to the convention so that it is clear to other tools/programmers what is the purpose of each file.
 
@@ -252,7 +255,7 @@ You might notice the same line appear in the man page for `sqrt`.  Thus, the man
 
 An `int` variable is usually 32-bits long.  If we only need 16 bits, we use the type `short int`, or just `short`.  If we only need 8-bits, we use the type `char` (short for character).
 
-Note that in the above, I said an `int` is _usually_ 32 bits.  Remember (from [Unit 1](01-program) that a C program gets compiled into machine code for a specific CPU architecture.  The C standard only guarantees that an `int` is at least 16 bits.  Although most C compilers compile `int` to 32 bits, there is no guarantee!    
+Note that the above said an `int` is _usually_ 32 bits.  Remember (from [Unit 1](01-program)) that a C program gets compiled into machine code for a specific CPU architecture.  The C language standard only guarantees that an `int` is at least 16 bits.  Although most C compilers compile `int` to 32 bits, there is no guarantee!    
 
 If we need something more than an `int`, we can use `long int`, or just `long`.  The C standard guarantees that a `long` is at least 32 bits.  Depending on the implementation, it sometimes compiled to 32-bits, sometimes 64-bits.  To get even longer, we can use the type `long long int`, or just `long long`, which is guaranteed to be at least 64 bits[^1].
 
@@ -262,16 +265,16 @@ We have seen earlier that interpreting the same sequence of bits as signed or un
 
 For instance, since we know that `square` can only return a non-zero integer, we can declare it as:
 
-```C
+```C title="Redefining square with unsigned return type"
 unsigned long square(long x)
 {
   return x * x;
 }
 ```
 
-For most practical purposes in CS1010, a (signed) `long` suffices.  We introduce the notion of `signed` vs. `unsigned` for your information so that you know what they are when you come across them in other source code.  Mixing `signed` and `unsigned` can lead to subtle bugs in your code.  As such, _we will only use signed `long` for CS1010_.  You may choose to use them appropriately in another context, especially for an embedded system or low-level programming.
+For most practical purposes in CS1010, a (signed) `long` suffices.  We introduce the notion of `signed` vs. `unsigned` for your information so that you know what they are when you come across them in other scenarios.  _Mixing `signed` and `unsigned` can lead to subtle bugs in your code._  As such, we will avoid mixing them as much as we can, and _we will use signed `long` by default_ for CS1010.  You may choose to use them appropriately in another context, especially for an embedded system or low-level programming.
 
-In CS1010, we will only use `long` and `double` to represent integers and floating-point numbers.  Again, this is to allow us to focus on problem-solving techniques rather than on issues related to precision.  The only place we should use other types is if the functions that we use requires it (e.g., `main` must return `int` so we have no choice there).
+In CS1010, we will only use `long` and `double` to represent integers and floating-point numbers.  Again, this is to allow us to focus on problem-solving techniques rather than on issues related to precision.  The only place we should use other types is if the functions that we use requires it (e.g., `main` must return `int`, so we have no choice there).
 
 !!! note "Unsigned Real Numbers?"
 
