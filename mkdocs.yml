@@ -16,7 +16,7 @@ nav:
     - Vim:
       - Philosophy: "vim-philosophy.md"
       - Setup: "vim-setup.md"
-      - Quick Lesson: "vim-lessons.md"
+      - Quick Lesson: "vim-quick-lessons.md"
       - Tips: "vim-tips.md"
     - Programming Environments: "environments.md"
     - Linking GitHub to PE: "github.md"
