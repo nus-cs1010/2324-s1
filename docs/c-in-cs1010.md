@@ -1,14 +1,14 @@
 # C in CS1010
 
-C is a simple and flexible language, providing programmers with many different ways to achieve the same thing.
+C is a simple and flexible language, providing programmers with many ways to achieve the same thing.
 
 Some of these features that C provides, however, could be bug-prone.  Wei Tsang has written enough buggy programs himself and seen enough buggy programs from students.  He feels that some of these features from C are not useful for beginners (or even seasoned programmers).
 
-Furthermore, some features in C simply encourages bad programming habits that are widely frowned upon.  Some would lead to insecure programs.  
+Furthermore, some features in C simply encourage bad programming habits that are widely frowned upon.  Some would lead to insecure programs.  
 
 As such, in CS1010, we _ban_ and _discourage_ the use of certain operators, functions, constructs, and features in C.
 
-This article summarizes this list.  This is a work in progress article. As we learn more about C, we will amend this list.
+This article summarizes this list.  
 
 ## Banned in CS1010
 
@@ -27,7 +27,7 @@ The banned items should not be used in CS1010.  Students should use alternatives
 
 #### Why?
 - Could lead to dangling `else` confusion
-- Easy to forget to put back the `{}` pair if the body is modified beyond a single statements
+- Easy to forget to put back the `{}` pair if the body is modified beyond a single statement
 
 #### What should be used instead?
 - Always use `{}` even if the conditional or loop body contains only a single statement.
@@ -58,7 +58,7 @@ f();
 #### What should be used instead
 - Declare the variables as local, automatic variables, and pass them around.
 
-### 5. The type `int` and `short`
+### 5. Using `int` and `short`
 
 #### Why?
 - C standard guarantees that both `short` and `int` are at least 16 bits, which limits its guaranteed range to only -32,768 to 32,767.  This is too small for many purposes.
@@ -68,20 +68,20 @@ f();
 - `long`, which is guaranteed to be at least 32 bits.
 
 #### Exception
-- If a function from C library calls for the use of `int` and offers no `long` alternative, then we have to use `int`.
+- If a function from a C library calls for the use of `int` and offers no `long` alternative, then we have to use `int`.
 
 ### 6. The type `float`
 
 #### Why?
-- Not enough precision and will cause floating-point errors.
+- Not enough precision.  It will cause floating-point errors.
 
 #### What should be used instead
 - `double`
 
 #### Exception
-- If a function from C library calls for the use of `float` and offers no `double` alternative, then we have to use `float`.
+- If a function from a C library calls for the use of `float` and offers no `double` alternative, then we have to use `float`.
 
-### 7. Using integer values for true / false
+### 7. Using integer values for true/false
 
 #### Why?
 - Confusing and error-prone
@@ -109,7 +109,7 @@ These are things that are not strictly banned, but their usage is discouraged.  
 - Using the wrong format modifier for `printf` could lead to strange results
 - Using the wrong format modifier for `scanf` could lead to memory corruption
 - Need to look up what is the right format modifier to use
-- Need to preallocate memory for `scanf` of strings
+- Need to pre-allocate memory for `scanf` of strings
 - `scanf` is not secure
 - `scanf` is not a pure function.  Prefers students to learn about the concept of pure functions first.
 - etc. etc.
