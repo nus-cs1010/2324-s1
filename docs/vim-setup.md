@@ -7,14 +7,14 @@ For `vim`, the `rc` file is called `.vimrc`.  The `.` in the front of the file n
 $ ls -a
 ```
 
-We have created a `.vimrc` file, with CS2030S defaults, for your use.  This is the basis which you can built on. 
+We have created a `.vimrc` file, with CS1010 defaults, for your use.  This is the basis on which you can build on. 
 
 To copy this file to your home directory on the PE nodes,
 ```
-$ cp ~cs2030s/.vimrc ~
+$ cp ~cs1010/.vimrc ~
 ```
 
-You can ask `vim` to automatically backup files that you edit.  This has been a lifesaver for me on multiple occasions.
+You can ask `vim` to automatically back up the files that you edit.  This has been a lifesaver for me on multiple occasions.
 
 The default `.vimrc` contains the following two lines:
 
