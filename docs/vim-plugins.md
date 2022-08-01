@@ -12,11 +12,11 @@ Note that for your labs, you are free to install any plugins you find useful.
 
 ## Color Schemes
 
-We have installed the [Sweeter-than-Fiction](https://vimawesome.com/plugin/vim-colorschemes-sweeter-than-fiction) colorscheme bundle under `~cs2030s/.vim/colors`.
+We have installed the [Sweeter-than-Fiction](https://vimawesome.com/plugin/vim-colorschemes-sweeter-than-fiction) colorscheme bundle under `~cs1010/.vim/colors`.
 
 To use this, run
 ```
-ln -s ~cs2030s/.vim/vim-colorschemes/colors ~/.vim/colors
+ln -s ~cs1010/.vim/vim-colorschemes/colors ~/.vim/colors
 ```
 
 After that, your can change your vim color scheme as usual. 
@@ -24,17 +24,17 @@ After that, your can change your vim color scheme as usual.
 :color gruvbox
 ```
 
-The bundle includes some of the popularly requested color schemes, such as `monokai`, `solarized`, and `gruvbox`
+The bundle includes some popularly requested color schemes, such as `monokai`, `solarized`, and `gruvbox`
 
 ## Approved Plugins
 
 ### DelimitMate
 
-`DelimitMate` is a plugin that automatically inserts a closing `}`, `)`, `>`, etc when you type the opening symbol.
+`DelimitMate` is a plugin that automatically inserts a closing `}`, `)`, `>`, etc. when you type the opening symbol.
 
 To install this plugin in the exam environment, run
 ```
-ln -s ~cs2030s/.vim/vim-plugins/delimitMate ~/.vim/pack/plugins/start
+ln -s ~cs1010/.vim/vim-plugins/delimitMate ~/.vim/pack/plugins/start
 ```
 
 ### Vim-Rainbow
@@ -43,7 +43,7 @@ ln -s ~cs2030s/.vim/vim-plugins/delimitMate ~/.vim/pack/plugins/start
 
 To install this plugin in the exam environment, run
 ```
-ln -s ~cs2030s/.vim/vim-plugins/vim-rainbow ~/.vim/pack/plugins/start
+ln -s ~cs1010/.vim/vim-plugins/vim-rainbow ~/.vim/pack/plugins/start
 ```
 
 The following line will be added on your `~/.vimrc` in the environment:
@@ -58,7 +58,7 @@ NERDTree provides a file browsing pane on the left (activated with `:NERDTree`).
 
 To install this plugin in the exam environment, run
 ```
-ln -s ~cs2030s/.vim/vim-plugins/nerdtree ~/.vim/pack/plugins/start
+ln -s ~cs1010/.vim/vim-plugins/nerdtree ~/.vim/pack/plugins/start
 ```
 
 ### Lightline
@@ -67,7 +67,7 @@ Lightline provides a more useful status line for `vim`.
 
 To install this plugin in the exam environment, run
 ```
-ln -s ~cs2030s/.vim/vim-plugins/lightline ~/.vim/pack/plugins/start
+ln -s ~cs1010/.vim/vim-plugins/lightline ~/.vim/pack/plugins/start
 ```
 
 ## Unavailable Plugins

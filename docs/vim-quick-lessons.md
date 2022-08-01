@@ -15,7 +15,7 @@ The file named `jfk.txt` should be downloaded.  Now let's start your first `vim`
 $ vim jfk.txt
 ```
 
-When you start, you will be in `NORMAL` mode.  For now, just move around the cursor with ++h++ ++j++ ++k++ ++l++.  Get comfortable with using the keys.
+When you start, you will be in `NORMAL` mode.  For now, just move around the cursor with ++h++ ++j++ ++k++ ++l++.  Get comfortable using the keys.
 
 Next, try ++parenthesis-left++ and ++parenthesis-right++ to move forward and backward, sentence-by-sentence.
 
@@ -27,7 +27,7 @@ Use ++g+g++ to jump to the beginning of the file, and ++shift+g++ (`G`) to jump 
 
 Now try ++slash++, type in any word (or prefix of a word) and ++enter++.  This should move the cursor to the beginning of the word.  You can use ++n++ and ++shift+n++ to move to the next match and the previous match.
 
-When you are comfortable with moving around, you can ++shift+z+z++ to exit.
+When you are comfortable moving around, you can ++shift+z+z++ to exit.
 
 Congratulations, you have just completed your first session in `vim`!
 
@@ -49,7 +49,7 @@ In `vim`, repeating the same command twice usually means applying it to the whol
 
 Pairing a command with ++shift++ (or the capital letter version) usually means applying the action until the end of the line.  So ++shift+d++ deletes from the current cursor until the end of the line.
 
-### Copy Pasting
+### Copy-Pasting
 
 Hit ++p++ to paste back what you just deleted.  Try moving the cursor to somewhere else and paste.
 
@@ -57,7 +57,7 @@ To copy (or yank) the current line, hit ++y++ ++y++.
 
 Remember that all these commands can be composed using the movement-action-movement pattern.  For instance, ++shift+9++ ++y++ ++shift+0++, which corresponds to: move to the beginning of the sentence, yank, and until the end of the sentence, basically copy the current sentence.
 
-As you have seen in the ++d++ ++2++ ++w++ example, you can preceed an action with a number to repeat an action multiple times.
+As you have seen in the ++d++ ++2++ ++w++ example, you can precede an action with a number to repeat an action multiple times.
 
 Try ++y++ ++y++ ++9++ ++p++.  You should be able to understand what just happened!
 
@@ -98,7 +98,7 @@ But, let's try the following:
 
 `!fmt` tells `vim` to invoke the shell and run `fmt`.  `fmt` is another simple small Unix utility that takes in a text (from standard input) and spews out formatted text in the standard output.  You will see that the width of the text has changed to the default of 65.
 
-You can try something that we have seen before.  Reselect the text, and hit
+You can try something that we have seen before.  Select the text again, and hit
 ```
 :'<,'>!wc
 ```
@@ -109,7 +109,7 @@ The selected text will be replaced with the output from `wc`.
 
 You have seen examples of `:` commands for writing to a file or piping selected text to an external command.
 
-The `:` command also opens up a large number of actions you can do in `vim`.  Here are a few essential yet simple commands.
+The `:` command also enables many actions that you can do in `vim`.  Here are a few essential yet simple commands.
 
 - To jump to a line, hit ++colon++ followed by the line number.
 - To open another file, hit ++colon++ and then type in `e <filename>`
@@ -121,7 +121,7 @@ The `:` command prompt supports ++control+p++ and ++control+n++ for navigating b
 
 ## Lesson 3: Insert mode!
 
-Finally, we are going to try inserting some text.  Remember, to use `INSERT` mode, we always start with a command ++i++ ++a++ ++o++ or ++s++ (may paired with ++shift++) followed by the text that
+Finally, we are going to try inserting some text.  Remember, to use `INSERT` mode, we always start with a command ++i++ ++a++ ++o++ or ++s++ (may pair with ++shift++) followed by the text that
 you want to insert, followed by ++esc++.
 
 Let's try ++i++ (insert).  Place your cursor anywhere, hit ++i++, and start typing, when you are done.  Hit ++esc++.

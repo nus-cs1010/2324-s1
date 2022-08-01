@@ -1,7 +1,6 @@
 # Vim Tips
 
-I collected some tips on `vim` that I find helpful.  If you are new to `vim`, please try out the command `vimtutor` on any machine where `vim` is installed, and check out the nice article [Learn vim Progressively](
-http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/).  
+I collected some tips on `vim` that I find helpful.  If you are new to `vim`, please try out the command `vimtutor` on any machine where `vim` is installed, and check out the nice article [Learn vim Progressively](http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/).  
 
 ## 1. Useful Configuration
 

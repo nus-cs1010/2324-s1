@@ -1,7 +1,6 @@
-# Vim Tips for CS2030S
+# Vim Tips for CS1010
 
-I collected some tips on `vim` that I find helpful.  If you are new to `vim`, please try out the command `vimtutor` on any machine where `vim` is installed, and check out the nice article [Learn vim Progressively](
-http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/).  
+I collected some tips on `vim` that I find helpful.  If you are new to `vim`, please try out the command `vimtutor` on any machine where `vim` is installed, and check out the nice article [Learn vim Progressively](http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/).  
 
 ## 1. Useful Configuration
 
@@ -17,7 +16,7 @@ In `vim,` the command `:help <topic>` shows help about a particular topic in `vi
 
 ### Syntax Highlighting
 
-If for some reasons, syntax highlighting is not on by default, add this to your `~/.vimrc`:
+If for some reason, syntax highlighting is not on by default, add this to your `~/.vimrc`:
 
 ```
 syntax on
@@ -25,13 +24,13 @@ syntax on
 
 ### Ruler and Numbers
 
-If you prefer to show the line number you are on and the column number you are on, adding the commands to `~/.vimrc`
+If you prefer to show the line number you are on and the column number you are on, add the commands to `~/.vimrc`
 
 ```
 set ruler
 ```
 
-will display the line number and the column number on the lower right corner.  
+will display the line number and the column number in the lower right corner.  
 
 You can also add
 ```
@@ -95,7 +94,7 @@ Since we are on the topic of correcting mistakes, ++u++ in command mode undo you
 - ++d++++w++ delete the current word
 - ++y++++w++ yank the current word (copy word into buffer)
 
-Can you guess what each of these do:
+Can you guess what each of these does:
 
 - ++d++++f++++shift+0++ 
 - ++d++++f++++shift+0++ 
@@ -166,7 +165,7 @@ You can use this to compile your current file, without exiting `vim`.
 :!make
 ```
 
-`make` is actually a builtin command for `vim` so you can also simply run
+`make` is a builtin command for `vim`, so you can also simply run
 
 ```
 :make
@@ -184,7 +183,7 @@ Now, when you type `pl `, it will be expanded into `cs1010_print_long(`
 
 ### Auto-Completion
 
-You can use ++control+p++ or ++control+n++ to auto-complete.  By default, the autocomplete dictionary is based on the text in your current editing buffers.  This is a very useful keystroke saver for long function and variable names.
+You can use ++control+p++ or ++control+n++ to auto-complete.  By default, the autocomplete dictionary is based on the text in your current editing buffers.  This is a very useful keystroke saver for long function names and variable names.
 
 ### Auto-Indent the Whole File
 
@@ -221,7 +220,7 @@ After that, your can change your vim color scheme as usual.  For instance,
 
 You can add the line `color gruvbox` to your `~/.vimrc` so that the color scheme is loaded at the start of every vim session.
 
-The bundle includes some of the popular color schemes among students, such as `molokai`, `solarized`, and `gruvbox`.   Some color schemes display differently depending on whether the background is set to `dark` or `light`
+The bundle includes some popular color schemes among students, such as `molokai`, `solarized`, and `gruvbox`.   Some color schemes display differently depending on whether the background is set to `dark` or `light`
 
 Some examples, with `set background=dark` in `~/.vimrc`:
 
@@ -239,7 +238,7 @@ The gruvbox color scheme
 
 ## 6. Recovery Files
 
-Vim automatically saves the files you are editing into temporary _swap_ files, with extension `.swp`.  These files are hidden so you don't normally see them when you run `ls`.  (You need to run `ls -a` to view the hidden files)
+Vim automatically saves the files you are editing into temporary _swap_ files, with the extension `.swp`.  These files are hidden, so you don't normally see them when you run `ls`.  (You need to run `ls -a` to view the hidden files)
 
 The swap files are useful if your editing session is disrupted before you save (e.g., the network is disconnected, you accidentally close the terminal, your OS crashes, etc.).
 
@@ -247,10 +246,10 @@ When you launch `vim` to edit a file, say, `foo.c`.  `vim` will check if a swap 
 
 ```
 Found a swap file by the name ".foo.c.swp"
-		  owned by: elsa   dated: Sat Aug 21 15:01:04 2021
-		 file name: ~elsa/foo.c
+          owned by: elsa   dated: Sat Aug 21 15:01:04 2021
+         file name: ~elsa/foo.c
           modified: no
-		 user name: elsa   host name: pe116
+         user name: elsa   host name: pe116
         process ID: 7863 (STILL RUNNING)
 While opening file "foo.c"
              dated: Mon Jul 12 18:38:37 2021
@@ -268,19 +267,19 @@ Swap file ".a.c.swp" already exists!
 [O]pen Read-Only, (E)dit anyway, (R)ecover, (Q)uit, (A)bort:
 ```
 
-The messages above is self-explanatory.  Read it carefully.  Most of the time, you want to choose "R" to recover your edits, so that you can continue editing.  Remember to remove the file `.foo.c.swp` after you have recovered.  Otherwise `vim` will prompt you the above messages every time you edit `foo.c`.
+The messages above are self-explanatory.  Read it carefully.  Most of the time, you want to choose "R" to recover your edits, so that you can continue editing.  Remember to remove the file `.foo.c.swp` after you have recovered.  Otherwise, `vim` will prompt you the above messages every time you edit `foo.c`.
 
-Warning: if `foo.c` is newer than the state saved in `.foo.c.swp`, and you recover from `.foo.c.swp`, you will revert back to the state of the file as saved in the swap file.  This can happen if (i) you edit the file without recovery, or (ii) you recover the file, continue editing, but did not remove the `.foo.c.swp` file after.
+Warning: if `foo.c` is newer than the state saved in `.foo.c.swp`, and you recover from `.foo.c.swp`, you will revert to the state of the file as saved in the swap file.  This can happen if (i) you edit the file without recovery, or (ii) you recover the file, continue editing, but did not remove the `.foo.c.swp` file after.
 
 ## Learning More
 
-To learn more about `vim`, we suggest that you run `vimtutor` on the command line and follow through the tutorials.
+To learn more about `vim`, we suggest that you run `vimtutor` on the command line and follow through with the tutorials.
 
 You can always `:help <keywords>` to search for the built-in help pages within `vim`.
 
-Once you are comfortable, you can soup up your `vim` with [various plugins](vim-plugins.md) and learn how to use advanced commands (such as recording macros, folding) that are invaluable for programming.
+Once you are comfortable, you can soup up your `vim` with [various plugins](vim-plugins.md) and learn how to use advanced commands (such as recording macros, and folding) that are invaluable for programming.
 
-There are also many video tutorials and resources online, in addition to the [introduction to vim](https://mediaweb.ap.panopto.com/Panopto/Pages/Viewer.aspx?id=85be23af-8b65-4d5f-a164-acaa001edc74) by Yong Qi that we have shared earlier, some interesting ones are:
+There are also many video tutorials and resources online.  Some interesting ones are:
 
 - [Vim: Precision Editing at the Speed of Thought](https://vimeo.com/53144573): A talk by Drew Neil
 - [Vim Adventure](https://www.vim-adventures.com): An adventure game for learning `vim`
