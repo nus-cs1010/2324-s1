@@ -28,7 +28,7 @@ set backupdir=~/.backup
 This causes `vim` to save the previous version of every file you edited in a backup directory at location `~/.backup`.  You need to create this directory, however, by
 
 ```Bash
-$ mkdir ~/.backup
+$ mkdir -p ~/.backup
 ```
 
 Now, if you made changes to a file that you regretted, or if you accidentally deleted a file, you can check under `~/.backup` to see if the backup can save you.
@@ -37,10 +37,11 @@ Now, if you made changes to a file that you regretted, or if you accidentally de
 
 CS1010 provides a minimal set of vim extensions by default for your labs and practical exams.  See the article on [vim plugins](vim-plugins.md) for details.  
 
-Additional vim extensions are installed under `~/.vim`
-
-To install the same set of extensions, you can copy the `.vim` to your home directory.  On the PE host.
+Additional vim extensions are installed under `~/.vim`.  To install this "official" CS1010 vim extensions, you can copy the `.vim` from cs1010's home directory to your home directory.  On the PE host, run:
 
 ```Bash
-cp -r ~cs1010/.vim ~
+mkdir -p ~/.vim
+cp -r ~cs1010/.vim/* ~/.vim
 ```
+
+You can test out the different color schemes according to the [instructions](vim-plugins.md) to check if you have set up the plugins correctly.

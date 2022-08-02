@@ -17,28 +17,30 @@ While it is possible for you to complete the programming assignments on your own
 
 ## Basic Requirements
 
-1. You need to have an SoC UNIX account.  If you do not have one, you can [apply for one online](https://mysoc.nus.edu.sg/~newacct/).
+1. You need to have an SoC Unix account.  If you do not have one, you can [apply for one online](https://mysoc.nus.edu.sg/~newacct/).
 
 2. Once you have an account, you need to [activate your access to the PE hosts](https://mysoc.nus.edu.sg/~myacct/services.cgi), which are part of the SoC computer clusters.
 
 3. You need a command line `ssh` client.  Windows 10/11, macOS, and Linux users should already have `ssh` installed by default.  If your OS does come with `ssh` (i.e., it cannot find the `ssh` command when you type `ssh` into your terminal), look for instructions on how to install OpenSSH client on your operating system.
 
+4. You need a [terminal emulator](unix-background.md#what-is-a-terminal).  The default terminal emulator that comes with Windows and Mac supports only basic features.  For Windows 10/11 users, CS1010 recommends installing [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/).  For macOS users, CS1010 recommends [iTerm2](https://iterm2.com/).
+
 For older versions of Windows, such as those used in the SoC's programming labs, you can check out [XShell 6](https://www.netsarang.com/products/xsh_overview.html) (free for home/school use), or [PuTTY](https://www.putty.org).  These are GUI-based programs so the command lines instructions below do not apply.
 
 ## The Command to SSH
 
-To connect to a remote host, run
+To connect to a remote host, run the following in your terminal on your local computer:
 ```
 ssh <username>@<hostname>
 ```
 
-Replace `<username>` with your SoC UNIX username and `<hostname>` with the name of the host you want to connect to. For instance, I would do:
+Replace `<username>` with your SoC Unix username and `<hostname>` with the name of the host you want to connect to. For instance, I would do:
 ```
 ssh ooiwt@pe112.comp.nus.edu.sg
 ```
 if I want to connect to `pe112.comp.nus.edu.sg`.
 
-After the command above, follow the instructions on the screen.  The first time you ever connect to `pe112.comp.nus.edu.sg`, you will be warned that you are connecting to a previously unknown host.  Answer `yes`.  After that, you will be prompted with your SoC UNIX password.  Note that nothing is shown on the screen when your password is being entered.
+After the command above, follow the instructions on the screen.  The first time you ever connect to `pe112.comp.nus.edu.sg`, you will be warned that you are connecting to a previously unknown host.  Answer `yes`.  After that, you will be prompted with your SoC Unix password.  Note that nothing is shown on the screen when your password is being entered.
 
 <script id="asciicast-4rtH1KENV6QOdKtlY0T7mce0M" src="https://asciinema.org/a/4rtH1KENV6QOdKtlY0T7mce0M.js" async></script>
 
@@ -51,6 +53,31 @@ First, you need to set up a Virtual Private Network (VPN) (See [instructions her
 !!! note "SoC VPN vs NUS VPN"
 
     Note that SoC VPN is different from NUS VPN.  Connecting to NUS VPN only allows you access to the NUS internal network, but not the SoC internal network.
+
+## Copying Files between PE Nodes and Local Computer
+
+Secure copy, or `scp`, is one way to transfer files between the programming environments and your local computer.   `scp` behaves just like `cp` (see [Unix: Essentials](unix-essentials.md)).  The command takes in two arguments, the source and the destination.   The difference is that we use the `<username>@<hostname>:<filename>` notation to specify a file on a remote host.  
+
+Let's say you want to transfer a set of C files from the directory `a01` to your local computer, then, on your local computer.  You run:
+
+```bash
+ooiwt@macbook:~$ scp ooiwt@pe111.comp.nus.edu.sg:~/a01/*.c .
+```
+
+!!! warning
+    If you have files with the same name in the remote directory, the files will be overwritten without warning.  I have lost my code a few times due to `scp`.  
+
+The expression `*.c` is a regular expression that means all files with filename ending with `.c` (see [Advanced Topics on Unix](unix-advances.md)).
+You can copy specific files as well.  For instance, to copy the file `hello.c` from your local computer to your `~/a01` directory:
+
+```bash
+ooiwt@macbook:~$ scp hello.c ooiwt@pe111.comp.nus.edu.sg:~/a01
+```
+
+`scp` supports `-r` (recursive copy) as well.
+
+Note that we always run `scp` on your local computer in the examples above, since the SSH server runs on the PE node.
+
 ## Setting up SSH Keys
 
 The next step is not required but is a time-saver and a huge quality-of-life improvement.  You need to be familiar with basic Unix commands, including how to copy files to remote hosts (using `scp`) and how to check/change file permissions (using `ls -l` and `chmod`).  If you are still not comfortable with these commands, make sure you play with the [basic Unix commands](unix.md) first.  You can come back and complete this step later. 
@@ -94,7 +121,7 @@ and you get the following error:
 3. `Permission denied, please try again`
 
     You did not enter the correct password or username.  Please use the username and password 
-of your SoC UNIX account which you have created here: https://mysoc.nus.edu.sg/~newacct/.
+of your SoC Unix account which you have created here: https://mysoc.nus.edu.sg/~newacct/.
 
     Check that you have entered your username correctly.  It is _case-sensitive_.
 
