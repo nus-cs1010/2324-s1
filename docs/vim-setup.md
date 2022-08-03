@@ -2,14 +2,14 @@
 
 ## Vim Configuration
 
-Like many other Unix programs, you can configure your preferences by creating an `rc` (run commands) file in your home directory.  These `rc` files will be read by the corresponding programs and executed line-by-line as if the text is entered into the program through a keyboard.  You can view these `rc` as a script that will be executed automatically whenever a program starts.
+Like many other Unix programs, you can configure your preferences by creating an `rc` (run commands) file in your home directory.  These `rc` files will be read by the corresponding programs and executed line-by-line as if the text is entered into the program through a keyboard.  You can view an `rc` file as a script that will be executed automatically whenever a program starts.
 
 For `vim`, the `rc` file is called `.vimrc`.  The `.` in the front of the file name carries a special meaning in Unix.  It means that this file is hidden -- you won't see it when you `ls`.  Hiding the run command files prevent your home directory from being cluttered.  To tell `ls` to show the hidden files, use the `-a` flag
 ```Bash
 $ ls -a
 ```
 
-We have created a `.vimrc` file, with CS1010 defaults, for your use.  This is the basis on which you can build on. 
+We have created a `.vimrc` file, with CS1010 defaults, for your use.  This is the basis upon which you can build. 
 
 To copy this file to your home directory on the PE nodes,
 ```Bash
@@ -37,7 +37,7 @@ Now, if you made changes to a file that you regretted, or if you accidentally de
 
 CS1010 provides a minimal set of vim extensions by default for your labs and practical exams.  See the article on [vim plugins](vim-plugins.md) for details.  
 
-Additional vim extensions are installed under `~/.vim`.  To install this "official" CS1010 vim extensions, you can copy the `.vim` from cs1010's home directory to your home directory.  On the PE host, run:
+Additional vim extensions are installed under `~/.vim`.  To install these "official" CS1010 vim extensions, you can copy the `.vim` from cs1010's home directory to your home directory.  On the PE host, run:
 
 ```Bash
 mkdir -p ~/.vim

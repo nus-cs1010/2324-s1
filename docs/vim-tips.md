@@ -1,84 +1,57 @@
 # Vim Tips for CS1010
 
-I collected some tips on `vim` that I find helpful.  If you are new to `vim`, please try out the command `vimtutor` on any machine where `vim` is installed, and check out the nice article [Learn vim Progressively](http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/).  
+I collected some tips on `vim` that I find helpful for CS1010/CS2030 students. 
 
-In `vim,` you can always look up a particular topic or command with `:help <topic>`. Example, `:help backup`.
+Prerequisite: You have gone through the basic [quick lessons](vim-quick-lessons.md) and have [set up your vim](vim-setup.md) in your PE account.
 
 ## 1. Useful Configuration
 
-You can configure your `vim` by putting your configuration options and scripts in the `~/.vimrc` file (a hidden file named `.vimrc` in your home directory).  This file will be loaded whenever you start `vim`.
+### Showing Line Numbers
 
-You can copy a sample `.vimrc` file from `~cs1010/.vimrc` to your home directory. You can edit this file `~/.vimrc` just like any other file, using `vim`.
-
-### Syntax Highlighting
-
-If for some reason, syntax highlighting is not on by default, add this to your `~/.vimrc`:
-
-```
-syntax on
-```
-
-### Ruler and Numbers
-
-If you prefer to show the line number you are on and the column number you are on, add the commands to `~/.vimrc`
-
-```
-set ruler
-```
-
-will display the line number and the column number in the lower right corner.  
-
-You can also add
+If you prefer to show the line number on every line in `vim`, add
 ```
 set number
 ```
 
-to label each line with a line number.
+to your `~/.vimrc`.
 
-### Auto Indentation
+### Enabling True Colors
 
-Proper indentation is important to make your code readable (to yourself and others).  You should enable this in `vim` with:
-
+Not all terminal emulators support true colors.  Some limits themselves to 16 colors or 256 colors only.  To enable true colors, add
 ```
-set autoindent
-set smartindent
+set termguicolors
 ```
 
-Autoindent will cause the next line to have the same indentation as the previous line; while smartindent has some understanding of C-like syntax (such as recognizing `{` and `}`) and indent your code accordingly.  The size of the indentation is based on the setting `shiftwidth`.  For CS1010, please set it to either `2` or `4`:
-
-```
-set shiftwidth=2
-```
+to your `~/.vimrc`.
 
 ## 2. Navigation
 
-### Basic Navigation
+### Faster Navigation
 
-Use ++k++ and ++j++ keys to move up and down (just like Gmail and Facebook!).  ++h++ and ++l++ to move left and right.
+If you find yourselves typing too many ++h++++j++++k++++l++ to navigate around your code, check out the following shortcuts to navigate around:
 
-Other shortcuts (no need to memorize them now, just refer back when you feel like you are typing too many ++h++++j++++k++++l++ to see how you can navigate faster).
+To move word-by-word:
 
 - ++w++ jump to the beginning of the next word
 - ++b++ ump to the beginning of the previous word (reverse of `w`)
 - ++e++ jump to the end of the word (or next word when pressed again)
+
+To search:
+
 - ++f++ char: search forward in the line and sit on the next matching char
 - ++t++ char:  search forward in the line and sit on one space before the matching char
-- ++shift+4++ ($) jump to the end of line
-- ++0++ jump to the beginning of the line
-- ++shift+6++ (^) jump to the first non-blank character of the line
-- ++shift+5++ (%) jump between matching parentheses
-- ++control+d++ jump forward (Down) half page
-- ++control+f++ jump Forward one page
-- ++control+u++ jump backward (Up) half page
-- ++control+b++ jump Backward half page
 
-### Jumping to a Line
+++0++ would move you to the beginning of the line, but when coding, it is sometimes useful to jump to the first non-blank character instead.  To do so, use ++shift+6++ (^).
+
+In coding, we have many pairs of `[]`, `{}`, `()` and `<>`.  You can use ++shift+5++ (%) jump between matching parentheses.
+
+### Jump to a Line
 
 If the compiler tells you there is an error on Line $x$, you can issue `:<x>` to jump to Line $x$.  For instance, `:40` will go to Line 40.
 
 ## 3. Editing Operations
 
-### Undo
+### Undo and Redo
 
 Since we are on the topic of correcting mistakes, ++u++ in command mode undo your changes.  Prefix it with a number $n$ to undo $n$ times.  If you want to undo your undo, ++control+r++ will redo.
 
@@ -167,6 +140,15 @@ You can use this to compile your current file, without exiting `vim`.
 :make
 ```
 
+### Terminal
+
+You can open an interactive shell from within `vim` with:
+```
+:terminal
+```
+
+This command splits the window and add a terminal, within which you can compile or run your code.  
+
 ### Abbreviation
 
 You can use the command `ab` to abbreviate frequently typed commands.  E.g., in your `~/.vimrc`,
@@ -185,13 +167,21 @@ You can use ++control+p++ or ++control+n++ to auto-complete.  By default, the au
 
 You can ++g++++g++++equal++++shift+g++ in command mode (i.e., type out `gg=G`) to auto-indent the whole file.  ++g++++g++ is the command to go to the beginning of the file.  ++equal++ is the command to indent.  ++shift+g++ is the command to go to the end of the file.
 
-### Splitting `vim`'s Viewport
+### Split `vim`'s Viewport
 
 - `:sp file.c` splits the `vim` window horizontally
 - `:vsp file.c` splits the `vim` window vertically
 - ++control+w++++control+w++ moves between the different `vim` viewports
 
 Alternatively, run `vim -O file1 file2` to immediately open both files in two different viewpoints.
+
+### Compare two files
+
+You can compare two files with `vim`, using the `-d` flag.  For instance,
+
+`vim -d file1 file2`
+
+would open up two files for line-by-line comparison.  This is most useful if you want to compare the output of your program with the expected output.
 
 ## 5. Recovery Files
 
@@ -227,19 +217,3 @@ Swap file ".a.c.swp" already exists!
 The messages above are self-explanatory.  Read it carefully.  Most of the time, you want to choose "R" to recover your edits, so that you can continue editing.  Remember to remove the file `.foo.c.swp` after you have recovered.  Otherwise, `vim` will prompt you the above messages every time you edit `foo.c`.
 
 Warning: if `foo.c` is newer than the state saved in `.foo.c.swp`, and you recover from `.foo.c.swp`, you will revert to the state of the file as saved in the swap file.  This can happen if (i) you edit the file without recovery, or (ii) you recover the file, continue editing, but did not remove the `.foo.c.swp` file after.
-
-## Learning More
-
-To learn more about `vim`, we suggest that you run `vimtutor` on the command line and follow through with the tutorials.
-
-You can always `:help <keywords>` to search for the built-in help pages within `vim`.
-
-Once you are comfortable, you can soup up your `vim` with [various plugins](vim-plugins.md) and learn how to use advanced commands (such as recording macros, and folding) that are invaluable for programming.
-
-There are also many video tutorials and resources online.  Some interesting ones are:
-
-- [Vim: Precision Editing at the Speed of Thought](https://vimeo.com/53144573): A talk by Drew Neil
-- [Vim Adventure](https://www.vim-adventures.com): An adventure game for learning `vim`
-- [Vim Casts](http://vimcasts.org/episodes/archive/): Videos and articles for teaching `vim`
-- [Vim Video Tutorials](http://derekwyatt.org/vim/tutorials/) by Derek Wyatt
-- [Vim Awesome](https://vimawesome.com/): Directory of plugins.

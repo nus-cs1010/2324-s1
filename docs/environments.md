@@ -67,7 +67,7 @@ ooiwt@macbook:~$ scp ooiwt@pe111.comp.nus.edu.sg:~/a01/*.c .
 !!! warning
     If you have files with the same name in the remote directory, the files will be overwritten without warning.  I have lost my code a few times due to `scp`.  
 
-The expression `*.c` is a regular expression that means all files with filename ending with `.c` (see [Advanced Topics on Unix](unix-advances.md)).
+The expression `*.c` is a regular expression that means all files with filename ending with `.c` (see [Advanced Topics on Unix](unix-advanced.md)).
 You can copy specific files as well.  For instance, to copy the file `hello.c` from your local computer to your `~/a01` directory:
 
 ```bash

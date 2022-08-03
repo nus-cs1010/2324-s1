@@ -11,8 +11,9 @@ article p.admonition-title {
   color: black;
 }
 
-.md-typeset .grid.cards h4 {
+.md-typeset .grid.cards p {
   font-family: "Roboto";
+  font-size: 90%;
 }
 
 s {
