@@ -8,7 +8,7 @@ nav:
     - 5. First C Program: "05-first-c.md"
     - 6. CS1010 I/O: "06-cs1010-io.md"
     - 7. Arithmetic Operations: "07-arithmetic-ops.md"
-  - Guides: 
+  - Lab Guides: 
     - Unix:
       - Background: "unix-background.md"
       - Essentials: "unix-essentials.md"
@@ -19,11 +19,13 @@ nav:
       - Setup: "vim-setup.md"
       - Extensions: "vim-plugins.md"
       - Tips: "vim-tips.md"
-    - CS1010 PE:
+    - PE Nodes:
       - Programming Environments: "environments.md"
       - Linking GitHub to PE: "github.md"
-    - C Programming: 
-      - C in CS1010: 'c-in-cs1010.md'
+    - C in CS1010: 'c-in-cs1010.md'
+    - Common Clang Messages: 'messages.md'
+    - Make: 'make.md'
+
 
 theme: 
   name: material

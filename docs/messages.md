@@ -113,7 +113,7 @@ x.c:3:9: note: initialize the variable 'y' to silence this warning
          = 0
 ```
 
-To fix, initialize the variable to appropriate value.
+To fix, initialize the variable to the appropriate value.
 
 ### Warning: Declarations shadows a local variable.
 
@@ -167,7 +167,7 @@ To fix, make the variable local and pass it around from function to function.
 
 ### Warning: Type specifier missing
 
-Functions must have a return type declared.  C, by default, treats all functions as returning `int` if the return type is not declared.  It is, however, a good programming practice to always declare the return type explicitly, even if it is returning `int`.  CS1010 insists on this and you will be penalized if you do not declare the return type.
+Functions must have a return type declared.  C, by default, treats all functions as returning `int` if the return type is not declared.  It is, however, a good programming practice to always declare the return type explicitly, even if it is returning `int`.  CS1010 insists on this, and you will be penalized if you do not declare the return type.
 
 E.g.,
 
@@ -185,7 +185,7 @@ main()
 
 ### Warning: Implicit declaration of function
 
-All functions in C must be declared before they are used.  If the function is defined elsewhere, the header file containing the function declaration should be included.  Without the function declaration, the compile will guess the type of the arguments and its return type.  An incorrect guess would lead to buggy code and thus should be avoided.
+All functions in C must be declared before they are used.  If the function is defined elsewhere, the header file containing the function declaration should be included.  Without the function declaration, the compiler will guess the type of the arguments and their return type.  An incorrect guess would lead to buggy code and thus should be avoided.
 E.g.,
 
 ```C
@@ -319,7 +319,7 @@ x.c:3:5: warning: expression result unused [-Wunused-value]
   ~ ^ ~
 ```
 
-To fix, check the expression is necessary.  If so, use it as intended. Otherwise, remove it.
+To fix, check if the expression is necessary.  If so, use it as intended. Otherwise, remove it.
 
 ### Warning: Code/return/break will never be executed
 

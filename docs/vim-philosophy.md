@@ -26,7 +26,7 @@ I have a few more things to say about using ++h++ ++j++ ++k++ ++l++ to replace t
 
 - It is not uncommon for applications to re-map other keys for movement.  Many first-person shooting games use ++w++ ++a++ ++s++ ++d++ for movement, for the same reason as `vim` -- it is close to the resting position of the left hand on the keyboard.
 
-- The use of ++h++ ++j++ ++k++ ++l++ for movement is more ubiquitous than you think.  In the Web-version of Facebook and Reddit, for instance, you can use ++j++ and ++k++ to move up and down across posts.  On this website, you can use ++h++ and ++l++ to go to the previous page and the next page respectively.
+- The use of ++h++ ++j++ ++k++ ++l++ for movement is more ubiquitous than you think.  In the Web-version of Gmail, Facebook, and Reddit, for instance, you could use ++j++ and ++k++ to move up and down across posts.
 
 ### Multi-modal Editor
 

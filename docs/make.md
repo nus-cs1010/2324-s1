@@ -11,8 +11,8 @@ make
 
 Our `Makefile` is configured so that `make` performs the following three tasks, in order:
 - compile all the `*.c` files, with the correct flags and libraries, to generate the executable binaries.
-- run `clang-tidy` on all the `*.c` files to check if you follow good programming habits in your code
 - run `test.sh` on each of the programs, on each of the inputs, and cross-check if the output is correct.
+- run `clang-tidy` on all the `*.c` files to check if you follow good programming habits in your code
 
 `make` is smart enough that, if a C file has not changed since the last compilation, it will not recompile the file.
 
