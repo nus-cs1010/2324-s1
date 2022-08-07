@@ -188,7 +188,7 @@ The programming assignments are released every Thursday morning.  It is usually 
 
 Unless otherwise specified, the grading of each assignment is expected to be completed before the respective Thursday lab session.  Students should receive comments on their code through GitHub before they embark on the next assignment.
 
-The marks, however, may still be changed after that.  wei Tsang may moderate the grading across different groups.  
+The marks, however, may still be changed after that.  Wei Tsang may moderate the grading across different groups.  
 
 ### Late Submission
 
