@@ -6,8 +6,6 @@ CS1010 provides close to 90 programming questions for students to practice.  Amo
 
 ## General Advice
 
-Here is some general advice on solving programming problems.
-
 - Spend some time thinking about the algorithm before you begin coding.  Write out the pseudo-code or draw out the flowchart on your own before you start typing in your program. 
 
 - Practice incremental coding.  Incremental coding means do NOT type in the whole long program in a single session and then compile it. Instead, type your program in bits and pieces and compile it incrementally. Try to maintain a compilable program even while you are working on it.  Submitting a compilable program that partially works is better than submitting an un-compilable one; this is especially important for your practical exams. 
