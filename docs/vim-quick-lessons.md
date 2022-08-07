@@ -21,7 +21,9 @@ Next, try ++parenthesis-left++ and ++parenthesis-right++ to move forward and bac
 
 Next, try ++brace-left++ and ++brace-right++ to move forward and backward, paragraph-by-paragraph.
 
-Use ++0++ to jump to the beginning of the line, and ++dollar++ to jump to the end of the line.
+Now, try ++control+f++ and ++control+b++ to move forward and backward, page-by-page.
+
+Use ++0++ to jump to the beginning of the line, and ++shift+4++ (++dollar++) to jump to the end of the line.
 
 Use ++g+g++ to jump to the beginning of the file, and ++shift+g++ (`G`) to jump to the last line of the file.
 

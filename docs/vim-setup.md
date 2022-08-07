@@ -9,7 +9,7 @@ For `vim`, the `rc` file is called `.vimrc`.  The `.` in the front of the file n
 $ ls -a
 ```
 
-We have created a `.vimrc` file, with CS1010 defaults, for your use.  This is the basis upon which you can build. 
+We have created a `.vimrc` file, with CS1010 defaults, for your use.  This is the basis upon which you can build your own configuration. 
 
 To copy this file to your home directory on the PE nodes,
 ```Bash
