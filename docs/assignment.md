@@ -186,6 +186,10 @@ This helps us to easily identify the authors when needed.  Furthermore, signing 
 
 The programming assignments are released every Thursday morning.  It is usually due the following Tuesday at 11:59 PM.  
 
+Unless otherwise specified, the grading of each assignment is expected to be completed before the respective Thursday lab session.  Students should receive comments on their code through GitHub before they embark on the next assignment.
+
+The marks, however, may still be changed after that.  wei Tsang may moderate the grading across different groups.  
+
 ### Late Submission
 
 All programming assignments must be submitted on time.  If you need an extension, please ask for one and provide a justification for approval.  Only academic reasons and compassionate reasons can be considered (e.g., representing NUS for a sports event is OK; Attending a wedding is not.)
