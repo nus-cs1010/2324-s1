@@ -9,6 +9,7 @@ nav:
     - 6. CS1010 I/O: "06-cs1010-io.md"
     - 7. Arithmetic Operations: "07-arithmetic-ops.md"
   - Lab Guides: 
+    - Guide to Assignments/Exercises: "assignment.md"
     - Unix:
       - Background: "unix-background.md"
       - Essentials: "unix-essentials.md"
@@ -22,9 +23,10 @@ nav:
     - PE Nodes:
       - Programming Environments: "environments.md"
       - Linking GitHub to PE: "github.md"
-    - C in CS1010: 'c-in-cs1010.md'
-    - Common Clang Messages: 'messages.md'
-    - Make: 'make.md'
+    - C:
+      - C in CS1010: 'c-in-cs1010.md'
+      - Common Clang Messages: 'messages.md'
+      - CS1010 I/O Library: "library.md"
 
 
 theme: 
