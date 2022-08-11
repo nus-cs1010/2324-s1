@@ -51,10 +51,14 @@ size_t size = cs1010_read_size_t();
 Returns a `char *` pointing to the next white-space-separated string from the standard input.  A white-space character is defined based on the standard C function `isspace()` and includes the space ` `, tab `\t`, and newline `\n` character.  Returns `NULL` if there is an error.  If the returned value is non-`NULL`, the caller is responsible for freeing the memory allocated by calling `free`.  
 ```C
 char* word = cs1010_read_word();
-// use word to do something
- :
- :
-free(word);
+if (word == NULL) {
+  // Deal with error
+} else {
+  // Do something with word
+  :
+  :
+  free(word);
+}
 ```
 
 - `char* cs1010_read_line()`<br>
@@ -62,10 +66,14 @@ Returns a `char *` pointing to the next new-line-separated string from the stand
 Returns `NULL` if there is an error.  If the returned value is non-`NULL`, the caller is responsible for freeing the memory allocated by calling `free`.
 ```C
 char* line = cs1010_read_line();
-// use line to do something
- :
- :
-free(line);
+if (line == NULL) {
+  // Deal with error
+} else {
+  // Done something with line
+  :
+  :
+  free(line);
+}
 ```
 
 ## Reading of Multiple Values
@@ -100,13 +108,15 @@ if (values != NULL) {
 ```
 
 - `char** cs1010_read_word_array(size_t k)`<br>
-Returns `k` white-space-separated words read from the standard input stored in an array.  The notion of "word" is the same as `cs1010_read_word()`.  
+Returns `k` white-space-separated words read from the standard input stored in an array.  The notion of "word" is the same as `cs1010_read_word()`.
 Returns `NULL` if there is a memory allocation error.  If the returned value is non-`NULL`, the caller is responsible for freeing the memory allocated for each word and the whole array by calling `free`.
 ```C
 size_t k = cs1010_read_size_t();
 char** words = cs1010_read_word_array(k);
-if (words != NULL) {
-  // Do something with array words
+if (words == NULL) {
+  // Deal with error
+} else {
+  // Do something with the array words
    :
    :
   for (size_t i = 0; i < k; i += 1) {
@@ -117,22 +127,22 @@ if (words != NULL) {
 ```
 
 - `char** cs1010_read_line_array(size_t k)`<br>
-Returns `k` new-line-separated words read from the standard input stored in an array.  The notion of a line is the same as `cs1010_read_line()`. 
+Returns `k` new-line-separated words read from the standard input stored in an array.  The notion of a line is the same as `cs1010_read_line()`.
 Returns `NULL` if there is a memory allocation error.  If the returned value is non-`NULL`, the caller is responsible for freeing the memory allocated for each line and the whole array by calling `free`.
 ```C
 size_t k = cs1010_read_size_t();
 char** lines = cs1010_read_line_array(k);
 if (lines == NULL) {
   // Deal with error
-  return;
+} else {
+  // Do something with the array lines
+    :
+    :
+  for (size_t i = 0; i < k; i += 1) {
+    free(lines[i]);
+  }
+  free(lines);
 }
-// Do something with array lines
-  :
-  :
-for (size_t i = 0; i < k; i += 1) {
-  free(lines[i]);
-}
-free(lines);
 ```
 
 ## Printing of a Single Value
