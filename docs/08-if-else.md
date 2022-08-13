@@ -177,11 +177,12 @@ We could write it as:
 
 ```C title="Code with Empty False Block"
  :
-if (max_so_far < x) {
-  max_so_far = x;
+if (m < x) {
+  m = x;
 } else {
   // do nothing
 }
+cs1010_println_long(m);
  :
 ```
 
@@ -189,9 +190,10 @@ The false block is empty, and we could keep our code succinct by removing it alt
 
 ```C title="Skipping Else"
  :
-if (max_so_far < x) {
-  max_so_far = x;
+if (m < x) {
+  m = x;
 }
+cs1010_println_long(m);
  :
 ```
 
@@ -519,6 +521,19 @@ The conditions `score < 8`, `score < 5`, and `score < 3` are always true and are
 Do the following functions behave the same way?  Explain.
 
 (a)
+
+```C
+long factorial(long n)
+{
+  if (n == 0) {
+    return 1;
+  } 
+  return n * factorial(n - 1);
+}
+```
+
+(b)
+
 ```C
 long factorial(long n)
 {
@@ -528,18 +543,6 @@ long factorial(long n)
   }
   answer = n * factorial(n - 1);
   return answer;
-}
-```
-
-(b)
-```C
-long factorial(long n)
-{
-  if (n == 0) {
-    return 1;
-  } else {
-    return n * factorial(n - 1);
-  }
 }
 ```
 
