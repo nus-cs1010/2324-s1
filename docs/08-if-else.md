@@ -171,7 +171,7 @@ In some algorithms, we don't need to have an else block.
 
 For instance, suppose we have a variable `m`, and we wish to compare it with another variable `x`.  We set `m` to `x` if `x` is the larger of the two, but we do not need to do anything otherwise.   Regardless of whether `m` or `x` is larger, we will print out `m` after the comparison. 
 
-![flowchart](figures/max-flowchart/max-flowchart-pdf-19.png)
+![flowchart](figures/max-flowchart/max-flowchart-pdf-20.png)
 
 We could write it as:
 
