@@ -20,6 +20,10 @@ CS1010 provides close to 90 programming questions for students to practice.  Amo
 
 - You are encouraged to discuss the programming questions with your friends and learn from each other.  This process is an important part of the learning experience in CS1010.  Sharing and learning about _how to solve a problem_ (at the algorithm level) from each other is not plagiarism.  Copy-pasting of code from others, or _writing the code_ together line-by-line, however, is plagiarism.
 
+See also [How NOT to Go About a Programming Assignment](http://people.irisa.fr/Martin.Quinson/Teaching/how-not-to-code.pdf), by Agustin Cernuda del Rio. 
+
+> Computer programming students invariably fall into more than one bad habit. It can be extremely difficult to eradicate them (and many lecturers and professional programmers keep succumbing to them time and again).._
+
 ## Retrieving and Submitting Programming Questions
 
 All instructions below are meant to be run on the [PE hosts](environments.md).

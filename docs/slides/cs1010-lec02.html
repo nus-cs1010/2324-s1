@@ -6,8 +6,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
-<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
-<title>CS1010 AY21/22 S1 Lecture 2</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY22/23 S1 Lecture 2</title>
 <meta charset="utf-8">
 </head>
 <body>
@@ -16,31 +16,14 @@ class: middle, center
 
 # Lecture 2
 
-### 16 August 2021
+### 15 August 2022
 
 Admin Matters<br>
 **Unit 3**: Functions<br>
 **Unit 4**: Types
 
 ---
-class: middle,wide
-
-### Reminders
-
-- Keep your mic muted unless you need my attention
-- Use Zoom Chat to discuss/chat among yourselves (I won't pay attention to it)
-- Use Pizza Live Q&amp;A to ask me question during class
-
----
-class: middle,wide
-
-### Reminders
-
-- My office hour: Tues 4-5pm, F2F and Online
-- Questions? Issues?  Please use Piazza
-
----
-class: middle,wide
+class: top,wide
 
 ### Accounts
 
@@ -48,6 +31,16 @@ class: middle,wide
 - Target this week: 
     - able to `ssh` into on PE environments
     - go through Unix CLI and `vim` tutorials
+
+---
+class: top,wide
+
+### Unix Clinics
+
+- Wednesday, 9 - 11 AM (Gujar)
+- Friday, 9 - 11 AM (Felix)
+
+Venue: DR1 (COM1 #B1-14B)
 
 ---
 class: middle,center
@@ -60,28 +53,32 @@ class: middle,center
 ## Why `vim`?
 
 ---
-class: middle,center
+class: top,center
 
 .tiny[[via reddit](https://www.reddit.com/r/nus/comments/nwpc54/nus_cs_fun/h1b2ikz/?context=3)]
 .fit[![reddit](figures/reddit-vim-is-helpful.png)]
 
 ---
-
-### [Stackoverflow 2021 Developer Survey](https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-collaboration-tools)
-
-.fit[![reddit](figures/stackoverflow-vim-most-loved.png)]
-
----
-class: middle,wide
+class: top,wide
 
 ### Tutorials and Labs
 
 - Starts next week
 - Appeal via ModReg if you still haven't gotten a slot.
-- We might appeal to you to switch rooms to balanced out the groups (please say yes)
+- We might ask you to switch rooms to balance out the groups (please say yes)
 
 ---
-class: middle,wide
+class: top,wide
+
+### Tutorials and Labs
+
+- Length: 
+    - Tutorial 45 mins
+    - Labs 1 hr 35 mins
+- Laptop not necessary
+
+---
+class: top,wide
 
 ### Tutorial 1
 
@@ -89,18 +86,26 @@ class: middle,wide
 
 ### Lab 1
 
-- Setup, Unix, `vim`, Exercise 0
+- GitHub Setup, Exercise 0
+- Assume you can already log into PE nodes
 
 ---
-class: middle,wide
+class: top,wide
+
+### Are you taking GEA1000?
+
+- [Let us know ASAP](https://canvas.nus.edu.sg/courses/22421/quizzes/3002)
+
+---
+class: top,wide
 
 .smaller[.fit[![flowchart](../figures/xkcd/flow_charts.png)]<br>https://xkcd.com/518]
 ---
-class: middle,wide
+class: top,wide
 
-## Flowchart
+### Flowchart
 
-.fit[![flowchart](figures/max-flowchart-dark/max-flowchart-dark.001.png)]
+.fit[![flowchart](../figures/max-flowchart/max-flowchart-pdf-0.png)]
 
 ---
 class: middle,center
@@ -110,12 +115,12 @@ class: middle,center
 ---
 class: middle,center,wide
 
-.fit[![flowchart](figures/max-flowchart-dark/max-flowchart-dark.002.png)]
+.fit[![flowchart](../figures/max-flowchart/max-flowchart-pdf-6.png)]
 
 ---
 class: middle,center,wide
 
-.fit[![flowchart](figures/max-flowchart-dark/max-flowchart-dark.003.png)]
+.fit[![flowchart](../figures/max-flowchart/max-flowchart-pdf-7.png)]
 
 ---
 ### Find The Range
@@ -127,10 +132,10 @@ class: middle,center,wide
 ---
 class: middle,center
 
-## $max(L, k) - min(L, k)$
+### $max(L, k) - min(L, k)$
 
 ---
-class: middle,center
+class: middle,center,wide
 
 ### Refer to a previous solution to a sub-problem, which we assume we already know how to solve.
 
@@ -141,30 +146,13 @@ class: middle,center
 
 
 ---
-class: middle
+class: top
 
 ### Wishful Thinking
 
 - A powerful tool to help us think at a higher level.
 - We can focus on _what_ a function does, not _how_ it does it.
-
 ---
-class: middle,center
-
-### A C program is just a collection of functions!
-
----
-class: middle
-
-### A C program is just a collection of functions
-
-- written by you
-- provided by the standard C library
-- provided by other libraries
-
----
-class: middle
-
 ### Find the Mean
 
 - Give an algorithm to find the mean value given a list $L$ of $k$ integers.
@@ -175,6 +163,16 @@ class: middle,center
 ## $\frac{sum(L,k)}{k}$
 
 ---
+class: top
+
+### A C program is just a collection of functions
+
+--
+- written by you
+- provided by the standard C library
+- provided by other libraries
+
+---
 class: middle,center
 
 Assume $len(L)$ returns the size of the list.
@@ -183,16 +181,15 @@ Assume $len(L)$ returns the size of the list.
 
 
 ---
-class:middle
 ### Find the Std Dev
 
-- Give an algorithm to find the standard deviation of a list $L$ of $k$ integers.
+Give an algorithm to find the standard deviation of a list $L$ of $k$ integers.
 
 $$\sqrt{\frac{\sum\_{i=0}^{k-1}(l\_i - \mu)^2}{k}}$$
 
 ---
 class:middle
-## Let's break it down into sub-problems
+### Let's break it down into sub-problems
 
 ---
 class: middle,center
@@ -236,11 +233,9 @@ $sqrt(mean(square(subtract(L,mean(L)))))$
 ---
 class: middle,center,wide
 
-.fit[![flowchart](figures/max-flowchart-dark/max-flowchart-dark.008.png)]
+.fit[![flowchart](../figures/max-flowchart/max-flowchart-pdf-12.png)]
 
 ---
-class:middle
-
 ### Wishful Thinking
 
 - $square(L)$
@@ -250,16 +245,18 @@ class:middle
 ---
 class:middle,wide
 
-.fit[![flowchart](figures/max-flowchart-dark/max-flowchart-dark.006.png)]
+.fit[![flowchart](../figures/max-flowchart/max-flowchart-pdf-10.png)]
 
 ---
 
-class:middle
+### Important
 
-### **IMPORTANT**: Break down a problem into sub-problems and solve them one-by-one with functions.  Then compose the functions to solve the original given task.
+- Decompose a problem into sub-problems 
+- Solve the sub-problems one-by-one with functions  
+- Compose the functions to solve the original given task
 
 ---
-class: middle,center
+class: center
 
 ### Find the maximum among these numbers
 
@@ -269,7 +266,7 @@ class: middle,center
 ```
 
 ---
-class: middle,center
+class: center
 
 ### Find the maximum among these numbers
 
@@ -291,7 +288,8 @@ class: middle,center
 ]
 
 ---
-class: middle,center
+class: center
+
 ### Compare `12` to the maximum among
 
 .tiny[
@@ -339,10 +337,9 @@ class: middle
 ### if $i$ equals $j$, $max'(L, i, j)$ is just $l_i$
 
 ---
----
 class: middle,wide
 
-.fit[![flowchart](figures/max-flowchart-dark/max-flowchart-dark.004.png)]
+.fit[![flowchart](../figures/max-flowchart/max-flowchart-pdf-8.png)]
 
 ---
 class: middle,center
@@ -432,13 +429,9 @@ class: middle
 ### if $j$ equals $i$, $max(L,i,j)$ is just $l_i$.
 
 ---
-
----
 class: center,wide
 
-.fit[![flowchart](figures/max-flowchart-dark/max-flowchart-dark.011.png)]
-
----
+.fit[![flowchart](../figures/max-flowchart/max-flowchart-pdf-15.png)]
 
 ---
 class: middle, center
@@ -447,9 +440,7 @@ class: middle, center
 
 ---
 
-class: middle
-
-## Find the factorial of $n$
+### Find the factorial of $n$
 
 - $n! = n \times n-1 \times \ldots \times 2 \times 1$
   
@@ -460,7 +451,7 @@ class: middle
 ---
 class: middle
 
-.fit[![flowchart](figures/max-flowchart-dark/max-flowchart-dark.005.png)]
+.fit[![flowchart](../figures/max-flowchart/max-flowchart-pdf-9.png)]
 
 ---
 class:middle,center
@@ -630,22 +621,24 @@ $total$ is an integer<br>
 $avg$ must be a real number
 
 ---
-class:middle
+### Homework
 
-## Homework
+.small[
+- Problem Set in [Unit 3](https://nus-cs1010.github.io/2223-s1/03-func.html)
 
-- Problem Set in Unit 3
 - `ssh` into CS1010 PE hosts and follow the Unix CLI and `vim` tutorial
-- Diagnostic Quiz for Lecture 2 (due this Wed)
-- Diagnostic Quiz for using CS1010 PE (due next Wed)
 
+- [Diagnostic Quiz for Lecture 2](https://canvas.nus.edu.sg/courses/22421/quizzes/1543) (due this Wed 2359)
+
+- [Diagnostic Quiz for Using CS1010 PE](https://canvas.nus.edu.sg/courses/22421/quizzes/1537) (due next Wed)
+]
 ---
 class: bottom
 
 .tiny[
-Version: 1.1
+Version: 1.0
 
-Last Updated: Tue Aug 18 12:24:32 +08 2020
+Last Updated: Sat Aug 13 23:41:34 +08 2022
 ]
 </textarea>
 
@@ -667,13 +660,12 @@ var slideshow = remark.create({
 	},
 	ratio: '16:9',
 	highlightStyle: 'monokai',
-    slideNumberFormat: 'AY2122 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+    slideNumberFormat: 'AY2223 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
 });
  // Setup MathJax
   MathJax.Hub.Config({
 	  tex2jax: {
 		inlineMath: [['$', '$']],
-		// inlineMath: [['$', '$'], ['\\(', '\\)']],
 		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
 		skipTags: ['script', 'noscript', 'style', 'pre']
 	  }
