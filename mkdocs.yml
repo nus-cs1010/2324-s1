@@ -27,6 +27,7 @@ nav:
       - C in CS1010: 'c-in-cs1010.md'
       - Common Clang Messages: 'messages.md'
       - CS1010 I/O Library: "library.md"
+   - Readings: "readings.md"   
 
 
 theme: 
@@ -35,6 +36,7 @@ theme:
     - navigation.instant
     - toc.follow
     - toc.integrate
+    - content.code.annotate
   palette:
     primary: deep purple
     accent: deep purple
