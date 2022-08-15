@@ -72,7 +72,7 @@ After running `~cs1010/get <id>`, you should see the folder `<id>-<username>` in
 Inside that directory, you should see the following files:
 
 - Files that end with `.c`, one for each problem/question.  The naming convention is `<problem>.c`.  These are the skeleton C code that you should edit to solve the programming question and the only files that you should change.
-- `inputs` and `outputs` are subdirectories that contain test inputs and test outputs. We use the convention `<problem>.<id>.in` for input test data, and `<problem>.<id>.out` for output test data.  For example, you will see files such as `echo.1.in`, `divide.1.out`, etc.  The expected output for `echo.1.in` is in `echo.1.out`.  You can look at the content of these files if you wish (which [UNIX](unix.md) command should you use to do this?).  You can edit these files to change the test input and  
+- `inputs` and `outputs` are subdirectories that contain test inputs and test outputs. We use the convention `<problem>.<id>.in` for input test data, and `<problem>.<id>.out` for output test data.  For example, you will see files such as `echo.1.in`, `divide.1.out`, etc.  The expected output for `echo.1.in` is in `echo.1.out`.  You can look at the content of these files if you wish.  You can also edit these files to change the test input and output to modify the test cases.
 - `Makefile`: The configuration for the tool `make` that we use to automate the compilation and testing of the programs.  
 - `test.sh`: A bash script for testing your code.
 - `compiler_flags.txt` and `.clang-tidy` are two files used to configure `clang` and `clang-tidy` respectively.  You do not need to edit this.
