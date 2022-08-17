@@ -34,11 +34,11 @@ Some color schemes display differently depending on whether the background is se
 
 Some examples, with `set background=dark` in `~/.vimrc`:
 
-The default color scheme:
+The Vim default color scheme:
 
 ![default](figures/color-scheme-default.png)
 
-The molokai color scheme:
+The molokai (CS1010's default) color scheme:
 
 ![molokai](figures/color-scheme-molokai.png)
 
