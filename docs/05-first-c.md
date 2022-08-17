@@ -261,7 +261,7 @@ If we need something more than an `int`, we can use `long int`, or just `long`. 
 
 #### Signed vs. Unsigned
 
-We have seen earlier that interpreting the same sequence of bits as signed or unsigned would result in a different value.  By default, all types in C refer to signed types.  If you want a variable that holds only non-negative integers, you can add the keyword `unsigned` to the front of the type.  Doing so would mean that the range of values you can store in the variable is doubled, without adding more bits (since the bit used to present the + or - sign is no longer needed).  
+We have seen earlier that interpreting the same sequence of bits as signed or unsigned would result in a different value.  By default, all types in C refer to signed types.  If you want a variable that holds only non-negative integers, you can add the keyword `unsigned` to the front of the type.  Doing so would mean that the range of {++non-negative++} values you can store in the variable is doubled, without adding more bits (since the bit used to present the + or - sign is no longer needed).  
 
 For instance, since we know that `square` can only return a non-zero integer, we can declare it as:
 
