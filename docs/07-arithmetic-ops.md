@@ -159,10 +159,19 @@ double half = 3/2.0;
 or
 
 ```C
-double half = 3/(double)2;
+double half = (double)3/(double)2;
 ```
 
-The second fix above explicitly converts the type or _casts_ the type of value 2 into a `double`.
+The second fix above explicitly converts the type or _casts_ the type of values 2 and 3 into a `double`.
+
+{++ NEW ++} It is always a good practice to be explicit when programming so that the readers of your code knows your intention.  As such, in CS1010, we will use explicit casting to convert `long` to `double` when necessary.
+```C
+long x = 3;
+long y = 2
+  :
+double x_over_y = x / y;  // trigger a compiler warning
+double x_over_y = (double)x / (double)y;  // ok
+```
 
 ## The % Operator
 
