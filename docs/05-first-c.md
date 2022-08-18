@@ -261,7 +261,7 @@ If we need something more than an `int`, we can use `long int`, or just `long`. 
 
 #### Signed vs. Unsigned
 
-We have seen earlier that interpreting the same sequence of bits as signed or unsigned would result in a different value.  By default, all types in C refer to signed types.  If you want a variable that holds only non-negative integers, you can add the keyword `unsigned` to the front of the type.  Doing so would mean that the range of {++non-negative++} values you can store in the variable is doubled, without adding more bits (since the bit used to present the + or - sign is no longer needed).  
+We have seen earlier that interpreting the same sequence of bits as signed or unsigned would result in a different value.  By default, all types in C refer to signed types[^2].  If you want a variable that holds only non-negative integers, you can add the keyword `unsigned` to the front of the type.  Doing so would mean that the range of {++non-negative++} values you can store in the variable is doubled, without adding more bits (since the bit used to present the + or - sign is no longer needed).  
 
 For instance, since we know that `square` can only return a non-zero integer, we can declare it as:
 
@@ -289,6 +289,8 @@ In CS1010, we will only use `long` and `double` to represent integers and floati
 	- Use the type defined in the header file `stdint.h`: `int8_t`, `uint8_t`, `int16_t`, `uint16_t`, `int32_t`, `uint32_t`, `int64_t`, `uint64_t`.  The suffix `_t` is a convention to indicate that this is a customized type (more on this in later units).  The prefix `u` indicates that the type is an unsigned type.  The numbers `8`, `16`, `32`, and `64` indicate the number of bits for each type.  Thus, `uint32_t` is guaranteed to be of size 32 bits, and can hold unsigned integer values from $0$ to $2^{32}-1$.
 
 [^1]: Adding more `long` does not make the integer longer, i.e., there is no `long long long int`.
+
+[^2]: {++To be more precise, the C language standard does not specify the default sign-ness of `char` and leaves it to implementation.  In CS1010 programming environment, `char` defaults to `signed char`.++}
 
 ## Problem Set 5
 
