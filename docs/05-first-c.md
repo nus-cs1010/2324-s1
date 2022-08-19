@@ -218,7 +218,7 @@ long square(long x)
 
 double hypotenuse_of(long base, long height)
 {
-  return sqrt(square(base) + square(height));
+  return sqrt(square(base) + square(height)); // with warning
 }
 
 int main()
@@ -239,7 +239,7 @@ long square(long x)
 
 double hypotenuse_of(long base, long height)
 {
-  return sqrt(square(base) + square(height));
+  return sqrt(square(base) + square(height)); // with warning
 }
 
 int main()
@@ -250,6 +250,47 @@ int main()
 
 !!! tips "File Extension"
     The convention for file extension for a C program is `.c` and for a C header file is `.h`.  Even though you are allowed to name the files with any extension you like, you should stick to the convention so that it is clear to other tools/programmers what is the purpose of each file.
+
+{++NEW++} 
+### Compilation Warning and Implicit Type Conversion
+
+The compiler gives a warning on the expression:
+```C
+  sqrt(square(base) + square(height))
+```
+
+The warning says `implicit conversion from 'long' to 'double' may lose precision [-Wimplicit-int-float-conversion]`.  Recall that we cannot represent floating point numbers (`double`) exactly in a computer; but we can do that with integers (`long`).  Since the expression `square(base) + square(height)` returns a `long` value, and we try to pass it into a function that accepts a `double`, the compiler warns us about loosing precision.
+
+A compiler warning does not stop a binary executable from being generated and executed later.  It is a good practice, however, to ensure that your code compiles without any warning.  In this context, the compiler will convert the integer number into floating point number for you.  This conversion from `long` to `double` is done implicitly.
+
+When writing code, it is always better to make the intention explicit.  Thus, to perform an _explicit_ type conversion, we can do _type casting_ in C.  We just need to put the type that we want to convert to in parentheses, like so:
+```C
+  long sum_of_square = square(base) + square(height);
+  sqrt((double)sum_of_square);
+```
+
+Since we now explicitly tell the compiler that we want to convert `long` to `double` (and so willing to accept the lost in precision), the warning goes away.
+
+Here is the final code:
+```C title="Explicitly casting from long to double"
+#include <math.h>
+
+long square(long x)
+{
+  return x * x;
+}
+
+double hypotenuse_of(long base, long height)
+{
+  long sum_of_square = square(base) + square(height);
+  return sqrt((double)sum_of_square);
+}
+
+int main()
+{
+  hypotenuse_of(3, 4);
+}
+```
 
 ## Other Types in C
 

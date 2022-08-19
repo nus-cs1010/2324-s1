@@ -32,7 +32,7 @@ c = 5 + 6; // add two values
 You can also use `+` on values returned by functions:
 
 ```C
-hypotenuse = sqrt(square(base) + square(height));
+long sum_of_square = square(base) + square(height);
 ```
 
 You have also seen the multiplication operator `*`.  It can be used in the same way as the `+` operator.  Three other useful operators are:
@@ -162,9 +162,9 @@ or
 double half = (double)3/(double)2;
 ```
 
-The second fix above explicitly converts the type or _casts_ the type of values 2 and 3 into a `double`.
+The second fix above explicitly converts the type, or casts the type, of values 2 and 3 into a `double`.
 
-{++ NEW ++} It is always a good practice to be explicit when programming so that the readers of your code knows your intention.  As such, in CS1010, we will use explicit casting to convert `long` to `double` when necessary.
+{++ NEW ++} As it is a good practice to be explicit when programming so that the readers of your code knows your intention, in CS1010, we will use explicit casting to convert `long` to `double` when necessary.
 ```C
 long x = 3;
 long y = 2
