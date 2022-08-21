@@ -518,52 +518,7 @@ The conditions `score < 8`, `score < 5`, and `score < 3` are always true and are
 
 ### Problem 8.1
 
-Do the following functions behave the same way?  Explain.
-
-(a)
-
-```C
-long factorial(long n)
-{
-  if (n == 0) {
-    return 1;
-  } 
-  return n * factorial(n - 1);
-}
-```
-
-(b)
-
-```C
-long factorial(long n)
-{
-  long answer;
-  if (n == 0) {
-    answer = 1;
-  }
-  answer = n * factorial(n - 1);
-  return answer;
-}
-```
-
-and (c)
-
-```C
-long factorial(long n)
-{
-  long answer;
-  if (n == 0) {
-    answer = 1;
-  } else {
-    answer = n * factorial(n - 1);
-  }
-  return answer;
-}
-```
-
-### Problem 8.2
-
-Draw the flowcharts for the three code snippets below.  Identify redundant comparisons (if any), in each of the snippets.
+Draw the flowcharts for the two code snippets below.  Identify redundant comparisons (if any), in each of the snippets.
 
 (a)
 ```C
@@ -585,7 +540,7 @@ if (x > y) {
 }
 ```
 
-### Problem 8.3
+### Problem 8.2
 
 Suppose we break down the table below in a slightly different way.
 

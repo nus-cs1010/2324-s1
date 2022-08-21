@@ -9,16 +9,16 @@ After this unit, students should:
 - be aware that in CS1010, we must never use `int` to indicate a true/false value;
 - be aware of short-circuiting in logical expression;
 - be aware of the CS1010's convention of naming a boolean variable with the prefix `is_`, `has_`, or `can_`;
-- be able to write a logical expression in appropriate order to exploit short-circuiting towards more efficient code
+- be able to write a logical expression in appropriate order to exploit short-circuiting toward more efficient code
 
 ## Representing a Boolean Value
-You have seen some basic logical expressions in [Unit 8](08-if-else.md). `n == 0`, `score >= 5 `, `y > x`, are all logical expressions.  They evaluate to either true or false.
+You have seen some basic logical expressions in [Unit 8](08-if-else.md). `n == 0`, `score >= 5 `, `y > x`, are all logical expressions.  They evaluate to be either true or false.
 
-We call a type that can contain either true or false as a Boolean data type, named after [George Boole](https://en.wikipedia.org/wiki/George_Boole), a mathematician.
+We call a type that can contain either true or false a _Boolean_ data type, named after [George Boole](https://en.wikipedia.org/wiki/George_Boole), a mathematician.
 
-The Boolean data type in C is named `bool`.  It can hold two values: `true` or `false`.  All three of `bool`, `true`, and `false` are keywords introduced in modern C.  To use them, you need to include the file `stdbool.h` at the top of your program.  
+The Boolean data type in C is named `bool`.  It can hold two values: `true` or `false`.  All three of `bool`, `true`, and `false` are keywords introduced in modern C. To use them, you need to include the file `stdbool.h` at the top of your program.
 
-Use `bool` is considered a cleaner way of representing true and false in C.  Classically,  C defines the numeric value 0 to be false, and everything else to be true.  So, you can write code like this:
+Using `bool` is considered a cleaner way of representing true and false in C. Classically, C defines the numeric value 0 to be false, and everything else to be true.  So, you can write code like this:
 
 ```C
 // x and y are long.
@@ -93,7 +93,7 @@ The AND operator, `&&`, evaluates to true if and only if both operands are true.
 !!! warn "Common Error"
     A common mistake by a new C programmer is to write `1995 <= birth_year <= 2005` as the logical expression.  Unfortunately, in C, we cannot chain the comparison operators together.
 
-What if we want to write a function to determine if someone is NOT part of Generation Z?   This means that they are born _either_ before 1995 _or_ after 2005.  To have an expression that evaluates to true if either one of two expressions is true, we can use the OR operator, `||`.
+What if we want to write a function to determine if someone is NOT part of Generation Z?   This means that they are born _either_ before 1995 _or_ after 2005.  To have an expression that evaluates to true if at least one of two expressions is true, we can use the OR operator, `||`.
 
 ```C
 bool is_not_gen_z(long birth_year)
@@ -119,9 +119,18 @@ bool is_not_gen_z(long birth_year)
 }
 ```
 
+The table below summarizes the logical operations `&&`, `||` and `!`:
+
+| `a`    | `b`   | `a && b` | `a \|\| b` | `!a`  |
+|--------|-------|----------|------------|-------|
+| true   | true  | true     | true       | false |
+| true   | false | false    | true       | false |
+| false  | true  | false    | true       | true  |
+| false  | false | false    | false      | true  |
+
 ## Short-Circuiting
 
-When evaluating the logical expressions that involve `&&` and `||`, C uses "short-circuiting".  If the program already know, for sure, that a logical expression is true or is false, there is no need to continue the evaluation.  The corresponding `true` and `false` value will be returned.
+When evaluating the logical expressions that involve `&&` and `||`, C uses "short-circuiting".  If the program already knows, for sure, that a logical expression is true or false, there is no need to continue the evaluation.  The corresponding `true` or `false` value will be returned.
 
 Consider the following:
 ```C
@@ -196,17 +205,6 @@ Suppose `number` is a gigantic integer, then we would have spent lots of effort 
 
 ### Problem 9.1
 
-Given two `bool` variables, `a` and `b`, there are four possible combinations of `true` `false` values.  What are the values of `a && b`, `a || b`, and `!a` for each of these combinations?  Fill in the table below.
-
-| `a` | `b` | `a && b` | `a || b` | `!a` |
-|---- |-----|----------|----------|------|
-|`true` | `true` |     |          |      |
-|`true` | `false` |     |          |      |
-|`false` | `true` |     |          |      |
-|`false` | `false` |     |          |      |
-
-### Problem 9.2
-
 Consider the function below, which aims to return the maximum value given three numbers.
 
 ```C
@@ -229,32 +227,13 @@ long max_of_three(long a, long b, long c)
 }
 ```
 
-(a) What is wrong with the code above?
+(a) The function is not correct.  Give a sample test value of `a`, `b`, and `c` that would expose the bug.
 
-(b) Give a sample test value of `a`, `b`, and `c` that would expose the bug.
+(b) List all conditions on the inputs `a`, `b`, and `c` such that the function above would fail.
 
-(c) Fix the code above to remove the bug.
+### Problem 9.2
 
-(d) Replace the three `if` statements in the code above with `if`-`else` statements.  Draw the corresponding flowchart.
-
-### Problem 9.3
-
-Write a function that takes in a blood pressure measurement, and prints either `low`, `ideal`, `pre-high`, and `high` depending on the input values.  The blood pressure is given as two `long` values, the systolic and the diastolic.  The text to be printed depends on the range, depicted in the figure below.
-
-```C
-void print_blood_pressure(long systolic, long diastolic)
-{
-  :
-}
-```
-
-![BP chart](figures/hbp/hbp.001.png)
-
-The figure does not say how to classify the data if the values fall exactly on the boundary of two regions.  In this case, you can classify it into either region.
-
-### Problem 9.4
-
-The restaurant WcDonald's is setting a new rule for dining in.  Two people are allowed to dine in only if both of them are fully vaccinnated against COVID-19.  A child below 12 years old from the same household is exempted from the rule.
+The restaurant WcDonald's is setting a new rule for dining in.  Two people are allowed to dine in only if both of them are fully vaccinated against COVID-19.  A child below 12 years old from the same household is exempted from the rule.
 
 Suppose we represent each diner with a `long` variable, and we have the following functions:
 
@@ -262,5 +241,15 @@ Suppose we represent each diner with a `long` variable, and we have the followin
 - `bool is_a_child(long p)` returns true if and only if `p` is a child below 12.
 - `bool are_from_same_household(long p, long q)` returns true if and only if both `p` and `q` are from the same household.
 
-Write a function `can_dine_in(long p, long q)` that returns true if and only if `p` and `q` can dine in together at WcDonald's.
+(a) Add as many rows as needed to the table below to enumerate all conditions under which `p` and `q` can dine in together at WcDonald's.  Each table cell can be `yes`, `no`, or `don't care`.
 
+`is_vaccinated(p)` | `is_vaccinated(q)` | `is_a_child(p)` | `is_a_child(q)` | `are_from_same_household(p,q)` | 
+---------|----------|------------|------------|-------------|
+yes      | yes      | don't care | don't care |  don't care |
+?        | ?        | ?          | ?          |  ?          |
+
+The first row has been filled up for you.  It represents the condition in which both diners are fully vaccinated.  In this case, it does not matter whether they are from the same household or they are children.
+
+(b) 
+
+Using the table from (a) to help you write a function `can_dine_in(long p, long q)` that returns true if and only if `p` and `q` can dine in together at WcDonald's.

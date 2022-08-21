@@ -20,7 +20,7 @@ long x = 1;
 // { x == 1 }
 ```
 
-The line above initialize the variable `x` to be `1`.  The next line, a comment, uses the curly braces `{` and `}` with a logical expression in between, to indicate that `x` must be equals to `1` after the assignment.  We use the curly braces as a notation in CS1010, following [C. A. R. Hoare](https://en.wikipedia.org/wiki/Tony_Hoare)'s notation, but this is not part of any C standard.
+The line above initialize the variable `x` to be `1`.  The next line, a comment, uses the curly braces `{` and `}` with a logical expression in between, to indicate that `x` must be equal to `1`` after the assignment.  We use the curly braces as a notation in CS1010, following [C. A. R. Hoare](https://en.wikipedia.org/wiki/Tony_Hoare)'s notation, but this is not part of any C standard.
 
 The assertion above is kind of trivial and not very meaningful.
 
@@ -84,7 +84,7 @@ Let's look at another example:
   }
 ```
 
-Let's focus on the case of printing `C`.  We should print `C` if `score` is less than 5 but is 3 or higher.  Let's check if this is correct by finding out what we can assert wrt `score` just before printing `C`.  We first add the assert condition to all the true blocks and the false block by negating the `if` condition.
+Let's focus on the case of printing `C`.  We should print `C` if the `score` is less than 5 but is 3 or higher.  Let's check if this is correct by finding out what we can assert wrt `score` just before printing `C`.  We first add the assertion to all the true blocks and the false block by negating the `if` condition.
 
 ```C
   if (score >= 8) {
@@ -114,12 +114,12 @@ Note that we write assertions with Hoare's notation as C comments, so the assert
 
 ## De Morgan's Law
 
-To write an assertion for the false block, it is useful to know the De Morgan's law, which tells us how to negate some logical expression.  Suppose we have two logical expressions `e1` and `e2`.
+To write an assertion for the false block, it is useful to know De Morgan's law, which tells us how to negate some logical expression.  Suppose we have two logical expressions `e1` and `e2`.
 
 - `!(e1 && e2)` is the same as `(!e1) || (!e2)`
 - `!(e1 || e2)` is the same as `(!e1) && (!e2)`
 
-We have actually seen it in action.  Recall the expression for Generation Z:
+We have seen it in action before. Recall the expression for Generation Z:
 
   `(birth_year >= 1995) && (birth_year <= 2005)`.  
 
@@ -137,7 +137,7 @@ which is just
 
 exactly as we have written before!
 
-Assertion and De Morgan's law are two thinking tools that will help us reason about our code.  We will revisit assertion again when we discuss iterative algorithms.
+Assertion and De Morgan's law are two thinking tools that will help us reason about our code.  We will revisit assertion when we discuss iterative algorithms.
 
 ## Problem Set 10
 
