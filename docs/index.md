@@ -1,5 +1,46 @@
 # NUS CS1010 Lecture Notes for AY22/23 Semester 1
 
+## Control Statements
+<div class="grid cards" markdown>
+
+- __8. Conditional Statements__
+
+    Implementing conditional control in C
+	[:octicons-arrow-right-24:](08-if-else.md)
+
+- __9. Logical Expressions__
+
+    How to express compound logical expressions in C
+	[:octicons-arrow-right-24:](09-logical-exp.md)
+
+- __10. Assertions__
+
+    Asserting what must be true at each point of the program.
+	[:octicons-arrow-right-24:](10-assert.md)
+
+</div>
+
+## Basic C
+<div class="grid cards" markdown>
+
+- __5. First C Program__
+
+    Introducing basic C syntax and writing our first C program.
+	[:octicons-arrow-right-24:](05-first-c.md)
+
+- __6. CS1010 I/O__
+
+    Reading from the stdin and printing to the stdout using the CS1010 library.
+	[:octicons-arrow-right-24:](06-cs1010-io.md)
+
+- __7. Arithmetic Operations__
+
+    Performing basic computation with arithmetic operations with C.
+	[:octicons-arrow-right-24:](07-arithmetic-ops.md)
+
+</div>
+
+
 ## Preliminaries
 
 <div class="grid cards" markdown>
@@ -23,26 +64,6 @@
 
     Each variable has a type that tell the machine how to turn a bit sequence into a meaningful value.
 	[:octicons-arrow-right-24:](04-type.md)
-
-</div>
-
-## Basic C
-<div class="grid cards" markdown>
-
-- __5. First C Program__
-
-    Introducing basic C syntax and writing our first C program.
-	[:octicons-arrow-right-24:](05-first-c.md)
-
-- __6. CS1010 I/O__
-
-    Reading from the stdin and printing to the stdout using the CS1010 library.
-	[:octicons-arrow-right-24:](06-cs1010-io.md)
-
-- __7. Arithmetic Operations__
-
-    Performing basic computation with arithmetic operations with C.
-	[:octicons-arrow-right-24:](07-arithmetic-ops.md)
 
 </div>
 
