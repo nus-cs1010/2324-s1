@@ -250,6 +250,4 @@ yes      | yes      | don't care | don't care |  don't care |
 
 The first row has been filled up for you.  It represents the condition in which both diners are fully vaccinated.  In this case, it does not matter whether they are from the same household or they are children.
 
-(b) 
-
-Using the table from (a) to help you write a function `can_dine_in(long p, long q)` that returns true if and only if `p` and `q` can dine in together at WcDonald's.
+(b) Using the table from (a) to help you write a function `can_dine_in(long p, long q)` that returns true if and only if `p` and `q` can dine in together at WcDonald's.
