@@ -26,6 +26,7 @@ nav:
     - PE Nodes:
       - Programming Environments: "environments.md"
       - Linking GitHub to PE: "github.md"
+      - Using tmate: "tmate.md"
     - C Programming:
       - C in CS1010: 'c-in-cs1010.md'
       - Common Clang Messages: 'messages.md'
