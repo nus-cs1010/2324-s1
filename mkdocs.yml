@@ -8,6 +8,9 @@ nav:
     - 5. First C Program: "05-first-c.md"
     - 6. CS1010 I/O: "06-cs1010-io.md"
     - 7. Arithmetic Operations: "07-arithmetic-ops.md"
+    - 8. Conditional Statement: "08-if-else.md"
+    - 9. Logical Expression: "09-logical-exp.md"
+    - 10. Assertion: "10-assert.md"
   - Lab Guides: 
     - Guide to Assignments/Exercises: "assignment.md"
     - Unix:
