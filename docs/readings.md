@@ -71,11 +71,3 @@ __[Why I use Vim](https://pascalprecht.github.io/posts/why-i-use-vim/)__ - Pasca
 > once I was able to do some basic operations in Vim and actually started working again, I made almost as twice as much progress at work in about half the time. I know that sounds kind of crazy but I’m serious. And that convinced me that I made the right choice._
 
 > _So, do yourself a favor and climb that mountain. Just remember that you can slide down afterwards."_
-
-### Vim Video Tutorial (from Aaron Tan)
-
-- [Lesson 1](http://vidcast.nus.edu.sg/camtasiarelay/vim-1_-_MP4_with_Smart_Player_%28Large%29_-_20130805_08.51.47AM.html)
-- [Lesson 2](http://vidcast.nus.edu.sg/camtasiarelay/vim_-_MP4_with_Smart_Player_%28Large%29_-_20130806_10.47.38AM.html)
-- [Lesson 3](http://vidcast.nus.edu.sg/camtasiarelay/vim-3_-_MP4_with_Smart_Player_%28Large%29_-_20130809_01.26.24PM.html)
-- [Lesson 4](http://vidcast.nus.edu.sg/camtasiarelay/vim-4_-_MP4_with_Smart_Player_%28Large%29_-_20130811_10.59.20AM.html)
-
