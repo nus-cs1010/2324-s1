@@ -121,7 +121,7 @@ bool is_not_gen_z(long birth_year)
 
 The table below summarizes the logical operations `&&`, `||` and `!`:
 
-| `a`    | `b`   | `a && b` | `a \|\| b` | `!a`  |
+| `a`    | `b`   | `a && b` | `a || b`   | `!a`  |
 |--------|-------|----------|------------|-------|
 | true   | true  | true     | true       | false |
 | true   | false | false    | true       | false |
