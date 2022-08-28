@@ -56,7 +56,7 @@ First, you need to set up a Virtual Private Network (VPN) (See [instructions her
 
 ## Copying Files between PE Nodes and Local Computer
 
-Secure copy, or `scp`, is one way to transfer files between the programming environments and your local computer.   `scp` behaves just like `cp` (see [Unix: Essentials](unix-essentials.md)).  The command takes in two arguments, the source and the destination.   The difference is that we use the `<username>@<hostname>:<filename>` notation to specify a file on a remote host.  
+Secure copy, or `scp`, is one way to transfer files between the programming environments and your local computer.   `scp` behaves just like `cp` (see [Unix: Essentials](unix-essentials.md)).  The command takes in two arguments, the source and the destination.   The difference is that we use the `<username>@<hostname>:<filename>` notation to specify a file on a remote host.
 
 Let's say you want to transfer a set of C files from the directory `a01` to your local computer, then, on your local computer.  You run:
 
@@ -80,7 +80,7 @@ Note that we always run `scp` on your local computer in the examples above, sinc
 
 ## Setting up SSH Keys
 
-The next step is not required but is a time-saver and a huge quality-of-life improvement.  You need to be familiar with basic Unix commands, including how to copy files to remote hosts (using `scp`) and how to check/change file permissions (using `ls -l` and `chmod`).  If you are still not comfortable with these commands, make sure you play with the [basic Unix commands](unix.md) first.  You can come back and complete this step later. 
+The next step is not required but is a time-saver and a huge quality-of-life improvement.  You need to be familiar with basic Unix commands, including how to copy files to remote hosts (using `scp`) and how to check/change file permissions (using `ls -l` and `chmod`).  If you are still not comfortable with these commands, make sure you play with the [basic Unix commands](unix-essentials.md) first.  You can come back and complete this step later. 
 
 Our goal here is to set up a pair of public/private keys for authentication so that you do not need to type your password every time you log into a PE host.
 
