@@ -3,7 +3,7 @@
 ## Prerequisites
 
 1. You should already have your SoC Unix account, cluster access, and SoC VPN set up, and be able to `ssh` into one of the CS1010 PE nodes.  If you are not able to do this, please look at the guide on [CS1010 programming environments](environments.md)
-2. You should feel comfortable running basic UNIX commands.  If you have not gone through the UNIX guide and get your hands dirty, please [look at the guide and play with the various basic Unix commands](unix.md).
+2. You should feel comfortable running basic UNIX commands.  If you have not gone through the UNIX guide and get your hands dirty, please [look at the guide and play with the various basic Unix commands](unix-essentials.md).
 3. You should already have a GitHub account and can log into [GitHub.com](https://www.github.com).
 
 ## Purpose
