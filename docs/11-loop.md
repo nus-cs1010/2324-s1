@@ -6,14 +6,14 @@ After this unit, students should:
 
 - be able to identify the four components of a loop: initialization, body, update, and condition
 - be able to express a computational solution as a loop with the four components above
-- be able to implement a loop using either the `for`, `while` or `do-while` construct in C
+- be able to implement a loop using either the `for, `while`, or `do-while` construct in C
 - be able to trace through the control flows of each loop construct
 - understand the correspondence between the different loop constructs
 - be aware of the "infinite loops" bug, what causes it, and what to pay attention to avoid it.
 
 In [Unit 8](08-if-else.md), you were introduced to writing code that follows one of two possible execution paths using the `if`-`else` statements, using a logical expression to decide which path to take.
 
-Sometimes, we want to execute one of the branches repeatedly (or iteratively), over-and-over again, until a certain logical condition is met.  You have seen this construct in the $max$ and $sum$ example, where we repeatedly go through the numbers in the list until $i == k$.
+Sometimes, we want to execute one of the branches repeatedly (or iteratively), over and over again, until a certain logical condition is met.  You have seen this construct in the $max$ and $sum$ example, where we repeatedly go through the numbers in the list until $i == k$.
 
 ## Writing Loops
 
@@ -22,7 +22,7 @@ To write a loop, we need to think about the following four questions:
 - what do we want to do repeatedly?
 - what do we need to set up before repeating the above?
 - what changes from one repetition to another?  
-- how to decide if we should stop repeating (or conversely, to continue repeating?)
+- how to decide if we should stop repeating (or conversely, continue repeating?)
 
 There is a fifth question that is as important as the above but is harder to answer (and not necessary for writing simple loops), so we will leave it to [Unit 12](12-invariant.md).
 
@@ -30,34 +30,34 @@ Let's revisit the example of `max`.  Here is the answer to the four questions:
 
 - What do we want to do repeatedly?  We want to compare the element $l_i$ to $m$, and update $m$ to $l_i$ if $l_i > m$.
 
-- What do we need to set up before repeating the above?  We need to have some initial value of $m$ and $i$.  We set it up as $m = l_0$ and $i = 1$.
+- What do we need to set up before repeating the above?  We need to have some initial values of $m$ and $i$.  We set it up as $m = l_0$ and $i = 1$.
 
 - What would be different each time we repeat the above?  Every time we repeat, $i$ will be different.  To be more precise, $i$ is one more than before.
 
 - How to decide if we should continue repeating the above?  We stop when there is no more element to compare, i.e., $i$ equals $k$.  In other words, we continue if $i < k$.
 
-![max](figures/max-flowchart/max-flowchart.001.png)
+![max](figures/max-flowchart/max-flowchart-pdf-0.png)
 
 Let's consider another example.  We have seen how to compute factorial recursively.  Let's try to compute factorial using a loop.
 
 Recall that $n! = n \times n-1 \times n-2 .. 2 \times 1$.  Given $n$, how do we find $n!$ using a loop?  
 
-The idea to solve this with a loop is to start with the value $n$, and repeatedly multiply another value $i$, starting with $i = n - 1$, then $i = n - 2$, etc, until $i = 2$.  We do not need to multiple with $i = 1$ since it does not change the value.
+The idea to solve this with a loop is to start with the value $n$, and repeatedly multiply another value $i$, starting with $i = n - 1$, then $i = n - 2$, etc., until $i = 2$.  We do not need to multiply with $i = 1$ since it does not change the value.
 
-Like any other problem, we need to consider what are the variables we need to maintain.  In this case, we should maintain the partial product of the factorial and a variable $i$ that corresponds to value to multiple into the partial product.
+Like any other problem, we need to consider what are the variables we need to maintain.  In this case, we should maintain the partial product of the factorial and a variable $i$ that corresponds to the value to multiply into the partial product.
 
 - What do we want to do repeatedly?  Multiply $i$ into the partial product.
 - What do we need to set up before repeating the above?  We set up the partial product to be $n$ and $i$ to be $n - 1$.
 - What changes from one repetition to another?  $i$ would decrease by one every time we repeat the above.
-- How to decide if we should stop repeating (or conversely, to continue repeating?)  We can stop when we have multiplied $i = 2$ to the partial product.
+- How to decide if we should stop repeating (or conversely, continue repeating?)  We can stop when we have multiplied $i = 2$ to the partial product.
 
 We can express the algorithm above using the following flowchart:
 
-![factorial](figures/loops/loops.004.png)
+![factorial](figures/loops/loops-pdf-3.png)
 
 ## A `for` loop
 
-Now that we have seen the four essential elements of a `for` loop, let's write some loops in C.
+Now that we have seen the four essential elements of a loop, let's write some loops in C.
 
 C provides three ways to write a loop.  Let's start with a simple one:  the `for` loop.  
 
@@ -76,7 +76,7 @@ There are four components, corresponding to the four questions above:
 - The `update` statement is executed after every loop.  (i.e., "What changes from one repetition to another?")
 - The `body` statement is the action that we want to do repeatedly.  
 
-![for](figures/loops/loops.003.png)
+![for](figures/loops/loops-pdf-2.png)
 
 For the `initialize` and `update` statement, even though C allows us to include multiple initializations and multiple updates, it makes the code harder to read and understand.  C also allows us to have empty statements for `initialize`, `condition` and/or `update`.  As such, in CS1010, we will stick to performing one initialization and one update only.
 
@@ -123,7 +123,7 @@ while (<condition>) {
 
 The statements in `<body>` will be executed if `<condition>` is true.  
 
-Note that the syntax of the `while` loop above does not contain the `<initialize>` and the `<update>` component.  When we write the loop, however, we still need to think about them, and add them to the appropriate place in the code, as follows:
+Note that the syntax of the `while` loop above does not contain the `<initialize>` and the `<`update>` components.  When we write the loop, however, we still need to think about them, and add them to the appropriate place in the code, as follows:
 
 ```C
 <initialize>
@@ -135,7 +135,7 @@ while (<condition>) {
 
 The corresponding flowchart for `while` is:
 
-![for](figures/loops/loops.003.png)
+![for](figures/loops/loops-pdf-2.png)
 
 Compare the flowchart for `while` to the flowchart for `for` earlier.  You will see that they are the same!
 
@@ -171,11 +171,11 @@ do {
 } while (<condition>);
 ```
 
-![for](figures/loops/loops.005.png)
+![for](figures/loops/loops-pdf-4.png)
 
 Similar to the `while` loop, the `<body>` component and `<update>` component in the loop do not have to be in order.
 
-!!! note ""
+!!! note "Alert"
     There is a semicolon `;` after a `do-while` loop.
 
 Let's look at an example where using `do-while` is more natural than `while`.
@@ -195,9 +195,9 @@ Note that, here, the user needs to guess at least once, so it is more natural to
 
 ### Designing the Flowchart
 
-Here is the flowchart of the steps described above.  
+Here is the flowchart of the steps described above.
 
-![for](figures/loops/loops.006.png)
+![for](figures/loops/loops-pdf-5.png)
 
 ### The C code
 
@@ -232,13 +232,14 @@ int main()
 }
 ```
 
-I will not go into details of what `srandom(times(0))` means.  You can look it up on your own if you are interested (InfoSec students may want to do this as generating a good random number is key to keeping systems secure).  
+I will not go into details of what `srandom(times(0))` means.  You can look it up on your own if you are interested (InfoSec students may want to do this as generating a good random number is key to keeping systems secure).
 
 The function `random()` generates a random integer, which we limit to 0 to 99 by modulo-ing it with 100.  We then add 1 to it to a number between 1 and 100, inclusive.
 
 ## Infinite Loop
 
-One of the common bugs that programmers encounter when writing loops is the _infinite loop_.  An infinite loop is a loop that never terminates until an external input (++control-c++) terminates the program.
+One of the common bugs that programmers encounter when writing loops is the _infinite loop_.  An infinite loop is a loop that never terminates until an external input ++control++++c++ terminates the program.
+
 
 Consider the slight variation of the `factorial` function below:
 
@@ -316,16 +317,6 @@ long factorial(long n)
 Does this code run correctly?  If it is incorrect, explain what is wrong and suggest a fix.  (Hint: translate this to the corresponding flowchart and trace through the flowchart).
 
 ### Problem 11.2
-
-(a) Rewrite the "Guess A Number" program so that it shows the user the number of guesses made before the correct guess is entered.
-
-(b) Rewrite the "Guess A Number" program with a `while` loop.
-
-(c) Extend the "Guess A Number" program so that it plays the game for five rounds with the user, and at the end, shows the user the average number of guesses over five rounds.  (Hint: you should put the loop that reads the guess and prints feedback to the user into another function.)
-
-(d) What is the optimal strategy to play the game?
-
-### Problem 11.3
 
 Trace the following algorithms:
 
