@@ -18,6 +18,16 @@
     Asserting what must be true at each point of the program.
 	[:octicons-arrow-right-24:](10-assert.md)
 
+- __11. Loops__
+
+    Implementing iterative control in C
+	[:octicons-arrow-right-24:](11-loop.md)
+
+- __12. Invariant__
+
+    Reasoning about loops with invariant
+	[:octicons-arrow-right-24:](12-invariant.md)
+
 </div>
 
 ## Basic C

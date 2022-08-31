@@ -11,6 +11,8 @@ nav:
     - 8. Conditional Statement: "08-if-else.md"
     - 9. Logical Expression: "09-logical-exp.md"
     - 10. Assertion: "10-assert.md"
+    - 11. Loop: "11-loop.md"
+    - 12. Invariant: "12-invariant.md"
   - Lab Guides: 
     - Guide to Assignments/Exercises: "assignment.md"
     - Unix:
