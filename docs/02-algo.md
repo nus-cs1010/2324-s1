@@ -83,11 +83,11 @@ Second, we need a concise way of keeping track of the maximum so far.  We introd
 
 We keep doing the above and increase $i$, until we reach the end of the list when (after increasing $i$) we find that $i$ is $k$.
 
-Now, we have enough details to describe step-by-step, how to find the maximum value from a list of integers.  Such sequence of steps, which the computer can take to solve a computational problem, is called an _algorithm_.  
+Now, we have enough details to describe step-by-step, how to find the maximum value from a list of integers.  Such sequence of steps, which the computer can take to solve a computational problem, is called an _algorithm_.
 
 ### Flowchart
 
-There are different ways one can describe an algorithm.  The easiest way I find is to use a diagram called a _flowchart_.  The flowchart for the algorithm above looks like this.  
+There are different ways one can describe an algorithm.  The easiest way I find is to use a diagram called a _flowchart_.  The flowchart for the algorithm above looks like this.
 
 ![Flowchart](figures/max-flowchart/max-flowchart.001.png)
 
