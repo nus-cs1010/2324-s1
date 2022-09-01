@@ -80,7 +80,7 @@ Additionally, since we exited the loop, we know that `{ i == n }`.  Putting the 
 
 ### Before The Loop
 
-We showed that the code correctly compute `n!` if it enters the loop.  One last thing for us to check is that the code is correct even if it does not enter the loop.  In this case, the execution goes from Line A to Line E directly.
+We showed that the code correctly computes `n!`` if it enters the loop.  One last thing for us to check is that the code is correct even if it does not enter the loop.  In this case, the execution goes from Line A to Line E directly.
 
 Assuming that `n` is non-negative, we have two cases where this could happen: both `i` and `n` are 1, or `n` is 0. In either case, We can assert that `{ product == n! }` at Line E.  So the code is still correct even if we do not enter the loop!
 
@@ -125,7 +125,7 @@ To argue that an invariant is true, we can use the same approach above, i.e., we
 
 As we have seen in the example above, an invariant is useful thinking and reasoning tool to help us convince ourselves that our loop behaves correctly (e.g., `{ product == n! }`).
 
-Loop invariant, however, is not unique.  We can write down possibly infinitely many loop invariants that are true.  A good invariant, however, will lead us to an assertion that we want to see (e.g., relating `product` to `n`).  We can derive other invariants in our code (such as `{ n != 0 }` below) that do not contribute to the reasoning of the behavior of our loop.  _Such invariants should be avoided_.
+Loop invariant, however, is not unique.  We can write down infinitely many loop invariants.  A good invariant, however, will lead us to an assertion that we want to see (e.g., relating `product` to `n`).  We can derive other invariants in our code (such as `{ n != 0 }` below) that do not contribute to the reasoning of the behavior of our loop.  _Such invariants should be avoided_.
 
 ```C
 long factorial(long n)
