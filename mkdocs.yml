@@ -33,6 +33,7 @@ nav:
       - C in CS1010: 'c-in-cs1010.md'
       - Common Clang Messages: 'messages.md'
       - CS1010 I/O Library: "library.md"
+      - C Style Guide: 'style.md'
   - Readings: "readings.md"   
 
 
