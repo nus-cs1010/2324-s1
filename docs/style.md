@@ -1,6 +1,6 @@
 # CS1010 C Style 
 
-In CS1010, you should following the following style guide when you write your code for your graded homework and practical exams.  We typically allocate a few marks for coding style (each assignment/exam may have different allocation).  You will lose marks for violation of style.
+In CS1010, you should following the following style guide when you write your code for your graded homework and practical exams.  We may deduct marks for coding style if your code egregiously violates the style.
 
 This guide is modified from past CS1010 style guide by Aaron Tan.
 
@@ -31,13 +31,13 @@ double weight, height;   // Weight and height of the baby
 
 This is the most important rule to follow.  The name of a type, variable, function, constant should inform us of its purpose clearly without the readers having to guess or look up its meaning.
 
-For example, `int number_of_coins;` is an appropriate variable but not `int c;`. Avoid using a single character for variable names.
+For example, `long number_of_coins;` is an appropriate variable but not `long c;`. Avoid using a single character for variable names.
 
 There are some exceptions, however, as shown below:
 
-- If the variable is the problem size and it is given in the task statement. For example, a problem dealing with n values, hence the variable may be called n (preferably with a comment to explain).
+- If the variable is the problem size and it is given in the task statement. For example, a problem dealing with n values, hence the variable may be called `n` (preferably with a comment to explain).
 - If the variable is a transient/temporary variable whose purpose is clear.
--If the variable is a loop variable whose purpose is clear.
+- If the variable is a loop variable whose purpose is clear.
 
 ## 3. Shorten Variable Names with Naming Conventions
 
@@ -79,7 +79,7 @@ All constant identifiers must be written in all caps and separated by an undersc
 
 ### Variables and Functions
 
-Use lower case letters for variable names and function names, with multiple words separated by underscore `_`.  Example, `cs1010_read_long`, `is_prime`. 
+Use lower case letters for variable names and function names, with multiple words separated by underscore `_`.  Example, `cs1010_read_long`, `is_prime`.  This convention is known as the _snake case_.
 
 ## 7. Use Consistent Indentation to Emphasize Block Structure
 
@@ -94,7 +94,7 @@ for (i = 0; i < 3; i += 1) {
     // Comments should be indented too
     while (j != i) {
         // More indented comments
-        printf("Hello\n");
+        cs1010_println_string("Hello");
     }
 }
 ```
@@ -106,7 +106,7 @@ for (i = 0; i < 3; i += 1) {
 // This comment should be indented and aligned with the while statement.
     while (j != i) {
     // This comment should be aligned with the printf statement.
-        printf("Hello\n");
+        cs1010_println_string("Hello");
     }
 }
 ```
@@ -115,7 +115,7 @@ for (i = 0; i < 3; i += 1) {
 
 You must use only spaces in your code.  Do not use tabs.
 
-You can add the configuration `set expandtab` to automatically expand any tab that you enter into spaces.
+You can add the configuration `set expandtab` in `vim` to automatically expand any tab that you enter into spaces.
 
 ## 9. Spaces in `if`, `else`, `for`, `while`, `do`-`while` Statements
 
@@ -213,7 +213,7 @@ if (k < 0 || k >= MAX_LEN) {
 A comment such as:
 
 ```C
-i += 1 // add one to i
+i += 1; // add one to i
 ```
 
 serves no purpose, adds clutter to a program and does more harm than good.
@@ -257,7 +257,7 @@ If a line (be it a statement or a comment) is too long (more than 80 characters)
 ```C
 if ((has_cs2010 || has_cs2020 || has_cs2040 || has_cs2040C) && (has_st1232 || has_st2131 || has_st2132 || has_st2334) && (has_ma1102R || has_ma1505 || (has_ma1511 && has_ma1512) || has_ma1521) && (has_ma1101R || has_ma1311 || has_ma1506 || has_ma1508E)) 
 ```
-is bad
+is bad.
 
 ```C
 if ((has_cs2010 || has_cs2020 || has_cs2040 || has_cs2040c) && 
