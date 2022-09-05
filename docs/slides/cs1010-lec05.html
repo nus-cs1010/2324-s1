@@ -4,8 +4,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
-<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
-<title>CS1010 AY21/22 S1 Lecture 5</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY22/23 S1 Lecture 5</title>
 <meta charset="utf-8">
 </head>
 <body>
@@ -14,50 +14,30 @@ class: middle, center
 
 # Lecture 5
 
-### 6 September 2021
+### 5 September 2022
 
 **Admin Matters**<br>
-**Unit 10:** Assertion<br>
 **Unit 11:** Loops<br>
 **Unit 12:** Loop Invariants<br>
 
 ---
-class: middle
+### Assignment 1
+.small[
+- Due tomorrow 2359
 
-### Reminders
+- Make sure that your submission compiles without errors or warnings (**=0** if cannot compile; **-1** per warning).
 
-- Assignment 1 due tomorrow night (23:59)
-- Please read:
-    - [How Not to Go About a Programming Assignment](http://people.irisa.fr/Martin.Quinson/Teaching/how-not-to-code.pdf)
-    - [About Assignments in CS1010](assignments.md)
-    - [General CS1010 Policies](policy.md)
-
----
-class: middle
-
-### Grading
-
-- Assignment 1 will be graded solely on correctness (including syntax, practices, approach, and logic) and whether the requirements given are followed.
-- One random question will be graded by tutors -- the rest by bot.
+- Marks may be deducted if you do not demonstrate an understanding of what we taught (e.g., wrong type, redundant conditional checks)
+]
 
 ---
-class: middle
-
-### Grading
-
-- Make sure that your submission compiles cleanly without errors or warnings.  (0 if cannot compile; -1 per warning)
-- Marks will be deducted if you do not demonstrate a full understanding of what we taught so far.  E.g., wrong type, redundant conditional checks.
-
----
-
 ### Upcoming releases:
 
 - Exercise 2 today
+
 - Exercise 3 on Thursday
-- Assignment 2 on Thursday
-    - Additional grading criteria: [style](style.md) and efficiency.
-- Anonymous feedback exercise on lab tutors and tutorial instructors on Friday
-- Last year's midterm question next week
+
+- Assignment 2 on Thursday (+style, +efficiency)
 
 ---
 class: middle
@@ -65,191 +45,54 @@ class: middle
 .fit[![meme](figures/meme/midterm-is-coming.jpg)]
 
 ---
-class: middle
-
 ### Midterm
 
-- **Date**: 27 September, 2021 (Monday)
+- **Date**: 26 September, 2022 (Monday)
 - **Time**: 12noon to 2pm
-- **Duration**: 60 minutes
-- **Online** via Luminus Quiz
+- **Duration**: 80 minutes
+- **Venue**: Multi-purpose Sports Hall 2A (MPSH2A)
 - **10%** of your grade
 
 ---
-class: middle
-
 ### Midterm
+
 - **Scope:**
     - Units 1-12
-	- Problem Set 1-12
 	- Assignments 1-2
-- **Format:** MCQs, MRQs, True/False, Fill-in-the-Blanks, and Short Structured Questions
+- **Format:** MCQs and Short Structured Questions
 - Open book (printed/written notes ONLY)
 
 ---
-class: middle
-
-### Read for more details:
-
-- [SoC E-Exam procedure](https://mysoc.nus.edu.sg/academic/e-exam-sop-for-students/)
-- [CS1010 midterm instructions](midterm.md)
-
----
-class: middle
-
-### Taking Online Exam on Campus
-
-If you need to take the online midterm or online PE on campus, please fill up the LumiNUS Survey on "Taking Midterm/PE1 on Campus" before this Friday 23:59.
- 
----
-class: middle
-
 ### Practical Exam I
 
-- Date: 2 October 2020 (Saturday)
-- Time: 9 am to 12noon
-- Duration: 2 hours 30 minutes
-- Online via `ssh` into restricted PE hosts
+- **Date**: 1 October 2022 (Saturday)
+- **Time**: 
+    - Session 1: 10:30 AM to 1 PM; 
+	- Session 2: 12:30 to 3 PM
+- **Duration**: 2 hours
 - **10%** of your grade
+- `ssh` into restricted PE hosts using lab PCs
 
 ---
-class: middle
-
 ### Practical Exam I
 
-- **Scope:** same as midterm
-- **Format:** Five programming problems 
-    - 3 on average, 4 to ace, 5 for glory
-- Open Book (printed/written notes only)
-- Calculator allowed
-- Criteria: correctness, style, and efficiency
+- **Scope:** Same as midterm
+- **Format:** Four programming problems 
+    - 1 pass, 2-3 average, 4 ace
+- **Open Book** (printed/written notes only)
+- **Criteria:** correctness, style, and efficiency
 
 ---
-class: middle
+class: center,middle
 
-### Read for more details:
-
-- [SoC E-Exam procedure](https://mysoc.nus.edu.sg/academic/e-exam-sop-for-students/)
-- [CS1010 PE1 instructions](pe1.md)
+### More Details in Coming Announcements
 
 ---
-class: middle
+class: center,middle
 
-# Warning
+### Warning
 
-### Pay attention to exam regulations.  Disciplinary actions will be taken against violators.
-
----
-class: middle
-
-### Tutorial 3
-
-- Problem Sets 9 - 10 (maybe 11)
-
----
-class: middle
-
-### Lab 3
-
-- Assignment 1
-- Exercise 4
-- Preparing for Assignment 2
-
----
-class: middle,center
-
-## Assertion
-
-```
-// { ... }
-```
-
-A logical expression that must always be true<br>
-at a given point in a program.
-
----
-class: middle
-
-```C
-x = 1;
-// { x == 1 }
-```
-
----
-class: middle
-
-```C
-if (x > y) {
-  max = x;
-} else {
-  max = y;
-}
-```
-
-how can we be sure that `max` is now the larger of the two?
-
----
-class: middle
-
-```C
-if (x > y) {
-
-  max = x;
-
-} else {
-
-  max = y;
-
-}
-```
----
-class: middle
-
-.tiny[
-```C
-  if (score >= 8) {
-    cs1010_println_string("A");
-  } else {
-    if (score >= 5) {
-      cs1010_println_string("B");
-    } else {
-      if (score >= 3) {
-        cs1010_println_string("C");
-      } else {
-        cs1010_println_string("D");
-      }
-    }
-  }
-```
-]
-
-When will `C` gets printed?
-
----
-class: middle
-
-.tiny[
-```C
-  if (score >= 8) {
-    cs1010_println_string("A");
-  } else {
-
-    if (score >= 5) {
-      cs1010_println_string("B");
-    } else {
-
-      if (score >= 3) {
-
-        cs1010_println_string("C");
-      } else {
-        cs1010_println_string("D");
-      }
-    }
-  }
-```
-]
-
-When will `C` gets printed?
+Pay attention to exam regulations.  Disciplinary actions will be taken against violators.
 
 ---
 class: middle,center
@@ -257,58 +100,69 @@ class: middle,center
 # Loops
 
 ---
-class: bottom,center,wide
-background-image: url(figures/lec5/lec5.001.png)
+class: center,middle,wide
+
+.fit[![max](../figures/loops/loops-pdf-6.png)]
 
 max(L,k)
 
 ---
-class: bottom,center,wide
-background-image: url(figures/lec5/lec5.002.png)
+class: center,middle,wide
+
+.fit[![max](../figures/loops/loops-pdf-7.png)]
 
 Loop body: what we do repeatedly
 
 ---
-class: bottom,center,wide
-background-image: url(figures/lec5/lec5.003.png)
+class: center,middle,wide
 
-Loop initialization: what we do to set up the loop
-
----
-class: bottom,center,wide
-background-image: url(figures/lec5/lec5.004.png)
-
-Loop update: what changes from one iteration to the next?
-
----
-class: bottom,center,wide
-background-image: url(figures/lec5/lec5.005.png)
+.fit[![max](../figures/loops/loops-pdf-8.png)]
 
 Terminating condition: when to stop repeating?
 
 ---
-class: bottom,center,wide
-background-image: url(figures/lec5/lec5.012.png)
+class: center,middle,wide
+
+.fit[![max](../figures/loops/loops-pdf-9.png)]
+
+Loop update: what changes from one iteration to the next?
+
+---
+class: center,middle,wide
+
+.fit[![max](../figures/loops/loops-pdf-10.png)]
+
+Loop initialization: what do we need to setup before entering the loop?
+
+---
+class: center,middle,wide
+
+.fit[![max](../figures/max-flowchart/max-flowchart-pdf-9.png)]
 
 Finding factorial recursively
 
 ---
 
 ---
-class: bottom,center,wide
-background-image: url(figures/lec5/lec5.006.png)
+class: center,middle,wide
+
+.fit[![max](../figures/loops/loops-pdf-3.png)]
 
 Finding factorial with a loop
 
 ---
-class: middle,wide
-background-image: url(figures/lec5/lec5.007.png)
+class: center,middle,wide
+
+.fit70[![max](../figures/loops/loops-pdf-3.png)]
+.fit70[![max](../figures/loops/loops-pdf-2.png)]
+
 
 ---
-class: bottom,wide
-background-image: url(figures/lec5/lec5.008.png)
+class: wide
 
-.smaller[
+.fit80[![max](../figures/loops/loops-pdf-2.png)]
+
+.small[
 ```C
 for (initialize; condition; update) {
    body;
@@ -317,10 +171,10 @@ for (initialize; condition; update) {
 ]
 
 ---
-class: bottom,wide
-background-image: url(figures/lec5/lec5.008.png)
+class: ,wide
+.fit80[![max](../figures/loops/loops-pdf-2.png)]
 
-.smaller[
+.small[
 ```C
 initialize;
 while (condition) {
@@ -330,13 +184,13 @@ while (condition) {
 ]
 
 ---
-class: middle
+class: center
 
 .fit[![meme](figures/meme/for-while-the-same.jpg)]
 
 ---
 class: bottom,wide
-background-image: url(figures/lec5/lec5.009.png)
+.fit80[![max](../figures/loops/loops-pdf-4.png)]
 
 .smaller[
 ```C
@@ -348,11 +202,16 @@ do {
 ]
 
 ---
-class: middle,wide
 
 ---
-class: middle,wide
-background-image: url(figures/lec5/lec5.010.png)
+class: center,wide
+
+.fit[![max](../figures/loops/loops-pdf-5.png)]
+
+---
+### For a Loop to Terminate
+
+Starting from an initial state, every update must move the state towards the termination state.
 
 ---
 class: middle,center
@@ -375,78 +234,34 @@ x = 1;
 ---
 class: middle
 
-.tiny[
+.smaller[
 ```C
-if (x > y) {
+if (x &gt; y) {
   max = x;
-  // { (x > y) && (max == x) && (max > y) }
+  // { (x &gt; y) &amp;&amp; (max == x) &amp;&amp; (max &gt; y) }
 } else {
   max = y;
-  // { (x <= y) && (max == y) && (max >= x) }
+  // { (x &lt;= y) &amp;&amp; (max == y) &amp;&amp; (max &gt;= x) }
 }
-// { ((max == x) || (max == y)) &&
-//   (max >= x) && (max >= y) }
+// { ((max == x) || (max == y)) &amp;&amp;
+//   (max &gt;= x) &amp;&amp; (max &gt;= y) }
 ```
 ]
 
 ---
 class: middle
 
-What does `y` count?
-.tiny[
-```C
-long count(long n) {
-  long y = 0;
-  long x = n;
+Does this correctly compute factorial of $n$?
 
-  while (x > 0) {
-
-    x -= 1;
-
-    if (x % 5 == 0) {
-
-      y += 1;
-
-    }
-  }
-
-  return y;
-}
-```
-]
----
-class: middle,center
-
-## Loop Invariant
-
-An assertion that holds (i) before the loop; (ii) after the loop; and (iii) after each iteration of the loop.
-
-(but may be temporarily false during the loop)
-
----
-class: middle
-
-background-image: url(figures/lec5/lec5.008.png)
-
----
-
-class: middle
-
-.tiny[
+.smaller[
 ```C
 long factorial(long n)
 {
-  if (n == 0) {
-      return 1;
-  }
   long product = 1;
   long i = 1;
-  while (i < n) {
-
+  while (i &lt; n) {
     i += 1;
-
     product *= i;
-
   }
   return product;
 }
@@ -454,15 +269,38 @@ long factorial(long n)
 ```
 ]
 ---
-class: middle
+### Loop Invariant
 
+An assertion that holds 
+
+- before the loop; 
+- at the end of each iteration of the loop;
+- after the loop; 
+
+(but may be temporarily false during the loop)
+
+---
+### Loop Invariant
+
+.fit[![max](../figures/loops/loops-pdf-2.png)]
+
+---
+### Loop Invariant
+
+Show that the invariant holds:
+
+- before the loop; 
+- at the end of the first iteration
+- if it holds at the end of the $k$-th interation; it woulds at the end of $k+1$-th iteration
+- after the loop; 
+
+---
 ### Homework
 
-- Assignment 1 and 2
-- Quiz for Lecture 5
-- Surveys (On-Campus Exam and Anon Feedback)
-- Exercise 3 and 4
-- Problem Sets
+- [Self-Diagnostic Quiz for Lecture 5](https://canvas.nus.edu.sg/courses/22421/quizzes/1567)
+- Assignments 1 and 2
+- Exercises 3 and 4
+- Problem Sets 11 and 12
 
 ---
 class: bottom
@@ -470,7 +308,7 @@ class: bottom
 .tiny[
 Version: 1.1
 
-Last Updated: Mon Sep  6 11:28:13 +08 2021
+Last Updated: Mon Sep  5 11:36:48 +08 2022
 ]
 </textarea>
 
@@ -491,7 +329,7 @@ var slideshow = remark.create({
 	    scroll: false
 	},
 	ratio: '16:9',
-	highlightStyle: 'monokai',
+	highlightStyle: 'tomorrow',
     slideNumberFormat: 'AY2223 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
 });
  // Setup MathJax

@@ -81,6 +81,14 @@ em {
 	max-width: 100%;
 	height: auto;
 }
+.fit80 > img {
+	max-width: 80%;
+	height: auto;
+}
+.fit70 > img {
+	max-width: 70%;
+	height: auto;
+}
 table td, table th {
 	padding: 20px;
 	border-bottom: 1px solid;
