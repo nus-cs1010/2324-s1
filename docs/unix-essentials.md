@@ -120,8 +120,7 @@ The slash `/` beside the filename tells you that the file is a directory.  A nor
 You may also use the `ls -l` command (hyphen el, not hyphen one) to display almost all the file information, include the size of the file and the date of modification.
 
 !!! tip "Use Up Arrow for Command History"
-    `bash` maintains a history of your previously executed commands, and you may use the ++control+p++ (previous) and ++control+n++ (next) to 
-go through it. Press the ++control+p++ until you find a previously executed command. You may then press ++enter++ to execute it or edit the command before executing it. This is handy when you need to repeatedly execute a long `bash` command.
+    `bash` maintains a history of your previously executed commands, and you may use the ++control+p++ (previous) and ++control+n++ (next) to go through it. Press the ++control+p++ until you find a previously executed command. You may then press ++enter++ to execute it or edit the command before executing it. This is handy when you need to repeatedly execute a long `bash` command.
 
 ### `cd`: Change Directory
 
@@ -224,7 +223,7 @@ The command `cp` takes in two arguments, the first is the source, and the second
 
 Note that we use `.` above to indicate that we wish to copy the whole subtree of `workshop` over the current directory.  The command should complete without any message.  Upon completion, you can run `ls` to double-check that the workshop directory exists under `workshop`.
 
-!!! Warning: `cp` Overwrites
+!!! warning `cp` Overwrites
     If there is an existing file with the same name, `cp` will overwrite
 	the existing file without warning.
 
@@ -258,7 +257,7 @@ bar.txt foo.txt test.txt
 
 Here, you can see that we have moved `foo.txt` over to the current directory.
 
-!!! Warning: `mv` Overwrites
+!!! warning `mv` Overwrites
     If there is an existing file with the same name, `mv` will overwrite
 	the existing file without warning. `mv` comes with a `-i` flag that interactively asks you if you are sure if you want to overwrite a file.  It is a good idea to always run `mv -i`. Hit ++y++ to continue overwriting the existing file.  You can look up on the Internet on how to make `-i` the default using `alias` command in `.bashrc`.
 
