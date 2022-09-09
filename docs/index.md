@@ -12,7 +12,7 @@
 
     How arrays are implemented and can be used in C
 	[:octicons-arrow-right-24:](14-array.md)
-
+</div>
 
 ## Control Statements
 <div class="grid cards" markdown>
