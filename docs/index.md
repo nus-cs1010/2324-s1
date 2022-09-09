@@ -1,5 +1,19 @@
 # NUS CS1010 Lecture Notes for AY22/23 Semester 1
 
+## Arrays, Pointers, Memory Management
+<div class="grid cards" markdown>
+
+- __13. Call Stack__ 
+
+    How calling a function and passing parameters by-value works.
+	[:octicons-arrow-right-24:](13-call-stack.md)
+
+- __14. Fixed-Length Array__
+
+    How arrays are implemented and can be used in C
+	[:octicons-arrow-right-24:](14-array.md)
+
+
 ## Control Statements
 <div class="grid cards" markdown>
 
