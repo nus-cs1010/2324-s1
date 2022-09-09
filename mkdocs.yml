@@ -13,6 +13,8 @@ nav:
     - 10. Assertion: "10-assert.md"
     - 11. Loop: "11-loop.md"
     - 12. Invariant: "12-invariant.md"
+    - 13. Call Stack: "13-call-stack.md"
+    - 14. Fixed-Length Array: "14-array.md"
   - Lab Guides: 
     - Guide to Assignments/Exercises: "assignment.md"
     - Unix:

@@ -1,4 +1,4 @@
- Unit 14: Fixed-Length Array
+# Unit 14: Fixed-Length Array
 
 ## Learning Objectives
 
@@ -12,12 +12,12 @@ After this unit, students should:
 - be able to define an array as a function parameter
 - be aware of the difference of pass by value and pass by reference, and that arrays, as parameters correspond to the latter, and consequently, the need to also indicate the length of an array as another parameter
 - be aware that we cannot change the length of an array, only declare a new one of a different length
-- be aware that we may check the length of an array using the sizeof operator
+- be aware that we may check the length of an array using the `sizeof` operator
 - be aware that VLA should be avoided in general, and is banned in CS1010
 
 ## Your First Compound Data Type
 
-We now look at the first of the two compound data types in C --  arrays.  
+We now look at the first of the two compound data types in C -- arrays.  
 
 An array is a data type that can hold one or more values.  An array variable can only store values of the _same_ type $T$.  We say that the array variable is an _array of $T$_.  For instance, we can declare a variable `list` to be an array of `long`, in which case, `list` can hold one or more `long` values.  
 
@@ -43,7 +43,7 @@ Just like any other local variables, declaring an array does not {--uninitialize
 
 ## Accessing the Array Elements
 
-We can access the array elements using the _index_ of the element, starting from 0.  For instance, to initialize the first three elements of a list to 1, 2, 4, respectively, we can write:
+We can access the array elements using the _index_ of the element, starting from 0.  For instance, to initialize the first three elements of a list to 1, 2, and 4, respectively, we can write:
 
 ```C
 long list[10];
@@ -76,7 +76,7 @@ long list[10] = {1, 2, 3, 1, 5, 10, 10, 4, };
 // list[8] and list[9] are both initialized to 0
 ```
 
-Note that, after the declaration, we can no longer using this technique to reinitialized or initialize the array.
+Note that, after the declaration, we can no longer use this technique to reinitialize or initialize the array.
 
 ```C
 long list[10];
@@ -88,18 +88,36 @@ list = {1, 2, 3, 1, 5, 10, 10, 4, 5, 3, };  // error
 One useful application of a pre-initialized array is to use it as a lookup table.  Consider the problem `burger` in Exercise 1, in which we need to find out how many burgers can be made given a list of ingredients.  Instead of storing the number of ingredients needed for each burger in five different variables, we can put them into an array:
 
 ```C
-  long per_burger[5] = {3, 2, 1, 15, 5};
+  long per_burger[3] = {3, 2, 1};
 ```
 
 If we pass in the number of available ingredients in an array, then, we can do the following:
 
 ```C
-long count_burgers(long available[5]) {
-  long per_burger[5] = {3, 2, 1, 15, 5};
+long count_burgers(long available[3]) {
+  long per_burger[3] = {3, 2, 1};
 
   long num_burgers = LONG_MAX;
 
-  for (long i = 0; i < 5; i += 1) {
+  for (long i = 0; i < 3; i += 1) {
+    long k = available[i] / per_burger[i];
+    if (num_burgers > k) {
+      num_burgers = k;
+    }
+  }
+
+  return num_burgers;
+}
+```
+
+Now, if we add more types of ingredients (pickles, tomatoes, mushrooms, etc.) to make fancier burger, we just need to make minimal changes:
+```C
+long count_burgers(long available[7]) {
+  long per_burger[7] = {3, 2, 1, 4, 2, 3, 5};  // num of each ingredient needed to make a burger.
+
+  long num_burgers = LONG_MAX;
+
+  for (long i = 0; i < 7; i += 1) {
     long k = available[i] / per_burger[i];
     if (num_burgers > k) {
       num_burgers = k;
@@ -113,7 +131,7 @@ long count_burgers(long available[5]) {
 
 ## Passing Array as Parameter to Functions
 
-C supports several different syntaxes for passing an array as a parameter into a function.  The following function declarations mean the same thing.
+C supports several syntaxes for passing an array as a parameter into a function.  The following function declarations mean the same thing.
 
 a. Passing in the array with `[`, `]` and the constant size of the array.
     ```C
@@ -122,23 +140,25 @@ a. Passing in the array with `[`, `]` and the constant size of the array.
     }
     ```
 
-b. Passing in the array with `[`, `]` and the variable containing the size of the array.
-    ```C
-    void foo(long len, long list[len]) { 
-      :
-    }
-    ```
-
-c. Passing in the array with `[`, `]` 
+b. Passing in the array with `[`, `]` 
     ```C
     void foo(long len, long list[]) { 
       :
     }
     ```
 
-While these three ways of declaring an array mean the same thing, in terms of human readability, Option (a) and (b) are better.  Option (a) explicitly tells the reader of the code that this function expects an array called `list` of size 10.  Option (b) explicitly tells the reader that the parameter `len` is the size of the array `list`.  Option (c) does not explicitly relate `len` to `list`, and would have to depend on the comments of the code to tell the reader what `len` is for and how big is the array. 
+Option (a) explicitly tells the reader of the code that this function expects an array called `list` of size 10.  Option (b) passes both the length of the array `len` and the array `list` to the function.   Note that `len` is not explicitly related to `list` in C, and would have to depend on the comments of the code to tell the reader what `len` is for. 
 
-Option (b) is the most flexible and readable option and is the recommended way in CS1010.
+!!! note "A third way of passing in an array"
+    For (b), we could also write it as:
+    ```C
+    void foo(long len, long list[len]) { 
+      :
+    }
+    ```
+
+    This way, the code informs the reader that `len` represents the size of the array.  While this code is more readable, it unfortunately gets treated as a variable-length array and triggers a warning by `clang`.  As such, we avoid using this syntax in CS1010.
+
 
 To pass in an array as an argument, we just need to specify the name of the array:
 
@@ -152,7 +172,7 @@ foo(3, list);  // assuming `foo` is declared with Option (b)
 We can now revisit the flowchart for $max$ and write the function in C:
 
 ```C
-long max(long length, long list[length])
+long max(long list[], long length)
 {
   long max_so_far = list[0];
   for (long i = 1; i != length; i += 1) {
@@ -166,7 +186,7 @@ long max(long length, long list[length])
 
 ## Array is Passed By Reference
 
-An array variable is treated differently than a variable of other types in C in several ways.  One of these differential treatment has caught many new programmers by surprise -- it violates the pureness of functions.  Whatever happens in the function _no longer just stays in the function_.  Let's consider the following example:
+An array variable is treated differently than a variable of other types in C in several ways.  One of these differential treatments has caught many new programmers by surprise -- it violates the pureness of functions.  Whatever happens in the function _no longer just stays in the function_.  Let's consider the following example:
 
 ```C
 void foo(long a[2]) {
@@ -182,9 +202,9 @@ int main()
 }
 ```
 
-If `foo` is a pure function with no side-effects, then calling `foo` should not change `a`.  But if you run the code above, you will see that `a[0]` has changed `200`!
+If `foo` is a pure function with no side effects, then calling `foo` should not change `a`.  But if you run the code above, you will see that `a[0]` has changed to `200`!
 
-When we pass `a` into `foo`, what do we actually push onto the stack?  Unlike other variable types, we do not copy the whole array onto the stack.  One reason for this is that array can be huge -- copying the whole array onto the stack for every function call with the array as an argument can be slow.  Thus, in C, when an array is passed as an argument, only the _memory address_ of the array is copied onto the stack.
+When we pass `a` into `foo`, what do we push onto the stack?  Unlike other variable types, we do not copy the whole array onto the stack.  One reason for this is that an array can be huge -- copying the whole array onto the stack for every function call with the array as an argument can be slow.  Thus, in C, when an array is passed as an argument, only the _memory address_ of the array is copied onto the stack.
 
 The following figures illustrate this point.  First, let's see how an array is laid out in the memory.  When we declare an array `a` with two elements, the appropriate space is reserved on the stack.  The elements of the array are _stored consecutively_ in the memory.  This implies, that, it is sufficient to know where the first element of the array is stored.  With that memory address, we can find out where the rest of the elements in the array are, and by reading the content of that memory location, find out what their values are.  This "trick" is what allows C to pass an array into a function efficiently.
 
@@ -203,10 +223,10 @@ C does not give us any choice but to pass in an array by reference, making our j
 The `const` keyword is a qualifier that indicates that a variable is read-only, and therefore cannot be modified.  A good programmer should always communicate to the reader of the code if a call-by-reference parameter will be modified or not.  A better way to write our `max` is:
 
 ```C
-long max(const long length, const long list[len])
+long max(const long list[], const long length)
 {
   long max_so_far = list[0];
-  for (long i = 1; i != length; i += 1) {
+  for (long i = 1; i != k; i += 1) {
     if (list[i] > max_so_far) {
       max_so_far = list[i];
     }
@@ -215,15 +235,17 @@ long max(const long length, const long list[len])
 }
 ```
 
-Here, we are communicating to whoever reading our code that `length` and the elements of `list` will not be modified anywhere in our code.  Adding `const` will also help us to avoid bugs in case we had a typo in our code.  A buggy version of `max` is as follows, where the programmer mixed up `k` and `m`.  Since the programmer already qualified `k` with the `const` keyword, the code wouldn't compile, avoiding hours of hair-pulling debugging session.
+Here, we are communicating to whoever reading our code that `length` and the elements of `list` will not be modified anywhere in our code.  Adding `const` will also help us to avoid bugs in case we had a typo in our code.  
+
+Consider a buggy version of `max` is as follows, where the programmer uses one-letter variable names and then shoots themself in the foot by mixing up `k` and `m`.  However, if the programmer already qualified `k` with the `const` keyword, the code wouldn't compile, avoiding hours of hair-pulling debugging sessions.
 
 ```C
-long max(const long k, const long list[k])
+long max(const long list[], const long k)
 {
   long m = list[0];
   for (long i = 1; i != k; i += 1) {
     if (list[i] > m) {
-      k = list[i];
+      k = list[i]; // error
     }
   }
   return m;
@@ -232,7 +254,7 @@ long max(const long k, const long list[k])
 
 ## Pointers
 
-A more visual way to illustrate the fact that a memory location contains the memory address of another variable is to draw an arrow.
+A more visual way to illustrate the fact that a memory location contains the memory address of another variable is to draw an arrow to point from the location storing the address of the variable to the location storing the variable.
 
 ![stack](figures/stack/stack.007.png)
 
@@ -268,18 +290,17 @@ This is how array decay works.  In C, the name of the variable of an array is tr
 type name[num_of_elems];
 ```
 
-then any reference to `name` is a synonym to the pointer to the first element of the array `name`.  This explains why when we call `foo` with `a`, it is the address of the first element of `a` that is pushed onto the stack.
+Then, any reference to `name` is a synonym for the pointer to the first element of the array `name`.  This explains why when we call `foo` with `a`, it is the address of the first element of `a` that is pushed onto the stack.
 
 ```C
   long a[2] = {100, 200};
   foo(a);
 ```
 
-This also explains why we have so many options when declaring an array as a parameter to a function.  All three options below 
+This also explains why we have several options when declaring an array as a parameter to a function.  All three options below 
 
 ```C
 void foo(long list[10]) { .. }
-void foo(long len, long list[len]) { .. }
 void foo(long len, long list[]) { .. }
 ```
 
@@ -296,7 +317,7 @@ void foo(long len, long *list) { .. }
 
 since we are just passing in the pointer to a `long` variable.  Using `long *x` is a perfectly valid (and common) C syntax for passing in an array, it is just not as readable since we can't tell if `x` is meant to be just an address to a variable, or meant to be an array.
 
-Array decay works everywhere, not just during argument passing to a function.
+Array decay works everywhere, not just during argument-passing to a function.
 
 Suppose we write
 
@@ -313,14 +334,14 @@ b = a; // not possible
 
 Line 4 above is equivalent to comparing the memory addresses of the first elements of `a` and `b` and therefore is always false (since the array elements do not have the same memory address).
 
-Line 8 above is equivalent to assigning the memory address of the first element of `a` into the memory address of `b`, which is not allowed.  We cannot change the memory address of a variable since this is determined by the OS.
+Line 8 above is equivalent to assigning the memory address of the first element of `a` to the memory address of `b`, which is not allowed.  We cannot change the memory address of a variable since this is determined by the OS.
 
 ## Returning Array from a Function
 
 Now that we have a better understanding of how we can pass an array as a pointer into a function, let's see how we can return an array from a function.  Exploiting array decay, we can return the array as a pointer from a function.  Consider the `square` function that computes the square of every element in the list:
 
 ```C
-long* square(const long length, long list[len])
+long* square(const long length, long list[])
 {
   for (long i = 1; i != length; i += 1) {
     list[i] = list[i] * list[i];
@@ -339,7 +360,7 @@ We can call the function like this:
 If you examine the content of `a2`, you will find that `a2` correctly contains the square of the input array `a`.  We are, however, passing in `a` as a reference, the code snippet above modifies `a` as well!  One might argue that it is pointless to return an array in this case, since we could have just defined the function as a `void` function:
 
 ```C
-void square(const long length, long list[len])
+void square(const long length, long list[])
 {
   for (long i = 1; i != length; i += 1) {
     list[i] = list[i] * list[i];
@@ -347,7 +368,7 @@ void square(const long length, long list[len])
 }
 ```
 
-and assign {--`a2` to `a`--} {++`a` to `a2`++} (if we want to store the squared list in `a2`).
+and assign `a` to `a2` (if we want to store the squared list in `a2`).
 
 ```C
   long a[5] = {1, 2, 3, 4, 5};
@@ -359,7 +380,7 @@ and assign {--`a2` to `a`--} {++`a` to `a2`++} (if we want to store the squared 
 Is there a way then, to keep `list` unmodified, while returning a "new" array?  You might be tempted to do this:
 
 ```C
-long* square(const long length, const long list[len])
+long* square(const long length, const long list[])
 {
   long squared[length];
   for (long i = 1; i != length; i += 1) {
@@ -371,15 +392,15 @@ long* square(const long length, const long list[len])
 
 This is wrong for two reasons:
 
-- We are declaring an array `squared` with a variable size on the stack.  This is called a variable-length array, or VLA.  This is a misnomer since once the array is created, the length is fixed.  _VLA is banned in CS1010.  Even outside of CS1010, VLA should be used with extreme care.  A VLA is allocated on the stack, which typically has very limited memory.  If the stack runs out of memory, your program would crash!  The situation is worse if the size of the VLA is read as an input from the users -- this implies that an external user could enter malicious input to crash your program._
-- By returning `squared`, we are returning the memory address of an array allocated on the stack.  Recall that when a function exits, the memory allocated to it on the stack is reclaimed and reused.  Thus, the array `squared` no longer exists, and the content of the returned array is {--not--} {++now++} undetermined.
+- We are declaring an array `squared` with a variable size on the stack.  This is called a variable-length array, or VLA.  _VLA is banned in CS1010.  Even outside of CS1010, VLA should be used with extreme care.  A VLA is allocated on the stack, which typically has very limited memory.  If the stack runs out of memory, your program would crash!  The situation is worse if the size of the VLA is _read as input from the_ users -- this implies that an external user could enter a malicious input to crash your program._
+- By returning `squared`, we are returning the memory address of an array allocated on the stack.  Recall that when a function exits, the memory allocated to it on the stack is reclaimed and reused.  Thus, the array `squared` no longer exists, and the content of the returned array is now undetermined.
 
 There is a right way to do this involving allocating memory on the heap, but we will explore it in a later unit.  But, in short, at this point, you haven't learned enough yet to have a correct and meaningful way to return an array from a function.
 
 
 ## Array Index Out of Bound
 
-A common bug when we work with arrays is accessing a location beyond what is allocated to the array.  Unlike other languages like Java, which checks the bound for you, C does not.  So we could write the following code and it would compile perfectly.
+A common bug when we work with arrays is accessing a location beyond what is allocated to the array.  Unlike other languages like Java, which checks the bound for you, C does not.  So we could write the following code, and it would compile perfectly.
 
 ```C
 int main()
@@ -391,9 +412,16 @@ int main()
 }
 ```
 
-Running this, however, would lead to _memory corruption_, since we are writing to `a[10]` (the 11-th element) but we only asked for 10 elements for the array `a`.  So we are writing to a memory that we are not supposed to and thus causing your program to behave incorrectly.
+Running this, however, would lead to _memory corruption_, since we are writing to `a[10]` (the 11-th element) but we only asked for 10 elements for the array `a`.  So we are writing to a memory that we are not supposed to and thus causing your program to behave incorrectly.  Running the program above would lead to the following output[^1]:
+```
+array.c:5:5: runtime error: index 10 out of bounds for type 'long [10]'
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior a.c:5:5 in
+Illegal instruction (core dumped)
+```
 
-Similarly, reading from a memory location that we are not supposed to could lead to a misbehaving program.  You have seen this in Problem 1.1(d).
+[^1]: You will see this output only if your code is compiled with `-fsanitize=bounds` flag.
+
+Similarly, reading from a memory location that we are not supposed to could lead to a misbehaving program.  You have seen this in Problem 2.1(d).
 
 ## Other Facts About Arrays
 
@@ -419,7 +447,7 @@ This makes it easy to add or remove items from the array, without having to reme
 
 ### Determining the Number of Elements in the Array
 
-C provides a `sizeof` operator, which returns the number of bytes allocated to a type.  We can use `sizeof long` for instance, to determine the number of bytes allocated to `long` on a platform.  We can also use `sizeof` on a variable instead of the type.  This becomes useful to determine, programmatically, the length of an array (esp if the array length is skipped in the array declaration).  We can calculate the number of elements in `marks` with
+C provides a `sizeof` operator, which returns the number of bytes allocated to a type.  We can use `sizeof long`, for instance, to determine the number of bytes allocated to `long` on a platform.  We can also use `sizeof` of a variable instead of the type.  This becomes useful to determine, programmatically, the length of an array (esp if the array length is skipped in the array declaration).  We can calculate the number of elements in `marks` with
 
 ```C
 long marks[] = { 1, 2, 3, 5, 8 };
