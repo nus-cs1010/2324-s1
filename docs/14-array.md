@@ -39,7 +39,7 @@ long list[10];
 
 We use the square bracket `[` and `]` to indicate that the variable `list` is an array.  The number `10` indicates that `marks` holds 10 `long` values.  The size of the array must be an integer value, not a variable.
 
-Just like any other local variables, declaring an array does not {--uninitialized--} {++initialize++} it.  An uninitialized array contains whatever values happened to be in the memory at that time.
+Just like any other local variables, declaring an array does not initialize it.  An uninitialized array contains whatever values happened to be in the memory at that time.
 
 ## Accessing the Array Elements
 
@@ -94,10 +94,10 @@ One useful application of a pre-initialized array is to use it as a lookup table
 If we pass in the number of available ingredients in an array, then, we can do the following:
 
 ```C
-long count_burgers(long available[3]) {
+long compute_num_of_burgers(long available[3]) {
   long per_burger[3] = {3, 2, 1};
 
-  long num_burgers = LONG_MAX;
+  long num_burgers = LONG_MAX; // (1)
 
   for (long i = 0; i < 3; i += 1) {
     long k = available[i] / per_burger[i];
@@ -110,9 +110,11 @@ long count_burgers(long available[3]) {
 }
 ```
 
+1. `LONG_MAX` is a value that corresponds to the largest possible integer that can be represented as a `long`.
+
 Now, if we add more types of ingredients (pickles, tomatoes, mushrooms, etc.) to make fancier burger, we just need to make minimal changes:
 ```C
-long count_burgers(long available[7]) {
+long compute_num_of_burgers(long available[7]) {
   long per_burger[7] = {3, 2, 1, 4, 2, 3, 5};  // num of each ingredient needed to make a burger.
 
   long num_burgers = LONG_MAX;
@@ -208,11 +210,11 @@ When we pass `a` into `foo`, what do we push onto the stack?  Unlike other varia
 
 The following figures illustrate this point.  First, let's see how an array is laid out in the memory.  When we declare an array `a` with two elements, the appropriate space is reserved on the stack.  The elements of the array are _stored consecutively_ in the memory.  This implies, that, it is sufficient to know where the first element of the array is stored.  With that memory address, we can find out where the rest of the elements in the array are, and by reading the content of that memory location, find out what their values are.  This "trick" is what allows C to pass an array into a function efficiently.
 
-![stack](figures/stack/stack.005.png)
+![stack](figures/lec06-stack/stack.005.png)
 
 When we call `foo`, we push the _memory address_ of the array (i.e., of the first element of the array), on the stack.  With this memory address, `foo` can now read the elements of the array `a[0]` and `a[1]`, by accessing the memory of the array on the stack frame of `main`.  If `foo` modifies to the array, then the array on the stack frame of `main` is updated as well.
 
-![stack](figures/stack/stack.006.png)
+![stack](figures/lec06-stack/stack.006.png)
 
 This mechanism of passing arguments into a function is called _"pass by reference"_, as opposed to _"pass by value"_, in which we make a copy of the variable on the stack.
 
@@ -256,7 +258,7 @@ long max(const long list[], const long k)
 
 A more visual way to illustrate the fact that a memory location contains the memory address of another variable is to draw an arrow to point from the location storing the address of the variable to the location storing the variable.
 
-![stack](figures/stack/stack.007.png)
+![stack](figures/lec06-stack/stack.007.png)
 
 For this reason, in C, a variable that stores a memory address is called a _pointer_.  We will examine this in more detail in Unit 15, but for now, we will just introduce the `*` notation in C.   This notation is overused in C and often confuses.  You have seen how `*` is used for multiplication.  We will now use `*` to indicate that a variable is a pointer, by putting it in front of the name of the variable.
 

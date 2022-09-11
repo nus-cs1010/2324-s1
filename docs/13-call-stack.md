@@ -33,7 +33,7 @@ int main()
 
 When the OS runs the program above, it invokes, or calls, the function `main`.  A new stack frame is created for `main`.  There are two variables `x` and `y` declared in `main`.  Recall from [Unit 2](02-algo.md) that a variable is a location in the memory which holds a value.  Thus, the stack frame of the `main` will include these two variables.  We initialize `x` to 1 in the code above, so the value 1 will be placed in the memory location of `x`.  The variable `y` remains uninitialized, so it will contain whatever value that happens to be in the memory at that time.
 
-![stack](figures/stack/stack.001.png)
+![stack](figures/lec06-stack/stack.001.png)
 
 Now, let's consider the program[^1]:
 
@@ -58,15 +58,15 @@ Now, the program invokes the function `add` with two parameters, using `x` and 1
 
 When the stack frame for `add` is created, `sum` is uninitialized, but `a` is initialized to whatever the value of `x` is when the function is invoked (1 in this example), and `b` is initialized to 10 since that is the argument passed into `add`.
 
-![stack](figures/stack/stack.002.png)
+![stack](figures/lec06-stack/stack.002.png)
 
 After the stack frame for `add` is set up, the code is executed.  The memory location for `sum` is then initialized to the sum of `a` and `b` (11 in this example), and the return statement is executed. 
 
-![stack](figures/stack/stack.003.png)
+![stack](figures/lec06-stack/stack.003.png)
 
 When a function returns, the stack frame for `sum` is removed.  The variables `sum`, `a`, `b` crumble into dust and no longer exist in the memory.  The value of the variable being returned (`sum` in this case) is then copied back to the stack frame of the `main` (the caller).  In this example, this value is copied into the memory location of `y`.
 
-![stack](figures/stack/stack.004.png)
+![stack](figures/lec06-stack/stack.004.png)
 
 What would happen if we change the value of `a` within `add`?
 
