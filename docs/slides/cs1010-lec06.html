@@ -41,8 +41,13 @@ Unit 14: **Array**<br>
 
 - Problem Sets 11-12
 
+### Lab 4
+
+- Testing
+- Assignment 2
+
 ---
-### Anon Feedback on Tutors
+### [Anon Feedback on Tutors](https://canvas.nus.edu.sg/courses/22421)
 
 - Please let us know how we are doing
 
@@ -328,9 +333,9 @@ max(10, list);  // pass in pointer to list
 
 .small[
 ```C
-long* square(const long len, long list[]) {
+long* square(const long len, long list[]) 
 {
-  for (long i = 1; i != length; i += 1) {
+  for (long i = 1; i != len; i += 1) {
     list[i] = list[i] * list[i];
   }
   return list;
@@ -343,10 +348,10 @@ long* square(const long len, long list[]) {
 
 .smaller[
 ```C
-long* square(const long length, const long list[])
+long* square(const long len, const long list[])
 {
-  long new_list[length];
-  for (long i = 0; i &lt; length; i += 1) {
+  long new_list[len];
+  for (long i = 0; i != len; i += 1) {
     new_list[i] = list[i] * list[i];
   }
   return new_list;
@@ -370,12 +375,21 @@ int main()
 ]
 
 ---
+### Homework
+
+- [Self-Diagnostic Quiz 6](https://canvas.nus.edu.sg/courses/22421/quizzes/1538)
+- Problem Sets 13-14 
+- Anon Feedback Survey
+- Exercises 5-7
+- Assignment 3
+
+---
 class: bottom
 
 .tiny[
 Version: 1.0
 
-Last Updated: Sun Sep 11 17:54:14 +08 2022
+Last Updated: Tue Sep 13 09:03:22 +08 2022
 ]
 </textarea>
 
