@@ -10,7 +10,7 @@
 
 ### Learning Objectives
 
-- Be comfortable writing C programs that use {++fixed-size arrays.++}
+- Be comfortable writing C programs that use fixed-size arrays.
 - Be able to use a fixed-size array as a look-up table.
 
 ### Grading
