@@ -6,7 +6,7 @@
 
 ### Prerequisite
 
-- Solve [Exercise 5](ex05.md).
+- Solve [Exercise 5](ex05-cnt-dot-unt.md)
 
 ### Learning Objectives
 
