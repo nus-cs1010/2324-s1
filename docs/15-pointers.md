@@ -18,157 +18,136 @@ After this unit, students should:
 - be aware of pointers to pointers (and more), and the possibility of multiple levels of dereferencing
 - be aware of the `NULL` pointer, understand what it represents, and be able to use it
 
+## Memory Address of a Variable
 
-## Memory Address
+You have learned that each variable must have four things: (i) a name, (ii) a type, (iii) a value, and (iv) a memory address.
 
-You have learned that each variable must have three things: (i) a name, (ii) a type, and (iii) a value.  A variable must be stored somewhere in the memory.  Every location in the memory has an address.  So, there is a fourth thing that every variable must have: a memory address.
+We have been accessing variables using their names.  For instance, consider the line
+```C
+a = b;
+```
 
-Unlike many higher-level languages, such as Java, Python, and JavaScript, C allows us direct access to memory addresses.  This empowers programmers to do wonderful things that cannot be done in other languages.  But, it is also dangerous at the same time -- using it improperly can lead to bugs that are hard to track down and debug.
+This line copies the value of variable `b` into variable `a`.  To be more precise, the line takes the value stored in the memory location labeled with the name `b`, and copies it into the memory location labeled with the name `a`.
 
-## The Address-of Operator
+For many other higher-level languages, such as Java, Python, and JavaScript, this is the only way available to manipulate variables.  C, however, allows us direct access to the memory addresses of a variable.  In this unit, we will see how to update a variable via its address, and how to perform operations on the addresses.
 
-Given a variable, we can get its memory address with the "address-of" operator, denoted by `&`.
-
-Let say that we have a variable
+C has an "address-of" operator, `&`.  When we put `&` in front of a variable, we get the memory address of that variable.  For instance, consider the code below:
 ```C
 long c;
+cs1010_println_long(c);
+cs1010_println_pointer(&c);
 ```
 
-We can refer to the memory address of `c` with the expression `&c`. The expression `&c` has the type "address of a `long`" and evaluates to a number that corresponds to the memory address of `c`.  Note that "address of a `long`" and `long` are two different types to C.  In general, the expression `&x` has the type "address of $T$" where $T$ is the type of variable `x`.
+The last line uses the `cs1010_println_pointer` function from the CS1010 I/O library to print the memory address of `c` in decimal format.
 
-You have also seen in [Unit 14](14-array.md) that a variable that stores a memory address is called a pointer.  So we also interchangeably refer to the type of `&c` as "pointer to a `long`".
+The expression `&c` has the type "address of a `long`."  Note that "address of a `long`" and `long` are two different types in C.  In general, the expression `&x` has the type "address of $T$" where $T$ is the type of variable `x`.
 
-Suppose we want to print out the address of `c`.  We cannot use `cs1010_println_long(&c)`, since the type does not match.  The CS1010 library has a function to print a pointer variable, which prints out the address in decimal format.
+## Pointer: A Variable that Stores Address
+
+Recall from the previous unit that in C, a variable that stores a memory address is called a pointer and we can declare it with the `*` notation.
 
 ```C
-#include "cs1010.h"
-
-void add(long sum, long a, long b) {
-  sum = a + b;
-  cs1010_println_pointer(&sum);
-}
-
-int main()
-{
-  long x = 1;
-  long sum = 0;
-  add(sum, x, 10);
-  cs1010_println_pointer(&sum);
-}
+long *addr;
 ```
 
-Running the program above prints something like this:
-```
-140723025685528
-140723025685552
-```
-
-Your results will most likely be different since the OS allocates different regions of the memory to this program every time it is run.
-
-![pointers](figures/pointers/pointers.001.png)
-
-## The Dereference Operator
-
-The dereference operator is the reversed of address-of and is denoted by `*`.  Think of this as the "location-of" operator.  We use this operator in two places:
-
-- to declare a pointer variable, and
-- to reference the location of an address.
-
-You have seen how we can declare a pointer variable in [Unit 14](14-array.md).  For example,
+The line above declares a variable named `addr` with the type `long *` (i.e., a pointer to `long``, or, address of a `long`).  We can write:
 
 ```C
+addr = &c;
+```
+
+The line initializes `addr` with the memory address of `c`.  To be more precise, it takes the memory address of the memory location labeled with name `c`, and copies it into the memory location labeled with name `addr`.  Sometimes, we also say that the line "points `addr` to `c`."
+
+When we store a memory address to a pointer, the types must match.  In the example above, both `addr` and `&c` refer to the memory address of a `long`.  Now consider this:
+
+```C
+long radius = 5;
 double *addr;
+addr = &radius; // not ok
 ```
 
-declares a variable `addr` that is an address to a variable of type `double`.  The way to read this is that `*addr` (or the memory location of `addr`) stores a variable of type `double`, so `addr` is an address of a memory location containing a `double`.
+Line 3 above would lead to a compilation error since we try to point a `double` pointer to a `long`.
 
-## Changing the Value via Pointer
+One exception to this rule is the type `void *`.  A pointer to `void` has a special place in C, and it can be used to point to any other type without type errors.  The function `cs1010_println_pointer`, for instance, takes in a parameter of type `void *`, hence we can pass a pointer of any type to this function as an argument.
 
-Suppose we declare a pointer to a `double` variable (or, for short, a `double` pointer):
+
+!!! note
+    The two lines:
+    ```C
+    long *addr;
+    addr = &c;
+    ```
+
+    can be shortened to:
+    ```C
+    double *addr = &c;
+    ```
+
+	Note that `double *addr = &c` is NOT the same as
+    ```C
+    long *addr;
+    *addr = &c;
+    ```
+
+The `&` operator cannot be used on the left-hand side of the assignment operation.  For instance
+
 ```C
-double *addr;
+long x = 1;
+long y = 2;
+&x = &y; // error
 ```
 
-We can use `*addr` just like a normal `double` variable:
+We try to set the address of `x` to be the address of `y`.  This is not allowed since the address of `x` is determined by the OS when it is allocated on the stack.
+
+### Updating a Variable Using Its Pointer
+
+Now that we know how to access the memory address of a variable and store it in another variable.  Let's see how we can update its value using its pointer.
+
+To access a value of a variable through its address, rather than its name, we use the _dereference operator_ `*`, which is the reverse of the address-of operator.
+
+Suppose we have a pointer variable `addr`.  We can write
 ```C
-*addr = 1.0;
+*addr = 15;
 ```
 
-The line above means that, _we take the address stored in addr, go to the location at that address, and store the value 1.0 in the location._
+This line stores 15 into the memory address stored inside variable `addr`.  To be more precise, it takes the value 15 and copies it into the memory location, the address of which is stored in the memory location labeled with the name `addr`.  You can think of this as a two-step operation: (i) Go to memory location labeled `addr`, access the value stored there; (ii) The value stored in `addr` is an address.  Now, go to the memory location with this address, and store 15 there.
 
-This is where things can get dangerous.  You could be changing the value in a memory location that you do not mean to.  If you are lucky, your program crashes with a `segmentation fault` error[^2]. We say that your program has segfault.  If you are unlucky, your program runs normally but produces incorrect output occasionally.
+The figure below illustrates the use of `&` and `*`.
 
-![pointers](figures/pointers/pointers.002.png)
+![pointers](figures/lec07-pointers/lec07-pointers-pdf-4.png)
+
+### Segmentation Fault: Memory Error
+
+Updating variables via an address can be dangerous.  You could be changing the value in a memory location that you do not mean to.  If you are lucky, your program crashes with a `segmentation fault` error[^2]. We say that your program has segfault.  If you are unlucky, your program runs normally but produces incorrect output occasionally.
+
+For instance, suppose you write
+```C
+double *p;
+*p = 1.0;
+```
+
+The program will almost certainly crash, because the pointer variable `p` is not initialized, so it is pointing to the location of whatever address happens to be in the memory at that time.  The line `*p = 1.0` then copy the value 1.0 to this arbitrary memory address stored in `p`.
 
 So, _always make sure that your pointer is pointing to the right location before dereferencing and writing to the location._
 
 [^2]: I leave it to the later OS classes CG2271 / CS2106 to explain the term "segmentation" and "fault".  Interested students can always google and [read on Wikipedia](https://en.wikipedia.org/wiki/Segmentation_fault).
 
-In the code above, if we write:
-```C
-double *addr;
-*addr = 1.0;
-```
+## Summary
 
-back-to-back, the program will almost certainly segfault, because the pointer variable `addr` is not initialized, so it is pointing to the location of whatever address happens to be in the memory at that time.
+To recap, suppose we have variables `a` and `b`, and a pointer variable `addr`:
 
-We should point `addr` to a valid location first, like this:
-```C
-double c;
-double *addr;
-addr = &c;
-*addr = 1.0;
-```
+| Assignment | Meaning |
+| ---------- | ------- |
+| `a = b` | Take the value stored in the memory location labeled `b`, copy it into the memory location labeled `a` |
+| `addr = &b` | Take the memory address of memory location labeled `b`, copy it into the memory location labeled `addr` |
+| `*addr = a` | Take the value stored in the memory location labeled `a`, copy it into the memory location of which the address is stored in memory location labeled `addr` |
+| `b = *addr` | Take the value stored in the memory location of which the address is stored in memory location labeled `addr`, copy it into the memory location labeled `b` |
 
-![pointers](figures/pointers/pointers.003.png)
+## Pointer Arithmetic
 
-Of course, the above could be simply written as:
-```C
-double c = 1.0;
-```
+We can perform arithmetic operations on pointers, but not in the way you expect.
 
-I am just doing it the complicated way (which you should avoid unless you have good reasons to do so) to demonstrate the concept of pointers.
-
-Note that the two lines:
-```C
-double *addr;
-addr = &c;
-```
-
-can be shorten to:
-```C
-double *addr = &c;
-```
-
-## Basic Rules About Using Pointers
-
-1. When we use pointers, it must point to the variable of the same type as that declared by the pointer.  For instance,
-
-	```C
-	double pi = 3.1415926;
-	long radius = 5;
-	double *addr;
-	addr = &pi; // ok
-	addr = &radius; // not ok
-	```
-
-	Line 5 above would lead to a compilation error since we try to point a `double` pointer to a `long`.  
-
-	One exception to this rule is the type `void *`.  A pointer to `void` has a special place in C and it can be used to point to any other type without type errors.  The function `cs1010_println_pointer`, for instance, takes in a parameter of type `void *`, hence we can pass a pointer of any type to this function as an argument.
-
-2. We cannot change the address of a variable.  For instance
-
-	```C
-	long x = 1;
-	long y = 2;
-	&x = &y;
-	```
-
-	We try to set the address of `x` to be the address of `y`.  This is not allowed since the allocation of variables in the memory is determined by the OS, a process we have no control over.
-
-3. We can perform arithmetic operations on pointers, but not in the way you expect.
-
-	Suppose we have a pointer:
+Suppose we have a pointer:
 	```C
 	long x;
 	long *ptr;
@@ -177,40 +156,42 @@ double *addr = &c;
 	ptr += 1;
 	```
 
-	Suppose that `x` is stored in memory address 1000, after Line 4, `ptr` would have the value of 1000.
-	After the line `ptr += 1`, using normal arithmetic operation, we would think that `ptr` will have a value of 1001.  However, the semantic for arithmetic operations differ for pointers.  The `+` operation for `ptr` causes the `ptr` variable to move forward by the size of the variable pointed to by the pointer.  In this example, `ptr` points to `long`, assuming that `long` is 8 bytes, after `ptr += 1`, `ptr` will have the value of 1008.
+Suppose that `x` is stored in memory address 1000, after Line 4, `ptr` would have the value of 1000.
+After the line `ptr += 1`, using normal arithmetic operation, we would think that `ptr` will have a value of 1001.  However, the semantics for arithmetic operations differ for pointers.  The `+` operation for `ptr` causes the `ptr` variable to move forward by the size of the variable pointed to by the pointer.  In this example, `ptr` points to `long`, assuming that `long` is 8 bytes, after `ptr += 1`, `ptr` will have the value of 1008.
 
-	We can only do addition and subtraction for pointers.
+We can only do addition and subtraction for pointers.
 
-	Note that the array notation `a[i]` is synonym with `*(a + i)`.  
+## Array and Pointer
+
+We now revisit how arrays in C work, in the context of pointers:
+
+- Array decay: Recall that the name of the array decays into the memory address of the first element of the array.  In other words, if we declare an array called `a`, then the variable `a` is a synonym with `&a[0]`.
+
+- Accessing an element of an array: The array notation `a[i]` is a synonym with `*(a + i)`.  This notation explains why it suffices to pass the memory address of the first element of the array into the function.
 
 ## Pointer of Pointer (of Pointer..)
 
-A pointer variable is also stored in the memory, so it has an address too.
+A pointer variable is also a variable.  This means that it has a name, a type, a value, and a memory address as well.
 
+Let's say we have a pointer variable `ptr`.
 ```C
 long x;
 long *ptr;
 ptr = &x;
 ```
 
-For instance, in the above, `ptr` would have a memory location allocated on the stack too, and so it has an address, and we can have a variable `ptrptr` referring to the address of `ptr`.  What would the type of this variable be?  Since `ptr` is an address of `long`, `ptrptr` is an address of an address of `long`, and can be written as:
+`ptr` stores the memory address of `x`, but it has its own memory address.   We can have a variable `ptrptr` that stores the address of `ptr`.  Since the type of `ptr` is an address of `long`, the type of `ptrptr` is an address of an address of `long`, and can be written as:
 
 ```C
-long x;
-long *ptr;
 long **ptrptr;
-ptr = &x;
 ptrptr = &ptr;
 ```
 
-This dereference can go on since `ptrptr` is also a variable and has been allocated in some memory location on the stack.  We rarely need to dereference more than twice in practice, but if the situation arises, such multiple layers of dereferencing are possible.
+These dereferences can go on since `ptrptr` is also a variable and therefore has its own memory address.  We rarely need to dereference more than twice in practice, but if the situation arises, such multiple layers of dereferencing are possible.
 
 ## The `NULL` Pointer
 
-`NULL` is a special value that is used to indicate that a pointer is pointing to nothing.  In C, `NULL` is actually 0 (i.e., pointing to memory location 0).
-
-We use `NULL` to indicate that the pointer is invalid, typically to mean that we have not initialized the pointer or to flag an error condition.
+`NULL` is a special value that is used to indicate that a pointer is pointing to nothing.  We use `NULL` to indicate that the pointer is invalid, typically to mean that we have not initialized the pointer or to flag an error condition.
 
 !!! note "Billion Dollar Mistakes"
     Sir Tony Hoare (the same one whom we met when we talked about [Assertion](10-assert.md)) also invented the null pointer.  He called it his billion-dollar mistake.  Quoting from him: "I couldn't resist the temptation to put in a null reference, simply because it was so easy to implement. This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years."  As you start to use pointers in CS1010, you will see why it is a pain.
