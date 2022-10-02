@@ -12,6 +12,27 @@
 
     How arrays are implemented and can be used in C
 	[:octicons-arrow-right-24:](14-array.md)
+
+- __15. Pointers__
+
+    How to access a variable via its address
+	[:octicons-arrow-right-24:](15-pointers.md)
+
+- __16. Call-by-Reference__
+
+    How to modify a variable by passing it into a function
+	[:octicons-arrow-right-24:](16-call-by-reference.md)
+
+- __17. Heap__
+
+    Dynamically allocating and deallocating memory
+	[:octicons-arrow-right-24:](17-heap.md)
+
+- __18. Characters and Strings__
+
+    Representing a string as an array of `char`s
+	[:octicons-arrow-right-24:](18-string.md)
+
 </div>
 
 ## Control Statements

@@ -15,6 +15,10 @@ nav:
     - 12. Invariant: "12-invariant.md"
     - 13. Call Stack: "13-call-stack.md"
     - 14. Fixed-Length Array: "14-array.md"
+    - 15. Pointers: "15-pointers.md"
+    - 16. Call by Reference: "16-call-by-reference.md"
+    - 17. Heap: "17-heap.md"
+    - 18. String: "18-string.md"
   - Lab Guides: 
     - Guide to Assignments/Exercises: "assignment.md"
     - Unix:
