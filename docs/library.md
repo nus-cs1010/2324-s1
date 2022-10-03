@@ -25,29 +25,29 @@ If you wish to manually compile your code, you need to link to the library, by s
 clang -I ~cs1010/include -L ~cs1010/lib hello.c -lcs1010
 ```
 
-### Reading of a Single Value
+## Reading of a Single Value
 
 The CS1010 library supports reading of a single numeric value of type `long`, `double`, and `size_t`, as well as reading of strings (both space-separated _words_ and newline-separated _lines_) from the standard input. 
 
-- `long cs1010_read_long()`<br>
+### `long cs1010_read_long()`<br>
 Returns a `long` value from the standard input.  An error message will be printed (to `stderr`) if the input sequence is not a valid `long` value -- in which case the value `LONG_MAX` will be returned.  Example:
 ```C
 long year = cs1010_read_long();
 ```
 
-- `double cs1010_read_double()`<br>
+### `double cs1010_read_double()`<br>
 Returns a `double` value from the standard input.  An error message will be printed (to `stderr`) if the input sequence is not a valid `double` value -- in which case the value `DBL_MAX` will be returned. Example:
 ```C
 double cap = cs1010_read_double();
 ```
 
-- `size_t cs1010_read_size_t()`<br>
+###  `size_t cs1010_read_size_t()`<br>
 Returns a `size_t` value from the standard input.  An error message will be printed (to `stderr`) if the input sequence is not a valid `size_t` value -- in which case the value `0` will be returned.  Example:
 ```C
 size_t size = cs1010_read_size_t();
 ```
 
-- `char* cs1010_read_word()`<br>
+### `char* cs1010_read_word()`<br>
 Returns a `char *` pointing to the next white-space-separated string from the standard input.  A white-space character is defined based on the standard C function `isspace()` and includes the space ` `, tab `\t`, and newline `\n` character.  Returns `NULL` if there is an error.  If the returned value is non-`NULL`, the caller is responsible for freeing the memory allocated by calling `free`.  
 ```C
 char* word = cs1010_read_word();
@@ -61,7 +61,7 @@ if (word == NULL) {
 }
 ```
 
-- `char* cs1010_read_line()`<br>
+### `char* cs1010_read_line()`<br>
 Returns a `char *` pointing to the next new-line-separated string from the standard input.  The string returns from `cs1010_read_line()` includes the newline character (if one is found).
 Returns `NULL` if there is an error.  If the returned value is non-`NULL`, the caller is responsible for freeing the memory allocated by calling `free`.
 ```C
@@ -80,7 +80,7 @@ if (line == NULL) {
 
 The CS1010 library also supports the reading of multiple values and returning the values in an array.
 
-- `long* cs1010_read_long_array(size_t k)`<br>
+### `long* cs1010_read_long_array(size_t k)`<br>
 Returns `k` numbers of `long` values read from the standard input stored in an array.  An error message will be printed (to `stderr`) for each input that is not a valid `long` value -- in which case the value `LONG_MAX` will be populated in the corresponding array element.  Returns `NULL` if there is a memory allocation error.  If the returned value is non-`NULL`, the caller is responsible for freeing the memory allocated by calling `free`.
 ```C
 size_t k = cs1010_read_size_t();
@@ -93,7 +93,7 @@ if (values != NULL) {
 }
 ```
 
-- `double* cs1010_read_double_array(size_t k)`<br>
+### `double* cs1010_read_double_array(size_t k)`<br>
 Returns `k` numbers of `double` values read from the standard input stored in an array.  An error message will be printed (to `stderr`) for each input that is not a valid `double` value -- in which case the value `DBL_MAX` will be populated in the corresponding array element.
 Returns `NULL` if there is a memory allocation error.  If the returned value is non-`NULL`, the caller is responsible for freeing the memory allocated by calling `free`.
 ```C
@@ -107,7 +107,7 @@ if (values != NULL) {
 }
 ```
 
-- `char** cs1010_read_word_array(size_t k)`<br>
+### `char** cs1010_read_word_array(size_t k)`<br>
 Returns `k` white-space-separated words read from the standard input stored in an array.  The notion of "word" is the same as `cs1010_read_word()`.
 Returns `NULL` if there is a memory allocation error.  If the returned value is non-`NULL`, the caller is responsible for freeing the memory allocated for each word and the whole array by calling `free`.
 ```C
@@ -126,7 +126,7 @@ if (words == NULL) {
 }
 ```
 
-- `char** cs1010_read_line_array(size_t k)`<br>
+### `char** cs1010_read_line_array(size_t k)`<br>
 Returns `k` new-line-separated words read from the standard input stored in an array.  The notion of a line is the same as `cs1010_read_line()`.
 Returns `NULL` if there is a memory allocation error.  If the returned value is non-`NULL`, the caller is responsible for freeing the memory allocated for each line and the whole array by calling `free`.
 ```C
@@ -149,7 +149,7 @@ if (lines == NULL) {
 
 The CS1010 library provides a few convenient functions to format and print `long` and `double` values to the standard output.
 
-- `void cs1010_print_long(long value)` and `void cs1010_println_long(long value)`<br>
+### `void cs1010_print_long(long value)` and `void cs1010_println_long(long value)`<br>
 Print `value` to the standard output (with `printf` format `%ld`).  
 The `cs1010_println_long` version prints a newline after the value.
 ```C
@@ -158,7 +158,7 @@ The `cs1010_println_long` version prints a newline after the value.
   cs1010_print_long(x);
 ```
 
-- `void cs1010_print_double(double value)` and `void cs1010_println_double(double value)`<br>
+### `void cs1010_print_double(double value)` and `void cs1010_println_double(double value)`<br>
 Print `value` to the standard output (with `printf` format `%.4f`).
 The `cs1010_println_double` version prints a newline after the value.
 ```C
@@ -167,7 +167,7 @@ The `cs1010_println_double` version prints a newline after the value.
   cs1010_println_double(x);
 ```
 
-- `void cs1010_print_size_t(size_t value)` and `void cs1010_println_size_t(size_t value)`<br>
+### `void cs1010_print_size_t(size_t value)` and `void cs1010_println_size_t(size_t value)`<br>
 Print `value` to the standard output (with `printf` format `%zu`).
 The `cs1010_println_size_t` version prints a newline after the value.
 ```C
@@ -176,7 +176,7 @@ The `cs1010_println_size_t` version prints a newline after the value.
   cs1010_println_size_t(x);
 ```
 
-- `void cs1010_print_string(char *str)` and `void cs1010_println_string(char *str)`<br>
+### `void cs1010_print_string(char *str)` and `void cs1010_println_string(char *str)`<br>
 Print a given string `str` to the standard output.  These functions are provided for completeness and is a simple wrapper around `printf(str)` and `printf("%s\n", str)` repsectively.
 ```C
   cs1010_println_string("hello world!");
@@ -186,11 +186,18 @@ Print a given string `str` to the standard output.  These functions are provided
     There is no `cs1010_print_char` method.  You can use `putchar` from the C standard library
 	for this purpose.
 
-- `void cs1010_print_pointer(void *ptr)` and `void cs1010_println_pointer(void *ptr)`<br>
+### `void cs1010_print_pointer(void *ptr)` and `void cs1010_println_pointer(void *ptr)`<br>
 Print a given pointer `ptr` to the standard output in decimal format.
 ```C
   long *x;
   cs1010_println_pointer(&x);
+```
+
+### `void cs1010_print_bool(bool x)` and `void cs1010_println_bool(bool x)`<br>
+Print a given boolean value `x` to the standard output as either `true` or `false`.
+```C
+  bool x = true;
+  cs1010_println_bool(x);
 ```
 
 ## Clearing screen

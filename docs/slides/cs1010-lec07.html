@@ -4,8 +4,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
-<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
-<title>CS1010 AY21/22 S1 Lecture 7</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY22/23 S1 Lecture 7</title>
 <meta charset="utf-8">
 </head>
 <body>
@@ -14,7 +14,7 @@ class: middle, center
 
 # Lecture 7
 
-### 4 October 2021
+### 3 October 2022
 
 .smaller[
 Admin Matters<br>
@@ -24,73 +24,113 @@ Unit 17: **Heap**<br>
 Unit 18: **String**<br>
 ]
 ---
-class: middle, center
-
-# 💪
-
-**121** quiz questions<br>
-**46** programming problems<br>
-**24** problem set questions
-
----
 class: middle
 
-### Assignment 4 and Quiz 7
+### October: No in-person lectures on
 
-- Due Wednesday night (23:59)
+- 10 October (conference)
+- 24 October (Deepavali) 
 
----
-class: middle
-
-### Assignment 5 onwards
-
-- Write per-function documentation for your code
-
----
-class: middle
-
-### Tutorial 6
-
-- Problem Sets 15-18
-
----
-class: middle
-
-### Lab 6
-
-- Exercise on call-by-reference and dynamically allocated arrays.
+Videos will be posted.
 
 ---
 class: middle
 background-image: url(figures/meme/explain_pointer.jpg)
 
 ---
-class: middle
-
 ### Variable 
 
-- a place in memory that holds one or more values
-- we can access a variable through its name or its memory address
+- A place in memory that holds one or more values
+
+- Every variable has a name, a type, a value, and an address
+
+- We can access a variable through its name or its memory address
 
 ---
-class: middle
+### Accessing a Variable Through Its Name
 
+```
+a = b;
+```
+
+Copy the value stored in memory location named `b` to the memory location named `a`.
+
+---
 ### Address-of operator `&`
 
-- if `x` is the name of a variable, `&x` is its memory address.
-- if `x` as the type `T`, `&x` has the type `*T` (pointer to `T` / address of `T`)
+if `x` is the name of a variable, `&x` is its memory address.
 
 ---
-class: middle
+```C
+long c;
+cs1010_println_long(c);
+cs1010_println_pointer(&c);
+```
 
+---
+### Array Decay
+
+```
+long a[30];
+long *addr = a;
+```
+
+`a` is just `&a[0]`.
+
+---
+### Pointer 
+
+A variable that stores memory address (mostly of other variables)
+
+```C
+long *addr;
+addr = &c;
+```
+
+---
+### Accessing the Address of a Variable 
+
+```
+a = &b;
+```
+
+Put the _address_ of memory location named `b` to the memory location named `a`.
+
+---
 ### Dereference operator `*`
 
-- if `x` is a memory address, `*x` is the content at memory address `x`.
-- if `x` as the type `*T`, `*x` has the type `T`
+if `x` is a pointer (a variable storing a memory address), `*x` is the content of that memory address.
 
 ---
-class: middle
+### Changing variable via its address 
 
+.fit[![pointer](../figures/lec07-pointers/lec07-pointers-pdf-4.png)]
+
+---
+### Accessing a Variable Through Its Address
+
+```
+a = *b;
+```
+
+Copy the value stored in memory location _of which the address is stored in memory location_ named `b` to the memory location named `a`.
+
+---
+### Common Bug
+
+```C
+long *addr;
+*addr = 15;
+```
+
+---
+### Pointer Types
+
+- if `x` as the type `T`, `&x` has the type `T*` (pointer to `T` / address of `T`)
+
+- if `x` as the type `T*`, `*x` has the type `T`
+
+---
 ### Pointers must be of the same type
 
 ```C
@@ -104,19 +144,6 @@ addr = &radius; // not ok
 (`void *` is special)
 
 ---
-class: middle
-
-### We cannot change the address of a variable
-
-```C
-long x = 1;
-long y = 2;
-&x = &y;
-```
-
----
-class: middle
-
 ### Pointer arithmetic
 
 ```C
@@ -131,9 +158,7 @@ class: middle,center
 `a[i]` is just another notation for `*(a + i)`
 
 ---
-class: middle
-
-### Pointers are variables too!
+### Pointers are variables too
 
 ```C
 long x;
@@ -142,8 +167,6 @@ long **ptrptr = &ptr;
 ```
 
 ---
-class: middle
-
 ### The `NULL` Pointer
 
 A special pointer value that says a pointer points to "nothing".
@@ -156,9 +179,7 @@ class: middle,center
 (non-array variables)
 
 ---
-class: middle
-
-## Swap
+### Swap
 
 .smaller[
 ```C
@@ -181,13 +202,102 @@ class: middle,center
 ## Heap
 
 ---
-class: middle
+- Heap is another region of memory that a program can utilize
 
-- Heap: another region of memory that a program can utilize
-- Program explicitly "borrows" memory space for use
-- Program must "return" the memory space after use
+- Explicitly "borrows" memory space for use
+
+- Must "return" the memory space after use
+
+---
+### Why heap?
+
 - Lifetime of content stored on heap can exceed the lifetime of the
   function that allocates it
+
+- Size of heap is typically much larger than stack
+
+---
+How to borrow: `malloc` or `calloc`
+
+.smaller[
+```C
+void *malloc(size_t size);
+void *calloc(size_t count, size_t size);
+```
+]
+
+How to return: `free`
+
+.smaller[
+```C
+void free(void *);
+```
+]
+
+---
+### Type `size_t`
+
+- A _unsigned_ integer type used for array index, amount of memory, size of types, etc.  
+
+---
+.smaller[
+```C
+long* cs1010_read_long_array(size_t how_many)
+{
+  long *buffer = calloc(how_many, sizeof(long));
+  if (buffer == NULL) {
+    return NULL;
+  }
+
+  for (size_t i = 0; i &lt; how_many; i += 1) {
+    buffer[i] = cs1010_read_long();
+  }
+
+  return buffer;
+}
+```
+]
+
+---
+.smaller[
+```C
+size_t len = cs1010_read_size_t();
+
+long *list = cs1010_read_long_array(len);
+
+long max = find_max(list, len);
+
+free(list);
+```
+]
+
+---
+### Common Bug 1
+
+.smaller[
+```C
+size_t len = cs1010_read_size_t();
+long *list = cs1010_read_long_array(len);
+long max = find_max(list, len);
+free(list);
+
+list[0] = 0; // use after free
+```
+]
+
+---
+### Common Bug 2
+
+.smaller[
+```C
+size_t len = cs1010_read_size_t();
+long *list = malloc(sizeof(long) * len);
+list = cs1010_read_long_array(len); // memory leak!
+long max = find_max(list, len);
+free(list);
+
+```
+]
 
 ---
 class: middle,center
@@ -196,6 +306,7 @@ class: middle,center
 -------|-----------------------|-----------------------------------
 Stack  | Fixed-size Array      | VLA (stay away)      
 Heap   | stay away             | `malloc` / `calloc`  
+
 
 ---
 class: middle,center
@@ -221,8 +332,6 @@ class: middle,center
 ```
 
 ---
-class: middle
-
 ### String
 
 - An array of `char`
@@ -239,8 +348,6 @@ char str[5] = "abcd";
 ]
 
 ---
-class: middle
-
 ### String Literals
 
 Stored in read-only region in memory
@@ -251,30 +358,27 @@ char str2[5] = "Hello";
 ```
 
 ---
-class: middle
-
 ### Important Rules
 
 - Do not access memory space you are not allowed to.
+
 - Always return memory space that you borrow.
 
 ---
-class: middle
-
 ### Homework
 
-- Problem Set 15-18
+- Problem Set 15-17
 - Assignment 4
-- Quiz 7
-- Exercise 8
+- Diagnostic Quiz 7
+- Exercise 9
 
 ---
 class: bottom
 
 .tiny[
-Version: 1.1
+Version: 1.0
 
-Last Updated: Mon Oct  4 17:08:27 +08 2021
+Last Updated: Mon Oct  3 10:12:44 +08 2022
 ]
 </textarea>
 
@@ -295,7 +399,7 @@ var slideshow = remark.create({
 	    scroll: false
 	},
 	ratio: '16:9',
-	highlightStyle: 'monokai',
+	highlightStyle: 'tomorrow',
     slideNumberFormat: 'AY2223 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
 });
  // Setup MathJax
