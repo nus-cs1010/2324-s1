@@ -352,13 +352,18 @@ char str[5] = "abcd";
 
 Stored in read-only region in memory
 
+.smaller[
 ```C
-char *str1 = "Hello";
-char str2[6] = "Hello";
+char *str1 = "Hello";    // str1 points to read-only array
+char str2[6] = "Hello";  // str2 points to array on stack
+
+str1[0] = 'h'; // not ok
+str2[0] = 'h'; // ok
 ```
+]
 
 ---
-### Important Rules
+### Summary of Important Rules
 
 - Do not access memory space you are not allowed to.
 
