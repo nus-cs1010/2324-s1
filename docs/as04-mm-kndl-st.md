@@ -17,7 +17,7 @@
 
 ### Grading
 
-This assignment contributes to **4%** of your final grade.  The total marks for this assignment are 30 marks.  
+This assignment contributes to **4%** of your final grade.  The total marks for this assignment are 40 marks.  
 
 For Assignment 4, we may deduct up to 1 mark _for each question_ for style violation.  Ensure that your code is neat and readable, adhering to the CS1010 coding convention.
 
@@ -25,7 +25,7 @@ Furthermore, 2 mark is allocated to documentation. Your code should follow the g
 
 The rest of the marks are allocated to correctness -- this includes the correctness of syntax, practices, approach, and logic, and whether you correctly follow our instructions.  Note that _even if your solution produces the correct output every time, it may not get full marks if the approach is wrong._
 
-## Question 1: Kendall (8 Marks)
+## Question 1: Kendall (10 Marks)
 
 Suppose that we are given a set of items and we ask two
 different parties to rank the items according to some order.
@@ -86,7 +86,7 @@ Your program should read the following from the standard
 input:
 
 - The first positive integer, $n$, is the number of items
-  ($n$ > 1).
+  ($n \ge 2$).
 - The next $n$ numbers are a permutation of integers between
   1 to $n$. This corresponds to the ranking of the items
   from 1 to $n$.
@@ -116,7 +116,7 @@ ooiwt@pe118:~/as03-skeleton$ ./kendall
 ```
 
 
-## Question 2: Mastermind (10 marks)
+## Question 2: Mastermind (15 marks)
 
 ![mastermind](figures/mastermind.jpg)
 
@@ -206,7 +206,7 @@ ooiwt@pe119:~/as04-skeleton$ ./mastermind
 4 0
 ```
 
-## Question 3: Subtract (12 marks)
+## Question 3: Subtract (15 marks)
 
 In this question, you are asked to write a program that subtracts
 two non-negative numbers which can be arbitrarily large.
