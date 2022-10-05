@@ -6,7 +6,7 @@ This is an ungraded exercise.
 
 ### Prerequisite
 
-- Completed [Exercise 4](ex04.md).
+- Completed [Exercise 4](ex04-oni-bin-fib.md)
 
 ### Learning Objectives
 
