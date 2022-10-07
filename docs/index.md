@@ -1,5 +1,13 @@
 # NUS CS1010 Lecture Notes for AY22/23 Semester 1
 
+## Algorithms
+<div class="grid cards" markdown>
+
+- __20. Efficiency__ 
+
+    Quantify the efficiency of an algorithm with big-O running time.
+	[:octicons-arrow-right-24:](20-efficiency.md)
+
 ## Arrays, Pointers, Memory Management
 <div class="grid cards" markdown>
 
@@ -32,6 +40,11 @@
 
     Representing a string as an array of `char`s
 	[:octicons-arrow-right-24:](18-string.md)
+
+- __19. Multidimensional Array__ 
+
+    Using array of arrays
+	[:octicons-arrow-right-24:](19-md-array.md)
 
 </div>
 
