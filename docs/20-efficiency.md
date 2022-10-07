@@ -1,4 +1,4 @@
-# Unit 21: Efficiency
+# Unit 20: Efficiency
 
 ## Learning Objectives
 
@@ -377,9 +377,9 @@ Recall that this program is based on the Collatz conjecture, which has not been 
 
 We have focused mostly on efficiency in terms of time in this unit.  Note that the notion of efficiency extends to space (memory usage) as well.  Big-O notation can be used to quantify how much space is used as well.
 
-## Problem Set 21
+## Problem Set 20
 
-### Problem 21.1
+### Problem 20.1
 
 Order the following functions in the increasing order of rate of growth:
 
@@ -394,7 +394,7 @@ Order the following functions in the increasing order of rate of growth:
 - $e^n$,
 - $\sqrt{n}$
 
-### Problem 21.2
+### Problem 20.2
 
 What is the Big-O running time of the following code, in terms of $n$?
 
@@ -419,7 +419,6 @@ for (long i = 1; i < n; i *= 2) {
 
 c)
 ```C
-long k = 1;
 for (long j = 0; j < n; j += 1) {
   for (long i = 0; i < j; i += 1) {
     cs1010_println_long(i + j);
@@ -438,7 +437,7 @@ for (long j = 0; j < n; j += 1) {
 }
 ```
 
-### Problem 21.3
+### Problem 20.3
 
 a)
 Express the running time of the following function as a recurrence relation:
