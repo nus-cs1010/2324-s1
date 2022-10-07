@@ -9,7 +9,7 @@ After completing this unit, students should:
 - understand that when analyzing efficiency, we wish to bound the computation required and thus look at the worst-case scenario
 - understand that Big-O bounds capture the highest order of growth for some algorithm/code
 - be able to determine the Big-O bounds for most code used in CS1010
-- be able to compare the efficiency between code using Big-O analysis
+- be able to compare the efficiency between two algorithms using Big-O analysis
 
 ## No Redundant Work
 
@@ -33,7 +33,7 @@ bool is_prime(long n)
 ```C
 bool is_prime(long n)
 {
-  for (long i = 2; i <= sqrt(n); i += 1) {
+  for (long i = 2; i*i <= n; i += 1) {
     if (n % i == 0) {
       return false;
     }
@@ -42,7 +42,7 @@ bool is_prime(long n)
 }
 ```
 
-Both versions are correct -- they produce `true` when the input `n` is prime, and `false` otherwise.  But they take a vastly different amount of time to run.  On my machine, the slowest version of `is_prime` took ~100s, while the fast one runs ~3ms when invoked with `is_prime(10000000001)`.  The time taken is a five order of magnitude difference!
+Both versions are correct -- they produce `true` when the input `n` is prime, and `false` otherwise.  But they take a vastly different amount of time to run.  On my machine, the slower version of `is_prime` took ~100s, while the fast one runs ~3ms when invoked with `is_prime(10000000001)`.  The time taken is a five-order of magnitude difference!
 
 The second version of `is_prime` is faster as it follows the following mantra:
 
@@ -50,7 +50,7 @@ _"No redundant work"_
 
 We came across this when we discussed short-circuiting earlier -- we want to order our logical expression so that we don't do extra, unnecessary, work.
 
-Here, we improve the efficiency of `is_prime` by (i) returning `false` as soon as we found "proof" that the input is not a prime, and (ii) not checking for divisor that is redundant.
+Here, we improve the efficiency of `is_prime` by (i) returning `false` as soon as we found "proof" that the input is not a prime, and (ii) not checking for a divisor that is redundant.
 
 ### Worst-Case Performance
 
@@ -62,13 +62,42 @@ How much is the speedup in the worst case?  In the input above, with the origina
 
 ## No Duplication
 
-The second principle to improving the efficiency of the program is that _"No duplication"_ -- we should not repeat work that has been done before.
+The second principle to improving the efficiency of the program is _"No duplication"_ -- we should not repeat work that has been done before.
 
 Let's look at the example from earlier this semester, where you are asked to compute the range of a list.  Recall that the range of a list is the absolute difference between the largest element and the smallest element.  We use this problem to motivate the use of function, where we denote $range(L, k) = |max(L, k) - min(L, k)|$.  If we are to implement this solution in C, however, we would end up scanning through the list twice: first to find the max, then to find the min.
 
-But we could easily just go through the list once, use call-by-reference to output both the max and the min if we are willing to forgo the notion of pure functions and function-as-a-black-box.
+But we could easily just go through the list once, using call-by-reference to output both the max and the min if we are willing to forgo the notion of pure functions and function-as-a-black-box.
 
-The performance improvement for not scanning through a list twice is modest at most.  Let's look at another example where, by not repeating ourselves, we can gain significant performance improvement.
+The performance improvement for not scanning through a list twice is modest at most.  Let's look at another example:
+
+```C
+bool is_prime(long n)
+{
+  for (long i = 2; (double) i <= sqrt(n); i += 1) {
+    if (n % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+
+In this version, the loop checks for `i <= sqrt(n)`, the terminating condition, _every_ single loop.  But, note that `n` does not change as we loop, and so `sqrt(n)` does not change as well.  The code, however, calculates `sqrt(n)` over and over again.  It is doing duplicated work, re-computing the square root of `n`, for nothing.  A better code would compute `sqrt(n)` once, store it in a variable, and then just read from that variable.
+
+```C
+bool is_prime(long n)
+{
+  double s = sqrt(n);
+  for (long i = 2; (double) i <= s; i += 1) {
+    if (n % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+
+Let's look at another example where, by not repeating ourselves, we can gain significant performance improvement.
 
 ### Finding Fibonacci Numbers
 
@@ -117,8 +146,7 @@ The Big-O function is a mathematical function that computer scientists use to ch
 
 !!! tips "Formal definition"
 
-    For those mathematically inclined students who can't wait until CS2040C or CS3230 for
-	a formal definition, here it is:
+    For those mathematically inclined students who can't wait until CS2040C or CS3230 for a formal definition, here it is:
 
 	Given two functions $f$ and $g$, we say that $f(x) = O(g(x))$ if the exists
 	a position real number $c$ and a real number $x_0$ such that
@@ -137,7 +165,7 @@ To motivate Big-O, let's consider how we can count the number of "steps" taken b
 
 If we consider each of the fundamental operations: comparison, addition, and assignment, as a step, then we can see that, in each loop, there is one comparison (`i != n`), two additions (`i + 1`, `third = first + second`), four assignments.  So we have seven operations per loop, with a total of $n-1$ loops.  So we have $7n - 7$ operations.  In addition, we also need to count for the assignment `i = 2` and the additional comparison before we exit the loop (`i != n`).  So, in total, we have $7n - 5$ operations.
 
-As you can see, such detailed counting of the steps is tedious, and in fact, not very meaningful.  For instance, we did not account for reading values from the memory and writing of values into the memory, the performance of which becomes dependant on the architecture underneath.
+As you can see, such detailed counting of the steps is tedious, and in fact, not very meaningful.  For instance, we did not account for reading values from the memory and writing of values into the memory, the performance of which becomes dependent on the architecture underneath.
 
 To free us from such low-level accounting of the number of steps, let's focus on the big picture.  No matter how we count the number of steps, in the end, it is a linear function of $n$.  In order words, the number of steps taken by the algorithm to compute Fibonacci in a loop grows linearly with $n$.  Using the Big-O notation, we say that it takes $O(n)$ steps.
 
@@ -155,7 +183,7 @@ Given two functions $f(n)$ and $g(n)$, how do we determine which one has a highe
 
 For instance, which one grows faster?  $f(n) = n^n$ or $g(n) = 2^n$?  Pick $n = 1$, we have $f(1) < g(1)$[^1].  Pick $n = 2$, we have $f(2)$ equals $g(2)$.  Pick $n = 3$, we have $f(3) > g(3)$ now, and we can see that for any $n > 3$, $n^n > 2^n$, so we can conclude that $f(n)$ grows faster than $g(n)$.
 
-[^1]: Note that we cannot conclude that $g(n)$ grows faster than $f(n)$ because of this.
+[^1]: Note that it is wrong to conclude that $g(n)$ grows faster than $f(n)$ just based on this observation.
 
 ## Running Time or Time Complexity of an Algorithm
 
@@ -168,17 +196,16 @@ There are a couple of things to note when expressing the running of an algorithm
 - We should express it in its simplest form -- without multiplicative constants, and dropping all lower terms.
 - Since we are specifying the worst-case performance, we are measuring an upper bound on the running time.  We should express an upper bound that is as tight as possible.
 
+## Example 1: Finding the Maximum
 
-## Example: Selection Sort
-
-Now, consider the algorithm to perform selection sort.  The code is given below.
+Now, consider the algorithm to find the maximum elements from a list:
 
 ```C
-size_t max(size_t length, const long list[])
+size_t max(size_t n, const long list[])
 {
   long max_so_far = list[0];
   size_t max_index = 0;
-  for (size_t i = 1; i <= length; i += 1) {
+  for (size_t i = 1; i <= n; i += 1) {
     if (list[i] > max_so_far) {
       max_so_far = list[i];
       max_index = i;
@@ -186,29 +213,102 @@ size_t max(size_t length, const long list[])
   }
   return max_index;
 }
+```
 
-void selection_sort(size_t n, long list[n])
+The algorithm scans through the elements in the list one-by-one.  The number of steps taken is thus $O(n)$.  Note that the number of times we update `max_so_far` and `max_index` does not matter, since it incurs an additional constant number of steps per element.
+
+## Example 2: Rectangle
+
+Now, consider the code below that draw a rectangle:
+
+```C
+void draw_line(long m, char* first, char* mid, char* last)
 {
-  for (size_t j = n - 1; j >= 1; j -= 1) {
-    size_t max_pos = max(j, list);
-    swap(list, max_pos, j);
+  cs1010_print_string(first);
+  for (int j = 0; j < m - 2; j += 1) {
+    cs1010_print_string(mid);
   }
+  cs1010_println_string(last);
+}
+
+void draw_rectangle(long m, long n)
+{
+  draw_line(m, TOP_LEFT, HORIZONTAL, TOP_RIGHT);
+  for (int i = 0; i < n - 2; i += 1) {
+    draw_line(m, VERTICAL, " ", VERTICAL);
+  }
+  draw_line(m, BOTTOM_LEFT, HORIZONTAL, BOTTOM_RIGHT);
+}
+
+int main()
+{
+  long m = cs1010_read_long();
+  long n = cs1010_read_long();
+  draw_rectangle(m, n);
 }
 ```
 
-What is the running time of the function `selection_sort`, expressed in Big-O notation in terms of $n$, the length of the input array?
+The function `draw_line` has a loop that loops $m-2$ times.  There is a constant amount of work done before and after the loop (independent of $m$).  Thus, this function takes $O(m)$ time.
 
-To analyze the running time, we focus on the big picture, the part of the code that takes the most time, and we ignore all the other operations that take negligible time.  In the function `selection_sort` above, Lines 17-18 are repeated $n-1$ times, so let's focus on that.  Looking at the looping conditions, we can conclude that Lines 17-18 repeats $O(n-1) = O(n)$ times.
+Now consider `draw_rectangle` and focus on the `for` loop.  The code has a loop that iterates $n-2$ times.  For each loop, it calls `draw_line`, which takes $O(m)$.  Thus, the total time taken by the for loop is $O(m \times (n-2)) = O(m \times n) = O(mn)$.  The function `draw_rectangle` also calls `draw_line` twice outside the loop.  The total running time is $O(m + mn + m)$, which is still $O(mn)$.
 
-It is tempting to conclude that `selection_sort` takes $O(n)$ steps here, but it would be wrong.
+Note that if we execute the following two lines sequentially,
+```C
+  draw_line(m, TOP_LEFT, HORIZONTAL, TOP_RIGHT);
+  draw_line(n, TOP_LEFT, HORIZONTAL, TOP_RIGHT);
+```
 
-Notice that Line 17 calls another function `max`.  What is the running time of `max`?  Inside `max`, there is another loop that repeats $j - 1$ times.  Each time we call `max`, `j` decreases, so the loop in `max` takes one fewer step each time the function is called.
+We will incur a running time of $O(m + n)$ instead.
 
-To calculate the total number of steps, we can compute the following sum
-$\sum_{j=1}^{n-1}(j-1)$, which is just $0 + 1 + 2 + .. + (n-3) + (n-2)$
-This sum is the sum of an arithmetic series and equals to $(n-2)(n-1)/2$.   Since we use the Big-O notation, we can focus on the term with the highest rate of growth, $n^2$, and ignore everything else.  We have obtained the running time for `selection_sort` function above as $O(n^2)$.
+## Example 3: Recursive Max
 
-## Example: Fibonacci
+Consider the divide and concur version of `find_max`
+```C
+long find_max(const long list[], long start, long end){
+  if (start >= end - 1){
+    return list[start];
+  }
+  long mid = (start + end) / 2;
+  long left = find_max(list, start, mid);
+  long right = find_max(list, mid, end);
+  if (left >= right) {
+    return left;
+  } 
+  return right;
+}
+```
+
+What is its running time?  Answering this question is trickier since this is a recursive function.  But, we can use the same "wishful thinking" approach we used when writing this code to analyze its running time.
+
+Let $T(n)$ is the running time of `find_max` when given the list with $n$ elements (i.e., `end - start` is $n$).  We can express $T(n)$ recursively -- since we break the list into two halves and recur, we can write $T(n) = 2T(n/2) + 1$ for $n > 1$, with the base case $T(1) = O(1)$.
+
+Note that $O(1)$ is also known as constant running time[^1].
+
+The equation for $T(n)$ above is known as a _recurrence relation_.  There are standard techniques to solve it (search for Master Theorem on the web), but we won't go into them in CS1010.  We will solve it from the first principle, by expanding the equation and observing the pattern.
+
+Expanding $T(n)$, we get
+
+$$
+\begin{align}
+T(n) &= 2T(n/2) + 1  \\
+     &= 4T(n/4) + 2 + 1  \\
+     &= 8T(n/8) + 4 + 2 + 1  \\ 
+     &= 2^iT(n2^{-i}) + 2^{i-1} + .. + 4 + 2 + 1  \\
+\end{align}
+$$
+
+To reach the base case, $n2^{-i} = 1$, so $2^i = n$ and $2^{i-1} = n/2$.   We have  
+
+$$
+\begin{align}
+T(n) &= nT(1) + n/2 + .. + 4 + 2 + 1  \\
+     &= O(n) + n/2 + ... + 4 + 2 + 1\\
+\end{align}
+$$
+
+This term $n/2 + ... + 2 + 1$ a geometric series with a coefficient of 1 and a common ratio of 2.  It sums to less than $n$.  We can thus conclude that $T(n) = O(n)$.
+
+## Example 4: Fibonacci
 
 Let's get back to the recursive Fibonacci number example.  What is the running time of `fib`?
 
@@ -222,42 +322,41 @@ long fib(long n)
 }
 ```
 
-Answering this question is trickier since this is a recursive function.  But, we can use the same "wishful thinking" approach we used when writing this code to analyze its running time.
-
 Let $T(n)$ is the running time of `fib(n)`.  Since `fib(n)` calls `fib(n-1)` and `fib(n-2)`,
-we can write $T(n) = T(n-1) + T(n-2)$.  Just like the recursive function there is a base case: $T(n) = O(1)$ if $n \le 2$.
-
-Note that $O(1)$ is also known as constant running time[^1].
-
-The equation for $T(n)$ above is known as a _recurrence relation_.  There are standard techniques to solve it (search for Master Theorem on the web), but we won't go into them in CS1010.  We will solve it from the first principle, by expanding the equation and observing the pattern.
+we can write $T(n) = T(n-1) + T(n-2) + 1$.  Just like the recursive function there is a base case: $T(n) = O(1)$ if $n \le 2$.
 
 We know that $T(n-1) > T(n-2)$.  So,
 
 $$
-T(n) < T(n-1) + T(n-1),
+T(n) < T(n-1) + T(n-1) + 1,
 $$
 
 therefore,
 
 $$
-T(n) < 2T(n-1).
+T(n) < 2T(n-1) + 1.
 $$
 
 So
 
 $$
-T(n) < 2T(n-1) < 4T(n-2) < 8T(n-3) < .. 2^{n-1}T(1) < O(\frac{1}{2}2^n)
+\begin{align}
+T(n) &< 2T(n-1) + 1\\
+     &< 4T(n-2) + 2 + 1 \\
+	 &< 8T(n-3) + 4 + 2 + 1\\
+	 & : \\
+	 &< 2^{n-1}T(1) + O(n)\\
+	 &< O\left(\frac{2^n}{2}\right)
+\end{align}
 $$
 
 Since we can drop the multiplicative constant in Big-O notation, we have $T(n) = O(2^n)$.
 
 This explains why the recursive solution to Fibonacci is so much slower than the iterative version, which is $O(n)$ -- one grows exponentially while the other linearly in terms of $n$.
 
-{++Note: the original note contains the derivation of relation $T(n) > O(\frac{1}{4}2^n)$, which is buggy.  The correct derivation of this turns out to be more complicated than I intended. I therefore omit it in the revised version.++}
-
 [^1]: The $1$ in $O(1)$ has nothing to do with the function returning `1`.  But we write it this way because we can drop multiplicative constants in the big-O notation.
 
-## Example: Collatz
+## Example 5: Collatz
 
 Not every program has a running time that is easy to analyze.  For instance, take `collatz`
 ```C
@@ -322,9 +421,52 @@ c)
 ```C
 long k = 1;
 for (long j = 0; j < n; j += 1) {
+  for (long i = 0; i < j; i += 1) {
+    cs1010_println_long(i + j);
+  }
+}
+```
+
+d)
+```C
+long k = 1;
+for (long j = 0; j < n; j += 1) {
   k *= 2;
   for (long i = 0; i < k; i += 1) {
     cs1010_println_long(i + j);
   }
 }
 ```
+
+### Problem 21.3
+
+a)
+Express the running time of the following function as a recurrence relation:
+
+```C
+void foo(long n) {
+  if (n == 1) {
+    return 1;
+  }
+  return foo(n/2) + 2;
+}
+```
+
+What is its running time?
+
+b)
+Express the running time of the following function as a recurrence relation:
+
+```C
+void foo(long n) {
+  if (n == 1) {
+    return 1;
+  }
+  for (long i = 0; i < n; i += 1) {
+    cs1010_println_long(i);
+  }
+  return foo(n - 1);
+}
+```
+
+What is its running time?

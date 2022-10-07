@@ -123,7 +123,7 @@ In the snippet above, there are many hard-coded values.  Suppose one day, the ta
 
 You might think that we can just search and replace to update the code when the fare changes.  But this is error-prone as well!  Suppose that the taxi fare increases to $0.25 per 350m after 10km, but remains $0.22 between 1 - 10km, then we cannot just replace every occurrence of `0.22` with `0.25`.
 
-We can make our code "future-ready" by abstracting out all the magic numbers and define constants for each of them.
+We can make our code "future-ready" by abstracting out all the magic numbers and defining constants for each of them.
 
 ```C
 #define BASE_FARE 3.20
@@ -174,10 +174,9 @@ Replacing the magic numbers with constants make the code a bit harder to read, b
 
 The logic of the code remains the same.   
 
-How does the C pre-processor process the `#define` directive?  When we write a `#define` directive, the directive should be followed by an _identifier_ and a _token_.  The token may contain space but _must be terminated by a newline_.  In the example above, `BASE_FARE` is the identifier, and `3.40` is the token.
+How does the C pre-processor process the `#define` directive?  When we write a `#define` directive, the directive should be followed by an _identifier_ and a _token_.  The token may contain space but _must be terminated _by a new line_.  In the example above, `BASE_FARE` is the identifier, and `3.40` is the token.
 
 When the C pre-processor sees the `#define` directive, it replaces all instances of the identifier in the file with the token.  This is merely a text substitution operation.
-
 
 ## The #include Directive
 
@@ -389,7 +388,7 @@ bool is_prime(long n) {
 }
 ```
 
-The code has a precondition that n is larger than 1.  If n is 1, the function would return true, which is incorrect since 1 is not a prime.  The writer of this function intended that this function should be called with n larger than 1 only.  But we don't have control over how others call our function and if someone missed the pre-condition and call `is_prime` with n = 1, we will have a buggy program.  
+The code has a precondition that $n$ is larger than 1.  If $n$ is 1, the function would return true, which is incorrect since 1 is not a prime.  The writer of this function intended that this function should be called with n larger than 1 only.  But we don't have control over how others call our function and if someone missed the pre-condition and called `is_prime` with $n$ = 1, we will have a buggy program.  
 
 One way to prevent this is to use the `assert` macro, and add an `assert` statement like this:
 
@@ -403,7 +402,7 @@ One way to prevent this is to use the `assert` macro, and add an `assert` statem
  */
 bool is_prime(long n) {
   assert(n > 1);
-  for (long i = 2; i <= sqrt(n); i += 1) {
+  for (long i = 2; i*i <= n; i += 1) {
     if (n % i == 0) {
       return false;
     }
@@ -412,7 +411,7 @@ bool is_prime(long n) {
 }
 ```
 
-If `is_prime` is called with n = 1, the program will crash with the message:
+If `is_prime` is called with $n$ = 1, the program will crash with the message:
 ```
 Assertion failed: (n > 1), function main, file teh.c, line 70.
 ```

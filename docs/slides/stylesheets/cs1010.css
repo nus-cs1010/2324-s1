@@ -89,6 +89,14 @@ em {
 	max-width: 70%;
 	height: auto;
 }
+.w50 > img {
+	max-width: 50%;
+	height: auto;
+}
+.w30 > img {
+	max-width: 30%;
+	height: auto;
+}
 table td, table th {
 	padding: 20px;
 	border-bottom: 1px solid;

@@ -19,6 +19,8 @@ nav:
     - 16. Call by Reference: "16-call-by-reference.md"
     - 17. Heap: "17-heap.md"
     - 18. String: "18-string.md"
+    - 19. Multidimensional Array: "19-md-array.md"
+    - 20. Efficiency: "20-efficiency.md"
   - Lab Guides: 
     - Guide to Assignments/Exercises: "assignment.md"
     - Unix:
