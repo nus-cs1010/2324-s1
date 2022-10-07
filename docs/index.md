@@ -8,6 +8,8 @@
     Quantify the efficiency of an algorithm with big-O running time.
 	[:octicons-arrow-right-24:](20-efficiency.md)
 
+</div>
+
 ## Arrays, Pointers, Memory Management
 <div class="grid cards" markdown>
 
