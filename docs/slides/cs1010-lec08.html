@@ -17,84 +17,10 @@ class: middle, center
 ### 10 October 2022
 
 .smaller[
-Admin Matters<br>
 Unit 19: **Multi-D Arrays**<br>
 Unit 20: **Efficiency**<br>
 ]
 
----
-class: middle,wide
-<table width=100% height=100%>
-	<tr valign="top">
-		<th style="border-right:solid 1px">
-		<h5 style="margin:0px";>
-			Problem Solving
-		</h5>
-	    </th>
-		<th style="border-right:solid 1px">
-		<h5 style="margin:0px";>
-			C Language & Syntax
-		</h5>
-	    </th>
-		<th style="border-right:solid 1px">
-		<h5 style="margin:0px";>
-			Behaviorial Model
-		</h5>
-	    </th>
-		<th>
-		<h5 style="margin:0px";>
-			Tools & Practices
-		</h5>
-	    </th>
-	</tr>
-	<tr valign="top">
-	<td style="border-right:solid 1px; border-bottom:none;">
-		<ul style="margin:1px;font-size:70%;">
-		<li>decomposition
-		<li>recursion
-		<li>flowchart
-		<li>conditionals
-		<li>assertions
-		<li>loops
-		<li>invariants
-		<li><strong>efficiency</strong>
-		</ul>
-	</td>
-	<td style="border-right:solid 1px; border-bottom:none;">
-		<ul style="margin:1px;font-size:70%;">
-		<li>types 
-		<li>functions 
-		<li>arithmetic ops 
-		<li>if-else
-		<li>logical expressions
-		<li>loops
-		<li>1D arrays
-		<li>pointers
-		<li>memory management
-			<li><strong>nD arrays</strong>
-		</ul>
-	</td>
-	<td style="border-right:solid 1px; border-bottom:none;">
-		<ul style="margin:1px;font-size:70%;">
-		<li>machine code
-		<li>data in memory
-		<li>types
-		<li>call stack
-		<li>memory addr
-		<li>call by value/ref
-		<li>heap
-		</ul>
-	</td>
-	<td style="border-bottom:none;">
-		<ul style="margin:1px;font-size:70%;">
-		<li>vim
-		<li>bash
-		<li>style
-		<li>docs
-		</ul>
-	</td>
-	</tr>
-</table>
 ---
 class: middle,center
 ## Multi-dimensional Arrays
@@ -356,14 +282,15 @@ bool is_prime(long n)
 .tiny[
 ```C
 long find_max(const long list[], long start, long end){
-  long halfway = (start + end) / 2;
   if (start &gt;= end - 1){
     return list[start];
   }
-  if (find_max(list, start, halfway) &gt;= find_max(list, halfway, end)){
-    return find_max(list, start, halfway);
+
+  long mid = (start + end) / 2;
+  if (find_max(list, start, mid) &gt;= find_max(list, mid, end)){
+    return find_max(list, start, mid);
   }
-  return find_max(list, halfway, end);
+  return find_max(list, mid, end);
 }
 ```
 ]
@@ -371,12 +298,13 @@ long find_max(const long list[], long start, long end){
 .tiny[
 ```C
 long find_max(const long list[], long start, long end){
-  long halfway = (start + end) / 2;
   if (start &gt;= end - 1){
     return list[start];
   }
-  long left = find_max(list, start, halfway);
-  long right = find_max(list, halfway, end);
+
+  long mid = (start + end) / 2;
+  long left = find_max(list, start, mid);
+  long right = find_max(list, mid, end);
   if (left &gt;= right) {
     return left;
   } 
@@ -461,7 +389,7 @@ $f(n)$ grows faster than $g(n)$ if we can find constants $n_0$ and $c$ such that
 ---
 class: top, center
 
-$f(n) = n^n$ vs. $g(n) = 2^n$ 
+$f(n) = n^n$ vs. $g(n) = 3^n$ 
 
 ---
 ### Running Time / Time Complexity
@@ -513,6 +441,52 @@ void draw_rectangle(long m, long n)
 ```
 ]
 ---
+.smaller[
+```C
+bool is_prime(long n)
+{
+  for (long i = 2; i &lt;= n - 1; i++) {
+    if (n % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+]
+---
+.smaller[
+```C
+bool is_prime(long n)
+{
+  for (long i = 2; i*i &lt;= n; i++) {
+    if (n % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+]
+---
+.tiny[
+```C
+long find_max(const long list[], long start, long end){
+  if (start &gt;= end - 1){
+    return list[start];
+  }
+
+  long mid = (start + end) / 2;
+  long left = find_max(list, start, mid);
+  long right = find_max(list, mid, end);
+  if (left &gt;= right) {
+    return left;
+  } 
+  return right;
+}
+```
+]
+---
 ### Finding Fibonacci Numbers
 
 .tiny[
@@ -555,12 +529,23 @@ long count_num_of_steps(long n)
 - Big O applies to space complexity too
 
 ---
+### Homework
+
+- Quiz 8
+
+- Exercise 9
+
+- Assignment 5
+
+- Problem Set 20
+
+---
 class: bottom
 
 .tiny[
-Version: 1.2
+Version: 1.0
 
-Last Updated: Mon Oct 11 02:37:46 +08 2021
+Last Updated: Sat Oct  8 04:44:17 +08 2022
 ]
 </textarea>
 
@@ -598,3 +583,76 @@ var slideshow = remark.create({
 </script>
 </body>
 </html>
+---
+class: middle,wide
+<table width=100% height=100%>
+	<tr valign="top">
+		<th style="border-right:solid 1px">
+		<h5 style="margin:0px";>
+			Problem Solving
+		</h5>
+	    </th>
+		<th style="border-right:solid 1px">
+		<h5 style="margin:0px";>
+			C Language & Syntax
+		</h5>
+	    </th>
+		<th style="border-right:solid 1px">
+		<h5 style="margin:0px";>
+			Behaviorial Model
+		</h5>
+	    </th>
+		<th>
+		<h5 style="margin:0px";>
+			Tools & Practices
+		</h5>
+	    </th>
+	</tr>
+	<tr valign="top">
+	<td style="border-right:solid 1px; border-bottom:none;">
+		<ul style="margin:1px;font-size:70%;">
+		<li>decomposition
+		<li>recursion
+		<li>flowchart
+		<li>conditionals
+		<li>assertions
+		<li>loops
+		<li>invariants
+		<li><strong>efficiency</strong>
+		</ul>
+	</td>
+	<td style="border-right:solid 1px; border-bottom:none;">
+		<ul style="margin:1px;font-size:70%;">
+		<li>types 
+		<li>functions 
+		<li>arithmetic ops 
+		<li>if-else
+		<li>logical expressions
+		<li>loops
+		<li>1D arrays
+		<li>pointers
+		<li>memory management
+			<li><strong>nD arrays</strong>
+		</ul>
+	</td>
+	<td style="border-right:solid 1px; border-bottom:none;">
+		<ul style="margin:1px;font-size:70%;">
+		<li>machine code
+		<li>data in memory
+		<li>types
+		<li>call stack
+		<li>memory addr
+		<li>call by value/ref
+		<li>heap
+		</ul>
+	</td>
+	<td style="border-bottom:none;">
+		<ul style="margin:1px;font-size:70%;">
+		<li>vim
+		<li>bash
+		<li>style
+		<li>docs
+		</ul>
+	</td>
+	</tr>
+</table>
