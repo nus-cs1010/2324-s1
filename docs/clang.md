@@ -1,5 +1,7 @@
 # CS1010 Compilation Guide
 
+We have automated the steps to compile C programs for all CS1010 assignments and exercises by providing `Makefile` and `compile_flags.txt`.  The following guide explains how one can compile a C program with `clang` directly, without using `Makefile`.  This information is useful once students graduated from CS1010 and go to other modules/scenarios where `Makefile` is not provided.
+
 ## 1. Compile a standalone C program
 
 Suppose we have a standalone C program `teh.c` that does not use any external libraries.  We can compile the program using the command
@@ -13,11 +15,6 @@ This command should create an executable called `a.out` in the current directory
 ```
 ooiwt@pe118:~$ ./a.out
 ```
-
-!!! tips ""
-    If you are looking for a test `teh.c` to try this out, there is one
-	at `~cs1010/teh.c`, which you can copy over.
-
 
 ## 2. Renaming executable file
 
@@ -90,4 +87,12 @@ ooiwt@pe118:~$ clang -Wall -g -I ~/citadel/include -L ~/citadel/lib teh.c -o teh
 For instance, to link with the [CS1010 I/O library](library.md) on the PE nodes, you can run
 ```bash
 ooiwt@pe118:~$ clang -Wall -g -I ~cs1010/include -L ~cs1010/lib teh.c -lcs1010
+```
+
+## 7. The file `compile_flags.txt`
+
+The list of compilation flags can get lengthy.  For CS1010 assignments/exercises, we have included all the necessary flags in a file called `compile_flags.txt`.  We can then pass this file with the `@` prefix to `clang`.  `clang` will read the flags from the file.
+
+```bash
+ooiwt@pe118:~$ clang @compile_flags.txt teh.c -lcs1010
 ```
