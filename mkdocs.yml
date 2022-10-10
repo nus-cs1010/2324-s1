@@ -43,6 +43,7 @@ nav:
       - CS1010 I/O Library: "library.md"
       - C Style Guide: 'style.md'
       - C Documentation Guide: 'documentation.md'
+      - Compiling with Clang: 'clang.md'
   - Readings: "readings.md"   
 
 
