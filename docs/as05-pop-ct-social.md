@@ -52,6 +52,7 @@ Write a program `popular`, that reads from standard input:
 - followed by $n$ lines of strings consisting of '1' or '0' representing the contact traces of these $n$ people.
 
 Print, to the standard output, 
+
 - the id of the person who is the most popular (i.e., with the most number of friends).  We break ties by preferring the person with a smaller id.
 - the number of friends that the person has.
 
