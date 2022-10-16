@@ -21,6 +21,8 @@ nav:
     - 18. String: "18-string.md"
     - 19. Multidimensional Array: "19-md-array.md"
     - 20. Efficiency: "20-efficiency.md"
+    - 21. Searching: "21-search.md"
+    - 22. Sorting: "22-sort.md"
   - Lab Guides: 
     - Guide to Assignments/Exercises: "assignment.md"
     - Unix:
