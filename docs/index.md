@@ -8,6 +8,16 @@
     Quantify the efficiency of an algorithm with big-O running time.
 	[:octicons-arrow-right-24:](20-efficiency.md)
 
+- __21. Searching__ 
+
+    How to look for an element in a list.
+	[:octicons-arrow-right-24:](21-search.md)
+
+- __22. Sorting__ 
+
+    How to rearrange a list of items into an order.
+	[:octicons-arrow-right-24:](22-sort.md)
+
 </div>
 
 ## Arrays, Pointers, Memory Management
