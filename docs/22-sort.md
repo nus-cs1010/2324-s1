@@ -289,7 +289,7 @@ void insert(long a[], size_t curr)
   a[i] = temp;
 }
 
-void insertion_sort(size_t n, long a[n]) {
+void insertion_sort(size_t n, long a[]) {
   for (size_t curr = 1; curr < n; curr += 1) {
     insert(a, curr);
   }

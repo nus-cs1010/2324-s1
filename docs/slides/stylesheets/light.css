@@ -34,3 +34,7 @@ table th {
 table td {
 	border-bottom-color: #bbb;
 }
+
+.remark-code-line {
+	font-family: "Consolas","Andale Mono","Menlo","Courier New";
+}
