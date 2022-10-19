@@ -79,9 +79,9 @@ Here,
 \[
 \begin{align*}
 T(n) &= 2T\left(\frac{n}{2}\right) + 1  \\
-	 &= 4T\left(\frac{n}{4}\right) + 2 = \cdots  \\
-	 &= 2^kT\left(\frac{n}{2^k}\right) + k = \cdots \\ 
-	 &= nT(1) + \log n  \\
+	 &= 4T\left(\frac{n}{4}\right) + 2 + 1 = \cdots  \\
+	 &= 2^kT\left(\frac{n}{2^k}\right) + 2^{k-1} + .. + 4 + 2 + 1 = \cdots \\ 
+	 &= nT(1) + n - 1  \\
 	 &= O(n) \\
 \end{align*}
 \]
