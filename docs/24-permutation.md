@@ -88,7 +88,7 @@ As we go deeper into the recursion, the prefix grows longer.  When we reach the 
 
 The figure below illustrates the process
 
-![permute](figures/lec10-permute/lec10-permute-crop-pdf.png)
+![permute](figures/lec10-permute/lec10-permute-crop-pdf-0.png)
 
 ## The Code
 

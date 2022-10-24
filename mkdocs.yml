@@ -25,6 +25,7 @@ nav:
     - 22. Sorting: "22-sort.md"
     - 23. Tower of Hanoi: "23-tower.md"
     - 24. Permutation: "24-permutation.md"
+    - 25. N-Queens: "25-queens.md"
   - Lab Guides: 
     - Guide to Assignments/Exercises: "assignment.md"
     - Unix:

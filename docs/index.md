@@ -28,6 +28,11 @@
     Generate all possible permutations recursively.
 	[:octicons-arrow-right-24:](24-permutation.md)
 
+- __25. N-Queens__
+
+    Solving the N-Queens problem, recursively.
+	[:octicons-arrow-right-24:](25-queens.md)
+
 </div>
 
 ## Arrays, Pointers, Memory Management
