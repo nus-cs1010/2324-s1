@@ -236,8 +236,6 @@ Consider the code to generate all possible permutations of a string from Problem
 
 ## Appendix: Complete Code
 
-This version stops the search as soon as it finds a valid solution.
-
 ```C
 #include "cs1010.h"
 #include <stdbool.h>
