@@ -23,6 +23,8 @@ nav:
     - 20. Efficiency: "20-efficiency.md"
     - 21. Searching: "21-search.md"
     - 22. Sorting: "22-sort.md"
+    - 23. Tower of Hanoi: "23-tower.md"
+    - 24. Permutation: "24-permutation.md"
   - Lab Guides: 
     - Guide to Assignments/Exercises: "assignment.md"
     - Unix:

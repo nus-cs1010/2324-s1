@@ -18,6 +18,16 @@
     How to rearrange a list of items into an order.
 	[:octicons-arrow-right-24:](22-sort.md)
 
+- __23. Tower of Hanoi__ 
+
+    Solving the Tower of Hanoi recursively.
+	[:octicons-arrow-right-24:](23-tower.md)
+
+- __24. Permutation__
+
+    Generate all possible permutations recursively.
+	[:octicons-arrow-right-24:](24-permutation.md)
+
 </div>
 
 ## Arrays, Pointers, Memory Management
