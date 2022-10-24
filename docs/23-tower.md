@@ -108,7 +108,7 @@ Every recursive algorithm can be expressed as an iterative one.  Thus, an algori
 
 You can put some thought into how to solve the Tower of Hanoi using only loops to convince yourself that the recursive solution is much neater.
 
-## Problem Set
+## Problem Set 23
 
 ### Problem 23.1
 
