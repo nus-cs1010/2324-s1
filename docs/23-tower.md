@@ -1,4 +1,4 @@
-# Unit 24: Tower of Hanoi
+# Unit 23: Tower of Hanoi
 
 ## Learning Objectives
 
