@@ -4,8 +4,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
-<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
-<title>CS1010 AY20/21 S1 Lecture 10</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY22/23 S1 Lecture 10</title>
 <meta charset="utf-8">
 </head>
 <body>
@@ -14,7 +14,7 @@ class: middle, center
 
 # Lecture 10
 
-### 25 October 2021
+### 24 October 2022
 
 .smaller[
 Admin Matters<br>
@@ -22,15 +22,8 @@ Unit 25: Tower of Hanoi<br>
 Unit 26: Permutation<br>
 Unit 27: N Queens<br>
 ]
----
-class: middle
-
-- Assignment 7: Due Wednesday 9 AM
-- PE1 Grading: Almost done (only almost is not done)
 
 ---
-class: middle
-
 ### Recursion
 
 - Mostly linear recursion so far
@@ -43,60 +36,6 @@ class: middle,center
 ## Tower of Hanoi
 
 ---
-class: middle,wide
-
-![start](figures/recursion/recursion.001.png)
-
----
-class: middle,wide
-
-![start](figures/recursion/recursion.002.png)
-
----
-class: middle
-
-[Let's play](https://www.mathplayground.com/logic_tower_of_hanoi.html)
-
----
-class: middle
-
-## Recursion
-
-- Find a solution for trivial input (one disc)
-- Assume we know how to move $k-1$ discs to another peg
-- Solve the problem with $k$ discs
-
----
-class: middle
-
-Start with this:
-
-![start](figures/recursion/recursion.001.png)
-
----
-class: middle
-
-Move $k-1$ disc from A to B (wishful thinking)
-
-![start](figures/recursion/recursion.003.png)
-
----
-class: middle
-
-Move one disc from A to C
-
-![start](figures/recursion/recursion.004.png)
-
----
-class: middle
-
-Move $k-1$ discs from B to C (wishful thinking)
-
-![start](figures/recursion/recursion.005.png)
-
----
-class: middle
-
 ### Abstraction
 
 Representating the problem:
@@ -275,7 +214,7 @@ var slideshow = remark.create({
 	    scroll: false
 	},
 	ratio: '16:9',
-	highlightStyle: 'monokai',
+	highlightStyle: 'tomorrow',
     slideNumberFormat: 'AY2223 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
 });
  // Setup MathJax
