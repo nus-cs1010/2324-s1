@@ -110,7 +110,7 @@ You can put some thought into how to solve the Tower of Hanoi using only loops t
 
 ## Problem Set
 
-### Problem 24.1
+### Problem 23.1
 
 Suppose that we add a new restriction to the Tower of Hanoi puzzle.  Let's say that the disks are on Peg A, to begin with, and we want to move the disk to Peg C.  We are only allowed to move a disk either to Peg B from another peg or from Peg B to another peg.  In other words, we cannot move the disks between Peg A and Peg C directly.
 
