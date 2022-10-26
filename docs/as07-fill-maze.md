@@ -19,9 +19,9 @@ This assignment contributes to **4.0%** of your final grade.  The total marks fo
 
 We may deduct up to 1 mark _for each question_ for style violation.  Ensure that your code is neat and readable, adhering to the CS1010 coding convention.
 
-Furthermore, 2 mark is allocated to documentation. Your code should follow the good practices of breaking down your solution into small functions. Document each function (except `main`) following the Doxygen documentation format, as outlined [here](documentation.md).  Your code must have at least one non-trivial function (other than `main()`) to be eligible for these 2 marks.
+Mark are no longer allocated to documentation. We may deduct up to 2 marks _for each question_ for missing documnetation.  Your code should follow the good practices of breaking down your solution into small functions. Document each function (except `main`) following the Doxygen documentation format, as outlined [here](documentation.md).
 
-Each question has an efficiency requirement.  You need to solve the problem within the given running time to get the efficiency marks.  _We may deduct marks if your code is inefficient (e.g., perform redundant or duplicate work), even if its running time is within the given bound_.
+Each question has an efficiency requirement.  You need to solve the problem within the given running time to get the efficiency marks.  _We may deduct marks if your code is inefficient (e.g., perform redundant or duplicate work), even if its running time is within the given bound_.  Note that if your approach to solve the problem is incorrect, no efficiency marks will be given.
 
 The rest of the marks are allocated to correctness -- this includes the correctness of syntax, practices, approach, and logic, and whether you correctly follow our instructions.  Note that _even if your solution produces the correct output every time, it may not get full marks if the approach is wrong._
 
@@ -121,8 +121,8 @@ The grading criteria for this question is:
 
 |              | Marks |
 |--------------|-------|
-| Correctness  | 10    |
-| Efficiency   | 10    |
+| Correctness  | 12    |
+| Efficiency   | 8     |
 
 Your solution must take no more than $O(mnq)$ time to obtain
 the full efficiency marks.
@@ -376,8 +376,8 @@ The grading criteria for this question are:
 
 |              | Marks |
 |--------------|-------|
-| Correctness  | 10    |
-| Efficiency   | 10    |
+| Correctness  | 12    |
+| Efficiency   |  8    |
 
 Your solution must take no more than $O(mn)$ time to obtain
 the full efficiency marks.
