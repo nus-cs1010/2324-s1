@@ -1,4 +1,4 @@
-# Assignment 7: Life, Maze
+# Assignment 7: Fill, Maze
 
 ### Deadline
 
