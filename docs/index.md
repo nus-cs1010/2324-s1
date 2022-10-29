@@ -1,5 +1,19 @@
 # NUS CS1010 Lecture Notes for AY22/23 Semester 1
 
+## Intermediate C
+<div class="grid cards" markdown>
+
+- __26. Structure__ 
+
+    Defining your own composite data type with `struct`
+	[:octicons-arrow-right-24:](26-struct.md)
+
+- __27. Standard C I/O__ 
+
+    Use `printf` and `scanf` and their pitfalls
+	[:octicons-arrow-right-24:](27-stdio.md)
+</div>
+
 ## Algorithms
 <div class="grid cards" markdown>
 

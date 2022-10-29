@@ -26,6 +26,8 @@ nav:
     - 23. Tower of Hanoi: "23-tower.md"
     - 24. Permutation: "24-permutation.md"
     - 25. N-Queens: "25-queens.md"
+    - 26. Structure: "26-struct.md"
+    - 27. Standard I/O: "27-stdio.md"
   - Lab Guides: 
     - Guide to Assignments/Exercises: "assignment.md"
     - Unix:
