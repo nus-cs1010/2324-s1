@@ -1,6 +1,6 @@
-# Unit 28: Standard I/O Functions
+# Unit 27: Standard I/O Functions
 
-We have been shielding you from the pain and pitfalls of using C I/O functions.  Since you are close to "graduate" from CS1010, this is a good time to show you what the real world is like.
+We have been shielding you from the pain and pitfalls of using C I/O functions.  Since you are close to "graduating" from CS1010, this is a good time to show you what the real world is like.
 
 ## printf
 
@@ -92,9 +92,9 @@ char s[11];
 scanf("%ld %lf %10s", &l, &d, s);
 ```
 
-`scanf` scans the standard input, try to match it to the format specified.  The space in between the format specifier matches zero or more white spaces (space, tab, newline).  Scanning stops when an input character does not match such a format character or when an input conversion fails.
+`scanf` scans the standard input, and tries to match it to the format specified.  The space in between the format specifier matches zero or more white spaces (space, tab, newline).  Scanning stops when an input character does not match such a format character or when an input conversion fails.
 
-Adding a `*` to the format modifier means that `scanf` should consume the inputs but not store it in any variables.  This, combined with `%[` `]` is useful to clear any remaining data from the standard input.
+Adding a `*` to the format modifier means that `scanf` should consume the inputs but not store them in any variables.  This, combined with `%[` `]` is useful to clear any remaining data from the standard input.
 
 ## Pitfalls When Using `scanf`
 
@@ -122,7 +122,7 @@ if (result == 1) {
 
 The above, however, does not properly "clear" the standard input of the incorrect input.  So the next `scanf` calls would still try to read it again!
 
-To clear the input, we can use the `%*[^\n]` modifier, which read in any characters expect (`^`) the newline (`\n`).  
+To clear the input, we can use the `%*[^\n]` modifier, which read in any characters except (`^`) the newline (`\n`).  
 
 ```C
 long a;
@@ -166,12 +166,12 @@ You can read [a beginners' guide away from scanf()](http://sekrit.de/webdocs/c/b
 
 ## fgets
 
-`fgets` is a better alternative to `scanf` for reading inputs (Note: this is what CS1010 library use internally).  `fgets` takes three parameters, a pointer to a string (or buffer), the size of the buffer, and the input to read from (which can be a file, a network socket, or in our case, most of the time `stdin`).
+`fgets` is a better alternative to `scanf` for reading inputs (Note: this is what CS1010 library uses internally).  `fgets` takes three parameters, a pointer to a string (or buffer), the size of the buffer, and the input to read from (which can be a file, a network socket, or in our case, most of the time `stdin`).
 
-The advantage of `fgets` is that it never overflows the buffer (it knows the size).  Once we read the input, we can use functions such as `strtol` or `strtod` to convert the strings to `long` or `double`.
+The advantage of `fgets` is that it never overflows the buffer (it knows the size).  Once we read the input, we can use functions such as `strtol` or `strtod` to convert the strings into `long` or `double`.
 
 ### Avoid atol or atof
 
-Instead of `strtol` or `strtof`, some old school textbooks might show you that you can convert a string to a `long` or a `double` using `atol` or `atof`.  You should avoid these two functions (even the man pages of `atof` says so!).  They do not provide any mechanism for error checking if the string is not a valid integer or if the input is out of range of the type.
+Instead of `strtol` or `strtof, some old-school textbooks might show you that you can convert a string to a `long` or a `double` using `atol` or `atof`.  You should avoid these two functions (even the man pages of `atof` says so!).  They do not provide any mechanism for error checking if the string is not a valid integer or if the input is out of range of the type.
 
 You can read [the source code for the CS1010 library](https://github.com/nus-cs1010-1819-s1/libcs1010) to see how it uses `fgets`, `strtol` and related functions to parse numbers and strings from the standard inputs.
