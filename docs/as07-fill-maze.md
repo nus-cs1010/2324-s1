@@ -41,7 +41,7 @@ We denote the top left pixel to be (0,0).  The indices
 increase towards the right and down.  For instance, if
 we have an image of width 20 by 30, then the top-right
 pixel has the coordinate (0, 19); the bottom-left pixel
-has the coordinate (29, 0); and the bottom-right has the coordinate (19, 29).
+has the coordinate (29, 0); and the bottom-right has the coordinate {--(19, 29)--} {++(29, 19)++}.
 
 An image can be divided into one or more segments.
 A segment is a set of pixels (i) with the same color, and
