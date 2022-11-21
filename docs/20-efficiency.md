@@ -353,7 +353,7 @@ $$
 
 Since we can drop the additive constant in Big-O notation, we have $T(n) = O(2^n)$.
 
-{++The original analysis above contains a bug that that states $2^n-2 + ... + 4 + 2 + 1 = O(n)$.  This is incorrect and has been fixed above.++}
+{++The original analysis above contains a bug that that states $2^{n-2} + ... + 4 + 2 + 1 = O(n)$.  This is incorrect and has been fixed above.++}
 
 This explains why the recursive solution to Fibonacci is so much slower than the iterative version, which is $O(n)$ -- one grows exponentially while the other linearly in terms of $n$.
 
