@@ -346,14 +346,14 @@ T(n) &< 2T(n-1) + 1\\
 	 &< 8T(n-3) + 4 + 2 + 1\\
      &< 2^iT(n-i) + 2^{i-1} + ... + 4 + 2 + 1\\
 	 & : \\
-     &< 2^{n-1}T(1) + 2^{i-2} + ... + 4 + 2 + 1 \\
+     &< 2^{n-1}T(1) + 2^{n-2} + ... + 4 + 2 + 1 \\
      &= 2^n - 1
 \end{align}
 $$
 
 Since we can drop the additive constant in Big-O notation, we have $T(n) = O(2^n)$.
 
-{++The original analysis above contains a bug that that states $4 + 2 + 1 = O(n)$.  This is incorrect and has been fixed above.++}
+{++The original analysis above contains a bug that that states $2^n-2 + ... + 4 + 2 + 1 = O(n)$.  This is incorrect and has been fixed above.++}
 
 This explains why the recursive solution to Fibonacci is so much slower than the iterative version, which is $O(n)$ -- one grows exponentially while the other linearly in terms of $n$.
 
