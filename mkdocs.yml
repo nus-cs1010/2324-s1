@@ -60,6 +60,8 @@ theme:
     - navigation.instant
     - toc.follow
     - toc.integrate
+    - content.code.copy
+    - content.code.select
     - content.code.annotate
   palette:
     primary: deep purple
@@ -71,8 +73,8 @@ theme:
 
 site_name: CS1010 Programming Methodology
 # repo_url: https://github.com/nus-cs1010/1819-s1
-site_url: https://nus-cs1010.github.io/2223-s1
-copyright: Copyright by Department of Computer Science, National University of Singapore 2022
+site_url: https://nus-cs1010.github.io/2324-s1
+copyright: Copyright by Department of Computer Science, National University of Singapore 2023
 # remote_branch: gh-pages
 use_directory_urls: false
 markdown_extensions:
