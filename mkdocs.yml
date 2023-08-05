@@ -1,56 +1,56 @@
 nav:
   - Home: 'index.md'
   - Notes: 
-    - 1. What is a Program?: "01-program.md"
-    - 2. Computational Problems: "02-algo.md"
-    - 3. Functions: "03-func.md"
-    - 4. Types: "04-type.md"
-    - 5. First C Program: "05-first-c.md"
-    - 6. CS1010 I/O: "06-cs1010-io.md"
-    - 7. Arithmetic Operations: "07-arithmetic-ops.md"
-    - 8. Conditional Statement: "08-if-else.md"
-    - 9. Logical Expression: "09-logical-exp.md"
-    - 10. Assertion: "10-assert.md"
-    - 11. Loop: "11-loop.md"
-    - 12. Invariant: "12-invariant.md"
-    - 13. Call Stack: "13-call-stack.md"
-    - 14. Fixed-Length Array: "14-array.md"
-    - 15. Pointers: "15-pointers.md"
-    - 16. Call by Reference: "16-call-by-reference.md"
-    - 17. Heap: "17-heap.md"
-    - 18. String: "18-string.md"
-    - 19. Multidimensional Array: "19-md-array.md"
-    - 20. Efficiency: "20-efficiency.md"
-    - 21. Searching: "21-search.md"
-    - 22. Sorting: "22-sort.md"
-    - 23. Tower of Hanoi: "23-tower.md"
-    - 24. Permutation: "24-permutation.md"
-    - 25. N-Queens: "25-queens.md"
-    - 26. Structure: "26-struct.md"
-    - 27. Standard I/O: "27-stdio.md"
+    - 1. What is a Program?: "notes/01-program.md"
+    - 2. Computational Problems: "notes/02-algo.md"
+    - 3. Functions: "notes/03-func.md"
+    - 4. Types: "notes/04-type.md"
+    - 5. First C Program: "notes/05-first-c.md"
+    - 6. CS1010 I/O: "notes/06-cs1010-io.md"
+    - 7. Arithmetic Operations: "notes/07-arithmetic-ops.md"
+    - 8. Conditional Statement: "notes/08-if-else.md"
+    - 9. Logical Expression: "notes/09-logical-exp.md"
+    - 10. Assertion: "notes/10-assert.md"
+    - 11. Loop: "notes/11-loop.md"
+    - 12. Invariant: "notes/12-invariant.md"
+    - 13. Call Stack: "notes/13-call-stack.md"
+    - 14. Fixed-Length Array: "notes/14-array.md"
+    - 15. Pointers: "notes/15-pointers.md"
+    - 16. Call by Reference: "notes/16-call-by-reference.md"
+    - 17. Heap: "notes/17-heap.md"
+    - 18. String: "notes/18-string.md"
+    - 19. Multidimensional Array: "notes/19-md-array.md"
+    - 20. Efficiency: "notes/20-efficiency.md"
+    - 21. Searching: "notes/21-search.md"
+    - 22. Sorting: "notes/22-sort.md"
+    - 23. Tower of Hanoi: "notes/23-tower.md"
+    - 24. Permutation: "notes/24-permutation.md"
+    - 25. N-Queens: "notes/25-queens.md"
+    - 26. Structure: "notes/26-struct.md"
+    - 27. Standard I/O: "notes/27-stdio.md"
   - Lab Guides: 
-    - Guide to Assignments/Exercises: "assignment.md"
+    - Guide to Assignments/Exercises: "guides/assignment.md"
     - Unix:
-      - Background: "unix-background.md"
-      - Essentials: "unix-essentials.md"
-      - Advanced: "unix-advanced.md"
+      - Background: "guides/unix-background.md"
+      - Essentials: "guides/unix-essentials.md"
+      - Advanced: "guides/unix-advanced.md"
     - Vim:
-      - Philosophy: "vim-philosophy.md"
-      - Quick Lesson: "vim-quick-lessons.md"
-      - Setup: "vim-setup.md"
-      - Extensions: "vim-plugins.md"
-      - Tips: "vim-tips.md"
+      - Philosophy: "guides/vim-philosophy.md"
+      - Quick Lesson: "guides/vim-quick-lessons.md"
+      - Setup: "guides/vim-setup.md"
+      - Extensions: "guides/vim-plugins.md"
+      - Tips: "guides/vim-tips.md"
     - PE Nodes:
-      - Programming Environments: "environments.md"
-      - Linking GitHub to PE: "github.md"
-      - Using tmate: "tmate.md"
+      - Programming Environments: "guides/environments.md"
+      - Linking GitHub to PE: "guides/github.md"
+      - Using tmate: "guides/tmate.md"
     - C Programming:
-      - C in CS1010: 'c-in-cs1010.md'
-      - Common Clang Messages: 'messages.md'
-      - CS1010 I/O Library: "library.md"
-      - C Style Guide: 'style.md'
-      - C Documentation Guide: 'documentation.md'
-      - Compiling with Clang: 'clang.md'
+      - C in CS1010: 'guides/c-in-cs1010.md'
+      - Common Clang Messages: 'guides/messages.md'
+      - CS1010 I/O Library: "guides/library.md"
+      - C Style Guide: 'guides/style.md'
+      - C Documentation Guide: 'guides/documentation.md'
+      - Compiling with Clang: 'guides/clang.md'
   - Readings: "readings.md"   
 
 
@@ -64,8 +64,8 @@ theme:
     - content.code.select
     - content.code.annotate
   palette:
-    primary: deep purple
-    accent: deep purple
+    primary: blue
+    accent: blue
   shortcuts:
     previous: 72 #h
     next: 76 #l
@@ -107,6 +107,8 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true 
 
 extra_javascript:
   - javascripts/config.js
