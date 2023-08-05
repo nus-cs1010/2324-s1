@@ -301,7 +301,7 @@ int main()
 
 An `int` variable is usually 32-bits long.  If we only need 16 bits, we use the type `short int`, or just `short`.  If we only need 8-bits, we use the type `char` (short for character).
 
-Note that the above said an `int` is _usually_ 32 bits.  Remember (from [Unit 1](01-program)) that a C program gets compiled into machine code for a specific CPU architecture.  The C language standard only guarantees that an `int` is at least 16 bits.  Although most C compilers compile `int` to 32 bits, there is no guarantee!
+Note that the above said an `int` is _usually_ 32 bits.  Remember (from [Unit 1](01-program.md)) that a C program gets compiled into machine code for a specific CPU architecture.  The C language standard only guarantees that an `int` is at least 16 bits.  Although most C compilers compile `int` to 32 bits, there is no guarantee!
 
 If we need something more than an `int`, we can use `long int`, or just `long`.  The C standard guarantees that a `long` is at least 32 bits.  Depending on the implementation, it sometimes compiled to 32-bits, sometimes 64-bits.  To get even longer, we can use the type `long long int`, or just `long long`, which is guaranteed to be at least 64 bits[^1].
 

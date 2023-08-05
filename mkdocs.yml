@@ -58,11 +58,19 @@ theme:
   name: material
   features: 
     - navigation.instant
+    - navigation.tracking
+    - navigation.path
+    - navigation.prune
+    - navigation.top
     - toc.follow
     - toc.integrate
     - content.code.copy
     - content.code.select
     - content.code.annotate
+    - search.suggest
+    - search.highlight
+    - search.share
+
   palette:
     primary: blue
     accent: blue
@@ -109,6 +117,11 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.tabbed:
       alternate_style: true 
+
+plugins:
+  - search:
+      lang: en
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
 
 extra_javascript:
   - javascripts/config.js

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # NUS CS1010 Guidebook for AY23/24 Semester 1
 
 === "Notes"
@@ -8,7 +13,7 @@
 
     - __1. Programming__
 
-        What is a program?  What is programming?  What is CS1010 about?  
+        What is a program?  What is programming?  What is CS1010 about?
         [:octicons-arrow-right-24:](notes/01-program.md)
 
     - __2. Computational Problems__
@@ -276,3 +281,6 @@
 
     </div>
 
+=== "Programming Exercises"
+
+    Coming soon.
