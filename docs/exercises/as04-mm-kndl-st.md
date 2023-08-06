@@ -21,7 +21,7 @@ This assignment contributes to **4%** of your final grade.  The total marks for 
 
 For Assignment 4, we may deduct up to 1 mark _for each question_ for style violation.  Ensure that your code is neat and readable, adhering to the CS1010 coding convention.
 
-Furthermore, 2 mark is allocated to documentation. Your code should follow the good practices of breaking down your solution into small functions. Document each function (except `main`) following the Doxygen documentation format, as outlined [here](documentation.md).  Your code must have at least one non-trivial function (other than `main()`) to be eligible for these 2 marks.
+Furthermore, 2 mark is allocated to documentation. Your code should follow the good practices of breaking down your solution into small functions. Document each function (except `main`) following the Doxygen documentation format, as outlined [here](../guides/documentation.md).  Your code must have at least one non-trivial function (other than `main()`) to be eligible for these 2 marks.
 
 The rest of the marks are allocated to correctness -- this includes the correctness of syntax, practices, approach, and logic, and whether you correctly follow our instructions.  Note that _even if your solution produces the correct output every time, it may not get full marks if the approach is wrong._
 

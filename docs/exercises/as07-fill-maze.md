@@ -19,7 +19,7 @@ This assignment contributes to **4.0%** of your final grade.  The total marks fo
 
 We may deduct up to 1 mark _for each question_ for style violation.  Ensure that your code is neat and readable, adhering to the CS1010 coding convention.
 
-Mark are no longer allocated to documentation. We may deduct up to 2 marks _for each question_ for missing documnetation.  Your code should follow the good practices of breaking down your solution into small functions. Document each function (except `main`) following the Doxygen documentation format, as outlined [here](documentation.md).
+Mark are no longer allocated to documentation. We may deduct up to 2 marks _for each question_ for missing documnetation.  Your code should follow the good practices of breaking down your solution into small functions. Document each function (except `main`) following the Doxygen documentation format, as outlined [here](../guides/documentation.md).
 
 Each question has an efficiency requirement.  You need to solve the problem within the given running time to get the efficiency marks.  _We may deduct marks if your code is inefficient (e.g., perform redundant or duplicate work), even if its running time is within the given bound_.  Note that if your approach to solve the problem is incorrect, no efficiency marks will be given.
 

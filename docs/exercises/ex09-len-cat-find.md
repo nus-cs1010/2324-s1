@@ -42,7 +42,7 @@ ooiwt@pe101:~$ ./list
 
 Write a program `length` that reads a line of text from the standard input and print the number of characters in the line (including the newline character) to the standard output.
 
-You may use [`cs1010_read_line`](library.md#char-cs1010_read_line) to read the line of text from the standard input.
+You may use [`cs1010_read_line`](../guides/library.md#char-cs1010_read_line) to read the line of text from the standard input.
 
 Fill in the following method in the given skeleton code:
 ```
@@ -51,7 +51,7 @@ size_t length_of(const char *str) {
 }
 ```
 
-The goal of this exercise is to let you practice processing and manipulating strings in C.  Solve this problem directly without using any C library functions from `string.h`.  
+The goal of this exercise is to let you practice processing and manipulating strings in C.  Solve this problem directly without using any C library functions from `string.h`.
 
 ### Sample Run
 
@@ -66,7 +66,7 @@ Hello world!
 
 Write a program `concat` that reads two words from the standard input, append them into a new string, and then print a new string, to the standard output.
 
-You may use [`cs1010_read_word`](library.md#char-cs1010_read_word) to read a word from the standard input.
+You may use [`cs1010_read_word`](../guides/library.md#char-cs1010_read_word) to read a word from the standard input.
 
 Fill in the following method in the given skeleton code:
 ```
@@ -104,7 +104,7 @@ The program then prints $k$ lines to the standard output:
 - If $w_i$ is a substring of $s$, then print the position of the first occurrence of $w_i$ within $s$.  The first character in $s$ has position 0, the second character has position 1, etc.  
 - If $w_i$ is not a substring of $s$, then print the string "not found".
 
-You may use [`cs1010_read_word_array`](library.md#char-cs1010_read_word_array) to read the list of words $w_0..w_{k-1}$ from the standard input.
+You may use [`cs1010_read_word_array`](../guides/library.md#char-cs1010_read_word_array) to read the list of words $w_0..w_{k-1}$ from the standard input.
 
 ### Sample Runs
 

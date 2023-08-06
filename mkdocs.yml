@@ -1,5 +1,9 @@
 nav:
   - Home: 'index.md'
+  - About: 
+    - General Information : 'about.md'
+    - Teaching Team: 'team.md'
+    - Schedule: 'schedule.md'
   - Notes: 
     - 1. What is a Program?: "notes/01-program.md"
     - 2. Computational Problems: "notes/02-algo.md"
@@ -62,6 +66,7 @@ theme:
     - navigation.path
     - navigation.prune
     - navigation.top
+    - navigation.footer
     - toc.follow
     - toc.integrate
     - content.code.copy
@@ -118,10 +123,10 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true 
 
-plugins:
-  - search:
-      lang: en
-      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+#plugins:
+#  - search:
+#      lang: en
+#      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
 
 extra_javascript:
   - javascripts/config.js

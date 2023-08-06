@@ -1,11 +1,8 @@
----
-hide:
-  - toc
----
-
 # NUS CS1010 Guidebook for AY23/24 Semester 1
 
 === "Notes"
+
+    # 
 
     ## Preliminaries
 
@@ -283,4 +280,4 @@ hide:
 
 === "Programming Exercises"
 
-    Coming soon.
+    ## Coming soon
