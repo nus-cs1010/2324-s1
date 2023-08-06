@@ -1,5 +1,13 @@
 # NUS CS1010 Guidebook for AY23/24 Semester 1
 
+#
+
+#### Important [General Information](about.md) About CS1010
+#### [Teaching Team](team.md)
+#### [Class Schedule](schedule.md)
+
+<br>
+
 === "Notes"
 
     # 
