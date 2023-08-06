@@ -1,14 +1,19 @@
+---
+icon: fontawesome/solid-house
+---
+
+
 # NUS CS1010 Handbook for AY23/24 Semester 1
 
 #
 
-#### Important [General Information](about.md) About CS1010
-#### [Teaching Team](team.md)
-#### [Class Schedule](schedule.md)
+#### :fontawesome-solid-circle-info: &nbsp;Important [General Information](about.md) About CS1010
+#### :fontawesome-solid-people-group: &nbsp;[Teaching Team](team.md)
+#### :fontawesome-solid-calendar-days: &nbsp;[Class Schedule](schedule.md)
 
 <br>
 
-=== "Notes"
+=== ":fontawesome-solid-book: Notes"
 
     # 
 
@@ -181,7 +186,7 @@
         [:octicons-arrow-right-24:](notes/27-stdio.md)
     </div>
 
-=== "Lab Guide"
+=== ":fontawesome-solid-person-chalkboard: Lab Guide"
 
     ## CS1010 PE
     <div class="grid cards" markdown>
@@ -286,6 +291,6 @@
 
     </div>
 
-=== "Programming Exercises"
+=== ":fontawesome-solid-keyboard: Programming Exercises"
 
     ## Coming soon
