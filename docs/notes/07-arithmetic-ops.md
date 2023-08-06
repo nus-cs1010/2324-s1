@@ -55,7 +55,7 @@ long a = b + 2 * c / 4;
 
 When we have multiple operations appearing, however, it becomes harder to trace the sequence of evaluation.  What is the value of `a` after the three lines above are executed?  There is some ambiguity: do we evaluate from left to right (in which case the answer is 6) or do we multiply and device first before adding (in which case the answer is 11)? 
 
-C has well-defined rules for the order of evaluation for the operators: `*`, `/`, and `%` take precedence over `+` and `-`, and the operators are evaluated from left to right.  
+C has well-defined rules for the order of evaluation for the operators: `*`, `/`, and `%` take precedence over `+` and `-`, and the operators are evaluated from left to right.
 
 Thus, in the example above, `a` will be 11 instead of 6 after the execution.
 
@@ -100,7 +100,7 @@ a = a op b
 
 ## Common Mistakes Using Arithmetic Operations
 
-It is important to remember that when arithmetic operations in C are performed on a sequence of bits, the value that the sequence of bits can represent is limited and is determined by its type.  A common mistake for beginner programmers is to forget this fact and treat the arithmetic operations as the same as the ones seen in mathematics.  
+It is important to remember that when arithmetic operations in C are performed on a sequence of bits, the value that the sequence of bits can represent is limited and is determined by its type.  A common mistake for beginner programmers is to forget this fact and treat the arithmetic operations as the same as the ones seen in mathematics.
 
 Let's look at two common gotchas.
 
@@ -131,7 +131,7 @@ double half = 3/2;
 
 What is the value of the variable `half` after the operation above?
 
-It got to be 1.5, right?  
+It got to be 1.5, right?
 
 It turns out that, after executing the code above, the value of `half` is 1.0.  :open_mouth:
 
@@ -149,7 +149,7 @@ Second, when we perform an arithmetic operation, the resulting value will be an 
 
 Since 3 and 2 are both integers, the resulting value 1.5 is stored in an integer, which causes it to become 1.  We then store 1 into a `double` variable, causing the value of `half` to become `1.0`.
 
-Because of this limitation, the operation `/` is sometimes also known as integer division when both operands are integers.  
+Because of this limitation, the operation `/` is sometimes also known as integer division when both operands are integers.
 
 In order to get the result 1.5 as expected, we can write either:
 ```C
@@ -164,7 +164,8 @@ double half = (double)3/(double)2;
 
 The second fix above explicitly converts the type, or casts the type, of values 2 and 3 into a `double`.
 
-{++ NEW ++} As it is a good practice to be explicit when programming so that the readers of your code knows your intention, in CS1010, we will use explicit casting to convert `long` to `double` when necessary.
+As it is a good practice to be explicit when programming so that the readers of your code knows your intention, in CS1010, we will use explicit casting to convert `long` to `double` when necessary.
+
 ```C
 long x = 3;
 long y = 2
@@ -175,15 +176,15 @@ double x_over_y = (double)x / (double)y;  // ok
 
 ## The % Operator
 
-It is commonly misunderstood that the `%` operator is equivalent to the modulo operation in number theory, where the operator always gives a positive remainder.   
+It is commonly misunderstood that the `%` operator is equivalent to the modulo operation in number theory, where the operator always gives a positive remainder.
 
-This equivalence holds when the two operands are positive. E.g., `#!C 9 % 4` gives `#!C 1` as the answer.  But, when one of the operands is negative, the `%` operator may return a negative number.  
+This equivalence holds when the two operands are positive. E.g., `#!C 9 % 4` gives `#!C 1` as the answer.  But, when one of the operands is negative, the `%` operator may return a negative number.
 
 The `%` operator in C is defined as follows: `#!C x % n` is equivalent to `#!C x - ((x / n) * n)` (where `#!C /` is the integer division operator).
 
 For instance, `#!C -9 % 4` is evaluated as `#!C -9 - ((-9 / 4) * 4)` which is `#!C -9 - (-8)`, and gives `#!C  -1`.
 
-On the other hand, `#!C 9 % -4` is evaluated as `#!C 9 - ((9 / -4) * -4)`, which gives `#!C  9 - 8`, or `#!C  1`.  
+On the other hand, `#!C 9 % -4` is evaluated as `#!C 9 - ((9 / -4) * -4)`, which gives `#!C  9 - 8`, or `#!C  1`.
 
 To avoid confusion between the `%` operator in C and the modulo operation in number theory, we will call the `%` as the _remainder_ operator. 
 
@@ -219,7 +220,7 @@ So, why aren't `++` and `--` welcomed in CS1010?  The `++` and `--` operators no
 
 ## List of C features banned in CS1010
 
-You should realize by now that we are only using a subset of C and enforce a certain style of programming in CS1010.  We wish to move all of you away from common pitfalls in learning and writing C so that we can focus on using C as a tool to solve problems.   
+You should realize by now that we are only using a subset of C and enforce a certain style of programming in CS1010.  We wish to move all of you away from common pitfalls in learning and writing C so that we can focus on using C as a tool to solve problems.
 
 So far, you have seen that we are banning:
 

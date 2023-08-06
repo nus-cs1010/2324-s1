@@ -187,7 +187,7 @@ For instance, which one grows faster?  $f(n) = n^n$ or $g(n) = 2^n$?  Pick $n = 
 
 ## Running Time or Time Complexity of an Algorithm
 
-Using the big-O notation, we can quantify how many steps an algorithm takes to run.  This measurement is called the _running time_ or the _time complexity_ of the algorithm.  
+Using the big-O notation, we can quantify how many steps an algorithm takes to run.  This measurement is called the _running time_ or the _time complexity_ of the algorithm.
 
 In CS1010, when we express the running time, we are interested in the worst-case performance, or worst-case running time.  Computer scientists also find measuring the average running time useful in certain scenarios.  You will learn about analyzing the average running time in CS3230.
 
@@ -352,8 +352,6 @@ T(n) &< 2T(n-1) + 1\\
 $$
 
 Since we can drop the additive constant in Big-O notation, we have $T(n) = O(2^n)$.
-
-{++The original analysis above contains a bug that that states $2^{n-2} + ... + 4 + 2 + 1 = O(n)$.  This is incorrect and has been fixed above.++}
 
 This explains why the recursive solution to Fibonacci is so much slower than the iterative version, which is $O(n)$ -- one grows exponentially while the other linearly in terms of $n$.
 

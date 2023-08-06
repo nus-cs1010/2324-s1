@@ -23,7 +23,7 @@ ptr = a; // equivalent to ptr = &a[0];
 
 We know that, due to array decay, `ptr` will be pointing to the first element of the array.
 
-C allows us to have a pointer that points to an _array_.  Note: {++Not++} just an element, but the whole array.  We can do so with
+C allows us to have a pointer that points to an _array_.  Note: Not just an element, but the whole array.  We can do so with
 
 ```C
 long a[20];
