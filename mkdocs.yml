@@ -77,8 +77,8 @@ theme:
     - search.share
 
   palette:
-    primary: blue
-    accent: blue
+    primary: cs1010ay2324s1
+    accent: cs1010ay2324s1
   shortcuts:
     previous: 72 #h
     next: 76 #l

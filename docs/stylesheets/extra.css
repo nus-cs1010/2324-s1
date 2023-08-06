@@ -93,3 +93,9 @@ s {
 .md-typeset .footnote-backref {
 	vertical-align: baseline;
 }
+
+[data-md-color-scheme="cs1010ay2324s1"] {
+  --md-primary-fg-color:        #005dd5;
+  --md-primary-fg-color--light: #005dd5;
+  --md-primary-fg-color--dark:  #005dd5;
+}
