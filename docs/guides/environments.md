@@ -100,7 +100,7 @@ Make sure that the permission for `.ssh` both on the local machine and on PE is 
     
 Note that a stable network connection is required to use the PE hosts for a long period without interruption.   If you encounter frequent disconnections while working at home or on campus while connected wirelessly, please make sure that your Wi-Fi signal is strong and that there is no interference from other sources. 
 
-If your connection is disconnected in the middle of editing, `vim` saves the state of the buffer for you.  See the section on [recovery file](https://nus-cs1010.github.io/2223-s1/vim-tips.html#5-recovery-files) on how to recover your files.
+If your connection is disconnected in the middle of editing, `vim` saves the state of the buffer for you.  See the section on [recovery file](vim-tips.md#5-recovery-files) on how to recover your files.
 
 If you experience frequent disconnection, you can consider running `screen`. After logging into a PE host, run:
 
