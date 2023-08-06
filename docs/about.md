@@ -72,7 +72,12 @@ Students entering CS1010 are expected to
 -   Attendance will be taken.   Students who cannot attend a lab session should inform their corresponding tutor.
 -   Students are expected to attend their assigned lab session.  If there is a strong need to attend another session for a specific week, the student must inform the corresponding tutor.
 
- 
+### Catch-Up Sessions
+
+- Every three weeks, we run a 2-hour Q&A session for students to clarify doubts on Saturday morning.  
+- Attendance is optional, but we strongly encourage students who are falling behind to take this opportunity to clarify doubts and catch up.
+- Catch-up sessions are recorded.  The video will be shared after the session.
+
 ## Assessment
 ### Assessment Types
 
@@ -82,11 +87,11 @@ Formative assessments in CS1010 include problem sets, programming exercises, and
 
 The summative assessments, on the other hand, are meant to evaluate student learning.  These include two written assessments (the midterm and the final exam) and three practical exams.  These are high-stakes assessments carrying 90% of the total weights.
 
--   Problem Sets: At the end of some lesson units, we will provide some exercise questions to make students reflect and practice applying what they have learned in the corresponding unit. These questions are not graded. There is no need to submit your answers. They will be discussed and presented during the tutorial sessions.
--   Quizzes: The online quizzes are released every week after the lecture (Monday, 6 PM) and are due two days later (Wednesday, 11:59 PM). The quizzes are more tightly coupled to the content of the weekly lectures and are meant to help students self-diagnose their understanding of what is taught for that week.
--   Programming Exercises: These are programming questions of various difficulty levels that are critical for students to solve, to gain experience, skills, and confidence in solving computational problems with C. Typically students spend more than half of their time in CS1010 on solving these programming exercises. Students should submit them on time to get feedback from their lab tutors.
--   Practical Exams: Students will be given programming questions to solve within a limited time frame, in an examination setting in SoC computer labs.  This is usually held in the evening or on a Saturday.
--   Midterm and Final Exams are written tests (on pen and paper) conducted in exam halls.
+-   **Problem Sets**: At the end of some lesson units, we will provide some exercise questions to make students reflect and practice applying what they have learned in the corresponding unit. These questions are not graded. There is no need to submit your answers. They will be discussed and presented during the tutorial sessions.
+-   **Quizzes**: The online quizzes are released every week after the lecture (Monday, 6 PM) and are due two days later (Wednesday, 11:59 PM). The quizzes are more tightly coupled to the content of the weekly lectures and are meant to help students self-diagnose their understanding of what is taught for that week.
+-   **Programming Exercises**: These are programming questions of various difficulty levels that are critical for students to solve, to gain experience, skills, and confidence in solving computational problems with C. Typically students spend more than half of their time in CS1010 on solving these programming exercises. Students should submit them on time to get feedback from their lab tutors.
+-   **Practical Exams**: Students will be given programming questions to solve within a limited time frame, in an examination setting in SoC computer labs.  This is usually held in the evening or on a Saturday.
+-   **Midterm and Final Exams** are written tests (on pen and paper) conducted in exam halls.
 
 ### Assessment Weightage
 
@@ -96,7 +101,7 @@ The summative assessments, on the other hand, are meant to evaluate student lear
 -   Practical Exam 0: 10%
 -   Practical Exam 1: 15%
 -   Practical Exam 2: 20%
--   Online Quizzes: 5%
+-   Quizzes: 5%
 
 ### Open-Book Assessment
 
@@ -174,18 +179,16 @@ Please note that the following are not handled by the CS1010 teaching team.  We 
 
 CS1010 uses several web applications to manage the content, assessments, and interaction with students.
 
--   Canvas: Announcements, class rosters, surveys, quizzes, grades, and sharing of PDF documents are managed through Canvas.
--   Handbook: Notes, problem sets, programming exercises, and lab guides, are publicly available on the web.
--   Piazza: Q & A website that serves as the main forum for discussion about CS1010.
--   GitHub: Contains submitted code repositories and feedback about the code from tutors.
--   Softmark: Contain written test scripts and feedback about the answers.
+-   [**Canvas**](https://canvas.nus.edu.sg/courses/45586): Announcements, class rosters, surveys, quizzes, grades, and sharing of PDF documents are managed through Canvas.
+-   [**Handbook**](https://nus-cs1010.github.io/2324-s1/): Notes, problem sets, programming exercises, and lab guides, are publicly available on the web.
+-   [**Piazza**](https://piazza.com/nus.edu.sg/fall2023/cs1010/home): Q & A website that serves as the main forum for discussion about CS1010.
+-   [**GitHub**](https://www.github.com): Contains submitted code repositories and feedback about the code from tutors.
+-   [**Softmark**](https://softmark.comp.nus.edu.sg): Contain written test scripts and feedback about the answers.
 
  
 ## Asking Questions and Getting Help
 
-CS1010 is not an easy course.  Students who did well academically previously may still struggle in CS1010.  Please do not be afraid to ask for help from the CS1010 Teaching Team and other peers.
-
-Students are encouraged to ask questions if they don't understand something or if they are stuck solving a formative assessment question.  Students are encouraged to ask questions during lectures, tutorials, and lab sessions.  Outside of these lessons, there are several ways to do so.
+CS1010 is not an easy course. Students are encouraged to ask questions if they don't understand something or if they are stuck solving a formative assessment question.  Students are encouraged to ask questions during lectures, tutorials, and lab sessions.  Outside of these lessons, there are several ways to do so.
 
 -   <b>Piazza</b>:
     - The best place to get help is on Piazza.  If you have a question, please first check if someone has already asked the same question and if there is an answer.  
