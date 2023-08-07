@@ -1,5 +1,5 @@
 ---
-icon: fontawesome/solid-house
+icon: fontawesome/solid-house-chimney
 ---
 
 
