@@ -16,6 +16,7 @@
 -   Albert Sutiono (Computer Engineering, Year 4)
 -   Choong Zhan Hong (Communications And New Media, Year 4)
 -   Edward Humianto (Computer Engineering, Year 2)
+-   Ee Zhi Jun Justin (Computer Science, Year 4)
 -   Ellawela Suveen Thinusha Bandara (Computer Engineering, Year 2)
 -   Irving Alexander de Boer (Computer Engineering, Year 3)
 -   James Hong Jey (Computer Engineering, Year 2)
