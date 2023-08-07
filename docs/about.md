@@ -95,13 +95,13 @@ The summative assessments, on the other hand, are meant to evaluate student lear
 
 ### Assessment Weightage
 
+-   Quizzes: 5%
 -   Programming Exercises: 5%
--   Final Assessment: 30%
--   Midterm Assessment: 15%
 -   Practical Exam 0: 10%
 -   Practical Exam 1: 15%
 -   Practical Exam 2: 20%
--   Quizzes: 5%
+-   Midterm Assessment: 15%
+-   Final Assessment: 30%
 
 ### Open-Book Assessment
 
