@@ -1,6 +1,6 @@
 nav:
   - Home: 'index.md'
-  - About: 
+  - About:
     - General Information : 'about.md'
     - Teaching Team: 'team.md'
     - Schedule: 'schedule.md'

@@ -1,8 +1,3 @@
----
-icon: fontawesome/solid-house-chimney
----
-
-
 # NUS CS1010 Handbook for AY23/24 Semester 1
 
 #
