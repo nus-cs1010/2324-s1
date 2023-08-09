@@ -34,7 +34,7 @@ After taking CS1010, students should
 
 -   2 October 2023, Monday: Midterm Test (4 - 6 PM)
 -   3 October 2023, Tuesday: Practical Exam 0 (6 - 9 PM)
--   20 October 2023, Tuesday: Practical Exam 1 (6 - 9 PM)
+-   24 October 2023, Tuesday: Practical Exam 1 (6 - 9 PM)
 -   14 November 2023, Tuesday: Practical Exam 2 (6 - 9 PM)
 -   1 December 2023, Friday: Final Exam (9 - 11 AM)
 
