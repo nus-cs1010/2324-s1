@@ -14,6 +14,7 @@
 ## Lab Tutors
 
 -   Albert Sutiono (Computer Engineering, Year 4)
+-   Bian Rui (Computer Engineering, Year 3)
 -   Choong Zhan Hong (Communications And New Media, Year 4)
 -   Edward Humianto (Computer Engineering, Year 2)
 -   Ee Zhi Jun Justin (Computer Science, Year 4)
@@ -37,6 +38,7 @@
 -   Syed Omar Zoran (Computer Engineering, Year 2)
 -   Tan Dexter (Computer Engineering, Year 1)
 -   Vijayaraghavan Vishnuprasath (Computer Science, Year 2)
+-   Wang Xingyu (Information Security, Year 2)
 -   Yap Shan Teng (Computer Engineering, Year 2)
 -   Yeo Zhi Shen (Computer Engineering, Year 2)
 -   Yuv Bindal (Electrical Engineering, Year 2)
@@ -44,5 +46,5 @@
 
 ## Support
 
+-   Biswadeep Sen (Ph.D., Computer Science)
 -   Zhang Yuehan (Ph.D., Computer Science)
-
