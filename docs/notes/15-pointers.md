@@ -80,10 +80,10 @@ One exception to this rule is the type `void *`.  A pointer to `void` has a spec
 
     can be shortened to:
     ```C
-    double *addr = &c;
+    long *addr = &c;
     ```
 
-	Note that `double *addr = &c` is NOT the same as
+	Note that `long *addr = &c` is NOT the same as
     ```C
     long *addr;
     *addr = &c;
