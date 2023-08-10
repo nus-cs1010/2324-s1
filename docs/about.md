@@ -34,7 +34,7 @@ After taking CS1010, students should
 
 -   2 October 2023, Monday: Midterm Test (4 - 6 PM)
 -   3 October 2023, Tuesday: Practical Exam 0 (6 - 9 PM)
--   20 October 2023, Tuesday: Practical Exam 1 (6 - 9 PM)
+-   24 October 2023, Tuesday: Practical Exam 1 (6 - 9 PM)
 -   14 November 2023, Tuesday: Practical Exam 2 (6 - 9 PM)
 -   1 December 2023, Friday: Final Exam (9 - 11 AM)
 
@@ -165,11 +165,11 @@ Please note that the following are not handled by the CS1010 teaching team.  We 
 -   Planning and running the final examination (This is handled centrally with all other exams by the NUS Registrar Office.  You can contact them via examinations@nus.edu.sg);
 
  
-## Email Communication Policy
+## Communication Policy
 
 -   Piazza is the preferred platform if you have questions to ask or issues to raise (either publicly to your classmates or privately to the instructors)
 -   If you must use email, please send it to the email address cs1010@comp.nus.edu.sg.  This is a large course managed by a team.  Doing so would ensure that your email receives the right attention and is handled by the right member of the team.  Emailing individual instructors may cause a delay in response (if the email is not lost).
--   Only email a specific individual instructor if you have matters that are personal and private.
+-   Only email a specific individual instructor or message the instructor using Canvas if you have matters that are personal and private.
 -   Prefix your email subject with [CS1010]
 -   Use only your official NUS email for communication with the teaching staff -- either the one with @u.nus.edu or @comp.nus.edu.sg.
 -   If you email us your question, and we feel that your question and the answer are useful to the rest of the class, we will publish it on Piazza, with proper anonymization.
