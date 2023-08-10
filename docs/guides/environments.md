@@ -23,9 +23,9 @@ While you could complete your programming assignments on your own computers, the
 
 3. You need a command line `ssh` client.  Windows 10/11, macOS, and Linux users should already have `ssh` installed by default.  If your OS does come with `ssh` (i.e., it cannot find the `ssh` command when you type `ssh` into your terminal), look for instructions on how to install OpenSSH client on your operating system.
 
-4. You need a [terminal emulator](unix-background.md#what-is-a-terminal).  The default terminal emulator that comes with Windows and Mac supports only basic features.  For Windows 10/11 users, CS1010 recommends either {++ PowerShell (pre-installed) ++} or [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/).  For macOS users, CS1010 recommends [iTerm2](https://iterm2.com/).
+4. You need a [terminal emulator](unix-background.md#what-is-a-terminal).  The default terminal emulator that comes with Windows and Mac supports only basic features.  For Windows 10/11 users, CS1010 recommends either PowerShell (pre-installed) or [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/).  For macOS users, CS1010 recommends [iTerm2](https://iterm2.com/).
 
-For older versions of Windows, {-- such as those used in the SoC's programming labs --}, you can check out [XShell 6](https://www.netsarang.com/products/xsh_overview.html) (free for home/school use), or [PuTTY](https://www.putty.org).  These are GUI-based programs so the command lines instructions below do not apply.
+For older versions of Windows, you can check out [XShell 6](https://www.netsarang.com/products/xsh_overview.html) (free for home/school use), or [PuTTY](https://www.putty.org).  These are GUI-based programs so the command lines instructions below do not apply.
 
 ## The Command to SSH
 
