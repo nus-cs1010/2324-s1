@@ -38,6 +38,7 @@ Replace `<username>` with your SoC Unix username and `<hostname>` with the name 
 ```
 ssh ooiwt@pe112.comp.nus.edu.sg
 ```
+
 if I want to connect to `pe112.comp.nus.edu.sg`.
 
 After the command above, follow the instructions on the screen.  The first time you ever connect to `pe112.comp.nus.edu.sg`, you will be warned that you are connecting to a previously unknown host.  Answer `yes`.  After that, you will be prompted with your SoC Unix password.  Note that nothing is shown on the screen when your password is being entered.
@@ -89,12 +90,19 @@ You can use the following command on your local computer to generate a pair of k
 ssh-keygen -t rsa
 ```
 
-This command will generate two keys, a private key `id_rsa` and a public key `id_rsa.pub`.  Keep the private key `id_rsa` on your local machine in the hidden `~/.ssh` directory, and copy the public key `id_rsa.pub` to your home directory on PE `pe111`.  On `pe111`, run
+This command will generate two keys, a private key `id_rsa` and a public key `id_rsa.pub`.  Keep the private key `id_rsa` on your local machine in the hidden `~/.ssh` directory, and [copy](environments.md#copying-files-between-pe-nodes-and-local-computer) the public key `id_rsa.pub` to your home directory on PE `pe111`.  On `pe111`, run
 ```
 cat id_rsa.pub >> ~/.ssh/authorized_keys
 ```
 
 Make sure that the permission for `.ssh` both on the local machine and on PE is set to `700` and the files `id_rsa` on the local machine and `authorized_keys` on the remote machine are set to `600`.  Once set up, you need not enter your password every time you run `ssh` or `scp`.  
+
+!!! Tips "Using ssh-copy-id"
+    If you have [`ssh-copy-id`](https://www.ssh.com/academy/ssh/copy-id) installed (e.g., this is pre-installed with macOS), you can simplify the above to two steps:
+    ```
+    ssh-keygen -t rsa
+    ssh-copy-id <username>@pe111.comp.nus.edu.sg
+    ```
 
 ## Stability of Network Connection
     
