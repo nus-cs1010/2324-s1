@@ -87,7 +87,8 @@ Formative assessments in CS1010 include problem sets, programming exercises, and
 
 The summative assessments, on the other hand, are meant to evaluate student learning.  These include two written assessments (the midterm and the final exam) and three practical exams.  These are high-stakes assessments carrying 90% of the total weights.
 
--   **Problem Sets**: At the end of some lesson units, we will provide some exercise questions to make students reflect and practice applying what they have learned in the corresponding unit. These questions are not graded. There is no need to submit your answers. They will be discussed and presented during the tutorial sessions.
+-   **Problem Sets**: At the end of some lesson units, we will provide some exercise questions to make students reflect and practice applying what they have learned in the corresponding unit. These questions are not graded. There is no need to submit answers for grading. They will be discussed and presented during the tutorial sessions.
+-   **Past Year Test Papers**: Past year test papers are made available for practice.  These are not graded.  There is no need to submit answers for grading.  Selected questions may be discussed during class.  They can be discussed on Piazza.
 -   **Quizzes**: The online quizzes are released every week after the lecture (Monday, 6 PM) and are due two days later (Wednesday, 11:59 PM). The quizzes are more tightly coupled to the content of the weekly lectures and are meant to help students self-diagnose their understanding of what is taught for that week.
 -   **Programming Exercises**: These are programming questions of various difficulty levels that are critical for students to solve, to gain experience, skills, and confidence in solving computational problems with C. Typically students spend more than half of their time in CS1010 on solving these programming exercises. Students should submit them on time to get feedback from their lab tutors.
 -   **Practical Exams**: Students will be given programming questions to solve within a limited time frame, in an examination setting in SoC computer labs.  This is usually held in the evening or on a Saturday.
@@ -216,6 +217,7 @@ CS1010 is not an easy course. Students are encouraged to ask questions if they d
 To maximize the gain out of CS1010, students should commit to
 
 -   reading through the announcements, emails, and Piazza posts, to keep themselves up to date with the latest course activities and discussions in CS1010;
+-   following instructions and respecting stipulated deadlines on administrative matters;
 -   reading the provided lecture notes, attending classes, and actively seeking clarification when doubts arise;
 -   making a best effort attempt at solving the quizzes, problem sets, programming exercises, and past year questions; not copying solutions from friends, AI, or other online sources;
 -   striving to understand the thought process and the principle behind the solutions/sample code (from the teaching team or otherwise) after they are released;
