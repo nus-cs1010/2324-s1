@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lecture 9</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 9
+
+### 23 October 2023
+
+.smaller[
+Admin Matters<br>
+Unit 21: Searching<br>
+Unit 22: Sorting<br>
+]
+
+---
+
+No Office Hour Today
+
+---
+### Catch-Up Session III
+
+- Saturday, 22 October
+- 10 am - 12 pm
+- SR2
+
+---
+### Deepavali
+
+- Monday, 24 Monday
+- No lecture
+- Video will be posted
+
+---
+class: middle, center
+
+## Searching
+
+---
+
+Given an array of items $L$ and a query $q$, return the position of $q$ in $L$ (or -1 if $q$ is not in $L$).
+
+---
+
+.smaller[
+```C
+long search(long n, const long list[], long q) {
+  for (long i = 0; i &lt; n; i += 1) {
+    if (list[i] == q) {
+      return i;
+    }
+  }
+  return -1;
+}
+```
+]
+
+---
+
+.smaller[
+```C
+// Look for q in list[i]..list[j].
+long search(const long list[], long i, long j, long q) {
+  if (i &gt; j) {
+    return -1;
+  }
+  :
+  :
+  :
+  : 
+  :
+  :
+  :
+  :
+  :
+}
+```
+]
+
+---
+
+.smaller[
+```C
+// Look for q in list[i]..list[j].
+long search(const long list[], long i, long j, long q) {
+  if (i &gt; j) {
+    return -1;
+  }
+  long mid = (i+j)/2;
+  if (list[mid] == q) {
+    return mid;
+  } 
+  :
+  :
+  :
+  :
+  :
+}
+```
+]
+
+---
+
+.smaller[
+```C
+// Look for q in list[i]..list[j].
+long search(const long list[], long i, long j, long q) {
+  if (i &gt; j) {
+    return -1;
+  }
+  long mid = (i+j)/2;
+  if (list[mid] == q) {
+    return mid;
+  } 
+  long found = search(list, i, mid-1, q);
+  if (found &gt;= 0) {
+    return found;
+  }
+  return search(list, mid+1, j, q);
+}
+```
+]
+
+---
+
+$$T(n) = 2T\left(\frac{n}{2}\right) + 1, n > 1$$
+$$T(1) = 1$$
+
+---
+
+Impossible to look for $q$ faster than $O(n)$, since we need to check every element to know that it is there or not.
+
+---
+
+Given a _sorted_ array of items $L$ and a query $q$, return the position of $q$ in $L$ (or -1 if $q$ is not in $L$).
+
+---
+
+.smaller[
+```C
+// Look for q in list[i]..list[j].
+long search(const long list[], long i, long j, long q) {
+  if (i &gt; j) {
+    return -1;
+  }
+  long mid = (i+j)/2;
+  if (list[mid] == q) {
+    return mid;
+  } 
+  :
+  :
+  :
+  :
+}
+```
+]
+
+---
+
+.smaller[
+```C
+// Look for q in list[i]..list[j].
+long search(const long list[], long i, long j, long q) {
+  if (i &gt; j) {
+    return -1;
+  }
+  long mid = (i+j)/2;
+  if (list[mid] == q) {
+    return mid;
+  } 
+  if (list[mid] &gt; q) {
+    return search(list, i, mid-1, q);
+  }
+  return search(list, mid+1, j, q);
+}
+```
+]
+
+---
+
+.tiny[
+```C
+// Look for q in list[i]..list[j].
+long search(const long list[], long i, long j, long q) {
+
+
+  if (i &gt; j) {
+
+
+    return -1;
+  }
+  long mid = (i+j)/2;
+  if (list[mid] == q) {
+    return mid;
+  } 
+  if (list[mid] &gt; q) {
+
+
+    return search(list, i, mid-1, q);
+  }
+
+
+  return search(list, mid+1, j, q);
+}
+```
+]
+
+---
+
+$$T(n) = T\left(\frac{n}{2}\right) + 1, n > 1$$
+$$T(1) = 1$$
+
+---
+class: middle,center
+
+## Sorting
+
+---
+### Counting Sort
+
+
+---
+.tiny[
+```C
+void counting_sort(size_t len, const long in[], long out[])
+{
+  size_t freq[MAX + 1] = { 0 };
+  :
+  :
+  :
+  :
+  :
+  :
+  :
+  :
+  :
+  :
+  :
+}
+
+```
+]
+
+---
+.tiny[
+```C
+void counting_sort(size_t len, const long in[], long out[])
+{
+  size_t freq[MAX + 1] = { 0 };
+  for (size_t i = 0; i &lt; len; i += 1) {
+    freq[in[i]] += 1;
+  }
+  :
+  :
+  :
+  :
+  :
+  :
+  :
+  :
+}
+
+```
+]
+
+---
+.tiny[
+```C
+void counting_sort(size_t len, const long in[], long out[])
+{
+  size_t freq[MAX + 1] = { 0 };
+  for (size_t i = 0; i &lt; len; i += 1) {
+    freq[in[i]] += 1;
+  }
+  size_t outpos = 0;
+  for (long i = 0; i &lt;= MAX; i += 1) {
+    :
+    :
+    :
+    :
+  }
+}
+
+```
+]
+
+---
+.tiny[
+```C
+void counting_sort(size_t len, const long in[], long out[])
+{
+  size_t freq[MAX + 1] = { 0 };
+  for (size_t i = 0; i &lt; len; i += 1) {
+    freq[in[i]] += 1;
+  }
+  size_t outpos = 0;
+  for (long i = 0; i &lt;= MAX; i += 1) {
+    for (size_t j = outpos; j &lt; outpos + freq[i]; j += 1) {
+      out[j] = i;
+    }
+    outpos += freq[i];
+  }
+}
+
+```
+]
+
+---
+### Selection Sort
+
+
+---
+
+.smaller[
+```C
+void selection_sort(size_t n, long list[])
+{
+  for (size_t j = n - 1; j &gt;= 1; j -= 1) {
+    size_t max_pos = max(j, list);
+    swap(list, max_pos, j);
+  }
+}
+```
+]
+
+---
+### Counting Sort vs. Selection Sort
+
+- Counting sort is faster but only works when the range of the inputs is limited
+
+- Selection sort is slower and is more general
+
+---
+### Bubble Sort
+
+
+---
+.smaller[
+```C
+void bubble_pass(size_t last, long a[]) {
+  for (size_t i = 0; i &lt; last; i += 1) {
+    if (a[i] &gt; a[i+1]) {
+      swap(a, i, i+1);
+    }
+  }
+}
+```
+]
+---
+.smaller[
+```C
+void bubble_pass(size_t last, long a[]) {
+  for (size_t i = 0; i &lt; last; i += 1) {
+    if (a[i] &gt; a[i+1]) {
+      swap(a, i, i+1);
+    }
+  }
+}
+
+void bubble_sort(size_t n, long a[n]) {
+  for (size_t last = n - 1; last &gt; 0; last -= 1) {
+    bubble_pass(last, a);
+  }
+}
+```
+]
+---
+### Insertion Sort
+
+---
+.smaller[
+```C
+void insert(long a[], size_t curr)
+{
+  size_t i = curr;
+  long temp = a[curr];
+  while (i &gt;= 1 &amp;&amp; temp &lt; a[i - 1]) {
+    a[i] = a[i - 1];
+    i -= 1;
+  }
+  a[i] = temp;
+}
+```
+]
+---
+
+.smaller[
+```C
+void insert(long a[], size_t curr)
+{
+  size_t i = curr;
+  long temp = a[curr];
+  while (i &gt;= 1 &amp;&amp; temp &lt; a[i - 1]) {
+    a[i] = a[i - 1];
+    i -= 1;
+  }
+  a[i] = temp;
+}
+
+void insertion_sort(size_t n, long a[]) {
+  for (size_t curr = 1; curr &lt; n; curr += 1) {
+    insert(a, curr);
+  }
+}
+```
+]
+
+---
+### Homework
+
+- Quiz 9
+
+- Assignment 6
+
+- Problem Set 21 - 22
+
+---
+class: bottom
+
+.tiny[
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY23/24 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

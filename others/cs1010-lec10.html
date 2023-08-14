@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lecture 10</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 10
+
+### 30 October 2023
+
+.smaller[
+Admin Matters<br>
+Unit 25: Tower of Hanoi<br>
+Unit 26: Permutation<br>
+Unit 27: N Queens<br>
+]
+
+---
+### Recursion
+
+- Mostly linear recursion so far
+- Can be easily written as loops
+- What else can recursion do?
+
+---
+class: middle,center
+
+## Tower of Hanoi
+
+---
+### Abstraction
+
+Representating the problem:
+- discs as integers 1 to $k$
+- pegs as characters `A` `B` `C`
+
+---
+class: top
+
+### How many moves?
+
+$$T(1) = 1$$
+$$T(k) = 2T(k-1) + 1$$
+
+---
+class: middle,center
+
+Iterative solution?
+
+---
+class: middle,center
+
+## Generating Permutations
+
+---
+### Generating Permutations
+
+Given a string with no repetition, say `abc`, generate all permutations of 
+the chars in the string:
+
+```C
+abc cba acb cab bac bca
+```
+
+---
+### Recursion
+
+- Generate a permutation for trivial input (one-char string)
+- Assume we know how to generate permutation for string of length $k-1$
+- Generate permutation for string of length $k$
+
+---
+To permutate `abc`:
+
+- starts with `a`, permutate `bc`: `abc acb`
+- starts with `b`, permutate `ac`: `bac bca`
+- starts with `c`, permutate `ab`: `cab cba`
+
+---
+class: wide
+
+Example:
+
+To permutate `abcd`:
+
+- starts with `a`, permutate `bcd`: `abcd abdc acbd ..`
+- starts with `b`, permutate `acd`: `bacd bacd bcad ..`
+- starts with `c`, permutate `abd`: `cabd cadb cbad ..`
+- starts with `d`, permutate `abc`: `dabc dacb cbac ..`
+
+---
+To permutate `abc` when we starts with `d`:
+
+- starts with `da`, permutate `bc`: `dabc dacb`
+- starts with `db`, permutate `ac`: `dbac dbca`
+- starts with `dc`, permutate `ab`: `dcab dcba `
+
+---
+At any step, we have a fixed prefix, and permute
+the suffix (recursively)
+
+---
+### Running Time
+
+$$T(1) = n$$
+$$T(n) = nT(n-1) + n$$
+
+---
+class: middle,center
+
+## N Queens
+
+---
+.fit[![queens](../figures/lec10-queens/lec10-queens-pdf-5.png)]
+
+---
+.fit[![queens](../figures/lec10-queens/lec10-queens-pdf-6.png)]
+
+---
+class: middle,center
+
+Given $n \times n$ chess board, place $n$ queens so that they do not threaten each other.
+
+---
+class: top
+
+### Recursion
+
+- Find the solution for trivial input ($1 \times 1$ chessboard)
+- Assume we know how to find a solution for a smaller chessboard ($n-1 \times n-1$)
+- Find the solution for a $n \times n$ chessboard
+
+--
+
+Does not work!
+---
+class: middle
+
+### We need the right representation of the problem
+
+- There is one queen per row, one queen per column
+- So the positions of the queens can be represented with the column ids
+
+---
+.fit[![queens](../figures/lec10-permute/lec10-permute-crop-pdf-1.png)]
+
+---
+.fit[![queens](../figures/lec10-permute/lec10-permute-crop-pdf-2.png)]
+
+---
+### How to solve
+
+- Generate all possible placement of $n$ queens
+- Print all placements that are valid
+
+---
+class: bottom
+
+.tiny[
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY23/24 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

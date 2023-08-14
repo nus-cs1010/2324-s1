@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lecture 3</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 3
+
+### 28 August 2023
+
+Admin Matters<br>
+Unit 5: **First C Program**<br>
+Unit 6: **CS1010 I/O Library**<br>
+Unit 7: **Arithmetic Operations**<br>
+
+---
+
+### Before Tutorial
+- Attempt Problem 2.1 to 2.3
+
+### Before Lab
+- GitHub account _must_ be ready 
+- You _must_ be able to log into PE nodes 
+
+---
+
+### More Unix Clinics
+
+- Tuesday, 23 August, 3 - 5 PM (Fuxi)
+
+- Wednesday, 24 August, 9 - 11 AM (Hung Rey)
+
+- Venue: DR2 (COM1 B1-14A)
+
+---
+### Catch-Up Session I
+
+- __Date__: Saturday, 27 August, 2022
+
+- __Time__: 10 AM to 12 PM
+
+- __Venue__: Seminar Room @ LT19
+
+---
+class: wide
+### Catch-Up Session I
+
+- Optional session
+
+- Q&amp;A format
+
+- Ask via [PigeonHole](https://pigeonhole.at/FUNCTIONSEVERYWHERE) (code: `FUNCTIONSEVERYWHERE`)
+
+- No new materials will be covered
+
+- Will be recorded
+
+---
+class: middle,center
+
+## Let's C!
+
+---
+To follow along, copy the following three files from the home directory of `cs1010` to your working directory:
+
+- `Makefile`
+
+- `compile_flags.txt`
+
+- `.clang-tidy`
+
+---
+class: middle,center
+
+.fit[![meme](figures/meme/bad-good-global.jpg)]
+
+---
+class: middle,center
+
+.tiny.center[
+type  | min bits
+-----:|:--------
+`char` | 8
+`short` | 16
+`int` | 16
+`long` | 32
+`long long` | 64
+]
+---
+class: middle
+
+- `int` is not sufficient for CS1010 purposes.
+- We will only use `long` in CS1010.
+
+---
+class: middle
+
+.tiny.center[
+type  | num of bits
+-----:|:--------
+`float` | 32
+`double` | 64
+]
+
+- We will only use `double` in CS1010.
+
+---
+class: middle,center
+
+.fit[![meme](figures/meme/bad-good-int-long.jpg)]
+
+---
+class: middle,center
+
+### Basic operators
+
+`+` `-` `*` `/` `%`
+
+---
+### Pitfall: Order of operations can be confusing
+
+`8 / 2 * (2 + 2)`
+
+---
+### CS1010: Use parentheses everywhere
+
+`8 / (2 * (2 + 2))` 
+
+`(8 / 2) * (2 + 2)`
+
+---
+class: middle,center
+
+.fit[![meme](figures/meme/bad-good-arithmetic.jpg)]
+
+---
+### Pitfall: Integer Overflow
+
+```C
+unsigned char c = 255;
+c = c + 1;
+```
+
+---
+### Pitfall: Integer Division
+
+```C
+long three = 3;
+long two = 2;
+double one_half = three/two;
+```
+
+---
+### Pitfall: The % Operator
+
+`x % n` is equivalent to `x - ((x / n) * n)`
+
+- What is `-9 % 4`?
+
+- What is `9 % -4`? 
+
+---
+### Compound Operator
+
+```C
+x <op>= y;
+```
+
+is equivalent to
+
+```C
+x = x <op> y;
+```
+
+E.g., `+=`, `-=`, `*=`, `/=`, `%=`, etc.
+---
+### Increment/Decrement Operator
+
+Postfix operator
+
+```C 
+x++; 
+x--; 
+```
+
+Use `x` first, then add/subtract one from `x`.
+
+
+---
+### Increment/Decrement Operator
+
+Prefix operator
+
+```C 
+++x; 
+--x; 
+```
+
+Add/subtract one from `x`, use `x`.
+
+---
+### Increment/Decrement Operator
+
+```C 
+long x = 1;
+y = x++; 
+// y becomes 1, x becomes 2
+```
+
+---
+### Increment/Decrement Operator
+
+```C 
+long x = 1;
+y = ++x; 
+// y becomes 2, x becomes 2
+```
+---
+### Undefined Behavior
+
+```C
+x = x++;
+```
+
+---
+class: middle,center
+
+.fit[![meme](figures/meme/bad-good-plusplus.jpg)]
+
+---
+class: middle
+
+### _Don't_: Stop at understanding the notes
+
+### _Do_: "play" with it, ask "what if..", "why..", "why not..", etc
+
+---
+### Homework
+
+.small[
+- Problem Set in [Unit 5](https://nus-cs1010.github.io/2223-s1/05-first-c.html#problem-set-5)
+
+- [Diagnostic Quiz for Lecture 3](https://canvas.nus.edu.sg/courses/22421/quizzes/1547) (due this Wed 2359)
+
+- [Diagnostic Quiz for Using CS1010 PE](https://canvas.nus.edu.sg/courses/22421/quizzes/1537) (due this Wed 2359)
+
+- Exercise 0 (to be released this Thursday)
+]
+
+
+---
+class: bottom
+
+.tiny[
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	// highlightStyle: 'github',
+	// highlightStyle: 'solarized-light',
+	highlightStyle: 'tomorrow',
+	// highlightStyle: 'vs',
+    slideNumberFormat: 'AY23/24 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

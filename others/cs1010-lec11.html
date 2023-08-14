@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lecture 11</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 11
+
+### 6 November 2023
+
+.smaller[
+Admin Matters<br>
+Unit 26: Struct<br>
+Unit 27: Standard I/O
+]
+---
+
+- **Assignment 8**: Due next Friday 
+- **Quiz 11**: Due next Wednesday
+- **Tutorial**: AY18/19 Final Questions (6,11,13-15)
+
+---
+### PE2
+
+- This coming Saturday, 5 November, 12:30 PM - 3 PM
+- Scope: until Unit 25
+- Same rules as PE1
+- Check Canvas for info and seating plan
+
+---
+class: middle,wide
+.fit[![pe1](figures/pe1.png)]
+
+---
+class: middle, center
+### Advice on PE
+
+---
+### Think and plan before you code
+
+- Time spent thinking &lt; debugging (usually).
+
+- Use the reasoning tools to help you: assertions, invariants, terminating loops, etc.
+
+- Trial-and-error might works for certain inputs (but may not be correct).
+
+---
+### Code incrementally
+
+- Make sure your code works for simple cases before extending it to complex cases.
+
+- Make sure your initial steps is correct, before continuing to the next steps.
+
+---
+### Decompose into smaller problem
+
+- Break down the problem into manageable chunks, then code for each one.
+
+- Smaller, independent, functions are easier to reason about, to test, and to debug.
+
+- If you need to cut-and-paste, something is amiss.
+
+---
+### Read error messages, test, and debug
+
+Recap the techniques your tutors have taught you during labs.
+
+---
+### Thinking recursively for recursive problems
+
+If you try to solve it iteratively and convert your solution to a recursive one, your solution is likely too complicated.
+
+---
+### Avoid loosing "easy" marks
+
+- Indent your code
+
+- Get rid of warnings
+
+---
+class: middle,center
+
+### Open call for CS1010 memes
+
+Feel free to roast me or the module.  
+
+---
+class: middle,center
+
+.fit[![thanos](figures/meme/thanos-everything.jpg)]
+
+---
+class: middle,center
+
+.fit[![enough](figures/meme/never-be-enough.gif)]
+
+---
+class: middle,center
+background-image: url(figures/ceg-shirt.jpg)
+
+### `struct`
+
+---
+### Some things belong together
+
+- 1D array and its length
+- 2D array, its width, and its height
+- x and y position in a maze
+- r, g, b of a pixel
+
+---
+### Defining a `struct`
+
+```C
+struct matrix {
+  double** cells;
+  long num_of_rows;
+  long num_of_columns;
+};
+```
+---
+```C
+struct list {
+  char *items;
+  long length;
+};
+```
+
+---
+```C
+struct module {
+  char *code;
+  char *title;
+  long mc;
+};
+```
+---
+### Declaring a struct variable
+
+```C
+struct module cs1010;
+```
+
+---
+### Initializing a struct variable
+
+.small[
+```C
+struct module cs1010;
+cs1010.code = "CS1010";
+cs1010.title = "Programming Methodology";
+cs1010.mc = 4;
+```
+]
+
+---
+### Declaring AND Initializing a struct variable
+
+.small[
+```C
+struct module cs1010 = {
+  .code = "CS1010",
+  .title = "Programming Methodology",
+  .mc = 4
+};
+```
+]
+---
+### Reading and writing members of a `struct`
+
+.small[
+```C
+cs1010.mc = hours_spent_per_week/2.5;
+cs1010_println_long(cs1010.mc);
+```
+]
+
+---
+### Assigning one `struct` to another
+
+.small[
+```C
+struct color black = {
+  .r = 0;
+  .g = 0;
+  .b = 0;
+};
+
+struct color background = black;
+```
+]
+
+
+---
+### `struct` are passed by-value
+
+.smaller[
+```C
+void update_mc(struct module mod, long weekly_hours) {
+  mod.mc = weekly_hours/2.5;
+}
+  :
+
+struct module cs1010;
+update_mc(cs1010, 80);
+// { cs1010.mc == 4 }
+```
+]
+
+---
+### Passing a `struct` by reference
+
+Using `*` dereference operator
+
+.smaller[
+```C
+void update_mc(struct module *mod, long weekly_hours) {
+  (*cs1010).mc = weekly_hours/2.5;
+}
+  :
+
+struct module cs1010;
+update_mc(&cs1010, 80);
+// { cs1010.mc == 32 }
+```
+]
+
+---
+### Passing a `struct` by reference
+
+Using `->` arrow operator
+
+.smaller[
+```C
+void update_mc(struct module *mod, long weekly_hours) {
+  cs1010->mc = weekly_hours/2.5;
+}
+  :
+
+struct module cs1010;
+update_mc(&cs1010, 80);
+// { cs1010.mc == 32 }
+```
+]
+
+---
+### Passing multiple values back to caller 
+
+Method 1
+
+.smaller[
+```C
+void find_max_steps(long n, long *max_n, long *max_num_steps) {
+  *max_num_steps = 0;
+  *max_n = 1;
+  for (long i = 1; i <= n; i += 1) {
+    long num_of_steps = count_num_of_steps(i);
+    if (num_of_steps >= *max_num_steps) {
+      *max_n = i;
+      *max_num_steps = num_of_steps;
+    }
+  }
+}
+```
+]
+
+---
+### Passing multiple values back to caller 
+
+Method 2
+
+.smaller[
+```C
+struct answer {
+  long max_n;
+  long max_num_steps;
+};
+```
+]
+
+---
+.smaller[
+```C
+struct answer find_max_steps(long n) {
+  struct answer ans = {
+    .max_n = 1,
+    .max_num_steps = 0
+  };
+  for (long i = 1; i <= n; i += 1) {
+    long num_of_steps = count_num_of_steps(i);
+    if (num_of_steps >= ans.max_num_steps) {
+      ans.max_n = i;
+      ans.max_num_steps = num_of_steps;
+    }
+  }
+  return ans;
+}
+```
+]
+
+---
+### Defining Your Own Type
+
+.smaller[
+```C
+typedef unsigned long person_t;
+  :
+void is_contact(char **network, person_t i, person_t j) {
+  :
+}
+```
+]
+
+---
+.small[
+```C
+typedef struct module {
+  char *code;
+  char *title;
+  long mc;
+} module;
+
+void update_mc(module *cs1010, long weekly_hours)
+{
+  cs1010->mc = weekly_hours/2.5;
+}
+```
+]
+
+---
+### Reading and Printing without `libcs1010`
+
+- Most C introductory courses teach `printf` and `scanf`
+- How to use them correctly
+- Pitfalls when using them
+
+---
+```C
+printf("%s is a %ld-MC module\n",
+   module.code, module.mc);
+```
+
+---
+class: wide,center
+
+.small[
+```
+%[flags][field_width][.precision][length_modifier]specifier
+```
+]
+
+---
+- `printf` behaves differently from functions that you have been writing.
+
+- It can take in different number of arguments of different type.
+
+---
+### Wrong/Dangerous use of `printf`
+
+```C
+double pi = 3.1415;
+long x = 0;
+printf("%ld\n", pi);
+printf("%ld %s\n", x, x);
+printf("%s %s\n");
+```
+
+---
+```C
+long width;
+long height;
+scanf("%ld %ld", &width, &height);
+```
+
+---
+class:center
+.small[
+```
+%[*][field_width][length_modifier]specifier
+```
+]
+
+---
+- Space in between the format specifier matches zero or more white spaces (space, tab, newline)
+
+- Scanning stops when an input character does not match such a format character or when an input conversion fails
+
+---
+- How to read a string?
+
+- How to read a number and validate?
+
+---
+class: bottom
+
+.tiny[
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY23/24 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lecture 5</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 5
+
+### 11 September 2023
+
+**Admin Matters**<br>
+**Unit 11:** Loops<br>
+**Unit 12:** Loop Invariants<br>
+
+---
+### Assignment 1
+.small[
+- Due tomorrow 2359
+
+- Make sure that your submission compiles without errors or warnings (**=0** if cannot compile; **-1** per warning).
+
+- Marks may be deducted if you do not demonstrate an understanding of what we taught (e.g., wrong type, redundant conditional checks)
+]
+
+---
+### Upcoming releases:
+
+- Exercise 3 today
+
+- Exercise 4 on Thursday
+
+- Assignment 2 on Thursday (+style, +efficiency)
+
+---
+class: middle
+
+.fit[![meme](figures/meme/midterm-is-coming.jpg)]
+
+---
+### Midterm
+
+- **Date**: 26 September, 2022 (Monday)
+- **Time**: 12noon to 2pm
+- **Duration**: 80 minutes
+- **Venue**: Multi-purpose Sports Hall 2A (MPSH2A)
+- **10%** of your grade
+
+---
+### Midterm
+
+- **Scope:**
+    - Units 1-12
+	- Assignments 1-2
+- **Format:** MCQs and Short Structured Questions
+- Open book (printed/written notes ONLY)
+
+---
+### Practical Exam I
+
+- **Date**: 1 October 2022 (Saturday)
+- **Time**: 
+    - Session 1: 10:30 AM to 1 PM; 
+	- Session 2: 12:30 to 3 PM
+- **Duration**: 2 hours
+- **10%** of your grade
+- `ssh` into restricted PE hosts using lab PCs
+
+---
+### Practical Exam I
+
+- **Scope:** Same as midterm
+- **Format:** Four programming problems 
+    - 1 pass, 2-3 average, 4 ace
+- **Open Book** (printed/written notes only)
+- **Criteria:** correctness, style, and efficiency
+
+---
+class: center,middle
+
+### More Details in Coming Announcements
+
+---
+class: center,middle
+
+### Warning
+
+Pay attention to exam regulations.  Disciplinary actions will be taken against violators.
+
+---
+class: middle,center
+
+# Loops
+
+---
+class: center,middle,wide
+
+.fit[![max](../figures/loops/loops-pdf-6.png)]
+
+max(L,k)
+
+---
+class: center,middle,wide
+
+.fit[![max](../figures/loops/loops-pdf-7.png)]
+
+Loop body: what we do repeatedly
+
+---
+class: center,middle,wide
+
+.fit[![max](../figures/loops/loops-pdf-8.png)]
+
+Terminating condition: when to stop repeating?
+
+---
+class: center,middle,wide
+
+.fit[![max](../figures/loops/loops-pdf-9.png)]
+
+Loop update: what changes from one iteration to the next?
+
+---
+class: center,middle,wide
+
+.fit[![max](../figures/loops/loops-pdf-10.png)]
+
+Loop initialization: what do we need to setup before entering the loop?
+
+---
+class: center,middle,wide
+
+.fit[![max](../figures/max-flowchart/max-flowchart-pdf-9.png)]
+
+Finding factorial recursively
+
+---
+
+---
+class: center,middle,wide
+
+.fit[![max](../figures/loops/loops-pdf-3.png)]
+
+Finding factorial with a loop
+
+---
+class: center,middle,wide
+
+.fit70[![max](../figures/loops/loops-pdf-3.png)]
+.fit70[![max](../figures/loops/loops-pdf-2.png)]
+
+
+---
+class: wide
+
+.fit80[![max](../figures/loops/loops-pdf-2.png)]
+
+.small[
+```C
+for (initialize; condition; update) {
+   body;
+}
+```
+]
+
+---
+class: ,wide
+.fit80[![max](../figures/loops/loops-pdf-2.png)]
+
+.small[
+```C
+initialize;
+while (condition) {
+   body and update;
+}
+```
+]
+
+---
+class: center
+
+.fit[![meme](figures/meme/for-while-the-same.jpg)]
+
+---
+class: bottom,wide
+.fit80[![max](../figures/loops/loops-pdf-4.png)]
+
+.smaller[
+```C
+initialize;
+do {
+   body and update;
+} while (condition);
+```
+]
+
+---
+
+---
+class: center,wide
+
+.fit[![max](../figures/loops/loops-pdf-5.png)]
+
+---
+### For a Loop to Terminate
+
+Starting from an initial state, every update must move the state towards the termination state.
+
+---
+class: middle,center
+
+## Assertion
+
+```
+// { ... }
+```
+
+A logical expression that must be true at a given point in a program.
+
+---
+class: middle
+
+```C
+x = 1;
+// { x == 1 }
+```
+---
+class: middle
+
+.smaller[
+```C
+if (x &gt; y) {
+  max = x;
+  // { (x &gt; y) &amp;&amp; (max == x) &amp;&amp; (max &gt; y) }
+} else {
+  max = y;
+  // { (x &lt;= y) &amp;&amp; (max == y) &amp;&amp; (max &gt;= x) }
+}
+// { ((max == x) || (max == y)) &amp;&amp;
+//   (max &gt;= x) &amp;&amp; (max &gt;= y) }
+```
+]
+
+---
+class: middle
+
+Does this correctly compute factorial of $n$?
+
+.smaller[
+```C
+long factorial(long n)
+{
+  long product = 1;
+  long i = 1;
+  while (i &lt; n) {
+    i += 1;
+    product *= i;
+  }
+  return product;
+}
+
+```
+]
+---
+### Loop Invariant
+
+An assertion that holds 
+
+- before the loop; 
+- at the end of each iteration of the loop;
+- after the loop; 
+
+(but may be temporarily false during the loop)
+
+---
+### Loop Invariant
+
+.fit[![max](../figures/loops/loops-pdf-2.png)]
+
+---
+### Loop Invariant
+
+Show that the invariant holds:
+
+- before the loop; 
+- at the end of the first iteration
+- if it holds at the end of the $k$-th interation; it woulds at the end of $k+1$-th iteration
+- after the loop; 
+
+---
+### Homework
+
+- [Self-Diagnostic Quiz for Lecture 5](https://canvas.nus.edu.sg/courses/22421/quizzes/1567)
+- Assignments 1 and 2
+- Exercises 3 and 4
+- Problem Sets 11 and 12
+
+---
+class: bottom
+
+.tiny[
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY23/24 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+<title>CS1010 AY21/22 Tutorial 6</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Tutorial 6
+
+### 6 October 2021
+
+---
+class: wide
+
+
+.tiny[
+```C
+// Problem 15.1
+long *ptr1;
+long *ptr2;
+long x;
+long y;
+
+ptr1 = &x;
+ptr2 = &y;
+
+*ptr1 = 123;
+*ptr2 = -1;
+
+ptr1 = ptr2;
+*ptr1 = 1946;
+
+y = 10;
+```
+]
+
+---
+class: wide
+
+.tiny[
+```C
+// Problem 15.2
+double *addr_of(double x)
+{
+  return &x;
+}
+
+int main()
+{
+  double c = 0.0;
+  double *ptr;
+
+  ptr = addr_of(c);
+  *ptr = 10;
+}
+```
+]
+
+---
+class: wide
+
+.tiny[
+```C
+// Problem 15.2
+#include "cs1010.h"
+
+double *triple_of(double x)
+{
+  double triple = 3 * x;
+  return &triple;
+}
+
+int main()
+{
+  double *ptr;
+
+  ptr = triple_of(10);
+  cs1010_println_double(*ptr);
+}
+```
+]
+
+---
+class: wide
+
+.tiny[
+```C
+// Problem 16.1
+void foo(double *ptr, double trouble) {
+  ptr = &trouble;
+  *ptr = 10.0;
+}
+
+int main() {
+  double *ptr;
+  double x = -3.0;
+  double y = 7.0;
+  ptr = &y;
+
+  foo(ptr, x);
+
+  cs1010_println_double(x);
+  cs1010_println_double(y);
+}
+```
+]
+
+---
+class: wide
+
+.tiny[
+```C
+// Problem 16.1
+void foo(? , double trouble) {
+  ??
+}
+
+int main() {
+  double *ptr;
+  double x = -3.0;
+  double y = 7.0;
+  ptr = &y;
+
+  foo(?, ?);
+
+  // { ptr == &x }
+
+  cs1010_println_double(x);
+  cs1010_println_double(y);
+}
+```
+]
+
+
+---
+class: wide
+
+.tiny[
+```C
+// Problem 17.1
+void foo(long *y, long *z)
+{
+  y[0] = -7;
+  y[1] = -8;
+  z[0] = 4;
+  z[1] = 5;
+}
+
+
+int main()
+{
+  long y[2] = {1, 2};
+  long *z = calloc(2, sizeof(long));
+
+  z[0] = y[0];
+  z[1] = y[1];
+
+  foo(y, z);
+}
+```
+]
+
+
+
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'monokai',
+    slideNumberFormat: 'AY2021 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

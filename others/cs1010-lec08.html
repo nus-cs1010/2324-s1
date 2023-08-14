@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lecture 8</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 8
+
+### 16 October 2023
+
+.smaller[
+Unit 19: **Multi-D Arrays**<br>
+Unit 20: **Efficiency**<br>
+]
+
+---
+class: middle,center
+## Multi-dimensional Arrays
+
+---
+.small[
+```C
+long matrix[10][20];
+  :
+matrix[i][j] = matrix[i][j] + 4;
+```
+]
+.w30[![matrix](../figures/lec08-md-array/md-array-crop-pdf-6.png)]
+
+---
+`matrix[i]` decays to `&matrix[i][0]`
+
+`&matrix[i][0]` is a pointer to a `long`.
+
+---
+`matrix` decays to `&matrix[0]`
+
+`&matrix[0]` is a pointer to an array of 20 `long` values.
+
+---
+class: top
+
+### Declare a Pointer to an Array
+
+```C
+long (*a)[20];
+long b[20];
+
+a = &b;
+```
+
+---
+### Passing a 2D array into a function:
+
+.tiny[
+```C
+void foo(size_t nrows, size_t ncols, long matrix[10][20]) { .. }
+void foo(size_t nrows, size_t ncols, long matrix[][20]) { .. }
+void foo(size_t nrows, size_t ncols, long (*matrix)[20]) { .. }
+```
+]
+
+---
+### Pointer to Array vs. Array of Pointers
+
+.fit80[![array](../figures/lec08-md-array/md-array-pdf-0.png)]
+
+---
+### A Fixed Array of Dynamic Arrays
+
+.smaller[
+```C
+double *buckets[10];
+size_t num_of_cols = cs1010_read_size_t();
+for (long i = 0; i &lt; 10; i += 1) {
+  buckets[i] = calloc(num_of_cols, sizeof(double));
+  // check for errors
+}
+  :
+for (long i = 0; i &lt; 10; i += 1) {
+  free(buckets[i]);
+}
+```
+]
+
+---
+### A Fixed Array of Dynamic Arrays
+
+.fit80[![array](../figures/lec08-md-array/md-array-pdf-1.png)]
+
+---
+### A Fixed Array of Dynamic Arrays
+
+.smaller[
+```C
+double *buckets[10];
+size_t num_of_cols = cs1010_read_size_t();
+buckets[0] = calloc(num_of_cols * 10, sizeof(double));
+// handle error
+for (size_t i = 1; i &lt; 10; i += 1) {
+  buckets[i] = buckets[i - 1] + num_of_cols;
+}
+  :
+free(buckets[0]);
+```
+]
+
+
+---
+### A Fixed Array of Dynamic Arrays
+
+.fit80[![array](../figures/lec08-md-array/md-array-pdf-2.png)]
+
+---
+### A Dynamic Array of Dynamic Arrays
+
+.tiny[
+```C
+double **canvas;
+size_t num_of_rows = cs1010_read_size_t();
+size_t num_of_cols = cs1010_read_size_t();
+canvas = calloc(num_of_rows, sizeof(double *));
+// handle error here
+for (size_t i = 0; i &lt; num_of_rows; i += 1) {
+  canvas[i] = calloc(num_of_cols, sizeof(double));
+  // handle error
+}
+ :
+for (long i = 0; i &lt; 10; i += 1) {
+  free(canvas[i]);
+}
+free(canvas);
+```
+]
+
+---
+### A Dynamic Array of Dynamic Arrays
+
+.fit80[![array](../figures/lec08-md-array/md-array-pdf-3.png)]
+
+---
+### A Dynamic Array of Dynamic Arrays
+
+.tiny[
+```C
+double **canvas;
+size_t num_of_rows = cs1010_read_size_t();
+size_t num_of_cols = cs1010_read_size_t();
+canvas = calloc(num_of_rows, sizeof(double *));
+// handle error
+canvas[0] = calloc(num_of_cols * num_of_rows, sizeof(double));
+// handle error
+ :
+free(canvas[0]);
+free(canvas);
+```
+]
+
+---
+### Jagged Array
+
+.smaller[
+```C
+double *half_square[10];
+for (size_t i = 0; i &lt; 10; i += 1) {
+  half_square[i] = calloc(i+1, sizeof(double));
+  // handle error
+}
+```
+]
+---
+class: middle, center
+
+# Efficiency
+
+---
+class: middle, center
+
+## 1. No Redundant Work
+
+---
+.smaller[
+```C
+bool is_prime(long n)
+{
+  bool is_prime = true;
+  for (long i = 2; i &lt;= n - 1; i += 1) {
+    if (n % i == 0) {
+      is_prime = false;
+    }
+  }
+  return is_prime;
+}
+```
+]
+
+---
+.smaller[
+```C
+bool is_prime(long n)
+{
+  for (long i = 2; i*i &lt;= n; i++) {
+    if (n % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+]
+---
+- Return `false` as soon as we know $n$ is not a prime
+
+- Not checking for divisor that is redundant
+
+What if $n$ is a prime?
+
+---
+class: middle, center
+
+## 2. No Duplication
+
+---
+class: center
+
+$$range(L, k) = |max(L, k) - min(L, k)|$$
+
+We have to go through the list twice.
+
+---
+We can combine both loops into one.
+
+.smaller[
+```C
+void find_min_max(long k, long list[], long *min, long *max)
+{
+  :
+}
+```
+]
+
+
+---
+.smaller[
+```C
+bool is_prime(long n)
+{
+  for (long i = 2; (double) i &lt;= sqrt(n); i += 1) {
+    if (n % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+]
+---
+.smaller[
+```C
+bool is_prime(long n)
+{
+  double limit = sqrt(n);
+  for (long i = 2; i &lt;= limit; i += 1) {
+    if (n % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+]
+---
+
+.tiny[
+```C
+long find_max(const long list[], long start, long end){
+  if (start &gt;= end - 1){
+    return list[start];
+  }
+
+  long mid = (start + end) / 2;
+  if (find_max(list, start, mid) &gt;= find_max(list, mid, end)){
+    return find_max(list, start, mid);
+  }
+  return find_max(list, mid, end);
+}
+```
+]
+---
+.tiny[
+```C
+long find_max(const long list[], long start, long end){
+  if (start &gt;= end - 1){
+    return list[start];
+  }
+
+  long mid = (start + end) / 2;
+  long left = find_max(list, start, mid);
+  long right = find_max(list, mid, end);
+  if (left &gt;= right) {
+    return left;
+  } 
+  return right;
+}
+```
+]
+
+---
+.smaller[
+```C
+long fib(long n)
+{
+  if (n == 1 || n == 2) {
+    return 1;
+  }
+  long first = 1;
+  long second = 1;
+  long third = 2;
+  for (long i = 2; i &lt;= n; i += 1) {
+    first = second;
+    second = third;
+    third = first + second;
+  }
+  return third;
+}
+```
+]
+---
+.smaller[
+```C
+long fib(long n)
+{
+  if (n == 1 || n == 2) {
+    return 1;
+  }
+  return fib(n-1) + fib(n-2);
+}
+```
+]
+
+---
+class:top,center
+
+how many times is `fib()` called?
+
+---
+how many steps (in terms on $n$)?
+
+.moretiny[
+```C
+long fib(long n)
+{
+  if (n == 1 || n == 2) {
+    return 1;
+  }
+  long first = 1;
+  long second = 1;
+  long third = 2;
+  for (long i = 2; i != n; i += 1) {
+    first = second;
+    second = third;
+    third = first + second;
+  }
+  return third;
+}
+```
+]
+
+---
+class:center
+
+$$O\left(\frac{n^4}{10} + 10000n^2 - n\right) = O(n^4)$$
+
+We drop terms with lower rate of growth and multiplicative constant.
+
+---
+### Comparing Rate of Growth
+
+$f(n)$ grows faster than $g(n)$ if we can find constants $n_0$ and $c$ such that $f(n) > cg(n)$ for all $n \ge n_0$.
+
+---
+class: top, center
+
+$f(n) = n^n$ vs. $g(n) = 3^n$ 
+
+---
+### Running Time / Time Complexity
+
+- A notion of how efficient an algorithm is
+
+- In CS1010, we are interested in the _worst case_ running time
+
+- Should be expressed in simplest big-O notation with tightest bound
+
+---
+.tiny[
+```C
+size_t max(size_t n, const long list[])
+{
+  long max_so_far = list[0];
+  size_t max_index = 0;
+  for (size_t i = 1; i &lt;= n; i += 1) {
+    if (list[i] &gt; max_so_far) {
+      max_so_far = list[i];
+      max_index = i;
+    }
+  }
+  return max_index;
+}
+```
+]
+
+---
+.tiny[
+```C
+void draw_line(long m, char* first, char* mid, char* last)
+{
+  cs1010_print_string(first);
+  for (int j = 0; j &lt; m - 2; j += 1) {
+    cs1010_print_string(mid);
+  }
+  cs1010_println_string(last);
+}
+
+void draw_rectangle(long m, long n)
+{
+  draw_line(m, TOP_LEFT, HORIZONTAL, TOP_RIGHT);
+  for (int i = 0; i &lt; n - 2; i += 1) {
+    draw_line(m, VERTICAL, " ", VERTICAL);
+  }
+  draw_line(m, BOTTOM_LEFT, HORIZONTAL, BOTTOM_RIGHT);
+}
+```
+]
+---
+.smaller[
+```C
+bool is_prime(long n)
+{
+  for (long i = 2; i &lt;= n - 1; i++) {
+    if (n % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+]
+---
+.smaller[
+```C
+bool is_prime(long n)
+{
+  for (long i = 2; i*i &lt;= n; i++) {
+    if (n % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+```
+]
+---
+.tiny[
+```C
+long find_max(const long list[], long start, long end){
+  if (start &gt;= end - 1){
+    return list[start];
+  }
+
+  long mid = (start + end) / 2;
+  long left = find_max(list, start, mid);
+  long right = find_max(list, mid, end);
+  if (left &gt;= right) {
+    return left;
+  } 
+  return right;
+}
+```
+]
+---
+### Finding Fibonacci Numbers
+
+.tiny[
+```C
+long fib(long n)
+{
+  if (n == 1 || n == 2) {
+    return 1;
+  }
+  return fib(n-1) + fib(n-2);
+}
+```
+]
+---
+class:top
+
+---
+### Run-time analysis is not always trivial
+
+.tiny[
+```C
+long count_num_of_steps(long n)
+{
+  long num_of_steps = 0;
+  while (n != 1) {
+    n = collatz(n);
+    num_of_steps += 1;
+  }
+  return num_of_steps;
+}
+```
+]
+
+---
+### Homework
+
+- Quiz 8
+
+- Exercise 9
+
+- Assignment 5
+
+- Problem Set 20
+
+---
+class: bottom
+
+.tiny[
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY23/24 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>
+---
+class: middle,wide
+<table width=100% height=100%>
+	<tr valign="top">
+		<th style="border-right:solid 1px">
+		<h5 style="margin:0px";>
+			Problem Solving
+		</h5>
+	    </th>
+		<th style="border-right:solid 1px">
+		<h5 style="margin:0px";>
+			C Language & Syntax
+		</h5>
+	    </th>
+		<th style="border-right:solid 1px">
+		<h5 style="margin:0px";>
+			Behaviorial Model
+		</h5>
+	    </th>
+		<th>
+		<h5 style="margin:0px";>
+			Tools & Practices
+		</h5>
+	    </th>
+	</tr>
+	<tr valign="top">
+	<td style="border-right:solid 1px; border-bottom:none;">
+		<ul style="margin:1px;font-size:70%;">
+		<li>decomposition
+		<li>recursion
+		<li>flowchart
+		<li>conditionals
+		<li>assertions
+		<li>loops
+		<li>invariants
+		<li><strong>efficiency</strong>
+		</ul>
+	</td>
+	<td style="border-right:solid 1px; border-bottom:none;">
+		<ul style="margin:1px;font-size:70%;">
+		<li>types 
+		<li>functions 
+		<li>arithmetic ops 
+		<li>if-else
+		<li>logical expressions
+		<li>loops
+		<li>1D arrays
+		<li>pointers
+		<li>memory management
+			<li><strong>nD arrays</strong>
+		</ul>
+	</td>
+	<td style="border-right:solid 1px; border-bottom:none;">
+		<ul style="margin:1px;font-size:70%;">
+		<li>machine code
+		<li>data in memory
+		<li>types
+		<li>call stack
+		<li>memory addr
+		<li>call by value/ref
+		<li>heap
+		</ul>
+	</td>
+	<td style="border-bottom:none;">
+		<ul style="margin:1px;font-size:70%;">
+		<li>vim
+		<li>bash
+		<li>style
+		<li>docs
+		</ul>
+	</td>
+	</tr>
+</table>

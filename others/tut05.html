@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+<title>CS1010 AY21/22 S1 Tutorial 5</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Tutorial 5
+
+### 29 September 2021
+
+---
+
+.tiny[
+```C
+// Problem 13.1
+#include <math.h>
+
+long square(long x)
+{
+  return x*x;
+}
+
+double hypotenuse_of(long base, long height)
+{
+  return sqrt(square(base) + square(height));
+}
+
+int main()
+{
+  hypotenuse_of(3, 4);
+}
+```
+]
+
+---
+
+.tiny[
+```C
+// Problem 13.2
+#include "cs1010.h"
+
+long factorial(long n)
+{
+  if (n == 0) {
+    return 1;
+  }
+  return factorial(n-1) * n;
+}
+
+int main()
+{
+  factorial(3);
+}
+```
+]
+
+---
+
+.tiny[
+```C
+// Problem 13.3
+#include "cs1010.h"
+
+void incr(long x) {
+    x += 1;
+}
+
+int main()
+{
+    long x = 10;
+    incr(x);
+    incr(x);
+    cs1010_print_long(x);
+}
+```
+]
+
+---
+
+.tiny[
+```C
+// Problem 14.1
+void doThat(long a[], long b[]) {
+  a[0] = 100;
+  b[1] = 200;
+  // Line A
+}
+
+void doThis(long a[]) {
+  long *b = a;
+  doThat(a, b);
+}
+
+int main()
+{
+  long a[3] = {0, 0, 0};
+  doThis(a);
+  // Line B
+}
+```
+]
+
+---
+
+.tiny[
+```C
+// Problem 14.2
+void doThat(long list[]) {
+  list[1] = 200;
+  // Line A
+}
+
+void doThis(const long a[]) {
+  long b[2] = {10, 10};
+  a = b;
+  doThat(a);
+}
+
+int main()
+{
+  long a[3] = {0, 0, 0};
+  doThis(a);
+  // Line B
+}
+```
+]
+
+
+
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'monokai',
+    slideNumberFormat: 'AY2021 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

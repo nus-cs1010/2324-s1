@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lecture 6</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 6
+
+### 18 September 2023
+
+.smaller[
+Admin Matters<br>
+Unit 13: **Call Stack**<br>
+Unit 14: **Array**<br>
+]
+---
+### Upcoming New Releases
+
+- Exercise 5 (Arrays) and 6 (Past Year PE1) today
+- Exercise 7 (Past Year PE1) on Thursday
+- Assignment 3 on Thursday
+	- Due on 28 September
+
+---
+### Upcoming Events
+
+- **Catch-up II**: 17 September, 2022 (Saturday)
+- **Midterm**: 26 September, 2022 (Monday)
+- **PE I**: 1 October 2022 (Saturday)
+
+---
+### Tutorial 4
+
+- Problem Sets 11-12
+
+### Lab 4
+
+- Testing
+- Assignment 2
+
+---
+### [Anon Feedback on Tutors](https://canvas.nus.edu.sg/courses/22421)
+
+- Please let us know how we are doing
+
+- Constructive criticism and encouragement are both welcome
+
+- Due: 23 September, 2022 (Friday)
+
+---
+class: middle,center
+
+## Call Stack
+
+---
+.cols[
+.fifty[
+.smaller[
+```C
+int main() 
+{ 
+  long x = 1; 
+  long y; 
+}
+```
+]
+]
+.fifty[
+
+]]
+
+---
+.cols[
+.fifty[
+.smaller[
+```C
+long add(long a, long b)
+{    
+	long sum;    
+	sum = a + b;    
+	return sum;  
+} 
+
+int main()
+{    
+	long x = 1;    
+	long y;    
+	y = add(x, 10);  
+}
+```
+]
+]
+.fifty[
+
+]]
+
+---
+.cols[
+.fifty[
+.smaller[
+```C
+long add(long a, long b)
+{    
+	long sum;    
+	sum = a + b;    
+	a = 42;
+	return sum;  
+} 
+
+int main()
+{    
+	long x = 1;    
+	long y;    
+	y = add(x, 10);  
+}
+```
+]
+]
+.fifty[
+
+]]
+
+
+---
+.cols[
+.fifty[
+.smaller[
+```C
+void add(long sum, long a, long b)
+{
+  sum = a + b;
+}
+
+int main()
+{
+  long x = 1;
+  long sum;
+  add(sum, x, 10);
+}
+```
+]
+]
+.fifty[
+
+]]
+
+---
+- Stack size is limited.
+
+- "Stack overflow" happens when we ran out of stack space.
+
+---
+class: middle, center
+
+## Array
+
+---
+class: middle, center
+
+Array is a _compound data type_ that stores multiple values of the _same_ type
+
+---
+### Declaring an Array
+
+```C
+long list[10];
+```
+
+`list` is an array that stores 10 `long` values.
+
+---
+### Accessing Elements of an Array
+
+```C
+list[4] = 100; // write 
+```
+
+- Indexing starts at 0 
+- `list[4]` refers to the 5th element in the array `list`.
+
+
+---
+### Declaring and Initializing an Array
+.small[
+```C
+long list[10] = {1, 2, 3, 1, 5, 10, 10, 4, };
+```
+]
+
+Unspecified elements initialized to 0.
+
+---
+class: wide
+### Array as Function Parameter
+
+.small[
+```C
+long max(long list[10]) { .. }
+long max(long len, long list[]) { .. }
+```
+]
+
+---
+.smaller[
+```C
+long compute_num_of_burgers(long available[3]) {
+  long per_burger[3] = {3, 2, 1};
+
+  long num_burgers = LONG_MAX;
+
+  for (long i = 0; i < 3; i += 1) {
+    long k = available[i] / per_burger[i];
+    if (num_burgers > k) {
+      num_burgers = k;
+    }
+  }
+
+  return num_burgers;
+}
+```
+]
+
+---
+
+.smaller[
+```C
+long max(long list[], long length)
+{
+  long max_so_far = list[0];
+  for (long i = 1; i != length; i += 1) {
+    if (list[i] &gt; max_so_far) {
+      max_so_far = list[i];
+    }
+  }
+  return max_so_far;
+}
+```
+]
+
+---
+### Arrays are Passed by Reference
+
+.cols[
+.fifty[
+.smaller[
+```C
+void foo(long a[2]) {
+  a[0] = 1;
+  a[1] = 2;
+}
+
+int main()
+{
+  long a[2] = {100, 200};
+  foo(a);
+}
+```
+]
+]
+.fifty[
+
+]]
+
+
+---
+### Pointers
+
+```C
+double *ptr;
+long *addr;
+```
+
+---
+### Array Decay
+
+```C
+long list[10];
+long *first_elem = list;
+```
+
+`list` decays into the memory address of its first element.
+
+---
+.small[
+```C
+long a[2] = {0, 1};
+long b[2] = {0, 1};
+
+if (a == b) {  // always false
+  :
+}
+
+b = a; // not possible
+```
+]
+
+---
+.small[
+```C
+long max(long len, long list[]) {
+  // only pointer is passed in
+}
+  :
+long list[10];
+max(10, list);  // pass in pointer to list
+```
+]
+
+---
+### Passing An Array into Function
+
+.small[
+```C
+long max(long len, long *list) {
+  // only pointer is passed in
+}
+  :
+long list[10];
+max(10, list);  // pass in pointer to list
+```
+]
+
+---
+### Returning an Array 
+
+.small[
+```C
+long* square(const long len, long list[]) 
+{
+  for (long i = 1; i != len; i += 1) {
+    list[i] = list[i] * list[i];
+  }
+  return list;
+}
+```
+]
+
+---
+### Common bug: VLA / Pointers to Stack
+
+.smaller[
+```C
+long* square(const long len, const long list[])
+{
+  long new_list[len];
+  for (long i = 0; i != len; i += 1) {
+    new_list[i] = list[i] * list[i];
+  }
+  return new_list;
+}
+```
+]
+
+---
+### Common bug: Index out of bound
+.smaller[
+```C
+int main()
+{
+  long a[10];
+  for (long i = 0; i &lt;= 10; i += 1) {
+    a[i] = 1;
+  }
+}
+
+```
+]
+
+---
+### Homework
+
+- [Self-Diagnostic Quiz 6](https://canvas.nus.edu.sg/courses/22421/quizzes/1538)
+- Problem Sets 13-14 
+- Anon Feedback Survey
+- Exercises 5-7
+- Assignment 3
+
+---
+class: bottom
+
+.tiny[
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY23/24 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

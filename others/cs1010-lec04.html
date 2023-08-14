@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lecture 4</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 4
+
+### 4 September 2022
+
+**Admin Matters**<br>
+Unit 8: **Conditionals**<br>
+Unit 9: **Logical Expression**<br>
+Unit 10: **Assertion**<br>
+
+---
+### Exercises
+
+- Exercise 0 released last week
+- Exercise 1 after this class
+- Exercise 2 this Thursday (during lab)
+- 15 problems in total
+
+---
+### Assignment 1
+
+- Release this Thursday
+- Due next Tuesday 23:59
+- 3% of your grade
+
+---
+class: middle,wide
+
+.fit[![max](../figures/max-flowchart/max-flowchart-pdf-0.png)]
+
+---
+class: middle,wide
+
+.fit[![factorial](../figures/max-flowchart/max-flowchart-pdf-9.png)]
+
+---
+.smaller[
+```C
+if (&lt;logical expression&gt;) {
+  // "true block"
+  // statements to be executed if the expression 
+  // evaluates to true
+} else {
+  // "false block"
+  // statements to be executed if the expression 
+  // evaluates to false
+}
+```
+]
+---
+```C
+long factorial(long n)
+{
+  long answer;
+  if (n == 0) {
+    answer = 1;
+  } else {
+    answer = n * factorial(n - 1);
+  }
+  return answer;
+}
+```
+
+---
+class: center
+### Comparison Operator
+
+`==` `!=` `&gt;=` `&lt;=` `&lt;` `&gt;`
+
+---
+| Score                       | Letter Grade |
+| --------------------------- | ------------ |
+| 8 or higher                 | A            |
+| Less than 8 but 5 or higher | B            |
+| Less than 5 but 3 or higher | C            |
+| Less than 3                 | D            |
+
+---
+
+### Break into Smaller Tables
+
+| Score       | Letter Grade |
+| ----------- | ------------ |
+| 8 or higher | A            |
+| Less than 8 | See Table 1  |
+
+---
+### Table 1 (less than 8)
+
+| Score       | Letter Grade |
+| ----------- | ------------ |
+| 5 or higher | B            |
+| Less than 5 | See Table 2  |
+
+---
+### Table 2 (less than 5)
+
+| Score       | Letter Grade |
+| ----------- | ------------ |
+| 3 or higher | C            |
+| Less than 3 | D            |
+
+---
+class: middle,wide
+
+.fit[![score](../figures/max-flowchart/max-flowchart-pdf-18.png)]
+
+---
+class: top,wide
+
+.smaller[
+```C
+void print_score(double score)
+{
+  if (score >= 8) {
+    cs1010_println_string("A");
+  } else {
+    // See Table 1
+  }
+}
+```
+]
+---
+class: top,wide
+
+.smaller[
+```C
+void print_score(double score) 
+{
+  if (score >= 8) {
+    cs1010_println_string("A"); 
+  } else {
+    if (score >= 5) {
+      cs1010_println_string("B");
+    } else {
+      // See Table 2
+    }
+  }
+}
+```
+]
+
+---
+class: top,wide
+
+.smaller[
+```C
+void print_score(double score)
+{
+  if (score >= 8) {
+    cs1010_println_string("A");
+  } else {
+    if (score >= 5) {
+      cs1010_println_string("B");
+    } else {
+      if (score >= 3) {
+        cs1010_println_string("C");
+      } else {
+        cs1010_println_string("D");
+      }
+    }
+  }
+}
+```
+]
+
+---
+class: top,wide
+
+.smaller[
+```C
+void print_score(double score)
+{
+  if (score >= 8) {
+    cs1010_println_string("A");
+  } else if (score >= 5) {
+    cs1010_println_string("B");
+  } else if (score >= 3) {
+    cs1010_println_string("C");
+  } else {
+    cs1010_println_string("D");
+  }
+}
+```
+]
+
+---
+.smaller[
+```C
+if (&lt;logical expression&gt;) {
+  // "true block"
+  // statements to be executed if the expression 
+  // evaluates to true
+} else {
+  // nothing to do..
+}
+```
+]
+
+can be simplified to:
+
+.smaller[
+```C
+if (&lt;logical expression&gt;) {
+  // "true block"
+  // statements to be executed if the expression 
+  // evaluates to true
+} 
+```
+]
+
+---
+class: wide
+```C
+ :
+// make sure students don't get -ve marks
+if (marks < 0) {
+  marks = 0;
+}
+cs1010_println_long(marks);
+ :
+
+```
+---
+```C
+// set max to the larger of x and y
+if (x > y) {
+  max = x;
+}
+if (x < y) {
+  max = y;
+}
+```
+---
+```C
+// set max to the larger of x and y
+if (x > y) {
+  max = x;
+}
+if (x < y) {
+  max = y;
+}
+if (x == y) {
+  max = y;
+}
+```
+
+---
+class: middle,wide
+
+.fit[![score](../figures/max-flowchart/max-flowchart-pdf-21.png)]
+
+---
+```C
+// set max to the larger of x and y
+if (x > y) {
+  max = x;
+} else {
+  max = y;
+}
+```
+
+---
+```C
+long factorial(long n)
+{
+  if (n == 0) {
+    return 1;
+  } else {
+    return n * factorial(n - 1);
+  }
+}
+```
+---
+```C
+long factorial(long n)
+{
+  if (n == 0) {
+    return 1;
+  }
+  return n * factorial(n - 1);
+}
+```
+
+---
+class: middle,center
+
+.fit[![meme](figures/meme/bad-good-return-else.png)]
+
+---
+class: middle,center
+
+### Common Pitfalls
+
+---
+class: wide
+
+What will get printed if `score` is 5?
+
+.small[
+```C
+if (score >= 8)
+  if (late_penalty != 0)
+      cs1010_println_string("late submission");
+else
+  cs1010_println_string("you can do better!");
+```
+]
+
+---
+class: middle,center
+
+.fit[![meme](figures/meme/bad-good-curly.png)]
+
+---
+```C
+double sum = 0.3 + 0.6;
+if (sum == 0.9) {
+ :
+}
+```
+
+---
+```C
+double sum = 0.3 + 0.6;
+if (fabs(sum - 0.9) &lt; 0.0000001) {
+ :
+}
+```
+
+
+---
+class: middle,center
+
+.fit[![meme](figures/meme/bad-good-fp-equal.png)]
+
+---
+class: middle
+
+### The `bool` data type
+
+```C
+#include <stdbool.h>
+  :
+bool is_found = false; // or true
+  :
+if (!is_found) {
+  :
+}
+```
+
+---
+class: middle
+
+### Old-school C uses integers
+
+```C
+int is_found = 100;
+  :
+if (!is_found) { 
+  :
+}
+```
+
+---
+class: middle,center
+
+.fit[![meme](figures/meme/grandma-bool.jpg)]
+
+---
+class: middle,center
+
+### Logical operators 
+
+`&&` `||` `!`
+
+---
+
+| `a`    | `b`   | `a && b` | `a &#x2758;&#x2758; b`   | `!a`  |
+|--------|-------|----------|------------|-------|
+| <font color="#006600">true</font>  | <font color="#006600">true</font>  | <font color="#006600">true</font>  | <font color="#006600">true</font>  | <font color="#660000">false</font> |
+| <font color="#006600">true</font>  | <font color="#660000">false</font> | <font color="#660000">false</font> | <font color="#006600">true</font>  | <font color="#660000">false</font> |
+| <font color="#660000">false</font> | <font color="#006600">true</font>  | <font color="#660000">false</font> | <font color="#006600">true</font>  | <font color="#006600">true</font>  |
+| <font color="#660000">false</font> | <font color="#660000">false</font> | <font color="#660000">false</font> | <font color="#660000">false</font> | <font color="#006600">true</font>  |
+
+---
+.small[
+```C
+bool is_gen_z(long birth_year)
+{
+  if (birth_year &gt;= 1995) {
+    if (birth_year &lt;= 2005) {
+      return true;
+    }
+  }
+  return false;
+}
+```
+]
+---
+class: wide
+.smaller[
+```C
+
+bool is_gen_z(long birth_year)
+{
+  if ((birth_year &gt;= 1995) && (birth_year &lt;= 2005)) {
+    return true;
+  }
+  return false;
+}
+```
+]
+---
+class:wide
+
+.smaller[
+```C
+bool is_gen_z(long birth_year)
+{
+  return (birth_year &gt;= 1995) && (birth_year &lt;= 2005);
+}
+```
+]
+
+---
+class:wide
+.smaller[
+```C
+bool is_gen_z(long birth_year)
+{
+  if ((birth_year &lt; 1995) || (birth_year &gt; 2005)) {
+    return false;
+  }
+  return true;
+}
+```
+]
+
+---
+class: wide
+.smaller[
+```C
+bool is_gen_z(long birth_year)
+{
+  return !((birth_year &lt; 1995) || (birth_year &gt; 2005));
+}
+```
+]
+
+---
+class: center
+
+### De Morgan's Law
+
+`!(e1 && e2)`
+
+is the same as
+
+`(!e1) || (!e2)`
+
+---
+class: center
+
+### De Morgan's Law
+
+`!(e1 || e2)`
+
+is the same as
+
+`(!e1) && (!e2)`
+
+---
+class: center
+
+### Short Circuiting
+
+### `a && b`
+### `a || b`
+
+---
+### Which one is better?
+
+.small[
+```C
+if (number &lt; 100000 && is_prime(number)) {
+ :
+}
+```
+]
+
+.small[
+```C
+if (is_prime(number) && number &lt; 100000) {
+ :
+}
+```
+]
+
+---
+class: center
+
+### Assertion
+
+```
+// { ... }
+```
+
+A logical expression that must always be true<br>
+at a given point in a program.
+
+---
+```C
+x = 1;
+// { x == 1 }
+```
+
+---
+```C
+if (x > y) {
+  max = x;
+} else {
+  max = y;
+}
+```
+
+how can we be sure that `max` is now the larger of the two?
+
+---
+```C
+if (x > y) {
+
+  max = x;
+
+} else {
+
+  max = y;
+
+}
+```
+---
+.tiny[
+```C
+  if (score >= 8) {
+    cs1010_println_string("A");
+  } else {
+    if (score >= 5) {
+      cs1010_println_string("B");
+    } else {
+      if (score >= 3) {
+        cs1010_println_string("C");
+      } else {
+        cs1010_println_string("D");
+      }
+    }
+  }
+```
+]
+
+When will `C` gets printed?
+
+---
+.tiny[
+```C
+  if (score >= 8) {
+    cs1010_println_string("A");
+  } else {
+
+
+    if (score >= 5) {
+      cs1010_println_string("B");
+    } else {
+
+
+      if (score >= 3) {
+
+
+        cs1010_println_string("C");
+      } else {
+        cs1010_println_string("D");
+      }
+    }
+  }
+```
+]
+
+When will `C` gets printed?
+
+---
+### Homework
+
+- Problem Sets 8 - 10
+- [Diagnostic Quiz 4](https://canvas.nus.edu.sg/courses/22421/quizzes/1554)
+- Exercise 1 (today) 
+- Exercise 2 (Thursday)
+- Assignment 1 (Thursday)
+
+---
+class: bottom
+
+.tiny[
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY23/24 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

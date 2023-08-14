@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+<title>CS1010 AY21/22 Tutorial 6</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Tutorial 7
+
+### 13 October 2021
+
+---
+class: wide
+
+### 19.1
+
+.smaller[
+```C
+long m[3][3];
+long *n = &m[0][0];
+m[0][3] = 3; // warning
+n[3] = 10;
+```
+]
+
+---
+class: wide
+
+### 19.2
+
+We need to represent the distance in km between every major city in the world. Let's label every city with a number, ranging from 0 .. $n-1$, where $n$ is the number of cities. The distance between city $i$ and $j$ is the same as the distance between city $j$ and $i$.  The distance can be represented with `long`.
+
+---
+class: wide
+
+.small[
+```C
+long dist(long **d, long i, long j) {
+
+
+
+
+
+
+
+}
+```
+]
+
+---
+class: wide
+
+### 20.1(a)
+
+.small[
+```
+#define MIN(a,b)  a < b ? a : b
+
+long i = MIN(10, 20);
+long j = MIN(10, 20) + 1;
+```
+]
+
+---
+class: wide
+
+### 20.1(b)
+
+.small[
+```
+#define MIN(a,b)  a < b ? a : b
+
+long i = 10;
+long j = 20;
+long k = MIN(j, i++);
+```
+]
+
+---
+class: wide
+
+### 20.2
+
+.tiny[
+```
+#define SWAP(T, x, y) T temp = x;\
+  x = y;\
+  y = temp;
+```
+]
+
+.tiny[
+```C
+if (x > y) 
+  SWAP(long, x, z);
+else
+  SWAP(long, x, z);
+```
+]
+---
+class: wide
+
+### 21.1
+
+.small[
+- $n!$ 
+- $2^n$ 
+- $\log_{10} n$ 
+- $\ln n$
+- $n^4$
+- $n\ln n$
+- $n$
+- $n^2$
+- $e^n$
+- $\sqrt{n}$
+]
+---
+class: wide
+
+### 21.2(a)
+
+.smaller[
+```C
+for (long i = 0; i < n; i += 1) {
+  for (long j = 0; j < n; j += 2) {
+    cs1010_println_long(i + j);
+  }
+}
+```
+]
+
+---
+class: wide
+
+### 21.2(b)
+
+.smaller[
+```C
+for (long i = 1; i < n; i *= 2) {
+  for (long j = 1; j < n; j *= 2) {
+    cs1010_println_long(i + j);
+  }
+}
+```
+]
+
+---
+class: wide
+
+### 21.2(c)
+
+.smaller[
+```C
+long k = 1;
+for (long j = 0; j < n; j += 1) {
+  k *= 2;
+  for (long i = 0; i < k; i += 1) {
+    cs1010_println_long(i + j);
+  }
+}
+```
+]
+
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'monokai',
+    slideNumberFormat: 'AY2021 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>
