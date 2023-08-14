@@ -288,4 +288,19 @@
 
 === ":fontawesome-solid-keyboard: Programming Exercises"
 
-    ## Coming soon
+    ## Exercise 0
+
+    #### Week 3
+    
+    - [Questions](exercises/ex00.md)
+    - [Accept Link](https://classroom.github.com/a/gkcRzoOm)
+
+    | | Question | I/O     | Types            | Arithmetic | Function |  Difficulty |
+    --|---------|----------|------------------|------------|----------|-------------|
+    1 | [Echo](#question-1-echo)     | :material-check: | :material-check: |                    | | |
+    2 | [Divide](#question-2-divide) | :material-check: | :material-check: | :material-check:   | | :material-star-half:    |
+    3 | [Ones](#question-3-ones)     | :material-check: | :material-check: | :material-check:   | | :material-star-half:  |
+    4 | [BMI](#question-4-bmi)       | :material-check: | :material-check: | :material-check:   | :material-check: | :material-star:      |
+    5 | [Quadratic](#question-5-quadratic) | :material-check: | :material-check: | :material-check: | :material-check: | :material-star:       |
+    6 | [Cuboid](#question-6-cuboid) | :material-check: | :material-check: | :material-check:   | :material-check: | :material-star: :material-star-half:  |
+
