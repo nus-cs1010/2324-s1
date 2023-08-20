@@ -142,9 +142,12 @@ Now try it with ++shift++ and see the difference in behavior.
 
 You can run `vimtutor` to learn more about `vim`.  Check out [the tips that we have collected for CS1010](vim-tips.md), or watch the various tutorials online.  Here are some interesting ones are:
 
+- [Vim Genius](http://vimgenius.com/): A game that goes together with `vimtutor`
 - [Learn vim Progressively](http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/).
 - [Vim: Precision Editing at the Speed of Thought](https://vimeo.com/53144573): A talk by Drew Neil
 - [Vim Adventure](https://www.vim-adventures.com): An adventure game for learning `vim`
 - [Vim Casts](http://vimcasts.org/episodes/archive/): Videos and articles for teaching `vim`
 - [Vim Video Tutorials](http://derekwyatt.org/vim/tutorials/) by Derek Wyatt
 - [Vim Awesome](https://vimawesome.com/): Directory of plugins.
+
+You can search the Web for "best vim tutorials" to find many other resources to get you started with the editor.
