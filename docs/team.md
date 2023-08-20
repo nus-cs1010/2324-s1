@@ -10,6 +10,7 @@
 -   Gizem Balikci (Ph.D. Student and Teaching Assistant, Computer Science)
 -   Malaika Afra Taj (Ph.D. Student and Teaching Fellow, Computer Science)
 -   Ang Zhendong (Ph.D. Student, Computer Science)
+-   Sng Weicong (Ph.D. Student, Computer Science)
 
 ## Lab Tutors
 
@@ -46,5 +47,4 @@
 
 ## Support
 
--   Biswadeep Sen (Ph.D., Computer Science)
 -   Zhang Yuehan (Ph.D., Computer Science)
