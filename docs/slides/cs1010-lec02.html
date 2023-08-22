@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="xterm/css/xterm.css" />
+<script src="xterm/lib/xterm.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lecture 2</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 2
+
+### 21 August 2023
+
+Admin Matters<br>
+**Unit 3**: Functions<br>
+**Unit 4**: Types
+
+---
+class: top,wide
+
+### Tutorials and Labs
+
+- Starts next week.
+
+- Appeal via CourseReg if you still haven't gotten a slot.
+
+- Swap with your friends if your slot is not ideal.
+
+- We might ask you to switch rooms to balance out the groups (please say yes).
+
+---
+class: top,wide
+
+### Preparing for CS1010
+
+- By now you should have your Piazza, GitHub, and SoC accounts setup and ready to go.
+
+- You should be able to `ssh` into on PE environments and go through Unix CLI tutorials
+
+---
+class: top,wide
+
+### Unix Clinics (This week only)
+
+Venue: DR2 (COM1 #B1-14A)
+
+- Tuesday, 12 - 2 PM 
+- Tuesday, 4 - 6 PM 
+- Wednesday, 12 - 2 PM 
+- Thursday, 12 - 2 PM 
+
+---
+class: middle,center
+
+## Why Unix CLI?
+
+---
+class: middle,center
+
+.fit[![stackoverflow](figures/why-cli/remote-access.png)]
+
+.tiny[
+<a href="https://www.flaticon.com/free-icons/computer" title="computer icons">Computer icons created by Freepik - Flaticon</a>
+]
+
+---
+class: middle,center
+
+## Why `vim`?
+
+---
+background-image: url(figures/why-vim/stackoverflow-survey-2023.png)
+class: black
+
+???
+.tiny[[via stackoverflow](https://survey.stackoverflow.co/2023/#section-most-popular-technologies-integrated-development-environment)]
+
+---
+background-image: url(figures/reddit-vim-is-helpful.png)
+class: black
+
+???
+.tiny[[via reddit](https://www.reddit.com/r/nus/comments/nwpc54/nus_cs_fun/h1b2ikz/?context=3)]
+
+---
+class: top
+
+### Getting start with `vim`
+
+- Read CS1010 Handbook articles about the philosophy of `vim` and our quick lessons.
+
+- Run `vimtutor`
+
+- Gamers may want to check out VimGenius or VimAdventure
+
+- Many other resources available on the Web
+
+---
+class: top,center
+
+.smaller[.fit[![flowchart](figures/xkcd/flow_charts.png)]<br>https://xkcd.com/518]
+
+---
+class: top,wide
+
+### Flowchart
+
+.fit[![flowchart](../notes/figures/max-flowchart/max-flowchart-pdf-0.png)]
+
+---
+class: middle,center
+
+## Functions
+
+---
+class: top,center
+
+### Functions in Math
+
+$$f : \mathbb{R} \rightarrow \mathbb{R}$$
+
+$$f(x) = x^2 + 1$$
+
+$f(2)$ evaluates to $5$
+
+
+---
+class: middle,center,wide
+
+$$m = max(L, k)$$
+
+.fit[![flowchart](../notes/figures/max-flowchart/max-flowchart-pdf-6.png)]
+
+---
+class: middle,center,wide
+
+Represent the solution to a computational problem<br>as a function.
+
+.fit[![flowchart](../notes/figures/max-flowchart/max-flowchart-pdf-7.png)]
+
+---
+### Find The Range
+
+- The _range_ of a given list of $k$ integers is the difference between the max and the min values in the list.
+
+- Give an algorithm to find the range given a list $L$ of $k$ integers.
+
+---
+class: middle,center,wide
+
+We can try to change
+
+.fit[![flowchart](../notes/figures/max-flowchart/max-flowchart-pdf-0.png)]
+
+---
+class: middle,center
+
+or refer to existing solutions (as functions)
+
+### $max(L, k) - min(L, k)$
+
+---
+class: top
+
+### Functions
+
+- A powerful tool to help us think at a higher level.
+
+- We can focus on _what_ a function does, not _how_ it does it.
+
+- Free us from worrying about details (e.g., variables $i$ and $m$ are now internal to $max$)
+
+---
+### Find the Mean
+
+- Give an algorithm to find the mean value given a list $L$ of $k$ integers.
+
+---
+class: middle,center
+
+## $\frac{sum(L,k)}{k}$
+
+---
+class: top
+
+### A C program is just a collection of functions
+
+--
+- written by you
+- provided by the standard C library
+- provided by other libraries
+
+---
+class: middle,center
+
+Assume $len(L)$ returns the size of the list.
+
+## $\frac{sum(L)}{len(L)}$
+
+
+---
+### Find the Standard Deviation
+
+Give an algorithm to find the standard deviation of a list $L$ of $k$ integers.
+
+$$\sqrt{\frac{\sum\_{i=0}^{k-1}(l\_i - \mu)^2}{k}}$$
+
+---
+class: middle,center
+
+### Let's break it down into sub-problems
+
+---
+class: middle,center
+
+$$\sqrt{\frac{\sum\_{i=0}^{k-1}(l\_i - \mu)^2}{k}}$$
+
+---
+class: middle,center
+
+$$\sum\_{i=0}^{k-1}(l\_i - \mu)^2$$
+
+set $\mu$ to $mean(L)$
+
+set $L'$ to $subtract(L, \mu)$
+
+set $L''$ to $square(L')$
+
+set $total$ to $sum(L'')$
+
+---
+class: middle,center
+
+$$\sum\_{i=0}^{k-1}(l\_i - \mu)^2$$
+
+$sum(square(subtract(L, mean(L))))$
+
+---
+class: middle,center
+
+$$\frac{\sum\_{i=0}^{k-1}(l\_i - \mu)^2}{k}$$
+
+$mean(square(subtract(L, mean(L))))$
+
+---
+class: middle,center
+
+$$\sqrt\frac{\sum\_{i=0}^{k-1}(l\_i - \mu)^2}{k}$$
+
+$sqrt(mean(square(subtract(L,mean(L)))))$
+
+---
+class: middle,center,wide
+
+.fit[![flowchart](../notes/figures/max-flowchart/max-flowchart-pdf-12.png)]
+
+---
+### Functions we wish for
+
+- $square(L)$
+- $subtract(L, \mu)$
+- $sqrt(x)$
+
+---
+class:middle,wide
+
+.fit[![flowchart](../notes/figures/max-flowchart/max-flowchart-pdf-10.png)]
+
+---
+
+### Approach to solve computational problems
+
+- _Decompose_ a problem into sub-problems 
+
+- Solve the sub-problems one-by-one with appropriate functions  
+
+- Compose the functions to solve the original given task
+
+---
+class: center
+
+### Find the maximum among these numbers
+
+```
+5  9  8
+1  3  2
+```
+
+---
+class: center
+
+### Find the maximum among these numbers
+
+.tiny[
+```
+12  20  11  20  14  2   24  36  43  16  27  6   11  7 
+10  15  38  10  22  7   16  26  32  30  11  9   30  6 
+20  6   27  19  26  10  27  6   19  34  5   9   3   22
+10  4   13  1   10  22  43  36  39  29  41  12  13  25
+17  8   30  31  29  38  2   42  7   45  24  33  9   40
+34  29  37  2   26  17  19  34  6   7   34  22  21  41
+38  5   15  13  9   1   42  39  5   29  38  4   22  29
+41  10  26  32  30  26  16  16  18  22  32  34  14  10
+5   17  25  16  19  6   31  16  3   13  8   42  41  0 
+13  30  44  1   41  14  5   39  40  38  6   37  38  9 
+.
+
+```
+]
+
+---
+class: center
+
+### Compare `12` to the maximum among
+
+.tiny[
+```
+    20  11  20  14  2   24  36  43  16  27  6   11  7 
+10  15  38  10  22  7   16  26  32  30  11  9   30  6 
+20  6   27  19  26  10  27  6   19  34  5   9   3   22
+10  4   13  1   10  22  43  36  39  29  41  12  13  25
+17  8   30  31  29  38  2   42  7   45  24  33  9   40
+34  29  37  2   26  17  19  34  6   7   34  22  21  41
+38  5   15  13  9   1   42  39  5   29  38  4   22  29
+41  10  26  32  30  26  16  16  18  22  32  34  14  10
+5   17  25  16  19  6   31  16  3   13  8   42  41  0 
+13  30  44  1   41  14  5   39  40  38  6   37  38  9 
+.
+
+```
+]
+
+---
+class: middle,center,wide
+
+### Wishful Thinking
+
+Suppose we know how to find $max(L,k)$ for smaller $k$
+
+---
+class: middle,wide
+
+### Let $max'(L, i, j)$ returns the maximum among $l\_i, l\_{i+1} \ldots l\_j$
+
+### i.e., $max(L, k)$ is just $max'(L, 0, k-1)$
+
+---
+class: middle,wide
+
+### if $i \not = j$, then $max'(L, i, j)$ is the larger between $l\_i$ and $max'(L, i+1, j)$ 
+
+---
+class: middle,wide
+
+### if $i$ equals $j$, $max'(L, i, j)$ is just $l_i$
+
+---
+class: middle,wide
+
+.fit[![flowchart](../notes/figures/max-flowchart/max-flowchart-pdf-8.png)]
+
+---
+class: middle,center
+### Find the maximum among
+
+.tiny[
+```
+12  20  11  20  14  2   24  36  43  16  27  6   11  7 
+10  15  38  10  22  7   16  26  32  30  11  9   30  6 
+20  6   27  19  26  10  27  6   19  34  5   9   3   22
+10  4   13  1   10  22  43  36  39  29  41  12  13  25
+17  8   30  31  29  38  2   42  7   45  24  33  9   40
+34  29  37  2   26  17  19  34  6   7   34  22  21  41
+38  5   15  13  9   1   42  39  5   29  38  4   22  29
+41  10  26  32  30  26  16  16  18  22  32  34  14  10
+5   17  25  16  19  6   31  16  3   13  8   42  41  0 
+13  30  44  1   41  14  5   39  40  38  6   37  38  9 
+.
+
+```
+]
+
+---
+class: middle,center
+
+### Wishful Thinking
+
+Suppose we know how to find $max(L,k)$ for smaller $k$
+
+---
+class: middle,center
+### Compare the maximum among these numbers
+
+.tiny[
+```
+12  20  11  20  14  2   24                            
+10  15  38  10  22  7   16                            
+20  6   27  19  26  10  27                            
+10  4   13  1   10  22  43                            
+17  8   30  31  29  38  2                             
+34  29  37  2   26  17  19                            
+38  5   15  13  9   1   42                            
+41  10  26  32  30  26  16                            
+5   17  25  16  19  6   31                            
+13  30  44  1   41  14  5                             
+.
+
+```
+]
+
+---
+class: middle,center
+### With the maximum among these numbers
+
+.tiny[
+```
+                            36  43  16  27  6   11  7 
+                            26  32  30  11  9   30  6 
+                            6   19  34  5   9   3   22
+                            36  39  29  41  12  13  25
+                            42  7   45  24  33  9   40
+                            34  6   7   34  22  21  41
+                            39  5   29  38  4   22  29
+                            16  18  22  32  34  14  10
+                            16  3   13  8   42  41  0 
+                            39  40  38  6   37  38  9 
+.
+
+```
+]
+
+
+
+---
+class: middle
+
+### if $j \not= i$, $max(L,i,j)$ is the larger between
+
+- $max'(L, i, n)$ and 
+- $max'(L, n+1, j)$
+
+where $n = \left\lfloor\frac{i+j}{2}\right\rfloor$
+
+---
+class: middle
+
+### if $j$ equals $i$, $max(L,i,j)$ is just $l_i$.
+
+---
+class: center,wide
+
+.fit[![flowchart](../notes/figures/max-flowchart/max-flowchart-pdf-15.png)]
+
+---
+class: middle, center
+
+## Divide and Conquer
+
+---
+
+### Find the factorial of $n$
+
+$n!$ <br>
+$= n \times (n-1) \times \ldots \times 2 \times 1$<br>
+$= n \times (n-1)!$
+
+Special case: $0! = 1$
+
+---
+class: middle
+
+.fit[![flowchart](../notes/figures/max-flowchart/max-flowchart-pdf-9.png)]
+
+---
+class:middle,center
+## Recursion
+
+### A function calling itself 
+
+---
+class:middle,center
+
+# Types
+
+---
+class:middle
+
+### `1010010101010101001111010..` can mean
+
+- 1933091
+- 34.95108
+- `hello`
+- an image
+
+---
+class:middle
+
+### A variable needs a type to be interpreted correctly.
+
+---
+class:middle
+
+### A type is represented by a fixed, finite, number of bits.
+
+### Different types can be represented by a different number of bits.
+
+---
+class:middle, center
+
+### 1 bit: `1` or `0`
+
+black or white<br>
+true or false<br>
+yes or no<br>
+S or U
+
+---
+class:middle, center
+
+### 2 bits: `11`, `10`, `01`, or `00`
+
+north, south, east, west<br>
+spring, summer, fall, winter
+
+---
+class:middle, center
+
+### In general, $k$ bits can represent $2^k$ values
+
+---
+class:middle
+
+### more bits $\rightarrow$ more memory, but can represent bigger range
+
+### fewer bits $\rightarrow$ less memory, but represent smaller range
+
+---
+class:middle
+
+### When writing programs for embedded systems, IoT devices, sensors, etc, you need to be frugal with memory usage.
+
+### In CS1010, however, we will go with more bits for better precision.
+
+---
+class:middle, center
+
+## Integers
+
+---
+class:middle, center
+
+### 8 bits: 256 different integers
+
+0 to 255 (for unsigned)<br>
+-128 to 127 (for signed)
+
+---
+class:middle, center
+
+### 64 bits signed
+
+
+-9,223,372,036,854,775,808 <br>
+to <br>
+9,223,372,036,854,775,807
+
+---
+class:middle, center
+
+## Characters
+---
+class:middle, center
+
+### 8 bits: 127 different symbols using ASCII standards
+
+```
+0-9, A-Z, a-z
+<>?:”{}!@#$%^&*
+()_+-=[]\';/.,
+```
+
+return, tab, escape, etc
+
+---
+class:middle, center
+
+### up to 32 bits: Unicode (UTF-8)
+
+11111011000000000 😀
+
+---
+class:middle, center
+
+## Real numbers
+
+(also called floating point numbers)
+
+---
+class:middle
+
+### There are infinitely many real numbers but only a finite sequence of bits.  
+
+### Not all of real numbers can be represented.
+
+---
+class:middle, center
+
+### Not every real number can be presented precisely
+
+E.g., `0.1 + 0.2` is `0.30000000000000004`
+
+---
+class:middle, center
+background-image: url(figures/foodpanda.png)
+
+---
+class:middle, center
+
+### Rule: Use integer type unless you absolutely need to use a real number type.
+
+---
+class:middle, center
+
+### We normally use 32, 64, or 128 bits to represent real numbers.
+
+---
+class:middle, center
+
+### A variable needs a type to be interpreted correctly.
+
+---
+class:top
+
+### Compound type
+
+- A compound type is made out of other _primitive types_.  Example,
+
+    - A word (a sequence of characters)
+    - A 2D coordinate (two real numbers $(x, y)$)
+
+---
+class:middle, center
+
+set $total$ to $sum(L, k)$<br>
+set $avg$ to $mean(L, k)$
+
+$k$ is an integer<br>
+$total$ is an integer<br>
+$avg$ must be a real number
+
+---
+### Homework
+
+.small[
+- Problem Set in [Unit 3](https://nus-cs1010.github.io/2324-s1/03-func.html)
+
+- `ssh` into CS1010 PE hosts and follow the Unix CLI and `vim` tutorial
+
+- Diagnostic Quiz for Lecture 2 (due this Wed 2359)
+
+- Diagnostic Quiz for Using CS1010 PE (due this Wed 2359)
+]
+
+---
+class: bottom
+
+.tiny[
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'monokai',
+    slideNumberFormat: 'AY23/24 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+
+  var term = new Terminal();
+  term.open(document.getElementById('terminal'));
+  term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
+</script>
+</body>
+</html>
+
