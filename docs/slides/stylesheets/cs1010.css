@@ -131,3 +131,8 @@ table td, table th {
     padding: 0em 0em 0em 0em;
   }
 }
+
+.remark-slide > .black {
+  background-color:#000;
+  color:#fff;
+}
