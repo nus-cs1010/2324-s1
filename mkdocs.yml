@@ -33,7 +33,6 @@ nav:
     - 26. Structure: "notes/26-struct.md"
     - 27. Standard I/O: "notes/27-stdio.md"
   - Lab Guides: 
-    - Guide to Assignments/Exercises: "guides/assignment.md"
     - Unix:
       - Background: "guides/unix-background.md"
       - Essentials: "guides/unix-essentials.md"
@@ -55,6 +54,9 @@ nav:
       - C Style Guide: 'guides/style.md'
       - C Documentation Guide: 'guides/documentation.md'
       - Compiling with Clang: 'guides/clang.md'
+  - Exercises: 
+      - Guide to Exercises: "guides/exercises.md"
+      - 0. I/O, Types, Arithmetic: 'exercises/ex00.md'
   - Readings: "readings.md"   
 
 
