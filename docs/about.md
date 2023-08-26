@@ -112,7 +112,7 @@ The summative assessments, on the other hand, are meant to evaluate student lear
 
 -   Access to AI tools is restricted during the summative assessments (practical exams and written exams)
 -   Students may use AI tools to assist them to complete their formative assessments (quizzes, problem sets, and programming exercises).  The use of AI tools, however, should be moderated and used to help students achieve the learning outcomes of CS1010.  It is pointless to use AI tools to generate answers to formative assessments.
--   Students should familiarise themselves with the NUS policy on the use of AI tools and the guidelines for using AI tools for academic work.
+-   Students should familiarise themselves with the NUS policy [on the use of AI tools](https://libguides.nus.edu.sg/new2nus/acadintegrity#s-lib-ctab-22144949-4) and [the guidelines for using AI tools for academic work](https://libguides.nus.edu.sg/new2nus/acadintegrity#s-lib-ctab-22144949-5)
 
 ### Discussion and Plagiarism
 
