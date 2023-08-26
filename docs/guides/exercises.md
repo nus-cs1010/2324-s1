@@ -1,8 +1,8 @@
-# Programming Assignments and Exercises
+# Programming Exercises
 
 Programming cannot be "studied".  Students must practice what they learn, through solving programming problems, to attain the skills of computational problem-solving in C.
 
-CS1010 provides close to 90 programming questions for students to practice.  Among these, about 25 of the questions are graded.  These are organized into 8 programming _assignments_.  The remaining questions are ungraded and are organized into 14 programming _exercises_. 
+CS1010 provides close to 90 programming questions for students to practice.  These are organized into 11 weekly programming exercises.
 
 ## General Advice
 
@@ -28,20 +28,20 @@ See also [How NOT to Go About a Programming Assignment](http://people.irisa.fr/M
 
 All instructions below are meant to be run on the [PE hosts](environments.md).
 
-Every programming assignment and exercise has a unique ID.  An ID is prefixed with either `as` (for an assignment) and `ex` (for an exercise) and is followed by a two-digit sequence number. 
+Every programming exercise has a unique ID, prefixed with `ex` and is followed by a two-digit sequence number. 
 
-We use [GitHub Classroom](https://classroom.github.com/classrooms/110090574-cs1010-22-23-s1) for managing the submission (including submissions history) and grading.  You will have one code _repository_ for each of the assignments and exercises.
+We use [GitHub Classroom](https://classroom.github.com/classrooms/141557850-cs1010-23-24-s1) for managing the submission (including submissions history) and grading.  You will have one code _repository_ for each exercise.
 
 The steps for completing a programming assignment/exercise are as follows:
 
-1. __Accept__: Upon release, log into your GitHub account registered with CS1010 and click on the given Web link to accept the assignment/exercise.  This step would cause a repository to be created for you on GitHub Classroom, and a copy of the skeleton code and test data to be cloned inside that repository.  The name of the repository is of the form `<id>-<username>`.  For instance, `as01-ooiwt`.
+1. __Accept__: Upon release, log into your GitHub account registered with CS1010 and click on the given Web link to accept the assignment/exercise.  This step would cause a repository to be created for you on GitHub Classroom, and a copy of the skeleton code and test data to be cloned inside that repository.  The name of the repository is of the form `<id>-<username>`.  For instance, `ex00-ooiwt`.
 
 2. __Get__: On one of the PE hosts, run:
 ```
 ~cs1010/get <id>
 ```
 
-    For example, to get the 1st assignment, run `~cs1010/get as01`.  This step would cause a copy of your repository to be cloned into the current directory on the PE hosts.  You now have a copy of the code and test data on the PE hosts.
+    For example, to get the first exercise, run `~cs1010/get ex00`.  This step would cause a copy of your repository to be cloned into the current directory on the PE hosts.  You now have a copy of the code and test data on the PE hosts.
 
 3. __Solve__: Read the questions posted online and solve each question.  More details, along with some best practices for solving the programming questions, are given below.  Note that while there are ways for you to work on GitHub environment (using GitHub CodeSpace or VS Code) directly without logging into PE nodes, doing so is not recommended.  During the practical exams, you are required to solve the programming questions in a sandboxed environment.  The PE hosts emulate the practical exam condition closely.  So it is important for you to become comfortable using the Unix CLI and Vim of the PE hosts.
 
@@ -52,18 +52,16 @@ The steps for completing a programming assignment/exercise are as follows:
 
     This process uploads your C code for each question onto GitHub.  Note that any additional files in the directory will not be uploaded.
 
-    For example, `~cs1010/submit as01`.  You should see a message like this:
-```
-You have submitted your code.  Please verify your submission online at:
-  https://github.com/nus-cs1010-2223-s1/as01-ooiwt
-to make sure that everything is in order.
-```
+    For example, `~cs1010/submit ex01`.  You should see a message like this:
+    ```
+    You have submitted your code.  Please verify your submission online at:
+      https://github.com/nus-cs1010-2324-s1/ex00-ooiwt
+    to make sure that everything is in order.
+    ```
 
     After submission, it is a good practice to double-check that your submission is done properly by going to the GitHub site.
 
-    Note that from Assignment 3 onwards, justifications that fall under the category of "failure to submit properly" cannot be accepted as reasons to waive the late submission penalty.
-
-    You are not allowed to interact with your CS1010 GitHub repositories using `git` commands or edit your files directly on GitHub's website.  Doing so would interfere with the automation that we use for grading and would result in penalties (for graded assignments).
+    You are not allowed to interact with your CS1010 GitHub repositories using `git` commands or edit your files directly on GitHub's website.  Doing so would interfere with the automation that we use for grading.
 
 ## Code Skeleton
 
@@ -76,6 +74,7 @@ Inside that directory, you should see the following files:
 - `Makefile`: The configuration for the tool `make` that we use to automate the compilation and testing of the programs.  
 - `test.sh`: A bash script for testing your code.
 - `compiler_flags.txt` and `.clang-tidy` are two files used to configure `clang` and `clang-tidy` respectively.  You do not need to edit this.
+- `.gitignore` contains a list of filenames to be ignored by the submission script.
 
 ## Automating the Edit-Compile-Run Cycle
 
@@ -160,13 +159,16 @@ You can then run `vim -d` to compare the expected output and your output to figu
 vim -d outputs/echo.3.out myoutput
 ```
 
+For each question, we will provide you with a limited set of test data.  During grading, we may grade your program with additional test data.
+
 ### Ignoring Changes in Spaces and Blank Lines
 
-Note that internally, in `test.sh`, we use `diff -bB` to compare if your output matches the expected output.  This means that we ignore blank lines and changes in white spaces.  
+Note that internally, in `test.sh`, we use `diff -bB` to compare if your output matches the expected output.  This means that we ignore blank lines and changes in white spaces.
 
 We require an exact match in the outputs only in programming questions where white spaces matter.
 
 ### Correctness of Test Data
+
 You may assume that all input data are correct unless otherwise stated. Hence you do NOT need to do input data validation. This is to allow you to focus on getting the program right, instead of worrying about making your program fool-proof which involves a lot more work. 
 
 ## Identifying Yourself
@@ -185,71 +187,45 @@ and change it to something like:
 
 This helps us to easily identify the authors when needed.  Furthermore, signing off your work is a sign that you take pride in the work that you have produced!
 
-## Programming Assignments
-### Timeline
-
-The programming assignments are released every Thursday morning.  It is usually due the following Tuesday at 11:59 PM.  
-
-Unless otherwise specified, the grading of each assignment is expected to be completed before the respective Thursday lab session.  Students should receive comments on their code through GitHub before they embark on the next assignment.
-
-The marks, however, may still be changed after that.  Wei Tsang may moderate the grading across different groups.  
-
-### Late Submission
-
-All programming assignments must be submitted on time.  If you need an extension, please ask for one and provide a justification for approval.  Only academic reasons and compassionate reasons can be considered (e.g., representing NUS for a sports event is OK; Attending a wedding is not.)
-
-For late submission, there is a 1% penalty (of the total awarded marks for that particular assignment) for every 5-minute after the deadline, capped at 80%.  For example, if an assignment is awarded 40 marks, and is submitted 100 minutes after the deadline, the student will get 32 marks instead (20% penalty).  If it is submitted 10 hours after the deadline, the student will get 8 marks (as it has hit the cap of 80% penalty).
+## Submitting and Receiving Feedback
 
 ### Method of Submission
 
 Students must use the `submit` command provided on the PE hosts to submit the assignments (more details below).  Programs submitted through other means, such as emails, will NOT be accepted.
 
-### Grading
+### Feedback
 
-Only the latest submission of each assignment will be graded.  
+Only the latest submission of each question will be reviewed at by the tutors after the deadline.
 
-Marks are given for attempt, correctness, design, style, and documentation.  The weight of each component will be adjusted over the semester.  
+The dimension for review includes correctness, design, style, efficiency, and documentation.  Each submission will be grouped in one of four categories:
 
-A program that cannot compile (i.e., there is a compilation error) will receive 0 marks for correctness.
+- Excellent
+- Good
+- Need improvement
+- Insufficient effort 
 
-In addition, there is an additional -1 mark for each warning that your program received.  Always make sure that your program compiles cleanly without any warning.
+A program that cannot compile (i.e., there is a compilation error) will be considered as "insufficient effort".
 
-For each assignment, we will provide you with a limited set of test data.  During grading, we may grade your program with additional test data.
+Feedback is done by both a bot and a human (i.e., a lab tutor) and is posted as comments in your GitHub repository. A summary of "Feedback.md" will be made available in your GitHub repository when review is completed.
 
-Grading will be done by both a bot and a human (i.e., a lab tutor).
-
-Feedback will be provided by the tutors as comments in your assignment's GitHub repository.  Any deductions by the lab tutors will be reflected in GitHub.  
-
-A summary of grading "GradingReport.md" will be made available in your assignment's GitHub repository.  This summary reflects the final score, which may include additional deductions by the bot.
+Note that, during the practical exam, a program that cannot compile (i.e., there is a compilation error) will receive 0 marks. In addition, there is an additional -1 mark for each warning that your program received.  Always make sure that your program compiles cleanly without any warning when solving the exercises.
 
 ### Disallowed Syntax
 
-Some programming assignments may explicitly disallow the use of certain syntax.  Generally, using syntax or statements which are not yet covered either in class or the assignment statement is strongly discouraged.  We also discourage or ban the use of certain syntax for this module, (e.g., `++`) you should not use them.  The assignments are designed such that you should not need to do so (even though doing so may result in your program being shorter or more efficient). If the objective of the assignment is undermined, the penalty for using such forbidden syntax will be heavy. If in doubt, please ask for clarification.
+Some programming assignments may explicitly disallow the use of certain syntax.  Generally, using syntax or statements which are not yet covered either in class or the assignment statement is strongly discouraged.  We also discourage or ban the use of certain syntax for this module, (e.g., `++`) you should not use them.  The exercises are designed such that you should not need to do so (even though doing so may result in your program being shorter or more efficient). 
+
+During the practical exam, if the objective of the assessment question is undermined, the penalty for using such forbidden syntax will be heavy. If in doubt, please ask for clarification.
 
 You can find the list of banned and discouraged C features in the article "[C in CS1010](c-in-cs1010.md)."
 
-### Plagiarism
+## Reminders About Course Policies
 
-You are NOT to copy from others (including your seniors) or allow others to copy your programs.  We take plagiarism seriously.  See [our policies](policies.md) page for details.
+Please review the following policies related to programming exercises
 
-This means that you should also guard your solution carefully, not posting them to publicly accessible places, or changing the permissions of the files on the CS1010 PE hosts so that it is accessible by others.
-
-We routinely run similarity checks on a submitted program, against the bank of submissions from students (including from previous years).  
-
-Copying others' programs will only offer a short-term reprieve and minimal gain in marks for programming assignments.  You would lose the insights, experience, and confidence in solving programming problems, and these losses could lead to larger, longer-term, negative impacts during the CS1010 practical exams, subsequent modules, job interviews, or even your careers.
-
-### Use of Piazza
-If you have doubts about the problem statements of a question, you may raise them on Piazza.  But before that, please read through the problem statements carefully first, and check if the same questions have been asked and answered on the forum.
-
-Please exercise discretion when posting to Piazza.  Do not spoil the fun of the "eureka" moments of figuring things out by posting the solution.  
-
-Before the deadline, you are NOT to post the solution to the assignment, complete or partial, on Piazza (or any publicly accessible online site).
-
-## Ungraded Exercises
-
-The ungraded exercises are released on a more ad-hoc basis.   
-
-It is useful to submit your attempts even if it is not graded.  Your attempts will be archived on GitHub and can be shared with your tutor for discussions and feedback if needed.
+- [Asking questions and getting help](../about.md#asking-questions-and-getting-help)
+- [Use of AI tools](../about.md#use-of-ai-tools)
+- [Discussion and plagiarism](../about.md#discussion-and-plagiarism)
+- [Late/miss submission policy](../about.md#latemissed-submission-policy)
 
 ---
 This guideline is expanded from Aaron Tan's CS1010 guideline.
