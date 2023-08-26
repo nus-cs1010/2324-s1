@@ -16,7 +16,7 @@ CS1010 provides close to 90 programming questions for students to practice.  The
 
 - Test your programs thoroughly.  We might not give you all the test cases in the programming questions.  So seeing a `passed` message (meaning your code passed all the given test cases) does not necessarily mean your code is correct.  You should separately run and test each of your programs with additional test cases.
 
-- Follow the problem specification exactly.  Read the problem statement carefully and make sure your code meets the requirement given.  For instance, if the question asks for a function named `compute_area`, then your code MUST contain a function named `compute_area`.  Any other names (`calculate_area`, `ComputeArea`) are not acceptable.  If the output requires a single integer to be printed, printing extra text (e.g., `The answer is 5`) is not acceptable.
+- Follow the problem specification exactly.  Read the problem statement carefully and make sure your code meets the requirements given.  For instance, if the question asks for a function named `compute_area`, then your code MUST contain a function named `compute_area`.  Any other names (`calculate_area`, `ComputeArea`) are not acceptable.  If the output requires a single integer to be printed, printing extra text (e.g., `The answer is 5`) is not acceptable.
 
 - You are encouraged to discuss the programming questions with your friends and learn from each other.  This process is an important part of the learning experience in CS1010.  Sharing and learning about _how to solve a problem_ (at the algorithm level) from each other is not plagiarism.  Copy-pasting of code from others, or _writing the code_ together line-by-line, however, is plagiarism.
 
@@ -28,7 +28,7 @@ See also [How NOT to Go About a Programming Assignment](http://people.irisa.fr/M
 
 All instructions below are meant to be run on the [PE hosts](environments.md).
 
-Every programming exercise has a unique ID, prefixed with `ex` and is followed by a two-digit sequence number. 
+Every programming exercise has a unique ID, prefixed with `ex`, and is followed by a two-digit sequence number. 
 
 We use [GitHub Classroom](https://classroom.github.com/classrooms/141557850-cs1010-23-24-s1) for managing the submission (including submissions history) and grading.  You will have one code _repository_ for each exercise.
 
@@ -43,7 +43,7 @@ The steps for completing a programming assignment/exercise are as follows:
 
     For example, to get the first exercise, run `~cs1010/get ex00`.  This step would cause a copy of your repository to be cloned into the current directory on the PE hosts.  You now have a copy of the code and test data on the PE hosts.
 
-3. __Solve__: Read the questions posted online and solve each question.  More details, along with some best practices for solving the programming questions, are given below.  Note that while there are ways for you to work on GitHub environment (using GitHub CodeSpace or VS Code) directly without logging into PE nodes, doing so is not recommended.  During the practical exams, you are required to solve the programming questions in a sandboxed environment.  The PE hosts emulate the practical exam condition closely.  So it is important for you to become comfortable using the Unix CLI and Vim of the PE hosts.
+3. __Solve__: Read the questions posted online and solve each question.  More details, along with some best practices for solving the programming questions, are given below.  Note that while there are ways for you to work on the GitHub environment (using GitHub CodeSpace or VS Code) directly without logging into PE nodes, doing so is not recommended.  During the practical exams, you are required to solve the programming questions in a sandboxed environment.  The PE hosts emulate the practical exam condition closely.  So it is important for you to become comfortable using the Unix CLI and Vim of the PE hosts.
 
 4. __Submit__: When you want to take a snapshot of your code or submit the final version for grading, run:
 ```
@@ -89,7 +89,7 @@ make
 
 Our `Makefile` is configured so that `make` performs the following three tasks, in order:
 
-1. __Compile__.  For each `<problem.c>`, `make` invokes the compiler `clang` with the proper arguments to compile the code into binary executable `<problem>`.  This step is executed only if `<problem>.c` has been modified since the last compilation.  If there is a compilation error, `make` would not continue with the rest of the process.
+1. __Compile__.  For each `<problem.c>`, `make` invokes the compiler `clang` with the proper arguments to compile the code into binary executable `<problem>`.  This step is executed only if `<problem>.c` has been modified since the last compilation.  If there is a compilation error, `make` will not continue with the rest of the process.
 
 2. __Test__.  If the compilation is successful or not needed, `make` would invoke `test.sh <problem>` to test your program against each of the given test cases.  If your program passed all the given test cases, it would print:
 ```
@@ -121,7 +121,7 @@ make echo
 
 compiles `echo.c` into `echo` without testing or running `clang-tidy` on it.
 
-Sometimes it is useful to test run a particular program only.  For example, if you want to test only the program `echo`, then
+Sometimes it is useful to test-run a particular program only.  For example, if you want to test only the program `echo`, then
 ```
 ./test.sh echo
 ```
@@ -195,9 +195,9 @@ Students must use the `submit` command provided on the PE hosts to submit the as
 
 ### Feedback
 
-Only the latest submission of each question will be reviewed at by the tutors after the deadline.
+Only the latest submission of each question will be reviewed by the tutors after the deadline.
 
-The dimension for review includes correctness, design, style, efficiency, and documentation.  Each submission will be grouped in one of four categories:
+The dimension for review includes correctness, design, style, efficiency, and documentation.  Each submission will be categorized as one of the following four categories:
 
 - Excellent
 - Good
@@ -206,13 +206,13 @@ The dimension for review includes correctness, design, style, efficiency, and do
 
 A program that cannot compile (i.e., there is a compilation error) will be considered as "insufficient effort".
 
-Feedback is done by both a bot and a human (i.e., a lab tutor) and is posted as comments in your GitHub repository. A summary of "Feedback.md" will be made available in your GitHub repository when review is completed.
+Feedback is done by both a bot and a human (i.e., a lab tutor) and is posted as comments in your GitHub repository. A summary of "Feedback.md" will be made available in your GitHub repository when the review is completed.
 
 Note that, during the practical exam, a program that cannot compile (i.e., there is a compilation error) will receive 0 marks. In addition, there is an additional -1 mark for each warning that your program received.  Always make sure that your program compiles cleanly without any warning when solving the exercises.
 
 ### Disallowed Syntax
 
-Some programming assignments may explicitly disallow the use of certain syntax.  Generally, using syntax or statements which are not yet covered either in class or the assignment statement is strongly discouraged.  We also discourage or ban the use of certain syntax for this module, (e.g., `++`) you should not use them.  The exercises are designed such that you should not need to do so (even though doing so may result in your program being shorter or more efficient). 
+Some programming assignments may explicitly disallow the use of certain syntax.  Generally, using syntax or statements which are not yet covered either in class or the exercise question is strongly discouraged.  We also discourage or ban the use of certain syntax for this module, (e.g., `++`) you should not use them.  The exercises are designed such that you should not need to do so (even though doing so may result in your program being shorter or more efficient). 
 
 During the practical exam, if the objective of the assessment question is undermined, the penalty for using such forbidden syntax will be heavy. If in doubt, please ask for clarification.
 
