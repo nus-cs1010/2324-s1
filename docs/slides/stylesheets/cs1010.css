@@ -77,6 +77,10 @@ em {
 .remark-slide-number {
 	font-size: 12pt;
 }
+.fith > img {
+	max-height: 100%;
+	width: auto;
+}
 .fit > img {
 	max-width: 100%;
 	height: auto;
@@ -95,6 +99,10 @@ em {
 }
 .w30 > img {
 	max-width: 30%;
+	height: auto;
+}
+.w20 > img {
+	max-width: 20%;
 	height: auto;
 }
 table td, table th {
