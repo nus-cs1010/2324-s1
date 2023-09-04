@@ -56,7 +56,8 @@ nav:
       - Compiling with Clang: 'guides/clang.md'
   - Exercises: 
       - Guide to Exercises: "guides/exercises.md"
-      - 0. I/O, Types, Arithmetic: 'exercises/ex00.md'
+      - 0. I/O, Types, and Arithmetic: 'exercises/ex00.md'
+      - 1. Conditions and Recursion: 'exercises/ex01.md'
   - Readings: "readings.md"   
 
 
@@ -70,7 +71,6 @@ theme:
     - navigation.top
     - navigation.footer
     - toc.follow
-    - toc.integrate
     - content.code.copy
     - content.code.select
     - content.code.annotate
