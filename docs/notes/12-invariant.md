@@ -70,7 +70,7 @@ A more succinct way to show that the assertion holds for every iteration is to u
 
 We have already shown that the assertion holds after the first iteration.  So, let's assume that the assertion holds at the end of the $k$-th iteration.  At the beginning of the $(k+1)$-iteration, we know that `{ product == i! }` is true, since it is true at the end of the previous iteration.  Now consider what happens when we increment `i` at Line 8.  At Line C, the assertion `{ product == i! }` is no longer true.  Instead, since `i` is one more than before, we now have `{ product == (i-1)! }`.
 
-Next, One Line 10, we set `product` to `product * i`, i.e., `(i-1)! * i`, which is just `i!`.  So, we get `{ product == i! }` again at Line D of the $k+1$ iteration.
+Next, on Line 10, we set `product` to `product * i`, i.e., `(i-1)! * i`, which is just `i!`.  So, we get `{ product == i! }` again at Line D of the $k+1$ iteration.
 
 ### After The Loop
 
@@ -80,7 +80,7 @@ Additionally, since we exited the loop, we know that `{ i == n }`.  Putting the 
 
 ### Before The Loop
 
-We showed that the code correctly computes `n!`` if it enters the loop.  One last thing for us to check is that the code is correct even if it does not enter the loop.  In this case, the execution goes from Line A to Line E directly.
+We showed that the code correctly computes `n!` if it enters the loop.  One last thing for us to check is that the code is correct even if it does not enter the loop.  In this case, the execution goes from Line A to Line E directly.
 
 Assuming that `n` is non-negative, we have two cases where this could happen: both `i` and `n` are 1, or `n` is 0. In either case, We can assert that `{ product == n! }` at Line E.  So the code is still correct even if we do not enter the loop!
 
