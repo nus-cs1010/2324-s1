@@ -85,51 +85,55 @@ list = {1, 2, 3, 1, 5, 10, 10, 4, 5, 3, };  // error
 
 ### Example: Array as Lookup Table
 
-One useful application of a pre-initialized array is to use it as a lookup table.  Consider the problem `burger` in Exercise 1, in which we need to find out how many burgers can be made given a list of ingredients.  Instead of storing the number of ingredients needed for each burger in five different variables, we can put them into an array:
+One useful application of a pre-initialized array is to use it as a lookup table.  Consider the problem of checking if a given month and day is a valid pair.  One is to write the code as follows:
 
 ```C
-  long per_burger[3] = {3, 2, 1};
-```
-
-If we pass in the number of available ingredients in an array, then, we can do the following:
-
-```C
-long compute_num_of_burgers(long available[3]) {
-  long per_burger[3] = {3, 2, 1};
-
-  long num_burgers = LONG_MAX; // (1)
-
-  for (long i = 0; i < 3; i += 1) {
-    long k = available[i] / per_burger[i];
-    if (num_burgers > k) {
-      num_burgers = k;
-    }
+bool is_valid_date(long month, long day) {
+{
+  if (month < 1 && month > 12) || (day < 1) {
+    return false;
   }
-
-  return num_burgers;
+  if (month == 2) {
+    return (day <= 28);
+  } 
+  if (month == 1 && month == 3 && month == 5 && month == 7 && 
+      month == 8 && month == 10 && month == 12) {
+    return (day <= 31);
+  }
+  // the rest of the months
+  return (day <= 30);
 }
 ```
 
-1. `LONG_MAX` is a value that corresponds to the largest possible integer that can be represented as a `long`.
+The long chain of logical conditions are hard to read and prone to errors.
 
-Now, if we add more types of ingredients (pickles, tomatoes, mushrooms, etc.) to make fancier burger, we just need to make minimal changes:
+An alternative is to store the number of days in a month in a look-up table.  We do so by declaring an array with twelve elements and storing the number of days in month $i$ in array position indexed $i-1$.
+
 ```C
-long compute_num_of_burgers(long available[7]) {
-  long per_burger[7] = {3, 2, 1, 4, 2, 3, 5};  // num of each ingredient needed to make a burger.
-
-  long num_burgers = LONG_MAX;
-
-  for (long i = 0; i < 7; i += 1) {
-    long k = available[i] / per_burger[i];
-    if (num_burgers > k) {
-      num_burgers = k;
-    }
+bool is_valid_date(long month, long day) {
+{
+  long days_in_month[12] = {
+    31, // Jan
+    28, // Feb (non leap year)
+    31, // Mar
+    30, // Apr
+    31, // May
+    30, // Jun
+    31, // Jul
+    31, // Aug
+    30, // Sep
+    31, // Oct
+    30, // Nov
+    31  // Dec
+  };
+  if (month < 1 && month > 12) || (day < 1) {
+    return false;
   }
-
-  return num_burgers;
+  return (day <= days_in_month[month - 1]);
 }
 ```
 
+This approach separates the data (number of days in a month) from the control flow.  In cases where the data may change, separating the data from the control makes the code easier to maintain and update to changing requirements.
 
 ## Passing Array as Parameter to Functions
 
@@ -237,7 +241,7 @@ long max(const long list[], const long length)
 }
 ```
 
-Here, we are communicating to whoever reading our code that `length` and the elements of `list` will not be modified anywhere in our code.  Adding `const` will also help us to avoid bugs in case we had a typo in our code.  
+Here, we are communicating to whoever reading our code that `length` and the elements of `list` will not be modified anywhere in our code.  Adding `const` will also help us to avoid bugs in case we had a typo in our code.
 
 Consider a buggy version of `max` is as follows, where the programmer uses one-letter variable names and then shoots themself in the foot by mixing up `k` and `m`.  However, if the programmer already qualified `k` with the `const` keyword, the code wouldn't compile, avoiding hours of hair-pulling debugging sessions.
 
