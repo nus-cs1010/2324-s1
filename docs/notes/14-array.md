@@ -126,7 +126,7 @@ bool is_valid_date(long month, long day)
     30, // Nov
     31  // Dec
   };
-  if (month < 1 && month > 12) || (day < 1) {
+  if (month < 1 || month > 12 || day < 1) {
     return false;
   }
   return (day <= days_in_month[month - 1]);
