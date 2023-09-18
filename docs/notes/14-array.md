@@ -88,7 +88,7 @@ list = {1, 2, 3, 1, 5, 10, 10, 4, 5, 3, };  // error
 One useful application of a pre-initialized array is to use it as a lookup table.  Consider the problem of checking if a given month and day is a valid pair.  One is to write the code as follows:
 
 ```C
-bool is_valid_date(long month, long day) {
+bool is_valid_date(long month, long day) 
 {
   if (month < 1 || month > 12 || day < 1) {
     return false;
@@ -110,7 +110,7 @@ The long chain of logical conditions are hard to read and prone to errors.
 An alternative is to store the number of days in a month in a look-up table.  We do so by declaring an array with twelve elements and storing the number of days in month $i$ in array position indexed $i-1$.
 
 ```C
-bool is_valid_date(long month, long day) {
+bool is_valid_date(long month, long day)
 {
   long days_in_month[12] = {
     31, // Jan
