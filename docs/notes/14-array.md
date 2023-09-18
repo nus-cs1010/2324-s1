@@ -90,14 +90,14 @@ One useful application of a pre-initialized array is to use it as a lookup table
 ```C
 bool is_valid_date(long month, long day) {
 {
-  if (month < 1 && month > 12) || (day < 1) {
+  if ((month < 1 && month > 12) || (day < 1)) {
     return false;
   }
   if (month == 2) {
     return (day <= 28);
   } 
-  if (month == 1 && month == 3 && month == 5 && month == 7 && 
-      month == 8 && month == 10 && month == 12) {
+  if (month == 1 || month == 3 || month == 5 || month == 7 || 
+      month == 8 || month == 10 || month == 12) {
     return (day <= 31);
   }
   // the rest of the months
