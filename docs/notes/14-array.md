@@ -368,7 +368,7 @@ If you examine the content of `a2`, you will find that `a2` correctly contains t
 ```C
 void square(const long length, long list[])
 {
-  for (long i = 1; i != length; i += 1) {
+  for (long i = 0; i < length; i += 1) {
     list[i] = list[i] * list[i];
   }
 }
@@ -389,7 +389,7 @@ Is there a way then, to keep `list` unmodified, while returning a "new" array?  
 long* square(const long length, const long list[])
 {
   long squared[length];
-  for (long i = 1; i != length; i += 1) {
+  for (long i = 0; i < length; i += 1) {
     squared[i] = list[i] * list[i];
   }
   return squared;
