@@ -129,7 +129,7 @@ The summative assessments, on the other hand, are meant to evaluate student lear
 
 ### Absence from Midterm and Practical Exams
 
--   Students who are absent during a practical exam or the midterm test must inform the teaching team (by emailing cs1010@comp.nus.edu.sg or through filling up an online form) with a justification for missing the exam within 24 hours after the end of the exam.  Only medical, academic, and compassionate reasons can be considered (e.g., representing NUS for a sports event is OK; Clashes with another course activity is OK; Attending a concert is not). Documented proofs (e.g., medical certificates, email from the other course instructor) are required.
+-   Students who are absent during a practical exam or the midterm test {++ must inform the teaching team (by emailing cs1010@comp.nus.edu.sg or through filling up an online form)++} with a justification for missing the exam within 24 hours after the end of the exam.  Only medical, academic, and compassionate reasons can be considered (e.g., representing NUS for a sports event is OK; Clashes with another course activity is OK; Attending a concert is not). Documented proofs (e.g., medical certificates, email from the other course instructor) are required.
 -   Being absent without justification during a practical exam or the midterm test will result in 0 marks for the corresponding assessment.
 -   An alternative assessment will be arranged for students who are absent during the midterm or practical exams with valid justification.
 
