@@ -50,7 +50,7 @@ Recall from the previous unit that in C, a variable that stores a memory address
 long *addr;
 ```
 
-The line above declares a variable named `addr` with the type `long *` (i.e., a pointer to `long``, or, address of a `long`).  We can write:
+The line above declares a variable named `addr` with the type `long *` (i.e., a pointer to `long`, or, address of a `long`).  We can write:
 
 ```C
 addr = &c;
