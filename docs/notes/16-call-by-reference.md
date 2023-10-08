@@ -20,7 +20,7 @@ We mentioned that for all other non-array variables when we pass in a variable, 
 
 The call-by-value mechanism has its limitation.  Sometimes, it is useful for a function to return more than one result.
 
-You have seen an example before in your [Assignment 2](../exercises/as02-collatz-prime-rectangle-pattern.md), where, for the `collatz` problem, you are supposed to find both the largest stopping time and the value with the largest stopping time.
+You have seen an example before in your [Exercise 2](../exercises/ex02.md), where, for the `collatz` problem, you are supposed to find both the largest stopping time and the value with the largest stopping time.
 
 C functions, however, can only return at most one value.  One way to get around this limitation is to use call-by-reference, the other is to use `struct`.  We will leave the discussion of `struct` for another day, so let's see how we can call non-array variables by reference.
 
