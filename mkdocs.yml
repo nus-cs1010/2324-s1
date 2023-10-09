@@ -60,6 +60,7 @@ nav:
       - 1. Conditionals: 'exercises/ex01.md'
       - 2. Loops: 'exercises/ex02.md'
       - 3. Fixed-Length Arrays: 'exercises/ex03.md'
+      - 4. Dynamic Arrays and Strings: 'exercises/ex04.md'
   - Readings: "readings.md" 
 
 
