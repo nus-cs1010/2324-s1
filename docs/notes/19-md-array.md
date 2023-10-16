@@ -288,4 +288,5 @@ long matrix[3][3] = {
     {0, -1, 1}
 };
 ```
+
 Note that we use nested `{` and `}` here.  There are other variations to the syntax above, which you may read up on your own if you are interested as we do not need to write complex initializers for multi-dimensional arrays that often.
