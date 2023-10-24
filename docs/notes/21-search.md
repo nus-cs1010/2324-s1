@@ -235,6 +235,6 @@ Re-write the binary search algorithm using a loop.
 
 Instead of returning -1 if the query `q` is not found, modify the binary search algorithm in Problem 21.1 such that it returns either:
 
-- a position `k`, such as `a[k] <= q <= a[k+1]`. 
-- `-1` if `q < a[0]` 
-- `n-1` if `q > a[n-1]`
+- a position `k`, such that `list[k] <= q <= list[k+1]`. 
+- `-1` if `q < list[0]` 
+- `n-1` if `q > list[n-1]`
