@@ -62,6 +62,7 @@ nav:
       - 3. Fixed-Length Arrays: 'exercises/ex03.md'
       - 4. Dynamic Arrays and Strings: 'exercises/ex04.md'
       - 5. Multi-dimensional Arrays: 'exercises/ex05.md'
+      - 6. Searching and Sorting: 'exercises/ex06.md'
   - Readings: "readings.md" 
 
 
