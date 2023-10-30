@@ -237,4 +237,4 @@ Instead of returning -1 if the query `q` is not found, modify the binary search 
 
 - a position `k`, such that `list[k] <= q <= list[k+1]`. 
 - `-1` if `q < list[0]` 
-- `n-1` if `q > list[n-1]`
+- `n` if `q > list[n-1]`
