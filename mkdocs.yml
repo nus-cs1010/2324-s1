@@ -63,6 +63,7 @@ nav:
       - 4. Dynamic Arrays and Strings: 'exercises/ex04.md'
       - 5. Multi-dimensional Arrays: 'exercises/ex05.md'
       - 6. Searching and Sorting: 'exercises/ex06.md'
+      - 7. Recursions : 'exercises/ex07.md'
   - Readings: "readings.md" 
 
 
