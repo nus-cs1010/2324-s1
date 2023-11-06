@@ -64,6 +64,7 @@ nav:
       - 5. Multi-dimensional Arrays: 'exercises/ex05.md'
       - 6. Searching and Sorting: 'exercises/ex06.md'
       - 7. Recursions : 'exercises/ex07.md'
+      - 8. Struct : 'exercises/ex08.md'
   - Readings: "readings.md" 
 
 
