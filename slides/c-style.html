@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lab 3</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+#### Lab 3
+### CS1010 C Style Guide
+
+### 14 September 2023
+
+---
+### Coding Convention
+
+- Software engineers are typically expected to following a certain _style convention_ when coding.
+- Following a coding convention makes your code more readable and easier to understand by others.
+
+---
+### Coding Style in CS1010
+
+- CS1010 enforces certain coding style, both in naming and formating of code.
+- During PE, a grader may deduct marks if the convention is egregiously violated.
+
+---
+### Declare Each Variable on Its Own Line
+
+.smaller[
+Yes:
+```C
+double weight;  // The weight of the baby
+double height;  // The height of the baby
+```
+
+No:
+```C
+double weight, height;  // Weight and height of the baby
+```
+]
+
+---
+### Give Variable Descriptive Names
+
+.smaller[
+Yes:
+```C
+long num_of_coins;
+```
+
+No:
+```C
+long c; 
+```
+]
+
+---
+### Single-letter Variable Name is OK if..
+
+.smaller[
+Used as loop variable
+```C
+for (long i = 0; i &lt; 4; i += 1) 
+```
+
+Corresponds to mathematical symbol in the problem statement:
+```C
+long n = cs1010_read_long(); 
+long fn = fibonacci(n);
+```
+]
+
+---
+### Avoid Negated Variable/Function Names
+
+.smaller[
+Yes
+```C
+bool is_error() { 
+  bool can_open_file;
+  :
+}
+```
+
+No
+```C
+bool is_not_error() { 
+  bool cannot_open_file;
+  :
+}
+```
+]
+
+---
+### Avoid Hardcoded Magic Numbers
+
+.smaller[
+No
+```C
+for (long i = 0; i &lt; 138; i += 1) {
+ 
+}
+
+Yes
+```C
+#define LARGEST_K 138
+ :
+for (long i = 0; i &lt; LARGEST_K; i += 1) {
+ 
+}
+```
+]
+
+---
+### Use Snake Case
+
+.smaller[
+No
+```C
+long numOfCoins;
+#define Max_Num 100
+```
+
+Yes
+```C
+long num_of_coins; // all lower case for variables/functions
+#define MAX_NUM 100 // all upper case for constant
+```
+]
+
+---
+### Use 2 or 4 spaces for each indentation
+
+.tiny[
+No:
+```C
+if (x == 3) {
+      y = 3;
+} else {
+  z = 10;
+}
+```
+
+Yes:
+```C
+if (x == 3) {
+  y = 3;
+} else {
+  z = 10;
+}
+```
+]
+---
+### Add Single Space between Keywords, Parantheses, and Curly Bracket.
+
+.small[
+No:
+```C
+for( ... ) { 
+for( ... ){ 
+```
+
+Yes:
+```C
+for ( ... ) { 
+```
+]
+
+---
+### Add Single Space Around `=` `+` `-` `*` etc.
+
+.smaller[
+No:
+```C
+a=b;
+x=(a+4)/y;
+```
+
+Yes:
+```C
+a = b;
+x = (a + 4) / y;
+```
+]
+
+---
+### Open Braces Can Be Trailing or Leading
+
+.smaller[
+No:
+```C
+if (x == y) 
+{ z = y;
+}
+```
+
+Yes:
+```C
+if (x == y) {                   if (x == y) 
+  z = y;                        {
+}                                   z = y;
+                                }
+```
+]
+
+---
+### No Trailing Close Braces
+
+.small[
+No:
+```C
+if (x == y) { 
+  z = y; }
+
+if (x == y) 
+{
+  z = y; }
+```
+]
+
+---
+### Don't Use Tab in Your Code
+
+- Use only space
+- Make sure you don't disable `set expandtab` in your `~/.vimrc`
+
+---
+### Others
+
+- Use one blank line between functions
+- Break long lines (convention is 80 chars) into multiple lines
+
+---
+
+See [CS1010 C Style Guide](https://nus-cs1010.github.io/2324-s1/guides/style.html) for the complete list and more details.
+
+
+---
+class: bottom
+
+.tiny[
+Version: 1.1
+
+Last Updated:  Tue Sep 12 18:18:52 +08 2023
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY2223 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

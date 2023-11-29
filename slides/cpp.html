@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY22/23 S1 Lab 8</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## Intro to C Pre-processor
+
+### 2 November 2023
+
+---
+
+### C Compilation Pipeline
+
+.fit[![pdf](../figures/c-compile-run/c-compile-run-pdf-1.png)]
+
+---
+### C Pre-Processing
+
+- A C pre-processor reads the input file line-by-line
+
+- Any line that starts with `#` is a preprocessor directive. 
+
+- You have used `#include` to include a header file and `#define` to define a constant.
+
+---
+### From `rectangle`
+
+```C
+#define TOP_LEFT "╔"
+#define TOP_RIGHT "╗"
+#define BOTTOM_RIGHT "╝"
+#define BOTTOM_LEFT "╚"
+#define HORIZONTAL "═"
+#define VERTICAL "║"
+```
+
+---
+Go change your `rectangle.c` so that instead of
+.tiny[
+```
+╔════════╗
+║        ║
+║        ║
+║        ║
+║        ║
+╚════════╝
+```
+]
+it draws this:
+.tiny[
+```
++--------+
+|        |
+|        |
+|        |
+|        |
++--------+
+```
+]
+---
+
+If you write your code with the `#define` constants rather than hard-coding the symbols, you only need to change six lines:
+
+```C
+#define TOP_LEFT "+"
+#define TOP_RIGHT "+"
+#define BOTTOM_RIGHT "+"
+#define BOTTOM_LEFT "+"
+#define HORIZONTAL "-"
+#define VERTICAL "|"
+```
+
+---
+
+### How `#define` Works
+
+- When the C pre-processor sees the `#define` directive, it replaces all instances of the identifier in the file with the token. 
+
+- This is merely a text substitution operation.
+
+---
+
+### Demo: `pi.c`
+
+.small[
+```C
+#define PI 3.1416
+int main()
+{
+  double p = PI;
+}
+```
+]
+
+Run `clang -E pi.c`.  What do you see?  (You can ignore the lines prefixed with `#`)
+
+---
+### `#include` Directives
+
+Recursively reads the lines from the included file and inserts them into the location where the `#include` directive is.
+
+---
+.small[
+```C
+// a.c
+#include "b.h"
+int main()
+{
+  foo(PI);
+}
+```
+]
+
+.small[
+```C
+// b.h
+#include "c.h"
+#define PI 3.1416
+```
+]
+.small[
+```C
+// c.h
+void foo(double x);
+```
+]
+---
+What do you see when you run `clang -E a.c`?
+
+---
+
+### Macro
+
+The `#define` directive can be used to create _macro_ -- a block of code that is given an identifying name and is substituted and expanded during pre-processing.
+
+For example:
+```C
+#define SQUARE(x) x*x
+```
+
+---
+Create a file `area.c`:
+
+.small[
+```C
+#define SQUARE(x) x*x
+#define PI 3.1415926
+int main()
+{
+  double radius = 4.0;
+  double area = PI*SQUARE(radius);
+}
+```
+]
+
+What do you see after `clang -E area.c`? 
+
+---
+
+### Nifty Macro That Works for Any Type
+
+.smaller[
+```C
+#define SWAP(T, x, y) {T t; t = x; x = y; y = t; }
+```
+]
+
+We can call it with
+```C
+SWAP(long, x, y);
+```
+
+---
+
+### Pitfall
+
+```C
+SQUARE(radius + 2);
+```
+
+gets expanded into
+
+```C
+radius + 2*radius + 2;
+```
+
+which is not what we want!
+
+---
+Always use parenthesis around the parameters when defining macros.
+
+```C
+#define SQUARE(x) (x)*(x)
+```
+
+expands to:
+```C
+(radius + 2)*(radius + 2);
+```
+
+---
+class: bottom
+
+.tiny[
+Version: 1.1
+
+Last Updated:  Sun Sep  4 00:22:15 +08 2022
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY2324 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

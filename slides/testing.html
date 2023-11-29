@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY22/23 S1 Lab 4</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+#### Lab 4
+## Intro to Testing
+
+### 15 September 2022
+
+---
+
+### How can we tell if our code works?
+
+- prove that it is correct
+
+- test it thoroughly
+
+---
+### Recall from Lecture 1
+
+- Passing all test cases does not mean our code is correct
+
+- Typically not possible to enumerate all possible inputs
+
+- But good test cases can improve our confidence that our code is correct
+
+---
+### How to Come Up with Test Cases?
+
+- Test against the input / output requirements
+
+- Test against the code
+
+---
+### Test Against Requirements
+
+- **Inputs:** test cases that cover boundary input values
+
+- **Outputs:** test cases that cover all possible outputs (or all possible classes of outputs)
+
+---
+### Example: Is a _positive integer_ prime?
+
+- **Inputs:** 1 (smallest positive integer), 2 (smallest prime)
+
+- **Outputs:** 3 (prime), 4 (not prime)
+
+---
+### Test Against The Code
+
+- **Conditionals**: test cases that cover the execution of both branches
+
+- **Loops**: test cases that cover the execution of 0-iteration and k-iteration (k &gt; 1).
+
+- Test cases that trigger the boundary of condition
+
+---
+.smaller[
+```C
+bool is_prime(long n) { // bad code for demo only
+  if (n % 2 == 0 || n % 3 == 0) {
+    return false;
+  }
+  long factor = 4;
+  while (factor &lt;= n) {
+    if (n % factor == 0) {
+      return false;
+    }
+    factor += 1;
+  }
+  return true;
+}
+```
+]
+
+---
+class: wide
+
+Possible test cases:
+
+- 4 and 6: trigger the true-block of if at Line 2
+- 1: cause the loop to be skipped (0-iteration)
+- 5: cause the loop to be executed (twice, in this case). 
+- 8: cause the `if (n % factor == 0)` to be true
+- 7: cause the `if (n % factor == 0)` to never be true
+
+---
+class: wide
+
+Now you try: 
+
+.tiny[
+```C
+// n is a positive number.  Prints out the position of the least 
+// significant occurrence of 9. If 9 does not appear in n, print 0.
+long find_least_significant_9(long n) {
+  long count = 1;
+  while (n != 0) {
+    if ((n % 10) == 9) {
+      return count;
+    }
+    n /= 10;
+    count += 1;
+  }
+  return 0;
+}
+```
+]
+
+---
+
+### Tips
+
+- Test each function separately
+
+- Simpler code -&gt; easier to test
+
+---
+class: bottom
+
+.tiny[
+Version: 1.1
+
+Last Updated:  Sun Sep  4 00:22:15 +08 2022
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY2223 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>
