@@ -35,7 +35,7 @@ Change the algorithm above to find the minimum value instead of the maximum valu
 Draw the flowchart for an algorithm, that takes in a list of integers $L = \langle l_0, ..., l_{k-1}\rangle, k > 0$, and computes the _sum_ of all the integers.  Think about what variable(s) do you need.
 
 
-### Problem 3.1: Getting MAD
+### Problem 3.1
 
 The mean absolute deviation, or MAD, of a set of integers measures how spread out a set of data is.  The _absolute deviation_ is the absolute difference between an element in the list with the mean of values of the list.  The mean absolute deviation is the mean of all the absolute differences.  In other words, given $L = \{l_0, ... l_{k-1}\}$, the MAD of $L$ is:
 
@@ -43,7 +43,7 @@ $$\frac{\sum_{i=0}^{k-1} |l_i - \mu|}{k}$$
 
 How do you find MAD by composing various functions we have seen?  Do you need a new function?
 
-### Problem 3.2: Ownself calls ownself
+### Problem 3.2
 
 (a) Give an algorithm for finding the sum of all the integers in the list $L$ with $k$ ($k > 0$) integers that is recursive.
 
@@ -609,7 +609,7 @@ int main() {
 
 What would be printed?
 
-### Problem Set 17.1
+### Problem 17.1
 
 Draw the call stack and the heap, showing what happened when we run the following code:
 
@@ -770,7 +770,7 @@ Suppose that we add a new restriction to the Tower of Hanoi puzzle.  Let's say t
 
 Change the recursive algorithm above to solve the Tower of Hanoi with this new restriction.  How many steps (use big O notation) are needed now?
 
-### Problem Set 24.1
+### Problem 24.1
 
 In the code above, we assume that the string contains distinct characters.  If there are duplicate characters in the string, duplicate permutations will be generated.  For instance, if the input is `aaa`, the code above would print `aaa` six times.
 
