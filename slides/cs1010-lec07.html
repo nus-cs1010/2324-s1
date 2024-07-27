@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lecture 7</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 7
+
+### 9 October 2023
+
+.smaller[
+Unit 15: **Pointer**<br>
+Unit 16: **Call-by-Reference**<br>
+Unit 17: **Heap**<br>
+Unit 18: **String**<br>
+]
+
+---
+class: middle
+
+Copy the following files from the home directory of CS1010 again:
+
+- `.clang-tidy`
+- `compile_flags.txt`
+
+We added new flags to help detect with memory errors.
+
+---
+class: middle
+background-image: url(figures/meme/explain_pointer.jpg)
+
+---
+### Variable 
+
+- A place in memory that holds one or more values
+
+- Every variable has a name, a type, a value, and an address
+
+- We can access a variable through its name or its memory address
+
+---
+### Accessing a Variable Through Its Name
+
+```C
+a = b;
+```
+
+Copy the value stored in memory location named `b` 
+
+into the memory location named `a`.
+
+---
+### Address-of operator `&`
+
+if `x` is the name of a variable, `&x` is its memory address.
+
+---
+```C
+long c;
+cs1010_println_long(c);
+cs1010_println_pointer(&c);
+```
+
+---
+### Array Decay
+
+```C
+long a[30];
+long *addr = a;
+```
+
+`a` is just `&a[0]`.
+
+---
+### Pointer 
+
+A variable that stores a memory address (mostly of other variables)
+
+```C
+long *addr;
+addr = &c;
+```
+
+---
+### Accessing the Address of a Variable 
+
+```C
+a = &b;
+```
+
+Copy the _address_ of the memory location named `b` 
+
+into the memory location named `a`.
+
+---
+### Dereference operator `*`
+
+if `x` is a pointer (a variable storing a memory address), `*x` is the content of that memory address.
+
+---
+### Changing variable via its address 
+
+.fit[![pointer](../notes/figures/lec07-pointers/lec07-pointers-pdf-4.png)]
+
+---
+### Accessing a Variable Through Its Address
+
+```C
+a = *b;
+```
+
+Copy the value stored in the memory location _of which the address is stored in memory location_ named `b` 
+
+into the memory location named `a`.
+
+---
+### Accessing a Variable Through Its Address
+
+```C
+*a = b;
+```
+
+Copy the value stored in the memory location named `b`
+
+into the memory location _of which the address is stored in memory location_ named `a` 
+
+
+---
+### Common Bug
+
+```C
+long *addr;
+*addr = 15;
+```
+
+---
+### During execution, your code must access only
+
+1. Memory on the allocated stack frames
+
+
+---
+### Pointer Types
+
+- if `x` as the type `T`, `&x` has the type `T*` (pointer to `T` / address of `T`)
+
+- if `x` as the type `T*`, `*x` has the type `T`
+
+---
+### Pointers must be of the same type
+
+```C
+double p = 3.1415926;
+long radius = 5;
+double *addr;
+addr = &p; // ok
+addr = &radius; // not ok
+```
+
+(`void *` is special)
+
+---
+### Pointer arithmetic
+
+```C
+long x = 1;
+long *ptr = &x;
+ptr += 1;
+```
+
+---
+class: middle,center
+
+`a[i]` is just another notation for `*(a + i)`
+
+---
+
+### Lab 5
+.small[
+```C
+void foo(long n) {
+  long x[3];
+  x[n] = 1;
+}
+
+int main()
+{
+  long n = cs1010_read_long();
+  foo(n);
+  cs1010_println_long(n);
+}
+```
+]
+
+---
+### Pointers are variables too
+
+```C
+long x;
+long *ptr = &x;
+long **ptrptr = &ptr;
+```
+
+---
+### The `NULL` Pointer
+
+A special pointer value that says a pointer points to "nothing".
+
+---
+class: middle,center
+
+## Call by Reference
+
+(non-array variables)
+
+---
+### Swap
+
+.smaller[
+```C
+void swap(long *a, long *b) {
+  long temp = *a;
+  *a = *b;
+  *b = temp;
+}
+
+int main() {
+  long a = 10;
+  long b = -4;
+  swap(&a, &b);
+}
+```
+]
+---
+class: middle,center
+
+## Heap
+
+---
+- Heap (aka data segment) is another region of memory that a program can utilize 
+
+- Explicitly "borrows" memory space for use
+
+- Must "return" the memory space after use
+
+---
+### Why heap?
+
+- Lifetime of content stored on heap can exceed the lifetime of the
+  function that allocates it
+
+- Size of heap is typically much larger than stack
+
+---
+How to borrow: `malloc` or `calloc`
+
+.smaller[
+```C
+void *malloc(size_t size);
+void *calloc(size_t count, size_t size);
+```
+]
+
+How to return: `free`
+
+.smaller[
+```C
+void free(void *);
+```
+]
+
+---
+### During execution, your code must access only
+
+1. Memory on the allocated stack frames
+2. Memory on the heap that the code borrows but hasn't returned
+
+---
+### Type `size_t`
+
+- A _unsigned_ integer type used for array index, amount of memory, size of types, etc.  
+
+---
+.smaller[
+```C
+long* cs1010_read_long_array(size_t how_many)
+{
+  long *buffer = calloc(how_many, sizeof(long));
+  if (buffer == NULL) {
+    return NULL;
+  }
+
+  for (size_t i = 0; i &lt; how_many; i += 1) {
+    buffer[i] = cs1010_read_long();
+  }
+
+  return buffer;
+}
+```
+]
+
+---
+.smaller[
+```C
+size_t len = cs1010_read_size_t();
+
+long *list = cs1010_read_long_array(len);
+
+long max = find_max(list, len);
+
+free(list);
+```
+]
+
+---
+### Common Bug 1
+
+.smaller[
+```C
+size_t len = cs1010_read_size_t();
+long *list = cs1010_read_long_array(len);
+long max = find_max(list, len);
+free(list);
+
+list[0] = 0; // use after free
+```
+]
+
+---
+### Common Bug 2
+
+.smaller[
+```C
+size_t len = cs1010_read_size_t();
+long *list = malloc(sizeof(long) * len);
+list = cs1010_read_long_array(len); // memory leak!
+long max = find_max(list, len);
+free(list);
+
+```
+]
+
+---
+class: middle,center
+
+       | Size Known in Advanced | Size Determined During Run-time 
+-------|-----------------------|-----------------------------------
+Stack  | Fixed-size Array      | VLA (stay away)      
+Heap   | stay away             | `malloc` / `calloc`  
+
+
+---
+class: middle,center
+
+## Characters and Strings
+
+---
+class: middle,center
+
+### `char` literals
+
+`'A'`, `'a'`, `'4'`, `'0'`, `'*'`, `'\n'`, `'\\'`
+
+.tiny[
+A literal is a constant value in C program that cannot be changed (as opposed to a variable).
+]
+
+---
+class: middle,center
+
+```C
+'A' + 1 == 'B'
+```
+
+---
+### String
+
+- An array of `char`
+- Terminated with the null character `'\0'`
+
+.small[
+```C
+char str[5] = { 'a', 'b', 'c', 'd', '\0' };
+```
+is the same as
+```C
+char str[5] = "abcd";
+```
+]
+
+---
+### String Literals
+
+Stored in read-only "text segment" in memory
+
+.smaller[
+```C
+char *str1 = "Hello";    // str1 points to read-only array
+char str2[6] = "Hello";  // str2 points to array on stack
+
+str1[0] = 'h'; // run-time error
+str2[0] = 'h'; // ok
+```
+]
+
+---
+### Summary of Important Rules
+
+- Do not access memory space you are not allowed to.
+
+- Always return memory space that you borrow.
+
+---
+### Homework
+
+- Problem Set 15-17
+- Exercise 4
+- Diagnostic Quiz 7
+
+---
+class: bottom
+
+.tiny[
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY23/24 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lecture 11</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 11
+
+### 6 November 2023
+
+.smaller[
+Admin Matters<br>
+Unit 26: Struct<br>
+Unit 27: Standard I/O<br>
+Recap<br>
+]
+---
+
+- No lecture next week 
+
+- **Exercise 8**: Due next Friday 
+- **Tutorial**: AY18/19 Final Questions (6,11,13-15)
+- **Lab**: Past year PE2 Questions
+- **Past Year** Finals and PE2 posted
+- This Year's PE1 posted
+
+---
+### PE0 and PE1
+
+- Will return as many as I can this week.
+
+---
+### PE2
+
+- Next Tuesday, 6 - 9 PM
+- Scope: until Unit 25
+
+---
+class: 
+
+### Open call for CS1010 memes
+
+- Share on Piazza
+- Feel free to roast me or the course.  
+
+---
+class: middle,center
+
+.fit[![enough](figures/meme/never-be-enough.gif)]
+
+---
+class: middle,center
+background-image: url(figures/ceg-shirt.jpg)
+
+### `struct`
+
+---
+### Some things belong together
+
+- 1D array and its length
+- 2D array, its width, and its height
+- x and y position in a maze
+- r, g, b of a pixel
+
+---
+### Defining a `struct`
+
+```C
+struct matrix {
+  double** cells;
+  long num_of_rows;
+  long num_of_columns;
+};
+```
+
+---
+```C
+struct course {
+  char *code;
+  char *title;
+  long units;
+};
+```
+
+---
+### Declaring a struct variable
+
+```C
+struct course cs1010;
+```
+
+---
+### Possible to have a `struct` of `struct`
+
+```C
+struct point {
+  long x;
+  long y;
+};
+
+struct rectangle {
+  struct point top_left;
+  struct point bottom_right;
+};
+```
+
+---
+### Initializing a struct variable
+
+.small[
+```C
+struct course cs1010;
+cs1010.code = "CS1010";
+cs1010.title = "Programming Methodology";
+cs1010.units = 4;
+```
+]
+
+---
+### Declaring AND Initializing a struct variable
+
+.small[
+```C
+struct course cs1010 = {
+  .code = "CS1010",
+  .title = "Programming Methodology",
+  .units = 4
+};
+```
+]
+---
+### Reading and writing members of a `struct`
+
+.small[
+```C
+cs1010.units = hours_spent_per_week/2.5;
+cs1010_println_long(cs1010.units);
+```
+]
+
+---
+### Assigning one `struct` to another
+
+.small[
+```C
+struct color black = {
+  .r = 0;
+  .g = 0;
+  .b = 0;
+};
+
+struct color background = black;
+```
+]
+
+---
+### `struct` are passed by-value
+
+.smaller[
+```C
+void update_units(struct course c, long weekly_hours) {
+  c.units = weekly_hours/2.5;
+}
+  :
+
+struct course cs1010;
+update_units(cs1010, 80);
+// { cs1010.units == 4 }
+```
+]
+
+---
+### Passing a `struct` by reference
+
+Using `*` dereference operator
+
+.smaller[
+```C
+void update_units(struct course *c, long weekly_hours) {
+  (*c).units = weekly_hours/2.5;
+}
+  :
+
+struct course cs1010;
+update_units(&cs1010, 80);
+// { cs1010.units == 32 }
+```
+]
+
+---
+### Passing a `struct` by reference
+
+Using `->` arrow operator
+
+.smaller[
+```C
+void update_units(struct course *c, long weekly_hours) {
+  c->units = weekly_hours/2.5;
+}
+  :
+
+struct course cs1010;
+update_units(&cs1010, 80);
+// { cs1010.units == 32 }
+```
+]
+
+---
+### Passing multiple values back to caller 
+
+Method 1
+
+.smaller[
+```C
+void find_max_steps(long n, long *max_n, long *max_num_steps) {
+  *max_num_steps = 0;
+  *max_n = 1;
+  for (long i = 1; i <= n; i += 1) {
+    long num_of_steps = count_num_of_steps(i);
+    if (num_of_steps >= *max_num_steps) {
+      *max_n = i;
+      *max_num_steps = num_of_steps;
+    }
+  }
+}
+```
+]
+
+---
+### Passing multiple values back to caller 
+
+Method 2
+
+.smaller[
+```C
+struct answer {
+  long max_n;
+  long max_num_steps;
+};
+```
+]
+
+---
+### Passing multiple values back to caller 
+
+.smaller[
+```C
+struct answer find_max_steps(long n) {
+  struct answer ans = {
+    .max_n = 1,
+    .max_num_steps = 0
+  };
+  for (long i = 1; i <= n; i += 1) {
+    long num_of_steps = count_num_of_steps(i);
+    if (num_of_steps >= ans.max_num_steps) {
+      ans.max_n = i;
+      ans.max_num_steps = num_of_steps;
+    }
+  }
+  return ans;
+}
+```
+]
+
+---
+### Defining Your Own Type
+
+.smaller[
+```C
+typedef unsigned long person_t;
+  :
+void is_contact(char **network, person_t i, person_t j) {
+  :
+}
+```
+]
+
+---
+.small[
+```C
+typedef struct course {
+  char *code;
+  char *title;
+  long units;
+} course;
+
+void update_units(course *c, long weekly_hours)
+{
+  c->units = weekly_hours/2.5;
+}
+```
+]
+
+---
+### Where to declare type and struct
+
+- Same scoping rules apply.
+
+- Structs and types are usually used across multiple functions -- you can define them globally.
+
+- Struct variables are still variables -- avoid global variables.
+
+---
+### Life After CS1010
+
+- No `Makefile`, `compile_flags.txt`, etc.
+
+- No CS1010 I/O library
+
+- Input is not always valid
+
+---
+### Reading and Printing without `libcs1010`
+
+- Most C introductory courses teach `printf` and `scanf`
+
+- How to use them correctly
+
+---
+.smaller[
+```C
+printf("%s is a %ld-unit course\n", course.code, course.units);
+
+long n = 42;
+printf("%ld\n", n);
+printf("%5ld\n", n);
+printf("%05ld\n", n);
+
+double pi = 3.1415926;
+printf("%.9lf\n", pi);
+printf("%010.3le\n", pi);
+```
+]
+
+---
+- `printf` behaves differently from functions that you have been writing.
+
+- It can take in a _variable number_ of arguments of _variable types_.
+
+---
+### Wrong/Dangerous use of `printf`
+
+```C
+double pi = 3.1415;
+long x = 0;
+printf("%ld\n", pi);
+printf("%ld %s\n", x, x);
+printf("%s %s\n");
+```
+
+---
+```C
+long width;
+long height;
+scanf("%ld %ld", &width, &height);
+```
+
+---
+- Space in between the format specifier matches zero or more white spaces (space, tab, newline)
+
+- Scanning stops when an input character does not match such a format character or when an input conversion fails
+
+---
+Reading a string with `scanf`
+
+```C
+char word[10];
+scanf("%s", word);
+```
+
+What could possible go wrong?
+
+---
+Reading a number with `scanf`
+
+```C
+long n;
+scanf("%ld", &n);
+```
+
+What could possible go wrong?
+
+
+---
+class: middle,center
+
+## Recap of CS1010
+
+---
+class: middle,center
+
+## What Have You Learned?
+
+---
+class: wide
+
+### 1. How to write C 
+
+- types, functions, arithmetic ops, if-else, logical expressions, loops, arrays, pointers, memory management, preprocessor, struct, I/O
+
+- Others we skipped: break/continue, switch, common C libraries API, bit operations, union, enum, argc/argv, separate compilation etc. 
+
+---
+
+- We focused on writing clean code.  Not just code that works.
+
+- Your code communicates your intention to both machines and humans.
+
+---
+class: wide
+
+### 2. How a C program behaves
+
+- machine code, data in memory, types, call stack, memory addr, call by value/ref, heap
+
+---
+
+We learned about:
+- low-level manipulation of variables via pointers
+
+- how to write programs that respect the OS with proper memory management
+
+---
+### 3. Tools and Practices
+
+- `clang`, `vim`, `bash`, style, assertion, (some) testing, (some) secure programming
+
+- Others we skipped: debugger, valgrind, git, make, documentation
+
+---
+### 4. Problem Solving
+
+- decomposition, recursion, flowchart, conditionals, assertions, loops, invariants, running time analysis, sorting, searching, efficiency
+
+---
+class: wide
+
+### Key Take-Aways 1/2
+
+.small[
+1. Use the right type for the job (e.g., no floating point when integer suffices)
+
+2. Decompose the problem and write simple, small, functions to build the solution.
+]
+
+
+---
+class: wide
+
+### Key Take-Aways 2/2
+
+.small[
+3. Use assertion and invariant to reason that your code is correct.
+
+4. Don't access memory that does not belong to you.  Always return what you borrow.
+
+5. Avoid duplicate and useless work.
+
+6. Exploit underlying property of data if you can.
+]
+---
+class: middle,center
+
+### Computational Thinking
+
+The mental process associated with computational problem solving
+
+---
+### Four Pillars of Computational Thinking
+
+- Decomposition
+- Pattern Recognition
+- Abstraction
+- Algorithms
+
+(We have been teaching these without being explicit about it)
+
+---
+class: middle,center
+
+## Decomposition
+
+---
+### Find the Std Dev (Lecture 2)
+
+- Give an algorithm to find the standard deviation of a list $L$ of $k$ integers.
+
+$$\sqrt{\frac{\sum\_{i=0}^{k-1}(l\_i - \mu)^2}{k}}$$
+
+---
+### Decomposition
+
+- Break complex problems down into "bite-size" sub-problems that you can solve
+
+- Short functions are easier to debug
+
+---
+### Taxi 
+
+.tiny[
+```C
+double surcharge(long day, long hour, long minute) {
+	if (is_weekday(day) && is_morning_peak(hour, minute)) {
+		return MORNING_SURCHARGE;  
+	}
+	if (is_evening_peak(hour)) {
+		return EVENING_SURCHARGE;  
+	}
+	if (is_midnight_peak(hour)) {
+		return MIDNIGHT_SURCHARGE;  
+	}
+	return 1.0; 
+}
+```
+]
+
+---
+### Taxi 
+
+.tiny[
+```C
+bool is_weekday(long day) { 
+  return (day >= 1 && day <= 5);
+}
+bool is_morning_peak(long hour, long minute) {
+  return (hour >= 6 && hour < 9) || 
+		 (hour == 9 && minute <= 29);
+}
+bool is_evening_peak(long hour) { 
+  return (hour >= 18 && hour <= 23); 
+} 
+bool is_midnight_peak(long hour) { 
+  return (hour >= 0 && hour < 6);
+}
+```
+]
+
+---
+### Social 
+
+.tiny[
+```C
+// is i and j connected through some m at h+1 hops?
+char is_connected(long n, char **deg1, char **degh, long i, long j) {
+	for (long m = 0; m < n; m += 1) { 
+		if (is_friend(deg1, i, m) && is_friend(degh, m, j)) {
+			return FRIEND;    
+		}  
+	} 
+	return STRANGER;
+}
+```
+]
+
+---
+### Social
+
+.tiny[
+```C
+bool is_friend(char **network, int i, int j) {
+   if (i >= j) {
+      return network[i][j] == FRIEND;  
+   } 
+   return network[j][i] == FRIEND;
+}
+```
+]
+
+---
+class: middle,center
+
+### Decomposition
+
+<i>"If you can't solve a problem, there is an easier problem that you can solve: find it"</i> -- George Polya
+
+---
+### Decomposition
+
+- Solve the easier problem first, then generalized.
+
+- E.g., `social`: find two-hops friends, then generalized to k hops
+
+- E.g., `pattern`: draw the left most cell, then generalized
+
+---
+### Recursion
+
+- Assume the easier problem is solved, then generalized.
+
+- E.g., `reverse`: assume we can reverse the rest of the numbers, then reverse the number
+
+- E.g., `tower of hanoi`: assume we know how to move k-1 discs, then solve for k disc.
+
+---
+### Four Pillars of Computational Thinking
+
+- Decomposition
+- **Pattern Recognition**
+- Abstraction
+- Algorithms
+
+---
+class: middle,center
+
+## Pattern Recognition
+
+---
+class: middle,center
+
+### Pattern Recognition
+
+Observe trends and patterns, then generalized
+
+---
+### Taxi 
+
+- The first 1 km or less (Flag Down) 	$3.90
+- Every 400 m thereafter or less, up to 10 km 	$0.24
+- Every 350 m thereafter or less, after 10 km 	$0.24
+
+(See the pattern?)
+
+---
+### Taxi
+
+| unit dist | max dist  | fare |
+|-----------|-----------|------|
+| Every 1000 m | next 1 km | $3.90 |
+| Every 400 m  | next 9 km | $0.24 |
+| Every 350 m  | next $\infty$ km | $0.24 |
+
+
+---
+### Taxi
+.tiny[
+```C
+double fare = 0;
+for (int i = 0; i < NUM_TIERS; i += 1) {
+    if (distance < 0) {
+		  return fare;
+    }
+	long min_dist = min(distance, tiers[i].max_distance);
+	double units = lceil(min_dist / tiers[i].unit_distance);
+	fare += tiers[i].fare * units;
+	distance -= tiers[i].max_distance;   
+}
+```
+]
+
+---
+class: middle,center
+
+### Writing loop is partly about pattern recognition.
+
+---
+
+### Onigiri
+
+.tiny[
+```
+#
+
+ #
+###
+
+  #  
+ ###
+#####
+
+   #  
+  ###
+ #####
+#######
+```
+]
+---
+
+### Onigiri
+
+.tiny[
+```C
+void draw_row(long k, long h) {
+    // row k has (2k - 1) #
+    // padded by h - k spaces
+    for (long i = 0; i < h - k; i += 1) {
+        cs1010_print_string(" ");
+    }
+    for (long i = 0; i < 2*k - 1; i += 1) {
+        cs1010_print_string("#");
+    }
+    for (long i = 0; i < h - k; i += 1) {
+        cs1010_print_string(" ");
+    }
+    cs1010_println_string("");
+}
+```
+]
+
+---
+### Summation
+
+.small[
+```C
+long summation(long n) {
+  long sum = n;
+  long i = n;
+  while (i > 0) {
+    i -= 1;
+	sum += i;
+  }
+  return sum;
+}
+```
+]
+
+---
+
+### Four Pillars of Computational Thinking
+
+- Decomposition
+- Pattern Recognition
+- **Abstraction**
+- Algorithms
+
+
+---
+class: middle,center
+
+## Abstraction
+
+---
+### Abstraction
+
+- Identifying and abstracting relevant information
+- Hide details
+- Adapt to change
+- Generalize to other domain
+
+---
+class: middle,center
+
+### Data Abstraction
+
+Model the problem with only the necessary information
+
+---
+class: center,middle
+### N-Queens
+
+.fit[![queens](../notes/figures/lec10-queens/lec10-queens-pdf-6.png)]
+---
+class: center,middle
+### Hanoi
+
+.fit[![hanoi](../notes/figures/tower-of-hanoi/tower-of-hanoi.002.png)]
+
+---
+class: middle,center
+
+### Functional Abstraction
+
+Hide details and focus on higher-level logic
+
+---
+class:wide
+
+What if the peak hours are extended?  surchange increases?  
+
+.tiny[
+```C
+double surcharge(long day, long hour, long minute) {
+	if (is_weekday(day) && is_morning_peak(hour, minute)) {
+		return MORNING_SURCHARGE;  
+	}
+	if (is_evening_peak(hour)) {
+		return EVENING_SURCHARGE;  
+	}
+	if (is_midnight_peak(hour)) {
+		return MIDNIGHT_SURCHARGE;  
+	}
+	return 1.0; 
+}
+```
+]
+
+---
+class:wide
+
+Does it matter (to this code) if jagged or rectangular array is used?
+
+.tiny[
+```C
+// is i and j connected through some m at h+1 hops?
+char is_connected(long n, network deg1, network degh, long i, long j) {
+	for (long m = 0; m < n; m += 1) { 
+		if (is_friend(deg1, i, m) && is_friend(degh, m, j)) {
+			return FRIEND;    
+		}  
+	} 
+	return STRANGER;
+}
+```
+]
+
+---
+
+### Four Pillars of Computational Thinking
+
+- Decomposition
+- Pattern Recognition
+- Abstraction
+- **Algorithms**
+
+---
+class: middle,center
+
+### CS1010 is not an easy course
+
+.fit[![thanos](figures/meme/thanos-everything.jpg)]
+
+---
+class:bottom,right,wide
+
+background-image: url(figures/meme22/dont_know_whats_wrong.jpg)
+
+.tiny[by Parth<br> and Friends<br> (22/23 S1)]
+
+---
+class:bottom,right,wide
+
+background-image: url(figures/meme22/once_again_asking.jpg)
+
+.tiny[by Parth<br> and Friends<br> (22/23 S1)]
+
+---
+class:bottom,right,wide
+
+background-image: url(figures/meme22/incomplete_exercises.jpg)
+
+.tiny[by Parth<br> and Friends<br> (22/23 S1)]
+
+---
+### Upcoming Activities
+
+- Two labs
+- Two tutorials
+- PE2 and final
+- Quiz 11
+- Catch-up 4
+- Exercise 8
+
+---
+### Special Thanks to 
+
+- Instructor and tutors
+
+- The SoC IT Support Team: Tan Hsiao Wei, sys admin, and lab technicians
+
+- All the students
+
+
+---
+class: bottom
+
+.tiny[
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY23/24 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>
