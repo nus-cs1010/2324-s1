@@ -1,0 +1,1840 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/notes/23-tower.html">
+      
+      
+        <link rel="prev" href="22-sort.html">
+      
+      
+        <link rel="next" href="24-permutation.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>23. Tower of Hanoi - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unit-23-tower-of-hanoi" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              23. Tower of Hanoi
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-program.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    1. What is a Program?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-algo.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Computational Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-func.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-type.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-first-c.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    5. First C Program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-cs1010-io.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    6. CS1010 I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07-arithmetic-ops.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Arithmetic Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-if-else.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Conditional Statement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-logical-exp.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Logical Expression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-assert.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Assertion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-loop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-invariant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Invariant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-call-stack.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Call Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-array.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Fixed-Length Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-pointers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Pointers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-call-by-reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Call by Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-heap.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    17. Heap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-string.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    18. String
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-md-array.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    19. Multidimensional Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-efficiency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    20. Efficiency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-search.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    21. Searching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-sort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Sorting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    23. Tower of Hanoi
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="23-tower.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    23. Tower of Hanoi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-tower-of-hanoi-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Tower of Hanoi Problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-recursion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Recursion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#representing-the-tower-of-hanoi-in-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Representing the Tower of Hanoi in Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Solution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Time
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solving-tower-of-hanoi-iteratively" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solving Tower of Hanoi Iteratively
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-set-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Set 23
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Set 23">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-231" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 23.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-complete-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: Complete Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-permutation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    24. Permutation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-queens.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    25. N-Queens
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-struct.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    26. Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="27-stdio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    27. Standard I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../guides/unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../guides/exercises.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-tower-of-hanoi-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Tower of Hanoi Problem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-recursion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Recursion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#representing-the-tower-of-hanoi-in-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Representing the Tower of Hanoi in Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Solution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Time
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solving-tower-of-hanoi-iteratively" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solving Tower of Hanoi Iteratively
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-set-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Set 23
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Set 23">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-231" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 23.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-complete-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: Complete Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="01-program.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Notes
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="unit-23-tower-of-hanoi">Unit 23: Tower of Hanoi</h1>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>After this unit, students should:</p>
+<ul>
+<li>appreciate of how recursion can be used in a non-linear way that cannot be easily replaced with an iterative solution</li>
+<li>aware of the classic Tower of Hanoi problem </li>
+<li>understand the recursive solution to the Tower of Hanoi problem</li>
+</ul>
+<h2 id="the-tower-of-hanoi-problem">The Tower of Hanoi Problem</h2>
+<p>We have introduced you to the concept of recursion since the beginning of the module.  So far, however, we dealt mostly with linear recursion -- recursive solutions that can be re-formulated with loops.  We have not yet unleashed the true power of recursive thinking.  We will do so in this unit.</p>
+<p>In this unit and the next two units, we will see how we can use recursion to solve more complex problems.  We will start with the Tower of Hanoi problem in this unit.</p>
+<p>The Tower of Hanoi problem is a famous mathematical puzzle invented by French mathematician Édouard Lucas in 1883.  It goes like this: There are three pegs and <span class="arithmatex">\(n\)</span> disks of various sizes that we can slide into any of the pegs.  There are a few rules that we have to obey:</p>
+<ul>
+<li>we can only move one disk at a time;</li>
+<li>we can only move the topmost disk from one peg and place the disk on another peg;</li>
+<li>no disk can be placed on top of a smaller disk.</li>
+</ul>
+<p>In the beginning, we have all the disks in one peg.  The goal is to move all the disks onto another peg.</p>
+<p>Wikipedia has the following animation showing how to solve the puzzle with 4 disks in 15 steps.</p>
+<p><img alt="solution" src="figures/tower.gif" /></p>
+<p><small>
+by André Karwath aka <a href="//commons.wikimedia.org/wiki/User:Aka" title="User:Aka">Aka</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/2.5" title="Creative Commons Attribution-Share Alike 2.5">CC BY-SA 2.5</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=85401">Link</a>
+</small></p>
+<p>You can play a <a href="https://www.mathplayground.com/logic_tower_of_hanoi.html">version online here</a></p>
+<h2 id="using-recursion">Using Recursion</h2>
+<p>Recall the two steps in recursive problem-solving: (i) reduce the problem to the simplest version where we can solve it trivially; and (ii) assuming that we can solve the simpler version of the problem, we build on top of the solution to solve the more complex version.</p>
+<p>What is the simplest version of the Tower of Hanoi puzzle?  It is the version with only a single disk.  In this version, the solution is trivial -- we just move the disk from the source peg to the destination peg</p>
+<p>Let's label the pegs A, B, and C, with A being the source and C being the destination.  We will use peg B as a temporary placeholder.  </p>
+<p>Now, let's assume that we can solve the Tower of Hanoi puzzle for <span class="arithmatex">\(k-1\)</span> disks.  How can we solve the puzzle for <span class="arithmatex">\(k\)</span> disks?  It turns out the solution is equally trivial.  First, move the top <span class="arithmatex">\(k-1\)</span> disk from A to B.  This would free up the largest disk, which we move from A to C.  Then, we move the <span class="arithmatex">\(k-1\)</span> disk from B to C.</p>
+<p><img alt="Tower of Hanoi" src="figures/tower-of-hanoi/tower-of-hanoi.001.png" />
+<img alt="Tower of Hanoi" src="figures/tower-of-hanoi/tower-of-hanoi.002.png" /></p>
+<p>The figures above illustrate the recursion steps.  The first figure shows the original configuration.  The second figure shows the recursive step -- by wishful thinking, we believe that we can solve the puzzle for <span class="arithmatex">\(k-1\)</span> disks and move <span class="arithmatex">\(k-1\)</span> disks from A to B, using C as the placeholder.  The third figure shows the move after moving the largest disk from A to C.  The last figure shows the move of <span class="arithmatex">\(k-1\)</span> disks from B to C.  Now that A is empty, the last move uses A as the placeholder.</p>
+<h2 id="representing-the-tower-of-hanoi-in-code">Representing the Tower of Hanoi in Code</h2>
+<p>To write a solution to the Tower of Hanoi, we need to decide how to represent the disks and the pegs in our code.  We are going to <em>abstract</em> out only the necessary details.  Such an abstraction process is similar to what we have done so far, representing elevations data as integers, student ids as integers, etc.  Here, we are representing physical objects, but note that the actual size of the disks, the location of the pegs, etc, do not matter in our code.  As such, we will represent the disks with integers 1 to <span class="arithmatex">\(k\)</span> (1 being smallest, <span class="arithmatex">\(k\)</span> being the largest) and pegs with characters 'A', 'B', and 'C'.</p>
+<h2 id="the-solution">The Solution</h2>
+<p>Let's write the code for a function <code>void solve_tower_of_hanoi(long k, long source, long dest, long placeholder)</code>, which will print out the solution for moving <span class="arithmatex">\(k\)</span> disks from the peg <code>source</code> to the peg <code>dest</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">solve_tower_of_hanoi</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">dest</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">placeholder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">dest</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">solve_tower_of_hanoi</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">placeholder</span><span class="p">,</span><span class="w"> </span><span class="n">dest</span><span class="p">);</span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">dest</span><span class="p">);</span>
+<span class="w">    </span><span class="n">solve_tower_of_hanoi</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">placeholder</span><span class="p">,</span><span class="w"> </span><span class="n">dest</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>where <code>print</code> is a helper function to display the move to standard output.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">dest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">cs1010_print_string</span><span class="p">(</span><span class="s">&quot;Disk &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cs1010_print_long</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cs1010_print_string</span><span class="p">(</span><span class="s">&quot;: Peg &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">putchar</span><span class="p">(</span><span class="n">source</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cs1010_print_string</span><span class="p">(</span><span class="s">&quot; -&gt; Peg &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">putchar</span><span class="p">(</span><span class="n">dest</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cs1010_println_string</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<h2 id="running-time">Running Time</h2>
+<p>How many moves does it take to solve the Tower of Hanoi puzzle with <span class="arithmatex">\(k\)</span> disks?</p>
+<p>If <span class="arithmatex">\(k\)</span> is 1, then it takes one move.  Otherwise, let us denote the number of moves taken as <span class="arithmatex">\(T(k)\)</span>.  From the code, we can see that it takes <span class="arithmatex">\(T(k) = 2T(k-1) + 1\)</span>.</p>
+<p>You can see that:</p>
+<div class="arithmatex">\[T(k) = 2T(k-1) + 1 = 4T(k-2) + 2 + 1 = 8T(k-3) + 4 + 2 + 1 = ...\]</div>
+<p>So,</p>
+<div class="arithmatex">\[T(k) = 2^{k-1}T(1) + 2^{k-2} + ... + 4 + 2 + 1\]</div>
+<p>Since <span class="arithmatex">\(T(1) = 1\)</span>, we have</p>
+<div class="arithmatex">\[T(k) = 2^{k-1} + 2^{k-2} + ... + 4 + 2 + 1 = 2^k - 1\]</div>
+<p>Thus, solving the Tower of Hanoi with <span class="arithmatex">\(k\)</span> disks takes <span class="arithmatex">\(2^k-1\)</span> steps.</p>
+<h3 id="solving-tower-of-hanoi-iteratively">Solving Tower of Hanoi Iteratively</h3>
+<p>Every recursive algorithm can be expressed as an iterative one.  Thus, an algorithm to solve the Tower of Hanoi iteratively exists.  It is, however, non-trivial and not as easily understood.  Such a solution usually involves a data structure called stack (you will learn this in CS2040C).  The stack simply imitates the recursive call stack of our recursive solution.</p>
+<p>You can put some thought into how to solve the Tower of Hanoi using only loops to convince yourself that the recursive solution is much neater.</p>
+<h2 id="problem-set-23">Problem Set 23</h2>
+<h3 id="problem-231">Problem 23.1</h3>
+<p>Suppose that we add a new restriction to the Tower of Hanoi puzzle.  Let's say that the disks are on Peg A, to begin with, and we want to move the disk to Peg C.  We are only allowed to move a disk either to Peg B from another peg or from Peg B to another peg.  In other words, we cannot move the disks between Peg A and Peg C directly.</p>
+<p>Change the recursive algorithm above to solve the Tower of Hanoi with this new restriction.  How many steps (use big O notation) are needed now?</p>
+<h2 id="appendix-complete-code">Appendix: Complete Code</h2>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;cs1010.h&quot;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Move Disk k from Peg source to Peg dest.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] k The disk to move</span>
+<span class="cm"> * @param[in] source The peg Disk k is currently at.</span>
+<span class="cm"> * @param[in] dest The peg Disk k is moved to.</span>
+<span class="cm"> */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">move</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">dest</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">cs1010_print_string</span><span class="p">(</span><span class="s">&quot;Disk &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cs1010_print_long</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cs1010_print_string</span><span class="p">(</span><span class="s">&quot;: Peg &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">putchar</span><span class="p">(</span><span class="n">source</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cs1010_print_string</span><span class="p">(</span><span class="s">&quot; -&gt; Peg &quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">putchar</span><span class="p">(</span><span class="n">dest</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cs1010_println_string</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">dest</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">placeholder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">move</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">dest</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">solve</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">placeholder</span><span class="p">,</span><span class="w"> </span><span class="n">dest</span><span class="p">);</span>
+<span class="w">  </span><span class="n">move</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">dest</span><span class="p">);</span>
+<span class="w">  </span><span class="n">solve</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">placeholder</span><span class="p">,</span><span class="w"> </span><span class="n">dest</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_long</span><span class="p">();</span>
+<span class="w">  </span><span class="n">solve</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;C&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;B&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="22-sort.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 22. Sorting">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                22. Sorting
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="24-permutation.html" class="md-footer__link md-footer__link--next" aria-label="Next: 24. Permutation">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                24. Permutation
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1606 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/exercises/ex00.html">
+      
+      
+        <link rel="prev" href="../guides/exercises.html">
+      
+      
+        <link rel="next" href="ex01.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>0. I/O, Types, and Arithmetic - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exercise-0-io-types-arithmetic-functions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              0. I/O, Types, and Arithmetic
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../notes/01-program.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../guides/unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exercises
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/exercises.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide to Exercises
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    0. I/O, Types, and Arithmetic
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ex00.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    0. I/O, Types, and Arithmetic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-time-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Time Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-and-difficulty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts and Difficulty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-echo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 1: Echo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Echo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample run:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-divide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 2: Divide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: Divide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample run:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-ones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 3: Ones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Ones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample run:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-bmi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 4: BMI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: BMI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample run:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-5-quadratic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 5: Quadratic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 5: Quadratic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample run:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-6-cuboid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 6: Cuboid
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 6: Cuboid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex01.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex02.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex03.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Fixed-Length Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex04.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Dynamic Arrays and Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex05.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Multi-dimensional Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex06.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Searching and Sorting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex07.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Recursions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex08.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Struct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-time-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Time Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-and-difficulty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts and Difficulty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-echo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 1: Echo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Echo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample run:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-divide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 2: Divide
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: Divide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample run:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-ones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 3: Ones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Ones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample run:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-bmi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 4: BMI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: BMI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample run:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-5-quadratic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 5: Quadratic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 5: Quadratic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample run:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-6-cuboid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 6: Cuboid
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 6: Cuboid">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../guides/exercises.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Exercises
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="exercise-0-io-types-arithmetic-functions">Exercise 0: I/O, Types, Arithmetic, Functions</h1>
+<h3 id="prerequisite">Prerequisite</h3>
+<p>Before attempting this exercise, please make sure that you:</p>
+<ul>
+<li>can access the <a href="../guides/environments.html">CS1010 programming environment</a>.</li>
+<li>are familiar with <a href="../guides/unix-essentials.html">basic UNIX CLI</a> and using the terminal-based editor <code>vim</code>.</li>
+<li>have <a href="../guides/vim-setup.html">set up your <code>vim</code></a>.</li>
+<li>have read <a href="../guides/exercises.html">the guide and instructions for programming exercises</a>.</li>
+</ul>
+<h3 id="learning-outcomes">Learning Outcomes</h3>
+<p>Be comfortable writing simple C programs that involve I/O, <code>long</code> and <code>double</code> types, arithmetic operations, and function decomposition/reuse.</p>
+<h3 id="one-time-setup">One-Time Setup</h3>
+<p>Before going into your first programming exercise, you need to do a one-time setup of your account on PE.  <a href="../guides/github.html">Follow the instructions here</a>.</p>
+<h3 id="concepts-and-difficulty">Concepts and Difficulty</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Question</th>
+<th>I/O</th>
+<th>Types</th>
+<th>Arithmetic</th>
+<th>Function</th>
+<th>Difficulty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="#question-1-echo">Echo</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="#question-2-divide">Divide</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27z"/></svg></span></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="#question-3-ones">Ones</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27z"/></svg></span></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="#question-4-bmi">BMI</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="#question-5-quadratic">Quadratic</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="#question-6-cuboid">Cuboid</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27z"/></svg></span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="question-1-echo">Question 1: Echo</h2>
+<p>Write a program <code>echo</code> (source file <code>echo.c</code>) that reads in an integer and prints that integer to the standard output.</p>
+<h3 id="sample-run">Sample run:</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe111:~/ex00-ooiwt$ ./echo
+123
+123
+ooiwt@pe111:~/ex00-ooiwt$ ./echo
+-1
+-1
+</code></pre></div></td></tr></table></div>
+<p>The text <code>ooiwt@pe111:~/ex00-ooiwt$</code> is the command prompt.  Yours will look different, of course.  <code>echo</code> is the executable you created.  The next line, <code>123</code>, is the input you provide.  Press enter after the input.  <code>123</code> is the output printed by <code>echo</code>.</p>
+<h2 id="question-2-divide">Question 2: Divide</h2>
+<p>Write a program <code>divide</code> (source file <code>divide.c</code>) that reads in two integers, <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span>, and print the value of <span class="arithmatex">\(x\)</span> divided by <span class="arithmatex">\(y\)</span>.  You can assume that <span class="arithmatex">\(y\)</span> is never 0.</p>
+<h3 id="sample-run_1">Sample run:</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe111:~/ex00-ooiwt$ ./divide
+10 2
+5.0000
+ooiwt@pe111:~/ex00-ooiwt$ ./divide
+1 2
+0.5000
+</code></pre></div></td></tr></table></div>
+<p>Question Credit: Hu Jialun (cohort 20/21)</p>
+<h2 id="question-3-ones">Question 3: Ones</h2>
+<p>Write a program <code>ones</code> (source file <code>ones.c</code>) that reads in a positive integer <span class="arithmatex">\(n\)</span> that is at least 10.  Print two lines to the standard output: the first line contains the last digit of <span class="arithmatex">\(n\)</span>.  The next line contains all the other digits of <span class="arithmatex">\(n\)</span> excluding the last one. </p>
+<h3 id="sample-run_2">Sample run:</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe111:~/ex00-ooiwt$ ./ones
+10
+0
+1
+ooiwt@pe111:~/ex00-ooiwt$ ./ones
+95324
+4
+9532
+</code></pre></div></td></tr></table></div>
+<h2 id="question-4-bmi">Question 4: BMI</h2>
+<p>Your body mass index (BMI) can be calculated by your body mass divided by the square of the body height.  BMI is expressed in units of <span class="arithmatex">\(kg/m^2\)</span>. </p>
+<p>Write a program <code>bmi</code> (source file <code>bmi.c</code>) that reads in two real numbers <span class="arithmatex">\(h\)</span> and <span class="arithmatex">\(w\)</span> from the standard input.  <span class="arithmatex">\(h\)</span> is the height of a person <em>in centimeters (cm)</em>, and weight is the weight of the person in kilograms (kg).</p>
+<p>Your program must include a function called <code>compute_bmi</code> that takes in two parameters, the weight in kilograms (kg), and height <em>in meters (m)</em>, and return the corresponding BMI of the given weight and height.</p>
+<p>Question Credit: Hu Jialun (cohort 20/21)</p>
+<h3 id="sample-run_3">Sample run:</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe111:~/ex00-ooiwt$ ./bmi
+100.0 50
+50.0000
+ooiwt@pe111:~/ex00-ooiwt$ ./bmi
+182.9 70.125
+20.9626
+</code></pre></div></td></tr></table></div>
+<h2 id="question-5-quadratic">Question 5: Quadratic</h2>
+<p>Write a program <code>quadratic</code> (source file <code>quadratic.c</code>) that reads in three floating point numbers, <span class="arithmatex">\(a\)</span>, <span class="arithmatex">\(b\)</span>, and <span class="arithmatex">\(c\)</span>, that represent the quadratic equation <span class="arithmatex">\(ax^2 + bx + c = 0\)</span>, and prints its two roots.  Assume that <span class="arithmatex">\(a \not = 0\)</span> and <span class="arithmatex">\(b^2 &gt; 4ac\)</span>.  Recall that the roots are:</p>
+<div class="arithmatex">\[
+\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\]</div>
+<p>Print the root <span class="arithmatex">\(\frac{-b + \sqrt{b^2 - 4ac}}{2a}\)</span> first on one line,
+followed by the other root <span class="arithmatex">\(\frac{-b - \sqrt{b^2 - 4ac}}{2a}\)</span> on the next line.</p>
+<p>Try and decompose the computation of the roots into smaller functions for reusability.</p>
+<h3 id="sample-run_4">Sample run:</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe111:~/ex00-ooiwt$ ./quadratic
+1.0 -2.0 1.0
+1.0000
+1.0000
+ooiwt@pe111:~/ex00-ooiwt$ ./quadratic
+2.0 -7.0 3.0
+3.0000
+0.5000
+</code></pre></div></td></tr></table></div>
+<h2 id="question-6-cuboid">Question 6: Cuboid</h2>
+<p>A cuboid is a 3D shape with six rectangular faces.  We can specify such a cuboid with three parameters, the width <span class="arithmatex">\(w\)</span>, the length <span class="arithmatex">\(l\)</span>, and the height <span class="arithmatex">\(h\)</span>.</p>
+<p><img alt="cuboid" src="figures/ex00-cuboid/cuboid.png" width="60%" /></p>
+<p>Our task is to calculate (i) the surface area of a cuboid, and (ii) the length of the diagonal of the cuboid (the red dash line in the figure above). </p>
+<p>Complete the task by decomposing the calculations into two functions.  To complete this task, in <code>cuboid.c</code>,</p>
+<ul>
+<li>Write a function <code>hypotenuse_of</code> to compute the hypotenuse of a right-angled triangle, given the length of the legs (the sides adjacent to the right angle).</li>
+<li>Write a function <code>area_of_rectangle</code> that computes the area of a rectangle given its width and length.</li>
+</ul>
+<p>Finally, complete the program <code>cuboid.c</code> so that it reads, from the standard input, three positive integers representing the width, length, and height of the cuboid (in that order) and prints, to the standard output, its surface area, followed by the length of its diagonal.</p>
+<p>Solve this question by using composing and reusing the two functions above.  You may add additional functions if needed.</p>
+<p>Pay attention to the types (<code>long</code> or <code>double</code>) used in the inputs, calculations, and outputs.  Keep your variable as integer type (<code>long</code>) as long as possible.</p>
+<h3 id="sample-run_5">Sample Run</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe111:~/ex00-ooiwt$ ./cuboid
+3 4 12
+192
+13.0000
+ooiwt@pe111:~/ex00-ooiwt$ ./cuboid
+9 12 8
+552
+17.0000
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../guides/exercises.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Guide to Exercises">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Guide to Exercises
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="ex01.html" class="md-footer__link md-footer__link--next" aria-label="Next: 1. Conditionals">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                1. Conditionals
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

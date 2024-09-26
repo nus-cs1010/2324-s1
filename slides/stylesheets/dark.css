@@ -1,0 +1,24 @@
+.remark-slide-content {
+	background-color: #272822; 
+    color: #ddd;
+}
+
+.remark-inline-code { 
+	background-color: #181818;
+}
+
+em {
+	color: #fdd;
+}
+
+a {
+    color: #ddf;
+}
+
+table thead {
+  background-color: rgba(33, 173, 168, 0.1);
+}
+
+table td, table th {
+	border-bottom: rgba(33, 173, 168, 0.6);
+}

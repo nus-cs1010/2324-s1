@@ -1,0 +1,1569 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/exercises/ex06.html">
+      
+      
+        <link rel="prev" href="ex05.html">
+      
+      
+        <link rel="next" href="ex07.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>6. Searching and Sorting - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exercise-6-searching-and-sorting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6. Searching and Sorting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../notes/01-program.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../guides/unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exercises
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/exercises.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide to Exercises
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex00.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    0. I/O, Types, and Arithmetic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex01.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex02.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex03.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Fixed-Length Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex04.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Dynamic Arrays and Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex05.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Multi-dimensional Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Searching and Sorting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ex06.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Searching and Sorting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deadline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deadline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acceptance-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acceptance Link
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-and-difficulty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts and Difficulty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 1: Sort
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Sort">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-valley" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 2: Valley
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: Valley">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-inversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 3: Inversion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Inversion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-lexicon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 4: Lexicon
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: Lexicon">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex07.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Recursions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex08.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Struct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deadline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deadline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acceptance-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acceptance Link
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-and-difficulty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts and Difficulty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 1: Sort
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Sort">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-valley" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 2: Valley
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: Valley">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-inversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 3: Inversion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Inversion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-lexicon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 4: Lexicon
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: Lexicon">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../guides/exercises.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Exercises
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="exercise-6-searching-and-sorting">Exercise 6: Searching and Sorting</h1>
+<h3 id="prerequisite">Prerequisite</h3>
+<p>You have completed <a href="ex05.html">Exercise 5</a>. </p>
+<h3 id="learning-outcomes">Learning Outcomes</h3>
+<p>Be comfortable studying properties in the input and apply them to efficiently solve problems.</p>
+<h3 id="deadline">Deadline</h3>
+<p>This exercise is part of the CS1010 formative assessment. Submit your solution before 30 October 2023, 23:59 to receive feedback and earn your achievement "badges".</p>
+<h3 id="acceptance-link">Acceptance Link</h3>
+<p>The link to accept the exercise is not available publicly.  Visit Canvas for the link.</p>
+<h3 id="concepts-and-difficulty">Concepts and Difficulty</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Question</th>
+<th>Sorting</th>
+<th>Searching</th>
+<th>Difficulty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="#question-1-sort">Sort</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="#question-2-valley">Valley</a></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="#question-3-inversion">Inversion</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="#question-4-lexicon">Lexicon</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="question-1-sort">Question 1: Sort</h2>
+<p>A v-array is an array of integers with a special property.  The array can be partitioned into two segments: in the first segment, the numbers are sorted in non-ascending order.  In the second part, the numbers are sorted in non-descending order.  For example, <code>9 4 2 5 5 8</code> is a v-array.  <code>9 4</code> is in non-ascending order, while <code>2 5 5 8</code> are in non-descending order.   On the other hand, <code>9 4 5 2 5 8</code> is not a v-array.  </p>
+<p>A v-array can be only non-ascending or non-descending.  For instance, both <code>1 2 3</code>, <code>8 8 8 8</code>, and <code>-2 -5 -10</code> are all valid v-arrays.</p>
+<p>Write a program <code>sort</code>, that reads from standard input:</p>
+<ul>
+<li>a positive integer <span class="arithmatex">\(n\)</span>,</li>
+<li>followed by <span class="arithmatex">\(n\)</span> numbers that form a v-array.</li>
+</ul>
+<p>The program <code>sort</code> then sorts the numbers in the v-array in non-descending order and prints the numbers to the standard output, one number per line.</p>
+<p>You must solve this problem with an <span class="arithmatex">\(O(n)\)</span> algorithm.  Solving this in <span class="arithmatex">\(O(n^2)\)</span> or <span class="arithmatex">\(O(n \log{n})\)</span> is trivial and such solution will be categorized as "Need Improvement"</p>
+<h3 id="sample-runs">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe119:~/ex06-skeleton$ cat inputs/sort.1.in
+5
+5 4 2 1 3
+ooiwt@pe119:~/ex06-skeleton$ ./sort &lt; inputs/sort.1.in
+1
+2
+3
+4
+5
+</code></pre></div></td></tr></table></div>
+<h2 id="question-2-valley">Question 2: Valley</h2>
+<p>A <em>strict v-array</em> is a v-array where no two adjacent elements have the same value.</p>
+<p>In this problem, we wish to find the minimum value of a strict v-array, known as a <em>valley</em>.  </p>
+<p>Write a program <code>valley</code>, that reads from standard input:</p>
+<ul>
+<li>a positive integer <span class="arithmatex">\(n\)</span>,</li>
+<li>followed by <span class="arithmatex">\(n\)</span> numbers that form a strict v-array.</li>
+</ul>
+<p>The program <code>valley</code> then prints the valley of the array to the standard output.</p>
+<p>You must solve this problem with an <span class="arithmatex">\(O(\log{n})\)</span> algorithm.  Solving this in <span class="arithmatex">\(O(n)\)</span> is trivial, and such solution will be marked as "Need Improvement."</p>
+<h3 id="sample-runs_1">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe119:~/ex06-skeleton$ cat inputs/valley.1.in
+5
+5 4 2 1 3
+ooiwt@pe119:~/ex06-skeleton$ ./sort &lt; inputs/valley.1.in
+1
+</code></pre></div></td></tr></table></div>
+<h2 id="question-3-inversion">Question 3: Inversion</h2>
+<p>In an array that is supposed to be sorted in some order, an <em>inversion</em> is a pair of numbers that is out of order.  For instance, if we want to sort the array "1 3 4 2", in increasing order, the pair (3, 2) and (4, 2) are out of order.  So there are two inversions in this array.  </p>
+<p>An array that is sorted has no inversion, while an array of size <span class="arithmatex">\(n\)</span> that is inversely sort has <span class="arithmatex">\(n(n-1)/2\)</span> inversions.  </p>
+<p>The concept of inversion is not new.  In the problem <code>kendall</code>, you have counted the number of inversions.  In bubble sort, every pass removes some number of inversions until no more inversion is left. </p>
+<p>In this question, you are given an array of <span class="arithmatex">\(n\)</span> integers where the elements are unique, i.e., there is no duplicate in the inputs.  Furthermore, the input is the inverse of a v-array.  There is some <span class="arithmatex">\(k\)</span>, <span class="arithmatex">\(0 \le k \le n\)</span>, where the first <span class="arithmatex">\(k\)</span> elements in the array are in increasing order, and the remaining <span class="arithmatex">\(n - k\)</span> elements are in decreasing order.</p>
+<p>Write a program <code>inversion</code> that reads, from the standard input, the following:</p>
+<ul>
+<li>An integer <span class="arithmatex">\(n (n \ge 1)\)</span>, followed by</li>
+<li><span class="arithmatex">\(n\)</span> integers</li>
+</ul>
+<p>You program should then prints, to the standard output, the number of inversions in the input.</p>
+<p>You have already solved this problem in <code>kendall</code> in <span class="arithmatex">\(O(n^2)\)</span> time, so, an <span class="arithmatex">\(O(n^2)\)</span> solution would be marked as "Need Improvement".  An <span class="arithmatex">\(O(n log n)\)</span> solution would be "Good", while an <span class="arithmatex">\(O(n)\)</span> solution would be "Excellent".</p>
+<h3 id="sample-runs_2">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe119:~/ex06-weitsang$ cat inputs/inversion.1.in
+5
+1 3 5 4 2
+ooiwt@pe119:~/ex06-weitsang$ ./inversion &lt; inputs/inversion.1.in
+4
+ooiwt@pe119:~/ex06-weitsang$ cat inputs/inversion.2.in
+3
+1 20 300
+ooiwt@pe119:~/ex06-weitsang$ ./inversion &lt; inputs/inversion.2.in
+0
+ooiwt@pe119:~/ex06-weitsang$ cat inputs/inversion.3.in
+1
+-100
+ooiwt@pe119:~/ex06-weitsang$ ./inversion &lt; inputs/inversion.3.in
+0
+</code></pre></div></td></tr></table></div>
+<h2 id="question-4-lexicon">Question 4: Lexicon</h2>
+<p>Given a lexicon consisting of words that are made up of a set of symbols, we wish to sort them in increasing lexicographical order.  Assume that the order of two symbols is defined, the ordering of two words is defined as follows:</p>
+<ul>
+<li>
+<p>Given two words <span class="arithmatex">\(W_1 = a_0a_1..a_k\)</span> and <span class="arithmatex">\(W_2 = b_0b_1..b_k\)</span> of equal length.  Let <span class="arithmatex">\(i\)</span> be the smallest index where the two words differ, i.e., <span class="arithmatex">\(a_j = b_j\)</span> for <span class="arithmatex">\(j = 0, 1, .., i-1\)</span> and <span class="arithmatex">\(a_i \not = b_i\)</span>.  Then <span class="arithmatex">\(W_1 &lt; W_2\)</span> if <span class="arithmatex">\(a_i &lt; b_i\)</span>.  </p>
+</li>
+<li>
+<p>Given two words <span class="arithmatex">\(W_1 = a_0a_1..a_l\)</span> and <span class="arithmatex">\(W_2 = b_0b_1..b_k\)</span> of different length, with <span class="arithmatex">\(l &lt; k\)</span>, then the ordering pads <span class="arithmatex">\(W_1\)</span> with a special symbol that is smaller than every other symbols, until both <span class="arithmatex">\(W_1\)</span> and <span class="arithmatex">\(W_2\)</span> are of equal length. </p>
+</li>
+</ul>
+<p>For this question, we consider the set of printable ASCII characters, except the white space <code>' '</code>, as the set of symbols in our lexicon.  The ordering of two symbols is defined by the ordering of the ASCII value of the characters.  We can thus use the null character `'\0', with an ASCII value of 0, as the padding symbols.</p>
+<p>For instance, the word <code>ooi</code> is smaller than <code>oops</code>.  The first symbol that differs is at position 2 (the first letter is position 0) and the ASCII code for <code>i</code> is smaller than <code>p</code>.</p>
+<p>As another example, given <code>ooi</code> and <code>ooink</code>, the ordering pad <code>ooi</code> with the null character at position 3, to give the order <code>ooi</code> &lt; <code>ooink</code>.</p>
+<p>Write a program <code>lexicon</code>, that reads from standard input:</p>
+<ul>
+<li>a positive integer <span class="arithmatex">\(n\)</span>,</li>
+<li>followed by <span class="arithmatex">\(n\)</span> words </li>
+</ul>
+<p>Print, to the standard output, </p>
+<ul>
+<li>the list of words in lexicographical order, one word per line.</li>
+</ul>
+<p>Suppose that <span class="arithmatex">\(k\)</span> symbols are used in the lexicon, and the longest string is of length <span class="arithmatex">\(m\)</span>.  You must solve this problem with the running time of <span class="arithmatex">\(O(m(n + k))\)</span>.</p>
+<p>Solving this in <span class="arithmatex">\(O(mn^2)\)</span> or <span class="arithmatex">\(O(mn \log{n})\)</span> is trivial, and such solution will be marked as "Need Improvement"</p>
+<h3 id="sample-runs_3">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe119:~/ex06-skeleton$ cat inputs/lexicon.1.in
+6
+c
+s
+1
+0
+1
+0
+ooiwt@pe119:~/ex06-skeleton$ ./lexicon &lt; inputs/lexicon.1.in
+0
+0
+1
+1
+c
+s
+ooiwt@pe119:~/ex06-skeleton$ cat inputs/lexicon.2.in
+9
+cow
+dog
+cat
+muk
+ant
+bee
+fox
+hen
+for
+ooiwt@pe119:~/ex06-skeleton$ ./lexicon &lt; inputs/lexicon.2.in
+ant
+bee
+cat
+cow
+dog
+for
+fox
+hen
+muk
+ooiwt@pe119:~/ex06-skeleton$ cat inputs/lexicon.3.in
+3
+ooi
+oops
+ooink
+ooiwt@pe119:~/ex06-skeleton$ ./lexicon &lt; inputs/lexicon.3.in
+ooi
+ooink
+oops
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="ex05.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 5. Multi-dimensional Arrays">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                5. Multi-dimensional Arrays
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="ex07.html" class="md-footer__link md-footer__link--next" aria-label="Next: 7. Recursions">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                7. Recursions
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

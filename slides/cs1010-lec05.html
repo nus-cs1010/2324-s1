@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lecture 5</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 5
+
+### 11 September 2023
+
+**Admin Matters**<br>
+**Unit 11:** Loops<br>
+**Unit 12:** Loop Invariants<br>
+
+---
+### Programming Exercises
+
+- Exercise 1 due today
+- Exercise 2 released today
+- Past year PE questions released (not part of assessment)
+
+---
+class: middle
+
+.fit[![meme](figures/meme/midterm-is-coming.jpg)]
+
+---
+### Midterm
+
+- **Date**: 2 October 2023 (Monday)
+- **Time**: 4 - 6 PM
+- **Duration**: 80 minutes
+- **Venue**: Multi-purpose Sports Hall 2B (MPSH2B)
+- **15%** of your grade
+- Pen and paper
+
+---
+### Practical Exam 0
+
+- **Date**: 3 October 2023 (Tuesday)
+- **Time**: 6 - 9 PM
+- **Duration**: 2.5 hours
+- **Venue**: Programming labs in AS6/COM1/COM4
+- **10%** of your grade
+- `ssh` into restricted PE hosts with special exam account using lab PCs
+
+---
+
+- **Scope:** Units 1 - 12 / Exercise 0 - 2
+- **Open Book** (printed/written notes only)
+
+- Past year questions on Canvas &gt; Files
+    - [PE1](https://canvas.nus.edu.sg/courses/45586/files/folder/Past%20Year%20PE1%20Papers)
+	- [Midterm](https://canvas.nus.edu.sg/courses/45586/files/folder/Past%20Year%20Midterm%20Papers)
+
+- More details in upcoming announcements
+
+---
+class: center,middle
+
+### Warning
+
+Pay attention to exam regulations.  Disciplinary actions will be taken against violators.
+
+---
+class: middle,center
+
+# Loops
+
+---
+class: center,middle,wide
+
+.fit[![max](../notes/figures/loops/loops-pdf-6.png)]
+
+max(L,k)
+
+---
+class: center,middle,wide
+
+.fit[![max](../notes/figures/loops/loops-pdf-7.png)]
+
+Loop body: what we do repeatedly
+
+---
+class: center,middle,wide
+
+.fit[![max](../notes/figures/loops/loops-pdf-8.png)]
+
+Terminating condition: when to stop repeating?
+
+---
+class: center,middle,wide
+
+.fit[![max](../notes/figures/loops/loops-pdf-9.png)]
+
+Loop update: what changes from one iteration to the next?
+
+---
+class: center,middle,wide
+
+.fit[![max](../notes/figures/loops/loops-pdf-10.png)]
+
+Loop initialization: what do we need to setup before entering the loop?
+
+---
+class: center,middle,wide
+
+.fit[![max](../notes/figures/max-flowchart/max-flowchart-pdf-9.png)]
+
+Finding factorial recursively
+
+---
+
+---
+class: center,middle,wide
+
+.fit[![max](../notes/figures/loops/loops-pdf-3.png)]
+
+Finding factorial with a loop
+
+---
+class: center,middle,wide
+
+.fit70[![max](../notes/figures/loops/loops-pdf-3.png)]
+.fit70[![max](../notes/figures/loops/loops-pdf-2.png)]
+
+
+---
+class: wide
+
+.fit80[![max](../notes/figures/loops/loops-pdf-2.png)]
+
+.small[
+```C
+for (initialize; condition; update) {
+   body;
+}
+```
+]
+
+---
+class: wide
+.fit80[![max](../notes/figures/loops/loops-pdf-2.png)]
+
+.small[
+```C
+initialize;
+while (condition) {
+   body and update;
+}
+```
+]
+
+---
+class: center
+
+.fit[![meme](figures/meme/for-while-the-same.jpg)]
+
+---
+class: bottom,wide
+.fit80[![max](../notes/figures/loops/loops-pdf-4.png)]
+
+.small[
+```C
+initialize;
+do {
+   body and update;
+} while (condition);
+```
+]
+
+---
+
+---
+class: center,wide
+
+.fit[![max](../notes/figures/loops/loops-pdf-5.png)]
+
+---
+### For a Loop to Terminate
+
+Starting from an initial state, every update must move the state towards the termination state.
+
+---
+class: middle,center
+
+## Assertion
+
+```
+// { ... }
+```
+
+A logical expression that must be true at a given point in a program.
+
+---
+class: middle
+
+```C
+x = 1;
+// { x == 1 }
+```
+---
+class: middle
+
+.smaller[
+```C
+if (x &gt; y) {
+  max = x;
+  // { (x &gt; y) &amp;&amp; (max == x) &amp;&amp; (max &gt; y) }
+} else {
+  max = y;
+  // { (x &lt;= y) &amp;&amp; (max == y) &amp;&amp; (max &gt;= x) }
+}
+// { ((max == x) || (max == y)) &amp;&amp;
+//   (max &gt;= x) &amp;&amp; (max &gt;= y) }
+```
+]
+
+---
+class: middle
+
+Does this correctly compute factorial of $n$?
+
+.smaller[
+```C
+long factorial(long n)
+{
+  long product = 1;
+  long i = 1;
+  while (i &lt; n) {
+    i += 1;
+    product *= i;
+  }
+  return product;
+}
+
+```
+]
+---
+### Loop Invariant
+
+An assertion that holds 
+
+- before the loop; 
+- at the end of each iteration of the loop;
+- after the loop; 
+
+(but may be temporarily false during the loop)
+
+---
+### Loop Invariant
+
+.fit[![max](../notes/figures/loops/loops-pdf-2.png)]
+
+---
+### Loop Invariant
+
+Show that the invariant holds:
+
+- before the loop; 
+- at the end of the first iteration
+- if it holds at the end of the $k$-th interation; it woulds at the end of $k+1$-th iteration
+- after the loop; 
+
+---
+### Homework
+
+- Self-Diagnostic Quiz for Lecture 5
+- Exercise 2
+- Problem Sets 11 and 12
+
+---
+class: bottom
+
+.tiny[
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY23/24 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

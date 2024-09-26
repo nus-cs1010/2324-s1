@@ -1,0 +1,1964 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/exercises/ex05.html">
+      
+      
+        <link rel="prev" href="ex04.html">
+      
+      
+        <link rel="next" href="ex06.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>5. Multi-dimensional Arrays - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exercise-5-multi-dimensional-arrays" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              5. Multi-dimensional Arrays
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../notes/01-program.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../guides/unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exercises
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/exercises.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide to Exercises
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex00.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    0. I/O, Types, and Arithmetic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex01.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex02.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex03.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Fixed-Length Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex04.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Dynamic Arrays and Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Multi-dimensional Arrays
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ex05.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Multi-dimensional Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deadline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deadline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acceptance-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acceptance Link
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-and-difficulty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts and Difficulty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cs1010-io-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CS1010 I/O Library
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 1: Add
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Add">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-echo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 2: Echo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: Echo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 3: Line
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-popular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 4: Popular
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: Popular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-5-contact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 5: Contact
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 5: Contact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-6-social" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 6: Social
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 6: Social">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex06.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Searching and Sorting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex07.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Recursions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex08.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Struct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deadline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deadline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acceptance-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acceptance Link
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-and-difficulty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts and Difficulty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cs1010-io-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CS1010 I/O Library
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 1: Add
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Add">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-echo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 2: Echo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: Echo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 3: Line
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-popular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 4: Popular
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: Popular">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-5-contact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 5: Contact
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 5: Contact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-6-social" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 6: Social
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 6: Social">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../guides/exercises.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Exercises
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="exercise-5-multi-dimensional-arrays">Exercise 5: Multi-Dimensional Arrays</h1>
+<h3 id="prerequisite">Prerequisite</h3>
+<p>You have completed <a href="ex04.html">Exercise 4</a>. </p>
+<h3 id="learning-outcomes">Learning Outcomes</h3>
+<p>Be comfortable writing simple C programs that involve 2D arrays.</p>
+<h3 id="deadline">Deadline</h3>
+<p>This exercise is part of the CS1010 formative assessment. Submit your solution before 23 October 2023, 23:59 to receive feedback and earn your achievement "badges".</p>
+<h3 id="acceptance-link">Acceptance Link</h3>
+<p>The link to accept the exercise is not available publicly.  Visit Canvas for the link.</p>
+<h3 id="concepts-and-difficulty">Concepts and Difficulty</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Question</th>
+<th>Fixed 2D Arrays</th>
+<th>Dynamic 2D Array</th>
+<th>Jagged Array</th>
+<th>Difficulty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="#question-1-add">Add</a>^</td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27z"/></svg></span></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="#question-2-echo">Echo</a></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="#question-3-line">Line</a>^</td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27z"/></svg></span></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="#question-4-popular">Popular</a>^</td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27z"/></svg></span></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="#question-5-contact">Contact</a></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="#question-6-social">Social</a></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+</tbody>
+</table>
+<p>^: Questions 2, 3, and 4 serve as in-class exercises during the lab session in Week 9.</p>
+<h3 id="cs1010-io-library">CS1010 I/O Library</h3>
+<p>You may need to use a new collection of functions available in the CS1010 I/O library for this exercise onwards.</p>
+<ul>
+<li><code>cs1010_read_word_array</code></li>
+<li><code>cs1010_read_line_array</code></li>
+</ul>
+<h2 id="question-1-add">Question 1: Add</h2>
+<p>Write a program <code>add</code> that reads two 3x3 matrices <span class="arithmatex">\(M\)</span> and <span class="arithmatex">\(N\)</span> from the standard inputs and prints the resulting matrix <span class="arithmatex">\(M + N\)</span> to the standard output.</p>
+<p>For example,</p>
+<p><span class="arithmatex">\(\begin{pmatrix}
+3 &amp; 1 &amp; 2\\
+0 &amp; 4 &amp; 1\\
+3 &amp; 5 &amp; 0 \\
+\end{pmatrix}\)</span> + 
+<span class="arithmatex">\(\begin{pmatrix}
+1 &amp; -1 &amp; 3\\
+-1 &amp; 2 &amp; 0\\
+0 &amp; 1 &amp; 3 \\
+\end{pmatrix}\)</span>
+=
+<span class="arithmatex">\(\begin{pmatrix}
+4 &amp; 0 &amp; 5\\
+-1 &amp; 6 &amp; 1\\
+3 &amp; 6 &amp; 3 \\
+\end{pmatrix}\)</span></p>
+<p>If the two input matrices are
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>3 1 2
+0 4 1
+3 5 0
+</code></pre></div></td></tr></table></div></p>
+<p>and
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>1 -1 3
+-1 2 0
+0 1 3
+</code></pre></div></td></tr></table></div></p>
+<p>then print to the standard output
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>4 0 5
+-1 6 1
+3 6 3
+</code></pre></div></td></tr></table></div></p>
+<h3 id="sample-run">Sample Run</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe101:~$ ./add
+3 1 2
+0 4 1
+3 5 0
+1 -1 3
+-1 2 0
+0 1 3
+4 0 5
+-1 6 1
+3 6 3
+</code></pre></div></td></tr></table></div>
+<h2 id="question-2-echo">Question 2: Echo</h2>
+<p>Write a program <code>echo</code> that reads a 2D matrix of integers and prints the matrix back to the standard output.</p>
+<p>The input consists of the following:</p>
+<ul>
+<li>the first two numbers correspond to <span class="arithmatex">\(R\)</span>, the number of rows, and <span class="arithmatex">\(C\)</span>, the number of columns of the matrix respectively</li>
+<li>the next line contains <span class="arithmatex">\(R\)</span> x <span class="arithmatex">\(C\)</span> integers.</li>
+</ul>
+<p>Print to the standard output:</p>
+<ul>
+<li><span class="arithmatex">\(R\)</span> rows of numbers, each row contains <span class="arithmatex">\(C\)</span> integers, corresponding to the rows of the matrix.</li>
+</ul>
+<p>Your code should contain two functions:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="o">**</span><span class="nf">read_matrix</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">nrows</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">ncols</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="o">:</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>to allocate, read, and return the matrix (return NULL if allocation
+fails).</p>
+<p>and</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">print_matrix</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">nrows</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">ncols</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="o">**</span><span class="n">matrix</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="o">:</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>to print the matrix.</p>
+<h3 id="sample-run_1">Sample Run</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe101:~$ ./echo
+3 4
+1 2 3 4 5 6 7 8 9 10 11 12
+1 2 3 4
+5 6 7 8
+9 10 11 12
+</code></pre></div></td></tr></table></div>
+<h2 id="question-3-line">Question 3: Line</h2>
+<p>Write a program that draws a white line on an image with a black background of sizes <span class="arithmatex">\(W\)</span> and <span class="arithmatex">\(H\)</span>.</p>
+<p>The line is specified as two coordinates (<span class="arithmatex">\(x_1\)</span>, <span class="arithmatex">\(y_1\)</span>) and (<span class="arithmatex">\(x_2\)</span>, <span class="arithmatex">\(y_2\)</span>).  The top left corner has a coordinate (0,0).  The x coordinates increase to the right; the y coordinates increase to the bottom.</p>
+<p>Let (<span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span>) be any point that lies on this line, then we have:</p>
+<div class="arithmatex">\[ \frac{y-y_1}{y_2 - y1} = \frac{x-x_1}{x_2-x_1}\]</div>
+<p>We can rearrange and get:</p>
+<div class="arithmatex">\[y = \frac{y_2-y_1}{x_2 - x1}(x-x_1) + y_1\]</div>
+<p>Let</p>
+<div class="arithmatex">\[m = \frac{y_2 - y_1}{x_2 - x_1}\]</div>
+<p>be the slope of the line.</p>
+<p>If the line passes through (<span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span>), then it passes through (<span class="arithmatex">\(x + 1\)</span>, <span class="arithmatex">\(y + m\)</span>).</p>
+<p>Mathematically, x and y are floating-point numbers.  But, when we draw the line in an image, we have to round them into integers.  This process is called <em>rasterization</em> in computer graphics.</p>
+<p>To draw a rasterized straight line, we can then loop through different values of <span class="arithmatex">\(x\)</span>, from <span class="arithmatex">\(x_1\)</span> to <span class="arithmatex">\(x_2\)</span>, and update the corresponding value of <span class="arithmatex">\(y\)</span> (by repeatedly adding <span class="arithmatex">\(m\)</span> every time <span class="arithmatex">\(x\)</span> increments by 1).</p>
+<p>Since <span class="arithmatex">\(y\)</span> is a floating-point number, we round <span class="arithmatex">\(y\)</span> to the nearest integer and draw the line at pixel (<span class="arithmatex">\(x, y\)</span>).  You may find the function <code>round</code> from <code>math.h</code> useful.</p>
+<p>We will draw the output in an image format called PGM.  Each pixel of the image has a value ranging between 0 and 255.  For this question, we draw images with two colors: 0 for the black background and 255 for the white line.</p>
+<p>Your program should read from the standard input:</p>
+<ul>
+<li>Two positive integers, <span class="arithmatex">\(W\)</span> and <span class="arithmatex">\(H\)</span> (<span class="arithmatex">\(W\)</span> &gt; 1, <span class="arithmatex">\(H\)</span> &gt; 1)</li>
+<li>Four non-negative integers, <span class="arithmatex">\(x_1\)</span>, <span class="arithmatex">\(y_1\)</span>, <span class="arithmatex">\(x_2\)</span>, <span class="arithmatex">\(y_2\)</span>, that corresponds to the two endpoints (<span class="arithmatex">\(x_1\)</span>, <span class="arithmatex">\(y_1\)</span>) and (<span class="arithmatex">\(x_2\)</span>, <span class="arithmatex">\(y_2\)</span>) of the line.  The slope of the line is guaranteed to be between -1 and 1.  Furthermore, <span class="arithmatex">\(x_2\)</span> &gt; <span class="arithmatex">\(x_1\)</span>.</li>
+</ul>
+<p>Your program should print to the standard output,</p>
+<ul>
+<li>
+<p>The first line contains the string "P2"</p>
+</li>
+<li>
+<p>The second line contains two integers, the width <span class="arithmatex">\(W\)</span> and height <span class="arithmatex">\(H\)</span> of the image</p>
+</li>
+<li>
+<p>The third line contains the number 255</p>
+</li>
+<li>
+<p>The rest of the output contains <span class="arithmatex">\(W\times H\)</span> integers, each having a value of either 0 or 255.  Each value corresponds to a pixel in the output image.  The order of the pixels is from left to right, top to bottom.  Each row of the image must be printed on a separate line.</p>
+</li>
+</ul>
+<p>If you pipe your output into <code>~cs1010/bin/viu</code>, you can visualize your output as an image.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe101:~$ ./line &lt; inputs/line.3.in | ~cs1010/bin/viu -
+</code></pre></div></td></tr></table></div>
+<p>Note that if your image to too big to fit your terminal, <code>viu</code> will resize your image.</p>
+<h3 id="sample-runs">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe101:~$ ./line
+4 4
+0 0 3 3
+P2
+4 4
+255
+255 0 0 0
+0 255 0 0
+0 0 255 0
+0 0 0 255
+ooiwt@pe101:~$ ./line
+4 4
+0 2 3 2
+P2
+4 4
+255
+0 0 0 0
+0 0 0 0
+255 255 255 255
+0 0 0 0
+</code></pre></div></td></tr></table></div>
+<h2 id="question-4-popular">Question 4: Popular</h2>
+<p>We can measure the popularity of a person by how many friends a person has.  We assume that "friend" is a symmetric relation. If A is a friend of B, then B is a friend of A.  Because of this, we can represent friendships between people as a lower triangular matrix (using a jagged 2D array). A proper type to store in each element of the matrix is bool. To simplify our life, however, we store each element of the matrix as a char, with '1' representing a friendship connection, and '0' otherwise. The friendship for <span class="arithmatex">\(n\)</span> people is thus an array of <span class="arithmatex">\(n\)</span> strings, each string containing characters of '0' and '1' only. The first row of the matrix is a string of length one; the second row is of length two; the third row, length three, etc. The last character of each string (i.e., the diagonal of the matrix) is 1 as we assume everyone is a friend with him/herself.</p>
+<p>For instance, suppose we have the following friendship relations.  We represent each person with id 0, 1, 2, ... Person with id <span class="arithmatex">\(i\)</span> has its information stored in Row <span class="arithmatex">\(i\)</span> and Column <span class="arithmatex">\(i\)</span>. Recall that if Row <span class="arithmatex">\(i\)</span> and Column <span class="arithmatex">\(j\)</span> is 1, it means that Person <span class="arithmatex">\(i\)</span> is a friend of Person <span class="arithmatex">\(j\)</span>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>1
+01
+011
+</code></pre></div></td></tr></table></div>
+<p>The relation indicates that Person 1 and 2 are friends with each other. Person 0 is not a friend of 1 and 2. </p>
+<p>The example below adds another Person 4, who is a friend of Person 0 and Person 2.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>1
+01
+011
+1011
+</code></pre></div></td></tr></table></div></p>
+<p>Write a program <code>popular</code>, that reads from standard input:</p>
+<ul>
+<li>a positive integer <span class="arithmatex">\(n\)</span>,</li>
+<li>followed by <span class="arithmatex">\(n\)</span> lines of strings consisting of '1' or '0' representing the friendship among these <span class="arithmatex">\(n\)</span> people.</li>
+</ul>
+<p>Print, to the standard output, </p>
+<ul>
+<li>the id of the person who is the most popular (i.e., with the most number of friends).  We break ties by preferring the person with a smaller id.</li>
+<li>the number of friends that the person has.</li>
+</ul>
+<p>The purpose of this question is for you to practice using a jagged 2D array. Hence, you are not allowed to store the input matrix or intermediate matrices using a rectangular array, or you risk being penalized heavily for this question.</p>
+<h3 id="sample-runs_1">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe119:~/as05-skeleton$ cat inputs/popular.1.in
+3
+1
+01
+011
+ooiwt@pe119:~/as05-skeleton$ ./popular &lt; inputs/popular.1.in
+1
+1
+ooiwt@pe119:~/as05-skeleton$ cat inputs/popular.2.in
+4
+1
+01
+011
+1011
+ooiwt@pe119:~/as05-skeleton$ ./popular &lt; inputs/popular.2.in
+2
+2
+</code></pre></div></td></tr></table></div>
+<h2 id="question-5-contact">Question 5: Contact</h2>
+<p>Contact tracing is an important step to contain a pandemic. Suppose we are given the information on who is in contact with whom. We wish to answer the following questions:</p>
+<ul>
+<li>Given two people A and B, have they been directly in contact with each other?</li>
+<li>Given two people A and B, is there a common person that they have been in contact with? In other words, is there a third person C, where (i) A and C have been in contact with each other, and (ii) B and C have been in contact with each other?</li>
+</ul>
+<p>We assume that "contact" is a symmetric relation. If A has been in contact with B, then B has been in contact with A too. Because of this, we can represent the contact traces between n people as a lower triangular matrix (using a jagged 2D array). Similar to Question 1, we store each element of the matrix as a char, with '1' representing a contact, and '0' otherwise. The contact traces for <span class="arithmatex">\(n\)</span> people is again an array of <span class="arithmatex">\(n\)</span> strings, each string containing characters of '0' and '1' only. The first row of the matrix is a string of length one; the second row is of length two; the third row, length three, etc. The last character of each string (i.e., the diagonal of the matrix) is 1 since everyone has contact with him/herself.</p>
+<p>Write a program contact, that reads from standard input:</p>
+<ul>
+<li>a positive integer <span class="arithmatex">\(n\)</span>,</li>
+<li>followed by <span class="arithmatex">\(n\)</span> lines of strings consisting of '1' or '0' representing the contact traces of these <span class="arithmatex">\(n\)</span> people.</li>
+<li>followed by two positive integers <span class="arithmatex">\(j\)</span> and <span class="arithmatex">\(k\)</span>, representing the ids of a pair of people we are interested in querying. An input of <span class="arithmatex">\(i\)</span> corresponds to the person whose contact information is stored in Row <span class="arithmatex">\(i\)</span> and Column <span class="arithmatex">\(i\)</span>.</li>
+</ul>
+<p>Print, to the standard output, the following information:</p>
+<ul>
+<li>"direct contact" if there is direct contact between <span class="arithmatex">\(j\)</span> and <span class="arithmatex">\(k\)</span></li>
+<li>"contact through x" if there is no direct contact but there is an indirect contact between <span class="arithmatex">\(j\)</span> and <span class="arithmatex">\(k\)</span> through a third person <span class="arithmatex">\(x\)</span> (replace <span class="arithmatex">\(x\)</span> with the actual id). If there are multiple such people, output the person with the smallest id.</li>
+<li>"no contact" if there is no direct or indirect contact through a third person in the contact traces.</li>
+</ul>
+<p>The purpose of this question is for you to practice using a jagged 2D array. Hence, you are not allowed to store the input matrix or intermediate matrices using a rectangular array, or you risk being penalized heavily for this question.</p>
+<h3 id="sample-runs_2">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe119:~/as05-skeleton$ cat inputs/contact.1.in
+3
+1
+11
+011
+0 1
+ooiwt@pe119:~/as05-skeleton$ ./contact &lt; inputs/contact.1.in
+direct contact
+ooiwt@pe119:~/as05-skeleton$ cat inputs/contact.2.in
+3
+1
+11
+011
+0 2
+ooiwt@pe119:~/as05-skeleton$ ./contact &lt; inputs/contact.2.in
+contact through 1
+ooiwt@pe119:~/as05-skeleton$ cat inputs/contact.3.in
+4
+1
+01
+011
+1011
+0 1
+ooiwt@pe119:~/as05-skeleton$ ./contact &lt; inputs/contact.3.in
+no contact
+</code></pre></div></td></tr></table></div>
+<h2 id="question-6-social">Question 6: Social</h2>
+<p>You should solve this question after solving Questions 4 and 5. The functions you wrote for Questions 4 and 5 might be useful for solving this question.</p>
+<p>In this question, we are interested in understanding the social network of a group of people.  Suppose that person A is a friend of person B, then we say that A is connected to B with one hop, or A is one hop away from B. </p>
+<p>Consider a friend of B, say C, who is not a friend of A. So C is a friend of a friend of A. We say that C is two hops away from A, and there is a chain of friendship of 2 hops between A and C (A -&gt; B -&gt; C). </p>
+<p>Suppose there are <span class="arithmatex">\(n\)</span> people, and we know the social network of these <span class="arithmatex">\(n\)</span> people -- i.e., we know who is a friend with whom.  We call the network a social network of degree 1.  Your task is to compute a social network of degree <span class="arithmatex">\(k\)</span>, representing who is connected to whom via a friendship chain of up to <span class="arithmatex">\(k\)</span> hops.</p>
+<p>Similar to Question 1, we assume that friendship is bi-directional -- if A is a friend of B, then B is a friend of A. We represent a social network as a lower triangular matrix (using a jagged 2D array) in the same format as Question 1, where a 1 in Row <span class="arithmatex">\(i\)</span> and Column <span class="arithmatex">\(j\)</span> means Person <span class="arithmatex">\(i\)</span> and Person <span class="arithmatex">\(j\)</span> are friends; 0 otherwise.</p>
+<p>The social network below shows the friendship relations between four people.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>1
+01
+011
+1011
+</code></pre></div></td></tr></table></div>
+<p>Suppose now we consider the social network of degree 2. Person 0 is two hops away from Person 2 (Person 0 knows Person 3, and Person 3 knows Person 2). Person 1 is also two hops away from Person 3 (Person 1 knows Person 2 and Person 2 knows Person 3).</p>
+<p>The social network of degree 2 becomes:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>1
+01
+111
+1111
+</code></pre></div></td></tr></table></div>
+<p>Write a program <code>social</code>, that reads from standard input two positive integers <span class="arithmatex">\(n\)</span> and <span class="arithmatex">\(k\)</span>, followed by <span class="arithmatex">\(n\)</span> lines of strings consisting of '1' or '0' representing the social network of degree 1 of these <span class="arithmatex">\(n\)</span> people. Print, to the standard output, the social network of degree <span class="arithmatex">\(k\)</span> formed by friendship chains of up to <span class="arithmatex">\(k\)</span> hops.</p>
+<p>The purpose of this question is for you to practice using a jagged 2D array. Hence, you are not allowed to store the input matrix or intermediate matrices using a rectangular array, or you risk being penalized heavily for this question.</p>
+<h3 id="hint">Hint</h3>
+<p>There are many ways to solve this problem. The most straightforward way is to compute the social network formed by a friendship chain of degree <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(N(i)\)</span>, changing <span class="arithmatex">\(i\)</span> from 1 to <span class="arithmatex">\(k\)</span>.</p>
+<ul>
+<li><span class="arithmatex">\(N(1)\)</span> is just the input;</li>
+<li><span class="arithmatex">\(N(2)\)</span> can be computed in a similar way to how you solved Question 2.</li>
+<li>Now, given <span class="arithmatex">\(N(i-1)\)</span> and <span class="arithmatex">\(N(1)\)</span>, can you compute <span class="arithmatex">\(N(i)\)</span>?</li>
+</ul>
+<h3 id="sample-runs_3">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe119:~/as05-skeleton$ cat inputs/social.1.in
+3 1
+1
+11
+011
+ooiwt@pe119:~/as05-skeleton$ ./social &lt; inputs/social.1.in
+1
+11
+011
+ooiwt@pe119:~/as05-skeleton$ cat inputs/social.2.in
+4 2
+1
+01
+011
+1011
+ooiwt@pe119:~/as05-skeleton$ ./social &lt; inputs/social.2.in
+1
+01
+111
+1111
+ooiwt@pe119:~/as05-skeleton$ cat inputs/social.3.in
+5 2
+1
+11
+011
+0011
+10011
+ooiwt@pe119:~/as05-skeleton$ ./social &lt; inputs/social.3.in
+1
+11
+111
+1111
+11111
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="ex04.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 4. Dynamic Arrays and Strings">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                4. Dynamic Arrays and Strings
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="ex06.html" class="md-footer__link md-footer__link--next" aria-label="Next: 6. Searching and Sorting">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                6. Searching and Sorting
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

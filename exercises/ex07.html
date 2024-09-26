@@ -1,0 +1,1744 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/exercises/ex07.html">
+      
+      
+        <link rel="prev" href="ex06.html">
+      
+      
+        <link rel="next" href="ex08.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>7. Recursions - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exercise-7-recursions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              7. Recursions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../notes/01-program.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../guides/unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exercises
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/exercises.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide to Exercises
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex00.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    0. I/O, Types, and Arithmetic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex01.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex02.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex03.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Fixed-Length Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex04.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Dynamic Arrays and Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex05.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Multi-dimensional Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex06.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Searching and Sorting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Recursions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ex07.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Recursions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deadline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deadline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acceptance-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acceptance Link
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-and-difficulty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts and Difficulty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-fill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 1: Fill
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Fill">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-maze" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 2: Maze
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: Maze">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-walk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 3: Walk
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Walk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-sudoku" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 4: Sudoku
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: Sudoku">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex08.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Struct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deadline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deadline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acceptance-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acceptance Link
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-and-difficulty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts and Difficulty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-fill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 1: Fill
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Fill">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-maze" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 2: Maze
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: Maze">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-walk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 3: Walk
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Walk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-sudoku" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 4: Sudoku
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: Sudoku">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../guides/exercises.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Exercises
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="exercise-7-recursions">Exercise 7: Recursions</h1>
+<h3 id="prerequisite">Prerequisite</h3>
+<p>You have completed <a href="ex06.html">Exercise 6</a>. </p>
+<h3 id="learning-outcomes">Learning Outcomes</h3>
+<p>Able to model a problem as a search problem and solve it recursively.</p>
+<h3 id="deadline">Deadline</h3>
+<p>This exercise is part of the CS1010 formative assessment. Submit your solution before 6 November 2023, 23:59 to receive feedback and earn your achievement "badges".</p>
+<h3 id="acceptance-link">Acceptance Link</h3>
+<p>The link to accept the exercise is not available publicly.  Visit Canvas for the link.</p>
+<h3 id="concepts-and-difficulty">Concepts and Difficulty</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Question</th>
+<th>Recursion</th>
+<th>Branch-and-Bound</th>
+<th>Difficulty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="#question-1-fill">Fill</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27z"/></svg></span></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="#question-2-maze">Maze</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="#question-3-walk">Walk</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="#question-4-sudoku">Sudoku</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="question-1-fill">Question 1: Fill</h2>
+<p>One of the basic operations in a drawing application is the fill operation (aka bucket fill).  You will implement this operation in this assignment.</p>
+<p>An image can be considered as a 2D array of pixels.  Each pixel has a color, represented by three integers, corresponding to the red, green, and blue components of the color.   We say that two pixels are adjacent to each other if they share a common edge.  So a pixel can have at most four adjacent pixels.</p>
+<p>We denote the top left pixel to be (0,0).  The indices increase towards the right and down.  For instance, if we have an image of width 20 by 30, then the top-right pixel has the coordinate (0, 19); the bottom-left pixel has the coordinate (29, 0); and the bottom-right has the coordinate (29, 19).</p>
+<p>An image can be divided into one or more segments.  A segment is a set of pixels (i) with the same color, and (ii) given any two pixels <span class="arithmatex">\(p\)</span> and <span class="arithmatex">\(q\)</span> in a segment, we can find a series of adjacent pixels in the segment going from <span class="arithmatex">\(p\)</span> to <span class="arithmatex">\(q\)</span>.</p>
+<p>The fill operation takes in as an input the (<span class="arithmatex">\(x\)</span>,<span class="arithmatex">\(y\)</span>) coordinate of a pixel <span class="arithmatex">\(p\)</span>, and a color <span class="arithmatex">\(c\)</span> to fill.  The operation then replaces the color of all pixels belonging to the same segment as <span class="arithmatex">\(p\)</span> with the given color <span class="arithmatex">\(c\)</span>.</p>
+<p>Write a program, <code>fill.c</code>, that reads from standard input two positive integers <span class="arithmatex">\(m\)</span> and <span class="arithmatex">\(n\)</span> in the first line.  <span class="arithmatex">\(m\)</span> refers to the number of rows, and <span class="arithmatex">\(n\)</span> is the number of columns.</p>
+<p>Then read <span class="arithmatex">\(3mn\)</span> integers representing an <span class="arithmatex">\(m\)</span> by <span class="arithmatex">\(n\)</span> image from the standard inputs.  Each tuple of 3 integers refers to the color of a pixel.  The pixels are read from left to right, top to bottom.  Thus, the first three integers refer to the color of the pixel at (0, 0); the next three integers refer to the color of the pixel at (0, 1), etc.</p>
+<p>The next input is a positive integer <span class="arithmatex">\(q\)</span>, which is the number of fill operations.  Following this, there are <span class="arithmatex">\(q\)</span> lines.  Each line has two integers <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(y\)</span>, and three integers, <span class="arithmatex">\(r\)</span>, <span class="arithmatex">\(g\)</span>, and <span class="arithmatex">\(b\)</span>, corresponding to a color.  Each line specifies a fill operation, to fill the segmented pixel <span class="arithmatex">\((x, y)\)</span> is in with the color <span class="arithmatex">\((r, g, b)\)</span>.</p>
+<p>The program shall print to standard output, the image after executing all the given fill operations.  The image should be printed in the following format:</p>
+<ul>
+<li>The first line starts with a string "P3", followed by a space, followed by two integers, <span class="arithmatex">\(n\)</span>, and <span class="arithmatex">\(m\)</span>, that correspond to the width and height of the image.  This is followed by a space, and then the number 255.</li>
+<li>The remaining lines contain the color of each pixel, one color (i.e., three integers) per line.  The pixels should be printed from left to right, top to bottom.</li>
+</ul>
+<p>An example output:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>P3 2 2 255
+0 0 0
+0 10 79
+140 120 30
+50 30 255
+</code></pre></div></td></tr></table></div></p>
+<p>You should use recursion to implement the fill operation.</p>
+<p>Your solution must take no more than <span class="arithmatex">\(O(mnq)\)</span> time.</p>
+<p>You can visualize the resulting image using the <code>viu</code> command:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./fill &lt; inputs/fill.3.in | ~cs1010/bin/viu -``
+</code></pre></div></td></tr></table></div>
+<p>Note that <code>viu</code> might rescale your image if your terminal is too small.</p>
+<h3 id="tips">Tips</h3>
+<p>Similar to <code>social</code>, your code would be simpler if you separate the representation of the image from the underlying 2D array.  Writing functions to retrieve, update, and compare the color of a pixel of an image would make your code much simpler and easier to read, write, and debug.</p>
+<p>Your solution must take no more than <span class="arithmatex">\(O(mnq)\)</span> time to be categorized as "Excellent".</p>
+<h2 id="question-2-maze">Question 2: Maze</h2>
+<p>Agent Scully woke up and found herself in the dark.  She figured out that she was in a maze.  She has to find her way out if there is one!</p>
+<p>The maze can be simplified as a grid of (<span class="arithmatex">\(m \times n\)</span>) cells. Each cell can be of the following:</p>
+<ol>
+<li>
+<p>'#' denotes a segment of a wall.  No one can pass through the walls.</p>
+</li>
+<li>
+<p>'.' denotes an empty space.</p>
+</li>
+<li>
+<p>'@' denotes where Scully is currently. It is also an empty space.</p>
+</li>
+</ol>
+<p>Anytime Scully reaches a border cell (a cell in either the top-most or bottom-most row or left-most or right-most column), she escapes the maze and can go save her partner Agent Mulder.  She can only move from one empty space to another adjacent cell in one step.  Two cells are adjacent
+if they share a common edge.</p>
+<p>Scully took CS1010, and she got a concrete plan to seek a way out by trial and error.  She follows <strong>strictly</strong> the following strategy to find a way through the maze starting from her initial position.  At each time step,</p>
+<ol>
+<li>
+<p>She looks for an empty adjacent cell that has never been visited yet, in the sequence of up/right/down/left to the current cell she is at.  If there is an empty adjacent cell, she moves to that cell.  The cell she moves to is now visited.</p>
+</li>
+<li>
+<p>If no empty, unvisited, adjacent cell exists, she backtracks on the path that she comes from, moving one step back, and repeats 1 again.</p>
+</li>
+</ol>
+<p>In this way, Scully systematically explores the maze, with no repetitive visit of any cell more than once except when she backtracks.  She will stop when successfully escapes the maze, or finds that there is no way out after backtracking all the way back to the original position.  She is completely trapped within the maze and now must wait for her partner Agent Mulder to come and free her.</p>
+<p>Write a program <code>maze.c</code>, that reads from standard input.  First, read two positive integers <span class="arithmatex">\(m\)</span> and <span class="arithmatex">\(n\)</span>, followed by <span class="arithmatex">\(m\)</span> lines of <span class="arithmatex">\(n\)</span> characters in each line that represents the maze setup.  One and only one <code>@</code> will be present in the maze setup.</p>
+<p>The program then prints, to standard output, an animation of <span class="arithmatex">\(k\)</span> iterations. The output should only contain <span class="arithmatex">\(m\)</span> rows with <span class="arithmatex">\(n\)</span> characters in each row, with an additional row at last.  Similarly, you must use <code>#</code> to represent a wall, a <code>.</code> to represent empty space, and <code>@</code> to represent where Scully is at.  After printing the maze, your program prints the number of steps that Scully has made.</p>
+<p>You should use recursion to explore the maze and look for a way out.</p>
+<p>Here is an example.  The following is the starting position of Scully and the maze.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>###########
+#.#.....#.#
+#.#####.#.#
+#.#...#.#.#
+#.#.#.....#
+#.#.##.#.##
+#@#.#..#..#
+#...#.#.#..
+###########
+0
+</code></pre></div></td></tr></table></div>
+<p>Scully first moves five steps up:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>###########
+#@#.....#.#
+#.#####.#.#
+#.#...#.#.#
+#.#.#.....#
+#.#.##.#.##
+#.#.#..#..#
+#...#.#.#..
+###########
+5
+</code></pre></div></td></tr></table></div></p>
+<p>At this point, Scully is stuck since there is no more adjacent empty cell that has not been visited.  Scully then backtracks:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>###########
+#.#.....#.#
+#.#####.#.#
+#.#...#.#.#
+#.#.#.....#
+#.#.##.#.##
+#@#.#..#..#
+#...#.#.#..
+###########
+10
+</code></pre></div></td></tr></table></div></p>
+<p>Scully then moves down:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>###########
+#.#.....#.#
+#.#####.#.#
+#.#...#.#.#
+#.#.#.....#
+#.#.##.#.##
+#.#.#..#..#
+#@..#.#.#..
+###########
+11
+</code></pre></div></td></tr></table></div></p>
+<p>Then right:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>###########
+#.#.....#.#
+#.#####.#.#
+#.#...#.#.#
+#.#.#.....#
+#.#.##.#.##
+#.#.#..#..#
+#..@#.#.#..
+###########
+13
+</code></pre></div></td></tr></table></div></p>
+<p>Then up:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>###########
+#.#.....#.#
+#.#####.#.#
+#.#@..#.#.#
+#.#.#.....#
+#.#.##.#.##
+#.#.#..#..#
+#...#.#.#..
+###########
+17
+</code></pre></div></td></tr></table></div></p>
+<p>Then right (two steps) and then down (two steps) and then right (two steps):</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>###########
+#.#.....#.#
+#.#####.#.#
+#.#...#.#.#
+#.#.#..@..#
+#.#.##.#.##
+#.#.#..#..#
+#...#.#.#..
+###########
+22
+</code></pre></div></td></tr></table></div>
+<p>Then Scully moves up and left, and she is stuck again.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>###########
+#.#@....#.#
+#.#####.#.#
+#.#...#.#.#
+#.#.#.....#
+#.#.##.#.##
+#.#.#..#..#
+#...#.#.#..
+###########
+29
+</code></pre></div></td></tr></table></div>
+<p>At this point, she backtracks:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>###########
+#.#.....#.#
+#.#####.#.#
+#.#...#.#.#
+#.#.#..@..#
+#.#.##.#.##
+#.#.#..#..#
+#...#.#.#..
+###########
+36
+</code></pre></div></td></tr></table></div>
+<p>Moves right, and up, and stuck again!</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>###########
+#.#.....#@#
+#.#####.#.#
+#.#...#.#.#
+#.#.#.....#
+#.#.##.#.##
+#.#.#..#..#
+#...#.#.#..
+###########
+41
+</code></pre></div></td></tr></table></div>
+She backtracks again,</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>###########
+#.#.....#.#
+#.#####.#.#
+#.#...#.#.#
+#.#.#...@.#
+#.#.##.#.##
+#.#.#..#..#
+#...#.#.#..
+###########
+45
+</code></pre></div></td></tr></table></div>
+<p>This time she found her way out!</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>###########
+#.#.....#.#
+#.#####.#.#
+#.#...#.#.#
+#.#.#.....#
+#.#.##.#.##
+#.#.#..#..#
+#...#.#.#.@
+###########
+50
+</code></pre></div></td></tr></table></div>
+<p>It took her a total of 50 steps to exit the maze.</p>
+<p>Your solution must take no more than <span class="arithmatex">\(O(mn)\)</span> time to be graded as "Excellent".</p>
+<p><strong>Hint:</strong> You need to strictly follow the described strategy and sequence of exploration. Do not forget to print the initial maze and the final maze.</p>
+<p>We have provided a function <code>print_maze</code> to draw the maze in the skeleton file.</p>
+<h3 id="sample-run">Sample Run</h3>
+<p>You can use the sample program <code>~cs1010/ex07/maze</code> on the given inputs to view the animation.</p>
+<p>Note that how the maze is printed on the standard output is different from when it is written to a file.</p>
+<h2 id="question-3-walk">Question 3: Walk</h2>
+<p>Many cities in the world, such as New York City, are laid out as a grid, with streets running in north-south directions and east-west directions.  Buildings between two streets are called <em>blocks</em>.</p>
+<p>Suppose we start at a junction of two streets, and we wish to walk to another junction that is <span class="arithmatex">\(y\)</span> blocks to the north and <span class="arithmatex">\(x\)</span> blocks to the east, how many possible paths are there to walk to the destination?</p>
+<p>For example, suppose we want to walk to a junction that is one block to the north and one block to the east, and we can only walk eastward and northward, there are two possible paths.  We can walk east for one block, then walk north for another block.  Or, we can walk north first for one block, then walk east for another block.</p>
+<p>The figure below illustrates the scenario, where we are positioned at source D and we wish to go to destination B.  The two possible paths are DAB and DEB.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>A---B---C
+|   |   |
+D---E---F
+</code></pre></div></td></tr></table></div>
+<p>Suppose now we want to walk to C, a junction that is two blocks to the east, and one block to the north.  There are three different possible paths.  The three paths are DABC, DEBC, and DEFC.</p>
+<p>Write a program <code>walk</code> that reads in two integers <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> <span class="arithmatex">\((x \ge 0, y &gt;= 0)\)</span>, and prints the number of possible paths we can walk to the destination that is <span class="arithmatex">\(x\)</span> block to the east and <span class="arithmatex">\(y\)</span> block to the north.</p>
+<p>Your solution must take no more than <span class="arithmatex">\(O(xy)\)</span> time.</p>
+<p>Hint: Think recursively, but solve iteratively.</p>
+<h3 id="sample-runs">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe111:~/as08-ooiwt$ walk
+10 0
+1
+ooiwt@pe111:~/as08-ooiwt$ walk
+1 1
+2
+ooiwt@pe111:~/as08-ooiwt$ walk
+2 2
+6
+ooiwt@pe111:~/as08-ooiwt$ walk
+20 20
+137846528820
+</code></pre></div></td></tr></table></div>
+<h2 id="question-4-sudoku">Question 4: Sudoku</h2>
+<p>This question is inspired by The Prime Minister of Singapore, Lee Hsien Loong, who <a href="https://www.facebook.com/leehsienloong/photos/a.344710778924968.83425.125845680811480/905828379479869/?type=1&amp;theater">once wrote a sudoku solver in C++</a>:</p>
+<p>In the game of sudoku, we are given a <span class="arithmatex">\(9 \times 9\)</span> grid, with some of the cells filled with numbers 1 to 9.  We must fill up the rest of the cells with 1 to 9, such that no number repeats itself in each row, in each column, and in each of the nine $3 \times 3$ subgrids.</p>
+<p>Write a program, <code>sudoku.c</code>, that reads in a sudoku puzzle, and search for a solution to the puzzle, using the following algorithm:</p>
+<ul>
+<li>
+<p>Start from the top left, and scan left to right, top to bottom.</p>
+</li>
+<li>
+<p>If an empty cell is encountered, try to fill it up with a digit, starting with 1, 2, .. until 9.  For each digit we try, check if it is possible to find a solution, and if so, solve the updated puzzle recursively.</p>
+</li>
+<li>
+<p>If a solution is found, print the solution and stop searching.  Otherwise, (backtrack and) try a different digit, until either we have tried all digits or a solution is found.</p>
+</li>
+</ul>
+<p>The input to the program consists of 9 lines, 9 characters in each line, representing the puzzle.  The input contains only the digits 1 to 9 and the <code>.</code> character, which represents the empty cell.</p>
+<p>The output contains the steps of the search, printed with the <code>print_sudoku</code> function provided.  At the end of the program, either the solution is printed or the string "no solution" if the sudoku cannot be solved.</p>
+<p>Your code should take less than 5s to run for each test case given.</p>
+<h3 id="sample-run_1">Sample Run</h3>
+<p>You can try to run the program <code>~cs1010/ex07/sudoku</code> to see the animation of how the solution is expected to work.</p>
+<p>Note that how the puzzle is printed on the standard output is different from when it is written to a file.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="ex06.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 6. Searching and Sorting">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                6. Searching and Sorting
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="ex08.html" class="md-footer__link md-footer__link--next" aria-label="Next: 8. Struct">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                8. Struct
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,50 @@
+As educators, we spend much of our time producing course materials, notes, slides, assessment questions, for our students.  Like many of you, I have been using LaTeX, HTML, PowerPoints/Keynotes, for these purposes for many years.
+
+In the last few years I switched to using Markdown for producing my class materials, and it improves the quality of my life significantly.  So, in this video, I would like to share with you what is Markdown, and how it makes my life (and the students' life) easier.
+
+In case you don't know, what is Markdown, Markdown is a markup language, just like HTML, for creating formatted text.
+Unlike HTML, which is designed for publishing and machine-parsing, Markdown is designed to be easy to read and write by humans.  Let me show you an example of what I mean.
+
+Let's say you want to have a header and a list of items.  This is how we write it in LaTeX.
+
+and this is how we write it in HTML.
+
+This is how we write it in Markdown.  It is readable even with the markup syntax. 
+
+What can we use Markdown for?  I use it now for almost everything I need in preparing my course materials.  Let me start with slides.
+
+I use remarkjs, a Javascript library, for producing slides, including the one you are looking at right now.
+
+With remarkjs, every deck of slides is a self-contained HTML file.  Except the head and the script sections, which we can keep the same, the content of each slide is written with markdown.
+
+Every slide is separate by three dashes.  For each slide, we can specify the CSS classes that we want to apply.  Everything else is just markdown.
+
+One particular useful feature is the ability to include formatted, syntax-highlighted source code in the slides.  This is useful for those of us who teaches programming in computing and engineering.  
+
+We can also include LaTeX for writing mathematical content. 
+
+Like other slideware, Remarkjs supports step-by-step build up of slides, and presenter's view.  You can have a separatw Windows, showing the next slide, along with the notes.  Which is very useful if you present over Zoom.  
+
+But wait, there is more!
+
+Since a slide deck is just an HTML file, we can do things that we normally do with a web page.  Such as customizaing the CSS, or embed a Javascript program.
+
+Here is an example, where I embedded an interactive piechart in my slide. 
+
+With my slides now written entirely in plain text, I can use version control on my slides, to keep track of changes over different offering, or erratas.  Me and my co-lecturers can work on the slides independently, and let version control handles the merges.  
+
+Furthermore, every slide now has a unique URL, which I can refer to when discussing with students.  
+
+With CSS, I can now apply consistent aesthetics across different decks of slides easily, by changing just one file.  
+
+I now spend more time focusing on the content, rather than the styling of my slides.  In cases when I need to have finer control over the layout of items on my slide, I can always write it out in HTML.
+
+There are many advantages of using remarkjs for creating slides. It does come with some caveats.  First, it works best for text-heavy slides.  For drawings, we have to draw in another software and include it as images.  Second, besides learning markdown, some HTML, CSS, Javascript knowledge is needed to fully exploit the advantages of remarkjs.
+
+So, that's how I use markdown for creating my slides.  I also use markdown for building my lecture notes and tutorial questions.  Particularly, I use `mkdocs`, which converts a bunch of Markdown files into a site.  This is what it looks like.  One nice feature about mkdocs is that it supports indexing and searching, so students can search the notes easily.
+
+I also use Markdown for forums.  We use Piazza, which supports markdown format.  Here is an example, where I posted the practical test questions for discussion.  I simply cut-and-pasted the text block that I released to students during the test, with minimal reformatting onto Piazza.  After the assessments, the questions and code are pushed onto Github, which also uses markdown.  I have also used Markdown for LumiNUS quizzes and other stuffs, such as Slacks for communicating with the tutors.
+
+So here is another big advantage of using Markdown, there are now many tools that supports it, and we can easily cut-and-paste markdown snippets to reuse them in different context.  For instance, I now spend much less time preparing the slides for my tutorials, since I can cut-and-paste the markdown code from the questions onto the slides, without having to reformat them.
+
+To summarize, markdown is a simple language that we can use to produce our course content.  I find it very useful, and I hope you do too.

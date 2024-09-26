@@ -1,0 +1,1462 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/guides/exercises.html">
+      
+      
+        <link rel="prev" href="clang.html">
+      
+      
+        <link rel="next" href="../exercises/ex00.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>Guide to Exercises - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#programming-exercises" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Guide to Exercises
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../notes/01-program.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exercises
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide to Exercises
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="exercises.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide to Exercises
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general-advice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Advice
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieving-and-submitting-programming-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrieving and Submitting Programming Questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-skeleton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Skeleton
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automating-the-edit-compile-run-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automating the Edit-Compile-Run Cycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ignoring-changes-in-spaces-and-blank-lines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ignoring Changes in Spaces and Blank Lines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correctness-of-test-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correctness of Test Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifying Yourself
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submitting-and-receiving-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Submitting and Receiving Feedback
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Submitting and Receiving Feedback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-of-submission" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method of Submission
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feedback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disallowed-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disallowed Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reminders-about-course-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reminders About Course Policies
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex00.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    0. I/O, Types, and Arithmetic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex01.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex02.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex03.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Fixed-Length Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex04.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Dynamic Arrays and Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex05.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Multi-dimensional Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex06.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Searching and Sorting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex07.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Recursions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex08.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Struct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general-advice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Advice
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrieving-and-submitting-programming-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrieving and Submitting Programming Questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-skeleton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Skeleton
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automating-the-edit-compile-run-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automating the Edit-Compile-Run Cycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ignoring-changes-in-spaces-and-blank-lines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ignoring Changes in Spaces and Blank Lines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correctness-of-test-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correctness of Test Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifying Yourself
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submitting-and-receiving-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Submitting and Receiving Feedback
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Submitting and Receiving Feedback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-of-submission" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method of Submission
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feedback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disallowed-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disallowed Syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reminders-about-course-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reminders About Course Policies
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="exercises.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Exercises
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="programming-exercises">Programming Exercises</h1>
+<p>Programming cannot be "studied".  Students must practice what they learn, through solving programming problems, to attain the skills of computational problem-solving in C.</p>
+<p>CS1010 provides close to 90 programming questions for students to practice.  These are organized into 11 weekly programming exercises.</p>
+<h2 id="general-advice">General Advice</h2>
+<ul>
+<li>
+<p>Spend some time thinking about the algorithm before you begin coding.  Write out the pseudo-code or draw out the flowchart on your own before you start typing in your program. </p>
+</li>
+<li>
+<p>Practice incremental coding.  Incremental coding means do NOT type in the whole long program in a single session and then compile it. Instead, type your program in bits and pieces and compile it incrementally. Try to maintain a compilable program even while you are working on it.  Submitting a compilable program that partially works is better than submitting an un-compilable one; this is especially important for your practical exams. </p>
+</li>
+<li>
+<p>Decompose a problem into smaller or simpler solvable problems.  When a problem is too complex, break the problem down into smaller sub-problems and solve each one separately (by writing functions), before combining them into a solution that solves the original problem.  This way, you can compartmentalize your thoughts and focus on solving smaller, simpler, more tractable sub-problems. </p>
+</li>
+<li>
+<p>If you can't solve a given problem fully, sometimes it helps to make additional assumptions to simplify the problem first (e.g., solve it for the case where the input integer is positive only), before solving the original problem.  During the practical exams, this strategy could help you get partial marks.</p>
+</li>
+<li>
+<p>Test your programs thoroughly.  We might not give you all the test cases in the programming questions.  So seeing a <code>passed</code> message (meaning your code passed all the given test cases) does not necessarily mean your code is correct.  You should separately run and test each of your programs with additional test cases.</p>
+</li>
+<li>
+<p>Follow the problem specification exactly.  Read the problem statement carefully and make sure your code meets the requirements given.  For instance, if the question asks for a function named <code>compute_area</code>, then your code MUST contain a function named <code>compute_area</code>.  Any other names (<code>calculate_area</code>, <code>ComputeArea</code>) are not acceptable.  If the output requires a single integer to be printed, printing extra text (e.g., <code>The answer is 5</code>) is not acceptable.</p>
+</li>
+<li>
+<p>You are encouraged to discuss the programming questions with your friends and learn from each other.  This process is an important part of the learning experience in CS1010.  Sharing and learning about <em>how to solve a problem</em> (at the algorithm level) from each other is not plagiarism.  Copy-pasting of code from others, or <em>writing the code</em> together line-by-line, however, is plagiarism.</p>
+</li>
+</ul>
+<p>See also <a href="http://people.irisa.fr/Martin.Quinson/Teaching/how-not-to-code.pdf">How NOT to Go About a Programming Assignment</a>, by Agustin Cernuda del Rio. </p>
+<blockquote>
+<p>Computer programming students invariably fall into more than one bad habit. It can be extremely difficult to eradicate them (and many lecturers and professional programmers keep succumbing to them time and again).._</p>
+</blockquote>
+<h2 id="retrieving-and-submitting-programming-questions">Retrieving and Submitting Programming Questions</h2>
+<p>All instructions below are meant to be run on the <a href="environments.html">PE hosts</a>.</p>
+<p>Every programming exercise has a unique ID, prefixed with <code>ex</code>, and is followed by a two-digit sequence number. </p>
+<p>We use <a href="https://classroom.github.com/classrooms/141557850-cs1010-23-24-s1">GitHub Classroom</a> for managing the submission (including submissions history) and grading.  You will have one code <em>repository</em> for each exercise.</p>
+<p>The steps for completing a programming assignment/exercise are as follows:</p>
+<ol>
+<li>
+<p><strong>Accept</strong>: Upon release, log into your GitHub account registered with CS1010 and click on the given Web link to accept the assignment/exercise.  This step would cause a repository to be created for you on GitHub Classroom, and a copy of the skeleton code and test data to be cloned inside that repository.  The name of the repository is of the form <code>&lt;id&gt;-&lt;username&gt;</code>.  For instance, <code>ex00-ooiwt</code>.</p>
+</li>
+<li>
+<p><strong>Get</strong>: On one of the PE hosts, run:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>~cs1010/get &lt;id&gt;
+</code></pre></div></td></tr></table></div></p>
+<p>For example, to get the first exercise, run <code>~cs1010/get ex00</code>.  This step would cause a copy of your repository to be cloned into the current directory on the PE hosts.  You now have a copy of the code and test data on the PE hosts.</p>
+</li>
+<li>
+<p><strong>Solve</strong>: Read the questions posted online and solve each question.  More details, along with some best practices for solving the programming questions, are given below.  Note that while there are ways for you to work on the GitHub environment (using GitHub CodeSpace or VS Code) directly without logging into PE nodes, doing so is not recommended.  During the practical exams, you are required to solve the programming questions in a sandboxed environment.  The PE hosts emulate the practical exam condition closely.  So it is important for you to become comfortable using the Unix CLI and Vim of the PE hosts.</p>
+</li>
+<li>
+<p><strong>Submit</strong>: When you want to take a snapshot of your code or submit the final version for grading, run:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>~cs1010/submit &lt;id&gt;
+</code></pre></div></td></tr></table></div></p>
+<p>This process uploads your C code for each question onto GitHub.  Note that any additional files in the directory will not be uploaded.</p>
+<p>For example, <code>~cs1010/submit ex01</code>.  You should see a message like this:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>You have submitted your code.  Please verify your submission online at:
+  https://github.com/nus-cs1010-2324-s1/ex00-ooiwt
+to make sure that everything is in order.
+</code></pre></div></td></tr></table></div></p>
+<p>After submission, it is a good practice to double-check that your submission is done properly by going to the GitHub site.</p>
+<p>You are not allowed to interact with your CS1010 GitHub repositories using <code>git</code> commands or edit your files directly on GitHub's website.  Doing so would interfere with the automation that we use for grading.</p>
+</li>
+</ol>
+<h2 id="code-skeleton">Code Skeleton</h2>
+<p>After running <code>~cs1010/get &lt;id&gt;</code>, you should see the folder <code>&lt;id&gt;-&lt;username&gt;</code> in your current directory with skeleton code inside.</p>
+<p>Inside that directory, you should see the following files:</p>
+<ul>
+<li>Files that end with <code>.c</code>, one for each problem/question.  The naming convention is <code>&lt;problem&gt;.c</code>.  These are the skeleton C code that you should edit to solve the programming question and the only files that you should change.</li>
+<li><code>inputs</code> and <code>outputs</code> are subdirectories that contain test inputs and test outputs. We use the convention <code>&lt;problem&gt;.&lt;id&gt;.in</code> for input test data, and <code>&lt;problem&gt;.&lt;id&gt;.out</code> for output test data.  For example, you will see files such as <code>echo.1.in</code>, <code>divide.1.out</code>, etc.  The expected output for <code>echo.1.in</code> is in <code>echo.1.out</code>.  You can look at the content of these files if you wish.  You can also edit these files to change the test input and output to modify the test cases.</li>
+<li><code>Makefile</code>: The configuration for the tool <code>make</code> that we use to automate the compilation and testing of the programs.  </li>
+<li><code>test.sh</code>: A bash script for testing your code.</li>
+<li><code>compiler_flags.txt</code> and <code>.clang-tidy</code> are two files used to configure <code>clang</code> and <code>clang-tidy</code> respectively.  You do not need to edit this.</li>
+<li><code>.gitignore</code> contains a list of filenames to be ignored by the submission script.</li>
+</ul>
+<h2 id="automating-the-edit-compile-run-cycle">Automating the Edit-Compile-Run Cycle</h2>
+<p><code>make</code> is a programmer's utility to automate the workflow of the edit-compile-run cycle.  We use <code>make</code> for all your exercises, assignments, and practical exams.</p>
+<p>A <code>Makefile</code> is provided for each of your assignments, exercises, and practical exams.  You don't have to know how to write a <code>Makefile</code>, but interested students can contact the teaching team for learning resources.</p>
+<p>For most situations, you only need to run:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make
+</code></pre></div></td></tr></table></div></p>
+<p>Our <code>Makefile</code> is configured so that <code>make</code> performs the following three tasks, in order:</p>
+<ol>
+<li>
+<p><strong>Compile</strong>.  For each <code>&lt;problem.c&gt;</code>, <code>make</code> invokes the compiler <code>clang</code> with the proper arguments to compile the code into binary executable <code>&lt;problem&gt;</code>.  This step is executed only if <code>&lt;problem&gt;.c</code> has been modified since the last compilation.  If there is a compilation error, <code>make</code> will not continue with the rest of the process.</p>
+</li>
+<li>
+<p><strong>Test</strong>.  If the compilation is successful or not needed, <code>make</code> would invoke <code>test.sh &lt;problem&gt;</code> to test your program against each of the given test cases.  If your program passed all the given test cases, it would print:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>&lt;problem&gt;: passed
+</code></pre></div></td></tr></table></div>
+Otherwise, a list of failed test cases is printed.</p>
+</li>
+<li>
+<p><strong>Lint</strong>. If the compilation is successful or not needed, and regardless of whether your code passed all the test cases or not, <code>make</code> would invoke <code>clang-tidy</code> to check your code against bad programming practices.  This step generates warnings for each instance of bad practices or bug-prone code found.  You should heed the warnings and fix your code, even if your code passed all the test cases.</p>
+</li>
+</ol>
+<p>If you only want to run <code>clang-tidy</code> on all the C files, you can run
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make tidy
+</code></pre></div></td></tr></table></div></p>
+<p>If you only want to test all the programs, you can run
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make test
+</code></pre></div></td></tr></table></div></p>
+<p>To compile an individual program, type
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make &lt;program&gt;
+</code></pre></div></td></tr></table></div></p>
+<p>For instance, the command
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make echo
+</code></pre></div></td></tr></table></div></p>
+<p>compiles <code>echo.c</code> into <code>echo</code> without testing or running <code>clang-tidy</code> on it.</p>
+<p>Sometimes it is useful to test-run a particular program only.  For example, if you want to test only the program <code>echo</code>, then
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./test.sh echo
+</code></pre></div></td></tr></table></div></p>
+<p>Finally, you can also run
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make clean
+</code></pre></div></td></tr></table></div>
+to remove all the generated executable files.</p>
+<h2 id="testing">Testing</h2>
+<p>If your code prints the wrong output for some of the test inputs, familiarity with Unix CLI would be helpful.  Suppose that your code for problem <code>echo</code> fails on test case 3.  To see the input of this test case, run:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cat inputs/echo.3.in
+</code></pre></div></td></tr></table></div></p>
+<p>To see the expected output:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cat outputs/echo.3.out
+</code></pre></div></td></tr></table></div></p>
+<p>To see what output your program gives,
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./echo &lt; inputs/echo.3.in
+</code></pre></div></td></tr></table></div></p>
+<p>Sometimes it is useful to store the output of your program in a file:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./echo &lt; inputs/echo.3.in &gt; myoutput
+</code></pre></div></td></tr></table></div></p>
+<p>You can then run <code>vim -d</code> to compare the expected output and your output to figure out what exactly differs between the two outputs:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>vim -d outputs/echo.3.out myoutput
+</code></pre></div></td></tr></table></div></p>
+<p>For each question, we will provide you with a limited set of test data.  During grading, we may grade your program with additional test data.</p>
+<h3 id="ignoring-changes-in-spaces-and-blank-lines">Ignoring Changes in Spaces and Blank Lines</h3>
+<p>Note that internally, in <code>test.sh</code>, we use <code>diff -bB</code> to compare if your output matches the expected output.  This means that we ignore blank lines and changes in white spaces.</p>
+<p>We require an exact match in the outputs only in programming questions where white spaces matter.</p>
+<h3 id="correctness-of-test-data">Correctness of Test Data</h3>
+<p>You may assume that all input data are correct unless otherwise stated. Hence you do NOT need to do input data validation. This is to allow you to focus on getting the program right, instead of worrying about making your program fool-proof which involves a lot more work. </p>
+<h2 id="identifying-yourself">Identifying Yourself</h2>
+<p>In every C file that you submit to CS1010, it is a good practice to identify yourself by writing your name and lab group.  We may deduct marks if you fail to do so.  You need to edit the line:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>@author XXXX (Group YYYY)
+</code></pre></div></td></tr></table></div>
+<p>and change it to something like:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>@author Elsa of Arendelle (Group B10)
+</code></pre></div></td></tr></table></div>
+<p>This helps us to easily identify the authors when needed.  Furthermore, signing off your work is a sign that you take pride in the work that you have produced!</p>
+<h2 id="submitting-and-receiving-feedback">Submitting and Receiving Feedback</h2>
+<h3 id="method-of-submission">Method of Submission</h3>
+<p>Students must use the <code>submit</code> command provided on the PE hosts to submit the assignments (more details below).  Programs submitted through other means, such as emails, will NOT be accepted.</p>
+<h3 id="feedback">Feedback</h3>
+<p>Only the latest submission of each question will be reviewed by the tutors after the deadline.</p>
+<p>The dimension for review includes correctness, design, style, efficiency, and documentation.  Each submission will be categorized as one of the following four categories:</p>
+<ul>
+<li>Excellent</li>
+<li>Good</li>
+<li>Need improvement</li>
+<li>Insufficient effort </li>
+</ul>
+<p>A program that cannot compile (i.e., there is a compilation error) will be considered as "insufficient effort".</p>
+<p>Feedback is done by both a bot and a human (i.e., a lab tutor) and is posted as comments in your GitHub repository. A summary of "Feedback.md" will be made available in your GitHub repository when the review is completed.</p>
+<p>Note that, during the practical exam, a program that cannot compile (i.e., there is a compilation error) will receive 0 marks. In addition, there is an additional -1 mark for each warning that your program received.  Always make sure that your program compiles cleanly without any warning when solving the exercises.</p>
+<h3 id="disallowed-syntax">Disallowed Syntax</h3>
+<p>Some programming assignments may explicitly disallow the use of certain syntax.  Generally, using syntax or statements which are not yet covered either in class or the exercise question is strongly discouraged.  We also discourage or ban the use of certain syntax for this module, (e.g., <code>++</code>) you should not use them.  The exercises are designed such that you should not need to do so (even though doing so may result in your program being shorter or more efficient). </p>
+<p>During the practical exam, if the objective of the assessment question is undermined, the penalty for using such forbidden syntax will be heavy. If in doubt, please ask for clarification.</p>
+<p>You can find the list of banned and discouraged C features in the article "<a href="c-in-cs1010.html">C in CS1010</a>."</p>
+<h2 id="reminders-about-course-policies">Reminders About Course Policies</h2>
+<p>Please review the following policies related to programming exercises</p>
+<ul>
+<li><a href="../about.html#asking-questions-and-getting-help">Asking questions and getting help</a></li>
+<li><a href="../about.html#use-of-ai-tools">Use of AI tools</a></li>
+<li><a href="../about.html#discussion-and-plagiarism">Discussion and plagiarism</a></li>
+<li><a href="../about.html#latemissed-submission-policy">Late/miss submission policy</a></li>
+</ul>
+<hr />
+<p>This guideline is expanded from Aaron Tan's CS1010 guideline.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="clang.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Compiling with Clang">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Compiling with Clang
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../exercises/ex00.html" class="md-footer__link md-footer__link--next" aria-label="Next: 0. I/O, Types, and Arithmetic">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                0. I/O, Types, and Arithmetic
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,40 @@
+.remark-slide-content {
+	background-color: #fff; 
+    color: #000;
+}
+
+.remark-inline-code { 
+	background-color: #eee;
+}
+
+a {
+    color: #009;
+}
+
+h1, h2 {
+	color: #005;
+}
+
+h3 {
+	color: #003;
+}
+
+em {
+	color: #900;
+}
+
+table thead {
+  background-color: rgba(230, 230, 255, 1.0);
+}
+
+table th {
+	border-bottom-color: #000;
+}
+
+table td {
+	border-bottom-color: #bbb;
+}
+
+.remark-code-line {
+	font-family: "Consolas","Andale Mono","Menlo","Courier New";
+}

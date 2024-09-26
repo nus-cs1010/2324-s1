@@ -1,0 +1,2550 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/exercises/ex02.html">
+      
+      
+        <link rel="prev" href="ex01.html">
+      
+      
+        <link rel="next" href="ex03.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>2. Loops - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exercise-2-loops" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2. Loops
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../notes/01-program.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../guides/unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exercises
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guides/exercises.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide to Exercises
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex00.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    0. I/O, Types, and Arithmetic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex01.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Conditionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Loops
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ex02.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Loops
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deadline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deadline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acceptance-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acceptance Link
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-and-difficulty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts and Difficulty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Efficiency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-lemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 1: Lemon
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Lemon">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-factor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 2: Factor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: Factor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-parity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 3: Parity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Parity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-nine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 4: Nine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: Nine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-5-hdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 5: HDB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 5: HDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-6-binary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 6: Binary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 6: Binary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-7-onigiri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 7: Onigiri
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 7: Onigiri">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-8-fibonacci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 8: Fibonacci
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 8: Fibonacci">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-9-collatz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 9: Collatz
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 9: Collatz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-10-rectangle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 10: Rectangle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 10: Rectangle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-11-prime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 11: Prime
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 11: Prime">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-12-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 12: Pattern
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 12: Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hints_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex03.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Fixed-Length Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex04.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Dynamic Arrays and Strings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex05.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Multi-dimensional Arrays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex06.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Searching and Sorting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex07.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Recursions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ex08.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Struct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisite
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deadline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deadline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acceptance-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acceptance Link
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concepts-and-difficulty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concepts and Difficulty
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Efficiency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-1-lemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 1: Lemon
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 1: Lemon">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-2-factor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 2: Factor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 2: Factor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-3-parity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 3: Parity
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 3: Parity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-4-nine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 4: Nine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 4: Nine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-5-hdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 5: HDB
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 5: HDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-6-binary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 6: Binary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 6: Binary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-7-onigiri" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 7: Onigiri
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 7: Onigiri">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-8-fibonacci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 8: Fibonacci
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 8: Fibonacci">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-9-collatz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 9: Collatz
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 9: Collatz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-10-rectangle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 10: Rectangle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 10: Rectangle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-11-prime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 11: Prime
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 11: Prime">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question-12-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question 12: Pattern
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Question 12: Pattern">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-runs_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hints_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../guides/exercises.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Exercises
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="exercise-2-loops">Exercise 2: Loops</h1>
+<h3 id="prerequisite">Prerequisite</h3>
+<p>You have completed <a href="ex01.html">Exercise 1</a>. </p>
+<h3 id="learning-outcomes">Learning Outcomes</h3>
+<p>Be comfortable writing simple C programs that involve loops.</p>
+<h3 id="deadline">Deadline</h3>
+<p>This is part of the CS1010 formative assessment. Submit before 18 September 2023, 23:59 to receive feedback and earn your achievement "badges".</p>
+<h3 id="acceptance-link">Acceptance Link</h3>
+<p>The link to accept the exercise is not available publicly.  Visit Canvas for the link.</p>
+<h3 id="concepts-and-difficulty">Concepts and Difficulty</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Question</th>
+<th>Loops</th>
+<th>Efficiency</th>
+<th>Difficulty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="#question-1-lemon">Lemon</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27z"/></svg></span></td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="#question-2-factor">Factor</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27z"/></svg></span></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="#question-3-parity">Parity</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27z"/></svg></span></td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="#question-4-nine">Nine</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27z"/></svg></span></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="#question-5-hdb">HDB</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27z"/></svg></span></td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="#question-6-binary">Binary</a>^</td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>7</td>
+<td><a href="#question-7-onigiri">Onigiri</a>^</td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>8</td>
+<td><a href="#question-8-fibonacci">Fibonacci</a>^</td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="#question-9-collatz">Collatz</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>10</td>
+<td><a href="#question-10-rectangle">Rectangle</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>11</td>
+<td><a href="#question-11-prime">Prime</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span></td>
+</tr>
+<tr>
+<td>12</td>
+<td><a href="#question-12-pattern">Pattern</a></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59z"/></svg></span></td>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21z"/></svg></span> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27z"/></svg></span></td>
+</tr>
+</tbody>
+</table>
+<p>^: Questions 6 - 8 serve as in-class exercises during the lab session in Week 5.</p>
+<h3 id="efficiency">Efficiency</h3>
+<p>For <code>prime</code> and <code>pattern</code>, while we do not require an advanced fast algorithm to check for primality testing, your code should not waste time by doing redundant work.  You can use the <code>time</code> command to measure how long it takes to run a command.  E.g.,</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>$ time ./test.sh prime
+prime: passed
+
+real    0m3.908s
+user    0m3.864s
+sys     0m0.083s
+
+$ time ./test.sh pattern
+pattern: passed
+
+real    0m0.172s
+user    0m0.133s
+sys     0m0.059s
+</code></pre></div></td></tr></table></div>
+<p>If you code takes too long to run, it will timeout and fail the test case.</p>
+<h2 id="question-1-lemon">Question 1: Lemon</h2>
+<p>A <span class="arithmatex">\((l,m,n)\)</span>-run (also known as a lemon run) is a sequence of <span class="arithmatex">\(m\)</span> integers (<span class="arithmatex">\(m \ge 1\)</span>) with a gap of <span class="arithmatex">\(n\)</span> between one number and the next, starting with <span class="arithmatex">\(l\)</span>, i.e., <span class="arithmatex">\(\langle l, l+n, l+2n, ..., l+(m-1)n \rangle.\)</span></p>
+<p>Write a program called <code>lemon</code> that reads in three integers <span class="arithmatex">\(l\)</span>, <span class="arithmatex">\(m\)</span>, and <span class="arithmatex">\(n\)</span> from the standard input, and prints to the standard outputs, the numbers in the <span class="arithmatex">\((l, m, n)\)</span>-run, one number per line.</p>
+<h3 id="sample-runs">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe112:~/ex02-ooiwt$ ./lemon
+1 4 3
+1
+4
+7
+10
+ooiwt@pe112:~/ex02-ooiwt$ ./lemon
+-1 2 0
+-1
+-1
+ooiwt@pe112:~/ex02-ooiwt$ ./lemon
+10 3 -1
+10
+9
+8
+</code></pre></div></td></tr></table></div>
+<h2 id="question-2-factor">Question 2: Factor</h2>
+<p>Given a number <span class="arithmatex">\(n\)</span>, we want to find out how many factors <span class="arithmatex">\(n\)</span> has, excluding the trivial factor 1 and <span class="arithmatex">\(n\)</span>.</p>
+<p>Write a program <code>factor</code> that reads, from the standard input, a positive integer <span class="arithmatex">\(n\)</span>, and prints, to the standard output, the number of factors of <span class="arithmatex">\(n\)</span> between 2 and <span class="arithmatex">\(n-1\)</span>, inclusive.</p>
+<h3 id="sample-runs_1">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe112:~/ex02-ooiwt$ ./factor
+48
+8
+ooiwt@pe112:~/ex02-ooiwt$ ./factor
+49
+1
+ooiwt@pe112:~/ex02-ooiwt$ ./factor
+1
+0
+</code></pre></div></td></tr></table></div>
+<h2 id="question-3-parity">Question 3: Parity</h2>
+<p>Write a program <code>parity</code>, that reads from standard input a positive integer <span class="arithmatex">\(n\)</span> and prints to the standard output the following two lines,
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>odd: X
+even: Y
+</code></pre></div></td></tr></table></div></p>
+<p>where <code>X</code> represents the number of odd digits in <span class="arithmatex">\(n\)</span>, and <code>Y</code> represents the number of even digits in <span class="arithmatex">\(n\)</span>.</p>
+<h3 id="sample-runs_2">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe119:~/ex02-albertsutz$ ./parity
+123456
+odd: 3
+even: 3
+ooiwt@pe119:~/ex02-albertsutz$ ./parity
+111333
+odd: 6
+even: 0
+</code></pre></div></td></tr></table></div>
+<p>Question Credit: Albert Sutiono (cohort 20/21)</p>
+<h2 id="question-4-nine">Question 4: Nine</h2>
+<p>Write a program that looks for the least significant occurrence of digit 9 in a given number.</p>
+<p>Your program, <code>nine</code>, should read a positive number from the standard input and print out the position of the least significant occurrence of 9.  The rightmost digit has the position of 1, the second last has the position of 2, etc.  If the number 9 does not appear in the given number, print 0.</p>
+<p>Solve this problem in a function called <code>find_least_significant_9</code> that takes in a <code>long</code> parameter (the input number) and returns a <code>long</code> (the position of 9).  Your function should not search through more digits than necessary.</p>
+<h3 id="sample-runs_3">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe119:~/ex02-ooiwt$ ./nine
+900
+3
+ooiwt@pe119:~/ex02-ooiwt$ ./nine
+9999999
+1
+ooiwt@pe119:~/ex02-ooiwt$ ./nine
+123456780
+0
+</code></pre></div></td></tr></table></div>
+<h2 id="question-5-hdb">Question 5: HDB</h2>
+<p>ASCII Art refers to the art of drawing with only common letters, numbers, and symbols on our keyboard.  My daughter has discovered that, if we draw rows of <code>#</code> symbols together, the output looks like an HDB flat!</p>
+<p>Write a program <code>hdb</code> that takes in two positive integers <span class="arithmatex">\(w\)</span> and <span class="arithmatex">\(h\)</span>, and draw <span class="arithmatex">\(h\)</span> rows of <code>#</code> symbols, each row containing <span class="arithmatex">\(w\)</span> <code>#</code>, with no spaces before, in between, and after.</p>
+<h3 id="sample-runs_4">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe119:~/2122s1/ex02-ooiwt$ ./hdb
+3 3
+###
+###
+###
+ooiwt@pe119:~/2122s1/ex02-ooiwt$ ./hdb
+10 15
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+ooiwt@pe119:~/2122s1/ex02-ooiwt$ ./hdb
+24 10
+########################
+########################
+########################
+########################
+########################
+########################
+########################
+########################
+########################
+########################
+</code></pre></div></td></tr></table></div>
+<h2 id="question-6-binary">Question 6: Binary</h2>
+<p>In this question, you are asked to convert a number represented in binary format (using digits 0 and 1) into decimal format (using digits 0 and 9).</p>
+<p>A number in decimal format is represented with base 10.  The last digit (rightmost) corresponds to the unit of 1, the next digit (second last) corresponds to the unit of 10, and so on. So, one can write the decimal number,
+for instance, 7146 as 7×1000 + 1×100 + 4×10 + 6×1.</p>
+<p>A number represented in binary uses base 2 instead of base 10.  The last digit corresponds to 1. The second last digit corresponds to 2, the third last digit corresponds to 4, and so on. So, the binary number 1101, for instance, corresponds to 1×8 + 1×4 + 1×1 = 13.</p>
+<p>Write a program called <code>binary</code> that reads in a positive integer consisting of only 0s and 1s from the standard input, treats it as a binary number, and prints the corresponding decimal number to the standard output.</p>
+<p>Try to solve this question with two different approaches: (i) recursively and (ii) iteratively with loops.</p>
+<h3 id="sample-runs_5">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe113:~/ex02-ooiwt$ ./binary
+1101
+13
+ooiwt@pe113:~/ex02-ooiwt$ ./binary
+111
+7
+ooiwt@pe113:~/ex02-ooiwt$ ./binary
+10110100
+180
+</code></pre></div></td></tr></table></div>
+<h2 id="question-7-onigiri">Question 7: Onigiri</h2>
+<p><img align="left" alt="onigiri" src="figures/ex02-onigiri.jpg" /></p>
+<p>Onigiri is a Japanese rice ball often formed in a triangular or cylindrical shape and wrapped in nori. </p>
+<p>We are going to draw some triangular onigiri on our screen using #s.</p>
+<p>Write a program <code>onigiri.c</code> that draws an isosceles triangle using <code></code> (white space) and <code>#</code>.  The program must read in a positive integer representing the height <span class="arithmatex">\(h\)</span> of a triangle.  The triangle must have exactly <span class="arithmatex">\(h\)</span> rows.  Each row must have exactly <span class="arithmatex">\(2h-1\)</span> characters (including white spaces but excluding a new line).  On each row, the sequence of "#" characters must be centralized, padded by white spaces on both sides.</p>
+<h3 id="sample-run">Sample Run</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe112:~/ex02-ooiwt$ ./onigiri
+5
+    #     
+   ###    
+  #####   
+ ####### 
+#########
+ooiwt@pe112:~/ex02-ooiwt$ ./onigiri
+3
+  #  
+ ### 
+#####
+ooiwt@pe112:~/ex02-ooiwt$ ./onigiri
+1
+#
+</code></pre></div></td></tr></table></div>
+<h3 id="hints">Hints</h3>
+<ol>
+<li>
+<p>First, find the pattern to draw the triangle.</p>
+<p>On row <span class="arithmatex">\(k\)</span>, how many <code>#</code>s should you draw?  How many white spaces should be padded on the left and the right?</p>
+</li>
+<li>
+<p>Write a function that draws a particular row of the triangle.  Then, call this function repeatedly in a loop.</p>
+</li>
+<li>
+<p>White spaces are not visible.  To help you debug, you can pipe the output through a Unix tool called <code>sed</code>.</p>
+</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe112:~/ex02-ooiwt$ ./onigiri | sed &#39;s/ /./g&#39;
+4
+...#...
+..###..
+.#####.
+#######
+</code></pre></div></td></tr></table></div>
+<h2 id="question-8-fibonacci">Question 8: Fibonacci</h2>
+<p>The Fibonacci sequence is a sequence of numbers 1, 1, 2, 3, 5, 8, 13, ... Fibonacci numbers often appear in mathematics as well as in nature and have many fascinating properties.</p>
+<p>The Fibonacci sequence can be constructed as follows. The first Fibonacci number is 1. The second Fibonacci number is also 1. Subsequently, the <span class="arithmatex">\(i\)</span>-th Fibonacci number is computed as the sum of the previous two Fibonacci numbers, the <span class="arithmatex">\((i-2)\)</span>-th, and the <span class="arithmatex">\((i-1)\)</span>-th.</p>
+<p>Write a program called <code>fibonacci</code> that reads a positive integer number <span class="arithmatex">\(n\)</span> from the standard input, and prints the <span class="arithmatex">\(n\)</span>-th Fibonacci number to the standard output. </p>
+<p>Try to solve this question with two different approaches: (i) recursively and (ii) iteratively with loops.  </p>
+<p>Note that when <span class="arithmatex">\(n\)</span> is large, your recursive approach may take a long time to run, or even crash with the error <code>Segmentation fault (core dumped)</code>.  This is expected.</p>
+<h3 id="sample-runs_6">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe113:~/ex02-ooiwt$ ./fibonacci
+1
+1
+ooiwt@pe113:~/ex02-ooiwt$ ./fibonacci
+10
+55
+ooiwt@pe113:~/ex02-ooiwt$ ./fibonacci
+83
+99194853094755497
+</code></pre></div></td></tr></table></div>
+<h2 id="question-9-collatz">Question 9: Collatz</h2>
+<p>The Collatz Conjecture was introduced by the mathematician <a href="https://en.wikipedia.org/wiki/Lothar_Collatz">Lothar Collatz</a> in 1937. Also known as the <span class="arithmatex">\(3n+1\)</span> conjecture, the problem can be stated very simply but yet no one can prove that it is true or false. The conjecture states the following:</p>
+<p>Consider the following operation on a positive integer <span class="arithmatex">\(n\)</span>: if <span class="arithmatex">\(n\)</span> is even, divide it by two; otherwise, triple it and add one. Suppose we form a sequence of numbers by performing this operation repeatedly, beginning with any positive integer, then this process will eventually reach the number 1, for any initial positive integer <span class="arithmatex">\(n\)</span>.</p>
+<p>For instance, if <span class="arithmatex">\(n\)</span> = 10, then we have the sequence</p>
+<p>10 -&gt; 5 -&gt; 16 -&gt; 8 -&gt; 4 -&gt; 2 -&gt; 1</p>
+<p>The smallest number of steps taken by this process for <span class="arithmatex">\(n\)</span> to reach 1 is called the <em>total stopping time</em>. In the example above, the total stopping time for 10 is 6.</p>
+<p>Write a program <code>collatz.c</code> that reads in two positive integers <span class="arithmatex">\(m\)</span> and <span class="arithmatex">\(n\)</span> from the standard input (<span class="arithmatex">\(m \le n\)</span>) and finds out, among the numbers between <span class="arithmatex">\(m\)</span> to <span class="arithmatex">\(n\)</span>, inclusive, which one has the largest total stopping time. If two numbers have the same total stopping time, we break ties by choosing the larger number as the answer.</p>
+<p>Your program should print to the standard output, the largest total stopping time, followed by the corresponding number, in two different lines.</p>
+<h3 id="sample-runs_7">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe114:~/ex02-ooiwt$ ./collatz
+1 1
+0
+1
+ooiwt@pe114:~/ex02-ooiwt$ ./collatz
+1 9
+19
+9
+</code></pre></div></td></tr></table></div>
+<h2 id="question-10-rectangle">Question 10: Rectangle</h2>
+<p>Write a program called rectangle that reads two positive integers from the standard input, corresponding to the width and the height of the rectangle. The width and height must be at least 2. Draw a rectangle on the screen using the special ASCII characters "╔" "╗" "╝" "╚" "═" "║", which corresponds to the top left, top right, bottom right, bottom left, top/bottom edge, and left/right edge of the rectangle respectively. Strings consisting of these special characters have been given to you in <code>rectangle.c</code>, and we have defined them as constants. For instance, "╔" is called <code>TOP_LEFT</code>, and to print this out, you can write 
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>cs1010_print_string(TOP_LEFT);
+</code></pre></div></td></tr></table></div></p>
+<h3 id="sample-runs_8">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe113:~/ex02-ooiwt$ ./rectangle
+2 2
+╔╗
+╚╝
+ooiwt@pe113:~/ex02-ooiwt$ ./rectangle
+2 10
+╔╗
+║║
+║║
+║║
+║║
+║║
+║║
+║║
+║║
+╚╝
+ooiwt@pe113:~/ex02-ooiwt$ ./rectangle
+10 10
+╔════════╗
+║        ║
+║        ║
+║        ║
+║        ║
+║        ║
+║        ║
+║        ║
+║        ║
+╚════════╝
+</code></pre></div></td></tr></table></div>
+<h2 id="question-11-prime">Question 11: Prime</h2>
+<p>Write a program called <code>prime</code> that reads a positive integer <span class="arithmatex">\(n\)</span> (<span class="arithmatex">\(n \ge 2\)</span>) from the standard input and prints the largest prime smaller or equal to <span class="arithmatex">\(n\)</span>.</p>
+<p>Recall that a prime number is a number that is only divisible by 1 and itself.</p>
+<p>Your program must not make unnecessary checks or do repetitive work.  In particular, once you find the evidence that a number is not a prime, there is no need to continue checking.</p>
+<p>Your program must contain a boolean function <code>is_prime</code> that checks if a given number is prime.  You should call this function in a loop to solve this problem.</p>
+<p><code>prime</code> should not take more than 5 seconds on CS1010 PE hosts to pass each of the provided test cases.</p>
+<h3 id="sample-runs_9">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe113:~/ex02-ooiwt$ ./prime
+2
+2
+ooiwt@pe113:~/ex02-ooiwt$ ./prime
+10
+7
+ooiwt@pe113:~/ex02-ooiwt$ ./prime
+1000
+997
+</code></pre></div></td></tr></table></div>
+<h2 id="question-12-pattern">Question 12: Pattern</h2>
+<p>Even though the sequence of prime numbers appears to be random, mathematicians have found some intriguing patterns related to prime numbers. In this question, you are asked to write a program to draw a variation of the "Parallax Compression" pattern discovered by a software engineer, Shaun Gilchrist.</p>
+<p>The pattern visualizes the distribution of prime numbers in a triangle, in the following way. The inputs given are an interval <span class="arithmatex">\(m\)</span> (<span class="arithmatex">\(m \ge 1\)</span>) and the height of the triangle <span class="arithmatex">\(h\)</span>.</p>
+<p>The triangle has <span class="arithmatex">\(h\)</span> rows. The first row of the triangle has one cell, the second row has three cells, the third row has five, etc. The cells are centrally aligned so that visually they form an equilateral triangle. We call the left-most cell of each row the leading cell.</p>
+<p>Each cell in the triangle contains <span class="arithmatex">\(m\)</span> integers. The first cell in the first row contains the numbers 1, 2, ..., <span class="arithmatex">\(m\)</span>. The leading cell of the next row, Row 2, contains <span class="arithmatex">\(m\)</span> numbers between <span class="arithmatex">\(m + 1\)</span> and <span class="arithmatex">\(3m\)</span>, with an increment of 2: i.e., <span class="arithmatex">\(m + 1\)</span>, <span class="arithmatex">\(m + 3\)</span>, <span class="arithmatex">\(m + 5\)</span>, .., <span class="arithmatex">\(m + (2m - 1)\)</span>. The leading cell of the next row, Row 3, contains the numbers <span class="arithmatex">\(3m + 1\)</span> and <span class="arithmatex">\(6m\)</span>, with an increment of 3: i.e., <span class="arithmatex">\(3m + 1\)</span>, <span class="arithmatex">\(3m + 4\)</span>, <span class="arithmatex">\(3m + 7\)</span>,..  <span class="arithmatex">\(3m+(3m−2)\)</span>,
+etc.</p>
+<div class="admonition tips">
+<p class="admonition-title">Lemon Run</p>
+<p>The leading cell of the rows corresponds to lemon runs for <span class="arithmatex">\((1, m, 1)\)</span>, <span class="arithmatex">\((m+1, m, 2)\)</span>, <span class="arithmatex">\((3m+1, m, 3)\)</span>, etc. </p>
+</div>
+<p>For instance, if <span class="arithmatex">\(m\)</span> is 5, the leading cells of the first three rows contain the numbers</p>
+<ul>
+<li>{1, 2, 3, 4, 5},</li>
+<li>{6, 8, 10, 12, 14},</li>
+<li>{16, 19, 22, 25, 28},</li>
+</ul>
+<p>respectively.</p>
+<p>The rest of the cells in each row contains <span class="arithmatex">\(m\)</span> numbers where each is one more than a number contained in the cell on its left. So, in Row 2, the numbers in the three cells are</p>
+<ul>
+<li>{6, 8, 10, 12, 14},</li>
+<li>{7, 9, 11, 13, 15}, and</li>
+<li>{8, 10, 12, 14, 16}.</li>
+</ul>
+<p>In Row 3, the cells contain</p>
+<ul>
+<li>{16, 19, 22, 25, 28},</li>
+<li>{17, 20, 23, 26, 29},</li>
+<li>{18, 21, 24, 27, 30},</li>
+<li>{19, 22, 25, 28, 31}, and</li>
+<li>{20, 23, 26, 29, 32}.</li>
+</ul>
+<p>Now, to visualize the distribution of primes, we do the following, for each cell of the triangle that contains at least one prime, we print <code>#</code> to the standard output at the corresponding position. Otherwise, we print <code>.</code>.</p>
+<p>For example, in Row 3,</p>
+<ul>
+<li>Cell 1: {16, 19, 22, 25, 28}, we print <code>#</code> since 19 is prime</li>
+<li>Cell 2: {17, 20, 23, 26, 29}, we print <code>#</code> since 23 is prime</li>
+<li>Cell 3: {18, 21, 24, 27, 30}, we print <code>.</code> since there is no prime</li>
+<li>Cell 4: {19, 22, 25, 28, 31}, we print <code>#</code> since 19 is prime</li>
+<li>Cell 5: {20, 23, 26, 29, 32}, we print <code>#</code> sine 23 is prime</li>
+</ul>
+<p>So Row 3 will be printed as <code>##.##</code> (leading and trailing white spaces are not shown).</p>
+<p>Your output must contain exactly <span class="arithmatex">\(h\)</span> rows, each row exactly <span class="arithmatex">\(2h−1\)</span> characters (including the white spaces but excluding the newline). Note that in the sample runs below, the white spaces are not visible.</p>
+<h3 id="example">Example</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe114:~/ex02-ooiwt$ ./pattern
+2 4
+   #   
+  #.#  
+ ##.## 
+#.#.#.#
+</code></pre></div></td></tr></table></div>
+<p>To understand the output, consider the cells below:</p>
+<p><img alt="pixel" src="figures/ex02-pattern/pixels-1.png" /></p>
+<p>Now, consider the two numbers contained in each cell, in the four rows:</p>
+<ul>
+<li>Row 1: {1,2}</li>
+<li>Row 2: {3,5} {4,6} {5,7}</li>
+<li>Row 3: {7,10} {8,11} {9,12} {10,13} {11,14}</li>
+<li>Row 4: {13,17} {14,18} {15,19} {16,20} {17,21} {18,22} {19,23}</li>
+</ul>
+<p><img alt="pixel" src="figures/ex02-pattern/pixels-2.png" /></p>
+<p>Now, we check whether the numbers contained in each cell have at least one prime, and replace them with either <code>#</code> or <code>.</code>.</p>
+<p><img alt="pixel" src="figures/ex02-pattern/pixels-3.png" /></p>
+<h3 id="sample-runs_10">Sample Runs</h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code>ooiwt@pe114:~/ex02-ooiwt$ ./pattern
+11 11
+          #          
+         .#.         
+        ##.##        
+       #.#.#.#       
+      ####.####      
+     .#.#...#.#.     
+    ######.#.####    
+   #.#.#.#.#.#.#.#   
+  ##.##.##.##.##.##  
+ .#.#.#.#...#.#.#.#. 
+######.###.##########
+ooiwt@pe114:~/ex02-ooiwt$ ./pattern
+100 29
+                            #                            
+                           #.#                           
+                          ##.##                          
+                         #.#.#.#                         
+                        ####.####                        
+                       #...#.#...#                       
+                      ######.######                      
+                     #.#.#.#.#.#.#.#                     
+                    ##.##.##.##.##.##                    
+                   #.#...#.#.#.#...#.#                   
+                  ##########.##########                  
+                 #...#.#...#.#...#.#...#                 
+                ############.############                
+               #.#.#...#.#.#.#.#.#...#.#.#               
+              ##.#..##..#.##.##.#..##..#.##              
+             #.#.#.#.#.#.#.#.#.#.#.#.#.#.#.#             
+            ################.################            
+           #...#.#...#.#...#.#...#.#...#.#...#           
+          ##################.##################          
+         #.#...#.#.#.#...#.#.#.#...#.#.#.#...#.#         
+        ##.##..#.##.#..##.##.##.##..#.##.#..##.##        
+       #.#.#.#.#...#.#.#.#.#.#.#.#.#.#...#.#.#.#.#       
+      ######################.######################      
+     #...#.#...#.#...#.#...#.#...#.#...#.#...#.#...#     
+    ####.####.####.####.####.####.####.####.####.####    
+   #.#.#.#.#.#...#.#.#.#.#.#.#.#.#.#.#.#...#.#.#.#.#.#   
+  ##.##.##.##.##.##.##.##.##.##.##.##.##.##.##.##.##.##  
+ #.#.#...#.#.#.#.#.#...#.#.#.#.#.#...#.#.#.#.#.#...#.#.# 
+############################.############################
+</code></pre></div></td></tr></table></div>
+<h3 id="hints_1">Hints</h3>
+<p>As always, solve this problem by breaking it down into smaller problems.</p>
+<p>In addition to drawing triangles and checking if a number is prime, you might find the following sub-problems useful:</p>
+<ul>
+<li>
+<p>Find the first number of each leading cell of each row, given the row number and the interval <span class="arithmatex">\(m\)</span>.</p>
+</li>
+<li>
+<p>Given the row, the col, and the interval <span class="arithmatex">\(m\)</span>, does the cell contain a prime?</p>
+</li>
+</ul>
+<p><code>pattern</code> should take less than a second to pass all the given test cases.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="ex01.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1. Conditionals">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                1. Conditionals
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="ex03.html" class="md-footer__link md-footer__link--next" aria-label="Next: 3. Fixed-Length Arrays">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                3. Fixed-Length Arrays
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

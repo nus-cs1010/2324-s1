@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/light.css">
+<title>CS1010 AY23/24 S1 Lecture 6</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+# Lecture 6
+
+### 18 September 2023
+
+.smaller[
+Admin Matters<br>
+Unit 13: **Call Stack**<br>
+Unit 14: **Array**<br>
+]
+---
+### Upcoming Events
+
+- **Catch-up**: 23 September 2023 (Saturday)
+- **Midterm**: 2 October 2023 (Monday)
+- **PE 0**: 3 October 2023 (Saturday)
+
+---
+### Catch-Up Session
+
+- __Date__: Saturday, 23 September 2023
+
+- __Time__: 10 AM to 12 PM
+
+- __Venue__: COM3 01-21, Seminar Room 12
+
+- Ask/upvote questions here: https://pigeonhole.at/LOOPSEVERYWHERE 
+
+---
+### [Anon Feedback on Tutors](https://canvas.nus.edu.sg/courses/45586/quizzes/18290)
+
+- Please let us know how we are doing
+
+- Constructive criticism and encouragement are both welcome
+
+- Due: 29 September, 2023 (Friday)
+
+---
+class: middle,center
+
+## Call Stack
+
+---
+.cols[
+.fifty[
+.smaller[
+```C
+int main() 
+{ 
+  long x = 1; 
+  long y; 
+}
+```
+]
+]
+.fifty[
+
+]]
+
+---
+.cols[
+.fifty[
+.smaller[
+```C
+long add(long a, long b)
+{    
+    long sum;
+	sum = a + b;    
+	return sum;
+} 
+
+int main()
+{    
+	long x = 1;    
+	long y;
+	y = add(x, 10);  
+	cs1010_println_long(y);
+}
+```
+]
+]
+.fifty[
+
+]]
+
+---
+.cols[
+.fifty[
+.smaller[
+```C
+void add(long sum, long a, long b)
+{    
+	sum = a + b;    
+} 
+
+int main()
+{    
+	long x = 1;    
+	long sum;
+	add(sum, x, 10);  
+	cs1010_println_long(sum);
+}
+```
+]
+]
+.fifty[
+
+]]
+
+---
+- Stack size is limited.
+
+- "Stack overflow" happens when we ran out of stack space.
+
+---
+class: middle, center
+
+## Array
+
+---
+class: middle, center
+
+Array is a _compound data type_ that stores multiple values of the _same_ type.
+
+---
+### Declaring an Array
+
+```C
+long list[10];
+```
+
+`list` is an array that stores 10 `long` values.
+
+---
+### Accessing Elements of an Array
+
+```C
+list[4] = 100; // write 
+```
+
+- Indexing starts at 0.
+- `list[4]` refers to the 5th element in the array `list`.
+
+
+---
+### Declaring and Initializing an Array
+.small[
+```C
+long list[10] = {1, 2, 3, 1, 5, 10, 10, 4, };
+```
+]
+
+Unspecified elements initialized to 0.
+
+---
+class:center,middle
+
+### Example: Array as a Lookup Table
+
+---
+class: wide
+### Array as Function Parameter
+
+.small[
+```C
+long max(long list[10]) { .. }
+long max(long len, long list[]) { .. }
+```
+]
+
+---
+
+.smaller[
+```C
+long max(long list[], long length)
+{
+  long max_so_far = list[0];
+  for (long i = 1; i != length; i += 1) {
+    if (list[i] &gt; max_so_far) {
+      max_so_far = list[i];
+    }
+  }
+  return max_so_far;
+}
+```
+]
+
+---
+class: wide
+### Array as Argument
+
+.small[
+```C
+int main() 
+{
+  long list[5] = {1, -1, 9, 3, 7};
+  long = max(list, 5);
+}
+```
+]
+
+---
+### Arrays are Passed by Reference
+
+.cols[
+.fifty[
+.smaller[
+```C
+void foo(long a0, long a1) {
+  a0 = 1;
+  a1 = 2;
+}
+
+int main()
+{
+  long a0 = 100;
+  long a1 = 200;
+  foo(a0, a1);
+  // { a0 == 100 }
+}
+```
+]
+]
+.fifty[
+
+]]
+
+---
+### Arrays are Passed by Reference
+
+.cols[
+.fifty[
+.smaller[
+```C
+void foo(long a[2]) {
+  a[0] = 1;
+  a[1] = 2;
+}
+
+int main()
+{
+  long a[2] = {100, 200};
+  foo(a);
+}
+```
+]
+]
+.fifty[
+
+]]
+
+---
+### Functions can now have side-effects
+
+.cols[
+.fifty[
+.smaller[
+```C
+void foo(long a[2]) {
+  a[0] = 1;
+  a[1] = 2;
+}
+
+int main()
+{
+  long a[2] = {100, 200};
+  foo(a);
+  // { a[0] == ?? }
+}
+```
+]
+]
+.fifty[
+
+]]
+
+
+
+---
+### Recap
+
+A variable is a location in memory that holds a value.
+
+Every variable has a **value**, a **name**, a **type**, and an **address**.
+
+We refer to a variable through its **name** or its **address**.
+
+---
+### Pointers
+
+Memory address is a type in C.
+
+```C
+double *ptr;
+long *addr;
+```
+
+---
+### Array Decay
+
+```C
+long list[10];
+long *first_elem = list;
+```
+
+Elements of an array are stored contiguously in memory.
+
+`list` decays into the memory address of its first element.
+
+---
+.small[
+```C
+long a[2] = {0, 1};
+long b[2] = {0, 1};
+
+if (a == b) {  // always false
+  :
+}
+
+b = a; // not possible
+```
+]
+
+---
+.small[
+```C
+long max(long list[], long len) {
+  // only pointer is passed in
+}
+  :
+long list[10];
+max(list, 10);  // pass in pointer to list
+```
+]
+
+---
+### Passing An Array into Function
+
+.small[
+```C
+long max(long *list, long len) {
+  // only pointer is passed in
+}
+  :
+long list[10];
+max(list, 10);  // pass in pointer to list
+```
+]
+
+---
+### Returning an Array 
+
+(by returning the pointer to the first element of the array)
+
+.small[
+```C
+long* square(long list[], const long len) 
+{
+  for (long i = 1; i != len; i += 1) {
+    list[i] = list[i] * list[i];
+  }
+  return list;
+}
+```
+]
+
+---
+### Common bug: VLA / Pointers to Stack
+
+.smaller[
+```C
+long* square(const long list[], const long len)
+{
+  long new_list[len];
+  for (long i = 0; i != len; i += 1) {
+    new_list[i] = list[i] * list[i];
+  }
+  return new_list;
+}
+```
+]
+
+---
+### Common bug: Index out of bound
+.smaller[
+```C
+int main()
+{
+  long a[10];
+  for (long i = 0; i &lt;= 10; i += 1) {
+    a[i] = 1;
+  }
+}
+
+```
+]
+
+---
+class: bottom
+
+.tiny[
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'tomorrow',
+    slideNumberFormat: 'AY23/24 S1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

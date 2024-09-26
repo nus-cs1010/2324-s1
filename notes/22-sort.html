@@ -1,0 +1,2067 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/notes/22-sort.html">
+      
+      
+        <link rel="prev" href="21-search.html">
+      
+      
+        <link rel="next" href="23-tower.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>22. Sorting - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unit-22-sorting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              22. Sorting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-program.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    1. What is a Program?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-algo.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Computational Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-func.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-type.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-first-c.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    5. First C Program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-cs1010-io.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    6. CS1010 I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07-arithmetic-ops.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Arithmetic Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-if-else.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Conditional Statement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-logical-exp.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Logical Expression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-assert.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Assertion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-loop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-invariant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Invariant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-call-stack.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Call Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-array.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Fixed-Length Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-pointers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Pointers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-call-by-reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Call by Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-heap.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    17. Heap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-string.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    18. String
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-md-array.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    19. Multidimensional Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-efficiency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    20. Efficiency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-search.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    21. Searching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Sorting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="22-sort.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Sorting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sorting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sorting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#counting-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counting Sort
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selection-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selection Sort
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selection-vs-counting-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selection vs Counting Sort
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bubble-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bubble Sort
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insertion-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insertion Sort
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#animation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Animation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-set-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Set 22
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Set 22">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-221" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 22.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-222" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 22.2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-223" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 22.3
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-tower.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    23. Tower of Hanoi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-permutation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    24. Permutation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-queens.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    25. N-Queens
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-struct.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    26. Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="27-stdio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    27. Standard I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../guides/unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../guides/exercises.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sorting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sorting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#counting-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counting Sort
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selection-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selection Sort
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selection-vs-counting-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selection vs Counting Sort
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bubble-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bubble Sort
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insertion-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insertion Sort
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#animation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Animation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-set-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Set 22
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Set 22">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-221" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 22.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-222" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 22.2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-223" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 22.3
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="01-program.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Notes
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="unit-22-sorting">Unit 22: Sorting</h1>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>After this unit, students should:</p>
+<ul>
+<li>be familiar with four sorting algorithms: counting sort, selection sort, bubble sort, and insertion sort</li>
+<li>be able to implement the above algorithms, argue that they are correct, and analyze their running time</li>
+<li>be aware of the difference between comparison-based sorting algorithms and counting sort</li>
+<li>be aware of the situations where insertion sort performs better than selection sort and bubble sort.</li>
+<li>be aware of the situations where counting sort performs better than other sorting algorithms.</li>
+</ul>
+<h2 id="sorting">Sorting</h2>
+<p>Sorting is one of the most fundamental computational problems.  Given a list of items, we want to rearrange the items in some order.  We have seen in the previous unit that searching in a sorted list gives us tremendous improvement in efficiency.</p>
+<p>In this unit, we assume that the items we wish to rearrange are integers, and we wish to rearrange them in increasing order.  We could, however, in practice, sort any type of item.</p>
+<h2 id="counting-sort">Counting Sort</h2>
+<p>The first sorting algorithm we explore today is counting sort.  Suppose we are given a list of numbers between a given range, say 0 to <span class="arithmatex">\(MAX\)</span>.   Counting sort works as follows</p>
+<ul>
+<li>scan through the input list once and count how many times each number appears in the list, using an array of size <span class="arithmatex">\(MAX+1\)</span> (called <em>the frequency array</em>) to keep track of the frequency of each number.  </li>
+<li>scan through the frequency array and put the elements back into the output.</li>
+</ul>
+<p>For example, supposed we are asked to sort a list containing only numbers 0-4: <span class="arithmatex">\(\langle 0, 4, 3, 2, 3, 1, 0, 4, 4, 1 \rangle\)</span>.  Scanning through this list, we count how many times each number appears in the list, and we get the following frequency array: 0 appears twice, 1 appears twice, 2 appears once, 3 appears twice, and 4 appears thrice.  So we produce a list of two 0s, two 1s, one 2, two 3s, and three 4s, <span class="arithmatex">\(\langle 0, 0, 1, 1, 2, 3, 3, 4, 4, 4\rangle\)</span>.</p>
+<p>Here is the code that implements the counting sort algorithm.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * Perform counting sort on the input in[] and store the sorted</span>
+<span class="cm"> * numbers in out[].</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] in The array containing numbers to be sorted.</span>
+<span class="cm"> * @param[out] out The array containing the sorted numbers.</span>
+<span class="cm"> * @param[in] len The size of the input and output array.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @pre in[i] is between 0 and MAX for all i.</span>
+<span class="cm"> * @post out[] is sorted</span>
+<span class="cm"> */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">counting_sort</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">in</span><span class="p">[],</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">out</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">freq</span><span class="p">[</span><span class="n">MAX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">};</span>
+
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">freq</span><span class="p">[</span><span class="n">in</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">outpos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">MAX</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outpos</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">outpos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">freq</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">out</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">outpos</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">freq</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>Let's consider the running time of the counting sort.  We will break it down into three steps of counting sort.</p>
+<p>First, initializing <code>freq</code> array to 0 takes <span class="arithmatex">\(O(MAX)\)</span> time.</p>
+<p>Second, looping through <code>in</code> and counting takes <span class="arithmatex">\(O(n)\)</span> time (where <span class="arithmatex">\(n\)</span> is <code>len</code>).</p>
+<p>What about the third step: populating the output array with sorted numbers?  This step involves a double for loop.  But, you shouldn't jump to the conclusion that it takes <span class="arithmatex">\(O(MAX^2)\)</span> or <span class="arithmatex">\(O(n^2)\)</span>.  Let's analyze this more carefully.</p>
+<p>We will go with a more intuitive/informal approach first.  What we do here is to store the sorted numbers into the output, there are <span class="arithmatex">\(n\)</span> numbers, so it seems reasonable to assume that this step takes <span class="arithmatex">\(O(n)\)</span> time.</p>
+<p>Let's verify more formally and systematically.  The inner loop:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outpos</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">outpos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">freq</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">out</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>takes <span class="arithmatex">\(O(f_i)\)</span> time, where <span class="arithmatex">\(f_i\)</span> is the <code>freq[i]</code> the number of times <span class="arithmatex">\(i\)</span> appears.  The outer loop loops through this for different <span class="arithmatex">\(i\)</span>, from <span class="arithmatex">\(i = 0, .. MAX\)</span>.  So the total number of times is:</p>
+<div class="arithmatex">\[
+\sum_{i=0}^{MAX} f_i
+\]</div>
+<p>This corresponds to the sum of the number of times each number appears in the input, which is simply <span class="arithmatex">\(n\)</span>.  So the third step takes <span class="arithmatex">\(O(n)\)</span> time.</p>
+<p>The runnning time for counting sort is thus <span class="arithmatex">\(O(n + n + MAX)\)</span>, which is just <span class="arithmatex">\(O(n + MAX)\)</span>.</p>
+<p>Note that since we do not know the relationship between <span class="arithmatex">\(n\)</span> and <span class="arithmatex">\(MAX\)</span>, we cannot simplify this term to either <span class="arithmatex">\(O(n)\)</span> or <span class="arithmatex">\(O(MAX)\)</span>.</p>
+<h2 id="selection-sort">Selection Sort</h2>
+<p>Another simple sorting algorithm is <em>selection sort</em>.  Assuming we are sorting the numbers in increasing order.  Given a list of numbers, selection sort partitions the list into two parts, an unsorted part followed by a sorted part.  It then repeatedly selects the maximum element from the unsorted part and move it to the front of the sorted part.   Here is an example.  </p>
+<p>Suppose the input is <code>8 4 23 42 16 15</code>.  At the beginning, the whole list is considered unsorted.   We use the <code>|</code> to indicate the boundary between the sorted and unsorted parts below.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>8 4 23 42 16 15 | 
+</code></pre></div></td></tr></table></div>
+<p>Selection sort selects the largest element from the unsorted part, which is 42, and moves it to the beginning of the sorted part.  We get:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>8 4 23 16 15 | 42
+</code></pre></div></td></tr></table></div>
+<p>Now, the largest element from the unsorted part is 23.  Selection sort moves it to the beginning of the sorted part.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>8 4 16 15 | 23 42
+</code></pre></div></td></tr></table></div>
+<p>This continues until the unsorted part is empty.  The list is now sorted.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>8 4 15 | 16 23 42
+8 4 | 15 16 23 42
+4 | 8 15 16 23 42
+| 4 8 15 16 23 42
+</code></pre></div></td></tr></table></div>
+<p>Here is an implementation of selection sort.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * Find the index of the largest element among list[0..last].</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] last The last element to search.</span>
+<span class="cm"> * @param[in] list Input list</span>
+<span class="cm"> * @return The index of the max element among list[0..last].</span>
+<span class="cm"> *         Breaking ties by choosing the smaller index.</span>
+<span class="cm"> * @pre list is not NULL and list[0] .. list[last] are valid.</span>
+<span class="cm"> */</span>
+<span class="kt">size_t</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">last</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">max_so_far</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">max_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">last</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">max_so_far</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">max_so_far</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">      </span><span class="n">max_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">max_index</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Sort a list using selection sort.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] n The size of the list to sort.</span>
+<span class="cm"> * @param[in] list The input list</span>
+<span class="cm"> * @pre list is not NULL and list[0]..list[n-1] are valid</span>
+<span class="cm"> * @post The list is sorted.</span>
+<span class="cm"> */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">selection_sort</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">max_pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">list</span><span class="p">);</span>
+<span class="w">    </span><span class="n">swap</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="n">max_pos</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>To analyze the running time, notice that in the function <code>selection_sort</code> above, Lines 17-18 are repeated <span class="arithmatex">\(O(n)\)</span> times.  Line 17 calls another function <code>max</code>.  Inside <code>max</code>, there is another loop that repeats <span class="arithmatex">\(j - 1\)</span> times.  Each time we call <code>max</code>, <code>j</code> decreases, so the loop in <code>max</code> takes one fewer step each time the function is called.</p>
+<p>To calculate the total number of steps, we can compute the following sum
+<span class="arithmatex">\(\sum_{j=1}^{n-1}(j-1)\)</span>, which is just <span class="arithmatex">\(0 + 1 + 2 + .. + (n-3) + (n-2)\)</span>
+This sum is the sum of an arithmetic series and equals to <span class="arithmatex">\((n-2)(n-1)/2\)</span>.   Since we use the Big-O notation, we can focus on the term with the highest rate of growth, <span class="arithmatex">\(n^2\)</span>, and ignore everything else.  The running time for <code>selection_sort</code> function is therefore <span class="arithmatex">\(O(n^2)\)</span>.</p>
+<h2 id="selection-vs-counting-sort">Selection vs Counting Sort</h2>
+<p>Comparing the running of counting sort <span class="arithmatex">\(O(n + MAX)\)</span> vs selection sort <span class="arithmatex">\(O(n^2)\)</span>, it is clear that counting sort is more efficient -- we say that counting sort is a <em>linear time</em> algorithm and selection sort is a <em>quadratic time</em> algorithm.</p>
+<p>What is the magic of counting sort?  Why don't we just use counting sort all the time, and why bother learning about other sorting algorithms?</p>
+<p>It turns out that counting sort is special because it has an assumption that the input numbers fall into a certain range.  If <span class="arithmatex">\(MAX\)</span> is small, then counting sort is efficient.  If <span class="arithmatex">\(MAX\)</span> is say, the maximum long values, <span class="arithmatex">\(2^{63}-1\)</span>, then counting sort is not necessarily more efficient (both in terms of time and space) in practice than selection sort.  </p>
+<p>Because of this assumption, counting sort does not need to compare the inputs during sorting, and thus it can achieve a linear time.</p>
+<p>Selection sort, on the other hand, does not assume the range of the input numbers.  It is a <em>comparison sort</em> since it compares the input numbers during sorting.  It is therefore more general and has a wider range of applications.</p>
+<p>We now look at two more comparison-based sorting algorithms.</p>
+<h2 id="bubble-sort">Bubble Sort</h2>
+<p>Bubble sort is probably the most well-known, under-performed sorting algorithm<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, but is taught in most CS classes because of its simplicity.  The idea of bubble sort is to make multiple passes through the list.  In each pass, we look for all possible adjacent pairs of items.  Any adjacent pair that is out of order is swapped so that they are in order.  This process repeats until everything is in order.</p>
+<p>Let's look at an example.  Suppose we have, as an input, the numbers <code>8 4 23 42 16 15</code>.  In the first pass, we start from the first item and check from left to right.  The pair <code>8 4</code> is out of order, so we swap them, and we get <code>4 8 23 42 16 15</code>.  Pairs <code>8 23</code> and <code>23 42</code> are in order, so we do not need to swap them.  The pair <code>42 16</code> is out of order.  We swap them and get <code>4 8 23 16 42 15</code>.  The pair <code>42 15</code> is again out of order, so we swap them and get <code>4 8 23 16 15 42</code>.</p>
+<p>The following sequence shows the first pass through the array:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code> 8  4 23 42 16 15   &lt;- swap
+-- --
+ 4  8 23 42 16 15  
+   -- --
+ 4  8 23 42 16 15  
+      -- --
+ 4  8 23 42 16 15   &lt;- swap
+         -- --
+ 4  8 23 16 42 15   &lt;- swap
+            -- --
+ 4  8 23 16 15 42  
+</code></pre></div></td></tr></table></div>
+<p>After the first pass, notice that the largest element, 42, "bubbles" up through the list until it reaches the maximum position.  We can now make the second pass, but we can exclude the last item since it is already in place.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code> 4  8 23 16 15 42  
+-- --
+ 4  8 23 16 15 42  
+   -- --
+ 4  8 23 16 15 42   &lt;- swap
+      -- --
+ 4  8 16 23 15 42   &lt;- swap
+         -- --
+ 4  8 16 15 23 42   
+         -- --
+</code></pre></div></td></tr></table></div>
+<p>After the second pass, the second-largest element, 23, is in its position.  So we can exclude this item in the subsequent pass.</p>
+<p>The rest of the passes operate similarly.  In the <span class="arithmatex">\(i\)</span>-th pass, we scan through array item 0 to <span class="arithmatex">\(n-i\)</span>, swapping any adjacent element that is out of order, until <span class="arithmatex">\(i = n - 1\)</span>, in which case we only have two elements, we swap them if they are out of order, and we are done!</p>
+<p>The code for bubble sort can be written as follows:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">bubble_pass</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">last</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">last</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">bubble_sort</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">n</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">last</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">last</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">bubble_pass</span><span class="p">(</span><span class="n">last</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>How many steps does it take to bubble-sort an array of <span class="arithmatex">\(n\)</span> elements?   Since the <span class="arithmatex">\(i\)</span>-th pass scans through <span class="arithmatex">\(n-i\)</span> elements, and there are a <span class="arithmatex">\(n\)</span> passes in total, the analysis is similar to the one we did for the algorithm to compute the selection sort -- bubble sort takes <span class="arithmatex">\(O(n^2)\)</span> steps.</p>
+<h2 id="insertion-sort">Insertion Sort</h2>
+<p>The next sorting algorithm we are going to discuss is the insertion sort.  This is another classic algorithm, that could perform better than bubble sort in some scenarios.  Similar to selection sort, we partition the input list into two, a sorted partition, and an unsorted partition.  Then we repeatedly take the first element from the unsorted partition, find its rightful place in the sorted partition, and <em>insert</em> it into place.  We start with a sorted partition of one element, and we end if the sorted partition contains all the elements.</p>
+<p>Take <code>8 4 23 42 16 15</code> as an example.  We use <code>|</code> to partition the array into a sorted partition, and an unsorted partition.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>8 | 4 23 42 16 15
+</code></pre></div></td></tr></table></div>
+<p>We pick the first element on the unsorted partition, 4, and insert it into the sorted partition.  This involves shifting the elements in the sorted partition to the right until we find the rightful place for <code>4</code>.   After this step, the sorted partition grows by 1 and the unsorted partition shrinks by 1.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>4 8 | 23 42 16 15
+</code></pre></div></td></tr></table></div>
+<p>In the next round, we take <code>23</code>, and find its rightful place.  It turns out <code>23</code> is already in its correct place.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>4 8 23 | 42 16 15
+</code></pre></div></td></tr></table></div></p>
+<p>In the next step, <code>42</code> is also in its correct place.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>4 8 23 42 | 16 15
+</code></pre></div></td></tr></table></div></p>
+<p><code>16</code> is the next element, and we insert it between 8 and 23.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>4 8 16 23 42 | 15
+</code></pre></div></td></tr></table></div></p>
+<p>Finally, we insert <code>15</code>, and we are done, as there is no more element in the unsorted partition.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>4 8 15 16 23 42
+</code></pre></div></td></tr></table></div></p>
+<p>The code for insertion sort can be written as follows:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[],</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">curr</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curr</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">curr</span><span class="p">];</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+<span class="w">    </span><span class="n">i</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">insertion_sort</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">curr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">curr</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">curr</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">insert</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">curr</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="animation">Animation</h2>
+<p>Animations for various sorting algorithms, including some of which you will learn in CS2040C, are available online on <a href="https://visualgo.net/bn/sorting">VisuAlgo</a>.</p>
+<h2 id="problem-set-22">Problem Set 22</h2>
+<h3 id="problem-221">Problem 22.1</h3>
+<p>In the implementation of bubble sort above, we always make <span class="arithmatex">\(n-1\)</span> passes through the array.  It is, however, possible to stop the whole sorting procedure, when a pass through the array does not lead to any swapping.  Modify the code above to achieve this optimization.</p>
+<h3 id="problem-222">Problem 22.2</h3>
+<p>(a) Suppose the input list to insertion sort is already sorted.  What is the running time of insertion sort?</p>
+<p>(b) Suppose the input list to insertion sort is inversely sorted.  What is the running time of insertion sort?</p>
+<h3 id="problem-223">Problem 22.3</h3>
+<p>In certain scenarios, a comparison is more expensive than an assignment.  For instance, comparing two strings is more expensive than assigning a string to a variable.  In this case, we can reduce the number of comparisons during insertion sort by doing the following:</p>
+<p>repeat</p>
+<ul>
+<li>take the first element X from the unsorted partition</li>
+<li>use binary search to find the correct position to insert X</li>
+<li>insert X into the right place</li>
+</ul>
+<p>until the unsorted partition is empty.</p>
+<p>Implement the variation to the insertion sort algorithm above.  You may use your solution from Problem 21.1.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://www.youtube.com/watch?v=k4RRi_ntQc8">https://www.youtube.com/watch?v=k4RRi_ntQc8</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="21-search.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 21. Searching">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                21. Searching
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="23-tower.html" class="md-footer__link md-footer__link--next" aria-label="Next: 23. Tower of Hanoi">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                23. Tower of Hanoi
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

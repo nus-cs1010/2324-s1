@@ -1,0 +1,2486 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/notes/14-array.html">
+      
+      
+        <link rel="prev" href="13-call-stack.html">
+      
+      
+        <link rel="next" href="15-pointers.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>14. Fixed-Length Array - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unit-14-fixed-length-array" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              14. Fixed-Length Array
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-program.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    1. What is a Program?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-algo.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Computational Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-func.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-type.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-first-c.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    5. First C Program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-cs1010-io.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    6. CS1010 I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07-arithmetic-ops.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Arithmetic Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-if-else.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Conditional Statement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-logical-exp.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Logical Expression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-assert.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Assertion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-loop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-invariant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Invariant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-call-stack.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Call Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Fixed-Length Array
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="14-array.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Fixed-Length Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-first-compound-data-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your First Compound Data Type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array Declaration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-array-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessing the Array Elements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array Initialization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Array Initialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-array-as-lookup-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Array as Lookup Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passing-array-as-parameter-to-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passing Array as Parameter to Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Passing Array as Parameter to Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-finding-max" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Finding Max
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-is-passed-by-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array is Passed By Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Array is Passed By Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mitigating-impurity-with-const" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mitigating Impurity with const
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pointers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pointers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-decay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array Decay
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#returning-array-from-a-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returning Array from a Function
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-index-out-of-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array Index Out of Bound
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-facts-about-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Facts About Arrays
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other Facts About Arrays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#skipping-elements-during-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skipping Elements During Initialization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skipping-the-size-in-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skipping the Size in Declaration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#determining-the-number-of-elements-in-the-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Determining the Number of Elements in the Array
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-set-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Set 14
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Set 14">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-141" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 14.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-142" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 14.2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-pointers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Pointers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-call-by-reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Call by Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-heap.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    17. Heap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-string.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    18. String
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-md-array.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    19. Multidimensional Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-efficiency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    20. Efficiency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-search.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    21. Searching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-sort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Sorting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-tower.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    23. Tower of Hanoi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-permutation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    24. Permutation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-queens.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    25. N-Queens
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-struct.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    26. Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="27-stdio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    27. Standard I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../guides/unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../guides/exercises.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-first-compound-data-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your First Compound Data Type
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array Declaration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-array-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessing the Array Elements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array Initialization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Array Initialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-array-as-lookup-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Array as Lookup Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#passing-array-as-parameter-to-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passing Array as Parameter to Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Passing Array as Parameter to Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-finding-max" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Finding Max
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-is-passed-by-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array is Passed By Reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Array is Passed By Reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mitigating-impurity-with-const" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mitigating Impurity with const
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pointers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pointers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-decay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array Decay
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#returning-array-from-a-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Returning Array from a Function
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#array-index-out-of-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Array Index Out of Bound
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-facts-about-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Facts About Arrays
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other Facts About Arrays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#skipping-elements-during-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skipping Elements During Initialization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skipping-the-size-in-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skipping the Size in Declaration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#determining-the-number-of-elements-in-the-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Determining the Number of Elements in the Array
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-set-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Set 14
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Set 14">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-141" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 14.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-142" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 14.2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="01-program.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Notes
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="unit-14-fixed-length-array">Unit 14: Fixed-Length Array</h1>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>After this unit, students should:</p>
+<ul>
+<li>understand the concept of a compound data type</li>
+<li>be able to manipulate arrays in C, including:<ul>
+<li>declaring an array of a particular type and length</li>
+<li>accessing the elements within an array</li>
+</ul>
+</li>
+<li>be aware that when declaring arrays, they are done so with a fixed-length</li>
+<li>be able to define an array as a function parameter</li>
+<li>be aware of the difference of pass by value and pass by reference, and that arrays, as parameters correspond to the latter, and consequently, the need to also indicate the length of an array as another parameter</li>
+<li>be aware that we cannot change the length of an array, only declare a new one of a different length</li>
+<li>be aware that we may check the length of an array using the <code>sizeof</code> operator</li>
+<li>be aware that VLA should be avoided in general, and is banned in CS1010</li>
+</ul>
+<h2 id="your-first-compound-data-type">Your First Compound Data Type</h2>
+<p>We now look at the first of the two compound data types in C -- arrays.  </p>
+<p>An array is a data type that can hold one or more values.  An array variable can only store values of the <em>same</em> type <span class="arithmatex">\(T\)</span>.  We say that the array variable is an <em>array of <span class="arithmatex">\(T\)</span></em>.  For instance, we can declare a variable <code>list</code> to be an array of <code>long</code>, in which case, <code>list</code> can hold one or more <code>long</code> values.  </p>
+<p>There are three different types of arrays in C:</p>
+<ul>
+<li>A fixed-size array is an array in which <em>the size is known during compile time</em>.</li>
+<li>A variable-length array (VLA) is an array in which <em>the size is variable</em> (known only during run-time) and is allocated on the <em>stack</em>.</li>
+<li>A dynamically allocated array is an array in which <em>the size is variable</em> (known only during run-time) and is allocated on the <em>heap</em>.</li>
+</ul>
+<p>In this unit, we will focus on fixed-size arrays.  We will explain why VLA should not be used.  We will leave our discussion of dynamically allocated arrays to later units. </p>
+<h2 id="array-declaration">Array Declaration</h2>
+<p>Let's first look at how we can declare an array variable.  The declaration syntax for an array in C takes the following form:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</code></pre></div></td></tr></table></div>
+<p>We use the square bracket <code>[</code> and <code>]</code> to indicate that the variable <code>list</code> is an array.  The number <code>10</code> indicates that <code>marks</code> holds 10 <code>long</code> values.  The size of the array must be an integer value, not a variable.</p>
+<p>Just like any other local variables, declaring an array does not initialize it.  An uninitialized array contains whatever values happened to be in the memory at that time.</p>
+<h2 id="accessing-the-array-elements">Accessing the Array Elements</h2>
+<p>We can access the array elements using the <em>index</em> of the element, starting from 0.  For instance, to initialize the first three elements of a list to 1, 2, and 4, respectively, we can write:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="n">list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">Same syntax, two different meanings</p>
+<p>Beginners tend to confuse with the following:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="n">list</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div></p>
+<p><code>list[10]</code> appears twice but it has two different meanings.  In the first line, we are <em>declaring</em> an array called <code>list</code> of size 10.  In the second line, we are <em>using</em> the array <code>list</code>, and accessing the element with index 10 (which is not valid). </p>
+</div>
+<h2 id="array-initialization">Array Initialization</h2>
+<p>Initializing a large array using the method above could be tedious.  Alternatively, we can initialize an array using a list of values when we declare the array.  </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>If we do not specify a value during initialization, it will be set to 0 by default.  </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="p">};</span>
+<span class="c1">// list[8] and list[9] are both initialized to 0</span>
+</code></pre></div></td></tr></table></div>
+<p>Note that, after the declaration, we can no longer use this technique to reinitialize or initialize the array.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">};</span><span class="w">  </span><span class="c1">// error</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="example-array-as-lookup-table">Example: Array as Lookup Table</h3>
+<p>One useful application of a pre-initialized array is to use it as a lookup table.  Consider the problem of checking if a given month and day is a valid pair.  One is to write the code as follows:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">is_valid_date</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">month</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">month</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">day</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">month</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">day</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">28</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">month</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">month</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">month</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">month</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>
+<span class="w">      </span><span class="n">month</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">month</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">month</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">day</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">31</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// the rest of the months</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">day</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">30</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>The long chain of logical conditions are hard to read and prone to errors.</p>
+<p>An alternative is to store the number of days in a month in a look-up table.  We do so by declaring an array with twelve elements and storing the number of days in month <span class="arithmatex">\(i\)</span> in array position indexed <span class="arithmatex">\(i-1\)</span>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="nf">is_valid_date</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">day</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">days_in_month</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="c1">// Jan</span>
+<span class="w">    </span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="c1">// Feb (non leap year)</span>
+<span class="w">    </span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="c1">// Mar</span>
+<span class="w">    </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="c1">// Apr</span>
+<span class="w">    </span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="c1">// May</span>
+<span class="w">    </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="c1">// Jun</span>
+<span class="w">    </span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="c1">// Jul</span>
+<span class="w">    </span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="c1">// Aug</span>
+<span class="w">    </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="c1">// Sep</span>
+<span class="w">    </span><span class="mi">31</span><span class="p">,</span><span class="w"> </span><span class="c1">// Oct</span>
+<span class="w">    </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="c1">// Nov</span>
+<span class="w">    </span><span class="mi">31</span><span class="w">  </span><span class="c1">// Dec</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">month</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">month</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">day</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">day</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">days_in_month</span><span class="p">[</span><span class="n">month</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>This approach separates the data (number of days in a month) from the control flow.  In cases where the data may change, separating the data from the control makes the code easier to maintain and update to changing requirements.</p>
+<h2 id="passing-array-as-parameter-to-functions">Passing Array as Parameter to Functions</h2>
+<p>C supports several syntaxes for passing an array as a parameter into a function.  The following function declarations mean the same thing.</p>
+<p>a. Passing in the array with <code>[</code>, <code>]</code> and the constant size of the array.
+    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="o">:</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>b. Passing in the array with <code>[</code>, <code>]</code> 
+    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="o">:</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>Option (a) explicitly tells the reader of the code that this function expects an array called <code>list</code> of size 10.  Option (b) passes both the length of the array <code>len</code> and the array <code>list</code> to the function.   Note that <code>len</code> is not explicitly related to <code>list</code> in C, and would have to depend on the comments of the code to tell the reader what <code>len</code> is for. </p>
+<div class="admonition note">
+<p class="admonition-title">A third way of passing in an array</p>
+<p>For (b), we could also write it as:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">len</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">  </span><span class="o">:</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>This way, the code informs the reader that <code>len</code> represents the size of the array.  While this code is more readable, it unfortunately gets treated as a variable-length array and triggers a warning by <code>clang</code>.  As such, we avoid using this syntax in CS1010.</p>
+</div>
+<p>To pass in an array as an argument, we just need to specify the name of the array:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span>
+<span class="n">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">list</span><span class="p">);</span><span class="w">  </span><span class="c1">// assuming `foo` is declared with Option (b)</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="example-finding-max">Example: Finding Max</h3>
+<p>We can now revisit the flowchart for <span class="arithmatex">\(max\)</span> and write the function in C:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[],</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">length</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">max_so_far</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">max_so_far</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">max_so_far</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">max_so_far</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="array-is-passed-by-reference">Array is Passed By Reference</h2>
+<p>An array variable is treated differently than a variable of other types in C in several ways.  One of these differential treatments has caught many new programmers by surprise -- it violates the pureness of functions.  Whatever happens in the function <em>no longer just stays in the function</em>.  Let's consider the following example:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">};</span>
+<span class="w">  </span><span class="n">foo</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="w">  </span><span class="n">cs1010_println_long</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">  </span><span class="n">cs1010_println_long</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>If <code>foo</code> is a pure function with no side effects, then calling <code>foo</code> should not change <code>a</code>.  But if you run the code above, you will see that <code>a[0]</code> has changed to <code>200</code>!</p>
+<p>When we pass <code>a</code> into <code>foo</code>, what do we push onto the stack?  Unlike other variable types, we do not copy the whole array onto the stack.  One reason for this is that an array can be huge -- copying the whole array onto the stack for every function call with the array as an argument can be slow.  Thus, in C, when an array is passed as an argument, only the <em>memory address</em> of the array is copied onto the stack.</p>
+<p>The following figures illustrate this point.  First, let's see how an array is laid out in the memory.  When we declare an array <code>a</code> with two elements, the appropriate space is reserved on the stack.  The elements of the array are <em>stored consecutively</em> in the memory.  This implies, that, it is sufficient to know where the first element of the array is stored.  With that memory address, we can find out where the rest of the elements in the array are, and by reading the content of that memory location, find out what their values are.  This "trick" is what allows C to pass an array into a function efficiently.</p>
+<p><img alt="stack" src="figures/lec06-stack/stack.005.png" /></p>
+<p>When we call <code>foo</code>, we push the <em>memory address</em> of the array (i.e., of the first element of the array), on the stack.  With this memory address, <code>foo</code> can now read the elements of the array <code>a[0]</code> and <code>a[1]</code>, by accessing the memory of the array on the stack frame of <code>main</code>.  If <code>foo</code> modifies to the array, then the array on the stack frame of <code>main</code> is updated as well.</p>
+<p><img alt="stack" src="figures/lec06-stack/stack.006.png" /></p>
+<p>This mechanism of passing arguments into a function is called <em>"pass by reference"</em>, as opposed to <em>"pass by value"</em>, in which we make a copy of the variable on the stack.</p>
+<h3 id="mitigating-impurity-with-const">Mitigating Impurity with <code>const</code></h3>
+<p>C does not give us any choice but to pass in an array by reference, making our job to reason about the behavior of our code difficult.  Every time we pass an array into a function, we would have to read through the code of that function, to ensure that the array is not modified.  Fortunately, C provides a mechanism to make our life better: the <code>const</code> keyword.</p>
+<p>The <code>const</code> keyword is a qualifier that indicates that a variable is read-only, and therefore cannot be modified.  A good programmer should always communicate to the reader of the code if a call-by-reference parameter will be modified or not.  A better way to write our <code>max</code> is:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[],</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">length</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">max_so_far</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">max_so_far</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">max_so_far</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">max_so_far</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Here, we are communicating to whoever reading our code that <code>length</code> and the elements of <code>list</code> will not be modified anywhere in our code.  Adding <code>const</code> will also help us to avoid bugs in case we had a typo in our code.</p>
+<p>Consider a buggy version of <code>max</code> is as follows, where the programmer uses one-letter variable names and then shoots themself in the foot by mixing up <code>k</code> and <code>m</code>.  However, if the programmer already qualified <code>k</code> with the <code>const</code> keyword, the code wouldn't compile, avoiding hours of hair-pulling debugging sessions.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[],</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="c1">// error</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="pointers">Pointers</h2>
+<p>A more visual way to illustrate the fact that a memory location contains the memory address of another variable is to draw an arrow to point from the location storing the address of the variable to the location storing the variable.</p>
+<p><img alt="stack" src="figures/lec06-stack/stack.007.png" /></p>
+<p>For this reason, in C, a variable that stores a memory address is called a <em>pointer</em>.  We will examine this in more detail in Unit 15, but for now, we will just introduce the <code>*</code> notation in C.   This notation is overused in C and often confuses.  You have seen how <code>*</code> is used for multiplication.  We will now use <code>*</code> to indicate that a variable is a pointer, by putting it in front of the name of the variable.</p>
+<p>For instance, the line below declares a variable named <code>address</code> that contains the memory address of a <code>double</code> value.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">addr</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition warn">
+<p class="admonition-title">Common Bug</p>
+<p>It is possible to write as
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">addr</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+too, but this is not recommended.  Suppose you want to declare two addresses, you might write,
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">from_addr</span><span class="p">,</span><span class="w"> </span><span class="n">to_addr</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+thinking that both <code>from_addr</code> and <code>to_addr</code> are of type <code>double*</code>.  But C treats <code>to_addr</code> as a <code>double</code>, not an address of a <code>double</code>!  In any case, if you follow the CS1010 style, you shouldn't be declaring two variables in one line.</p>
+</div>
+<p>We can use <code>*</code> to dereference a pointer, but let's keep that for another day, and stick to using <code>*</code> in a variable declaration for now.</p>
+<h2 id="array-decay">Array Decay</h2>
+<p>We have seen in the above, how calling <code>foo(a)</code> would cause the address of array <code>a</code> to be passed into the function <code>foo</code>.  This behavior is rooted in the principle in how C treats the name of an array: <em>array decay</em>.  Once you understand this concept, all the special treatments C makes to <code>array</code> would fall into place!</p>
+<p>This is how array decay works.  In C, the name of the variable of an array is treated differently from a non-array variable.  If we declare an array</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">type</span><span class="w"> </span><span class="n">name</span><span class="p">[</span><span class="n">num_of_elems</span><span class="p">];</span>
+</code></pre></div></td></tr></table></div>
+<p>Then, any reference to <code>name</code> is a synonym for the pointer to the first element of the array <code>name</code>.  This explains why when we call <code>foo</code> with <code>a</code>, it is the address of the first element of <code>a</code> that is pushed onto the stack.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">};</span>
+<span class="w">  </span><span class="n">foo</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>This also explains why we have several options when declaring an array as a parameter to a function.  All three options below </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">..</span><span class="w"> </span><span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">..</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>are equivalent to:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">list</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">..</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>or
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">list</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">..</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>since we are just passing in the pointer to a <code>long</code> variable.  Using <code>long *x</code> is a perfectly valid (and common) C syntax for passing in an array, it is just not as readable since we can't tell if <code>x</code> is meant to be just an address to a variable, or meant to be an array.</p>
+<p>Array decay works everywhere, not just during argument-passing to a function.</p>
+<p>Suppose we write</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span>
+<span class="kt">long</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// always false</span>
+<span class="w">  </span><span class="o">:</span>
+<span class="p">}</span>
+
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="c1">// not possible</span>
+</code></pre></div></td></tr></table></div>
+<p>Line 4 above is equivalent to comparing the memory addresses of the first elements of <code>a</code> and <code>b</code> and therefore is always false (since the array elements do not have the same memory address).</p>
+<p>Line 8 above is equivalent to assigning the memory address of the first element of <code>a</code> to the memory address of <code>b</code>, which is not allowed.  We cannot change the memory address of a variable since this is determined by the OS.</p>
+<h2 id="returning-array-from-a-function">Returning Array from a Function</h2>
+<p>Now that we have a better understanding of how we can pass an array as a pointer into a function, let's see how we can return an array from a function.  Exploiting array decay, we can return the array as a pointer from a function.  Consider the <code>square</code> function that computes the square of every element in the list:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="o">*</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">list</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>We can call the function like this:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">a2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div></p>
+<p>If you examine the content of <code>a2</code>, you will find that <code>a2</code> correctly contains the square of the input array <code>a</code>.  We are, however, passing in <code>a</code> as a reference, the code snippet above modifies <code>a</code> as well!  One might argue that it is pointless to return an array in this case, since we could have just defined the function as a <code>void</code> function:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>and assign <code>a</code> to <code>a2</code> (if we want to store the squared list in <code>a2</code>).</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span>
+<span class="w">  </span><span class="n">square</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">a2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p>Is there a way then, to keep <code>list</code> unmodified, while returning a "new" array?  You might be tempted to do this:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="o">*</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">squared</span><span class="p">[</span><span class="n">length</span><span class="p">];</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">squared</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">squared</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>This is wrong for two reasons:</p>
+<ul>
+<li>We are declaring an array <code>squared</code> with a variable size on the stack.  This is called a variable-length array, or VLA.  <em>VLA is banned in CS1010.  Even outside of CS1010, VLA should be used with extreme care.  A VLA is allocated on the stack, which typically has very limited memory.  If the stack runs out of memory, your program would crash!  The situation is worse if the size of the VLA is _read as input from the</em> users -- this implies that an external user could enter a malicious input to crash your program._</li>
+<li>By returning <code>squared</code>, we are returning the memory address of an array allocated on the stack.  Recall that when a function exits, the memory allocated to it on the stack is reclaimed and reused.  Thus, the array <code>squared</code> no longer exists, and the content of the returned array is now undetermined.</li>
+</ul>
+<p>There is a right way to do this involving allocating memory on the heap, but we will explore it in a later unit.  But, in short, at this point, you haven't learned enough yet to have a correct and meaningful way to return an array from a function.</p>
+<h2 id="array-index-out-of-bound">Array Index Out of Bound</h2>
+<p>A common bug when we work with arrays is accessing a location beyond what is allocated to the array.  Unlike other languages like Java, which checks the bound for you, C does not.  So we could write the following code, and it would compile perfectly.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Running this, however, would lead to <em>memory corruption</em>, since we are writing to <code>a[10]</code> (the 11-th element) but we only asked for 10 elements for the array <code>a</code>.  So we are writing to a memory that we are not supposed to and thus causing your program to behave incorrectly.  Running the program above would lead to the following output<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>array.c:5:5: runtime error: index 10 out of bounds for type &#39;long [10]&#39;
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior a.c:5:5 in
+Illegal instruction (core dumped)
+</code></pre></div></td></tr></table></div></p>
+<p>Similarly, reading from a memory location that we are not supposed to could lead to a misbehaving program.  You have seen this in Problem 2.1(d).</p>
+<h2 id="other-facts-about-arrays">Other Facts About Arrays</h2>
+<h3 id="skipping-elements-during-initialization">Skipping Elements During Initialization</h3>
+<p>If we have a large array, and we want most of it to be initialized to 0, and only some non-zero, we can use <em>element designators</em>, putting the index of the element we want to initialize to non-zero in square brackets <code>[</code> and <code>]</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">vector</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">99</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<p>This statement initializes <code>vector[0]</code> to 1, <code>vector[5]</code> to 2, <code>vector[6]</code> to 3, and <code>vector[99]</code> to -1.  The rest of the elements will be 0.</p>
+<h3 id="skipping-the-size-in-declaration">Skipping the Size in Declaration</h3>
+<p>If you supply an initialization list, the number of elements already indicates the length to the compiler, so you can skip the length.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">marks</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,}</span>
+</code></pre></div></td></tr></table></div>
+<p>This makes it easy to add or remove items from the array, without having to remember to keep the array length consistent.</p>
+<h3 id="determining-the-number-of-elements-in-the-array">Determining the Number of Elements in the Array</h3>
+<p>C provides a <code>sizeof</code> operator, which returns the number of bytes allocated to a type.  We can use <code>sizeof long</code>, for instance, to determine the number of bytes allocated to <code>long</code> on a platform.  We can also use <code>sizeof</code> of a variable instead of the type.  This becomes useful to determine, programmatically, the length of an array (esp if the array length is skipped in the array declaration).  We can calculate the number of elements in <code>marks</code> with</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">marks</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="p">};</span>
+<span class="kt">long</span><span class="w"> </span><span class="n">num_of_elem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="w"> </span><span class="n">marks</span><span class="o">/</span><span class="k">sizeof</span><span class="w"> </span><span class="n">marks</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="problem-set-14">Problem Set 14</h2>
+<h3 id="problem-141">Problem 14.1</h3>
+<p>Consider the snippet below.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">doThat</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[],</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">b</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="w">  </span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Line A</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">doThis</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">  </span>
+<span class="w">  </span><span class="n">doThat</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span>
+<span class="w">  </span><span class="n">doThis</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Line B</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>a. Show the content of the stack at Line A if the program above is executed.</p>
+<p>b. What is the content of array <code>a</code> at Line B?</p>
+<h3 id="problem-142">Problem 14.2</h3>
+<p>Consider the snippet below.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">doThat</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">list</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">200</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Line A</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">doThis</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">};</span>
+<span class="w">  </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">  </span><span class="n">doThat</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span>
+<span class="w">  </span><span class="n">doThis</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Line B</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>a. Does the code compile cleanly?</p>
+<p>b. Show the content of the stack at Line A if the program above is executed.</p>
+<p>c. What is the content of array <code>a</code> at Line B?</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>You will see this output only if your code is compiled with <code>-fsanitize=bounds</code> flag.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="13-call-stack.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 13. Call Stack">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                13. Call Stack
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="15-pointers.html" class="md-footer__link md-footer__link--next" aria-label="Next: 15. Pointers">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                15. Pointers
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

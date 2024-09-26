@@ -1,0 +1,1956 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/notes/02-algo.html">
+      
+      
+        <link rel="prev" href="01-program.html">
+      
+      
+        <link rel="next" href="03-func.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>2. Computational Problems - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unit-2-computational-problems-and-algorithms" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2. Computational Problems
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-program.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    1. What is a Program?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Computational Problems
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="02-algo.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Computational Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computational-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computational Problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-finding-the-maximum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Finding the maximum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example: Finding the maximum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flowchart
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bugs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Set
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Set">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 2.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 2.2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 2.3
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-func.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-type.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-first-c.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    5. First C Program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-cs1010-io.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    6. CS1010 I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07-arithmetic-ops.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Arithmetic Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-if-else.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Conditional Statement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-logical-exp.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Logical Expression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-assert.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Assertion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-loop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-invariant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Invariant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-call-stack.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Call Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-array.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Fixed-Length Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-pointers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Pointers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-call-by-reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Call by Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-heap.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    17. Heap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-string.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    18. String
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-md-array.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    19. Multidimensional Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-efficiency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    20. Efficiency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-search.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    21. Searching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-sort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Sorting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-tower.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    23. Tower of Hanoi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-permutation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    24. Permutation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-queens.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    25. N-Queens
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-struct.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    26. Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="27-stdio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    27. Standard I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../guides/unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../guides/exercises.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#computational-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computational Problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-finding-the-maximum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Finding the maximum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example: Finding the maximum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flowchart
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bugs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Set
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Set">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 2.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 2.2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 2.3
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="01-program.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Notes
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="unit-2-computational-problems-and-algorithms">Unit 2: Computational Problems and Algorithms</h1>
+<h2 id="learning-outcomes">Learning Outcomes:</h2>
+<p>After this unit, students should:</p>
+<ul>
+<li>be able to differentiate between a computational and a non-computational problem;</li>
+<li>understand the basic terminologies: computational problem-solving, algorithm, flowchart, debugging, testing, variables, value, assignment;</li>
+<li>be familiar with the algorithm to find the maximum among a list of numbers;</li>
+<li>be able to express an algorithm using a flowchart;</li>
+<li>be able to trace through flowcharts that involves branching, looping, and updates of variables;</li>
+<li>understand the notion of the "correctness" of an algorithm.</li>
+</ul>
+<h2 id="computational-problems">Computational Problems</h2>
+<p>We ended <a href="01-program.html">Unit 1</a> by saying that the most challenging part of CS1010 is how to write a program to solve a problem.  Not all problems can be solved by computers, however.  When programming, we are concerned mostly with solving <em>computational problem</em>.</p>
+<p>A computational problem is a problem that can be solved step-by-step with a computer.  These problems usually have a well-defined input, constraints, and conditions that the output must satisfy<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. Here are some types of computational problems:</p>
+<ul>
+<li>
+<p>A <em>decision problem</em> is one where the answer is yes or no.  For instance, "given a number <span class="arithmatex">\(n\)</span>, is <span class="arithmatex">\(n\)</span> even?" is a decision problem.  Some decision problems take more steps to solve than others.  For instance, "given a number <span class="arithmatex">\(n\)</span>, is <span class="arithmatex">\(n\)</span> prime?" takes more steps than just checking the parity of a number.</p>
+</li>
+<li>
+<p>A <em>search problem</em> is one where the solution may consist of one or more answers that satisfy a given condition.  For instance, we may want to find a path from one geographical location to another on a map.</p>
+</li>
+<li>
+<p>A <em>counting problem</em> is one where the answer is the number of solutions to a search problem.</p>
+</li>
+<li>
+<p>An <em>optimization problem</em> is one where the solution is the "best" possible solution, where the "best" can be defined differently.  For instance, we may want to compute the fastest route from one location to another.</p>
+</li>
+</ul>
+<p>Questions such as "what is the meaning of life?" "do I look good in this outfit?"<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> are not computational problems, because they do not have well-defined input, constraints, and conditions that the output must satisfy.</p>
+<p>In CS1010 (followed by CS2040C and CS3230), you will learn how to solve computational problems <em>computationally</em> -- this means that you learn to come up with step-by-step instructions meant for computers that you can translate into computer programs, to solve a given problem. </p>
+<h2 id="example-finding-the-maximum">Example: Finding the maximum</h2>
+<p>Let's start with a simple problem.  Given a finite list <span class="arithmatex">\(L\)</span> of <span class="arithmatex">\(k\)</span> integers (<span class="arithmatex">\(k\)</span> &gt; 0), find the maximum integer from the list.</p>
+<p>First, let's consider if this is a computational problem.  The input is well-defined: we know what an integer is; we are told we have at least one integer in <span class="arithmatex">\(L\)</span>, and we have a finite number of them<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.</p>
+<p>Second, let's consider the output.  What conditions must the output satisfy?  First, it has to be equal or larger than every other integer in <span class="arithmatex">\(L\)</span>.  Second, it must be an integer <em>in</em> <span class="arithmatex">\(L\)</span>.  This is well-defined by the problem statement, so we can say that it is a computational problem.</p>
+<p>Here is an example.  Suppose the input consists of:</p>
+<p><code>4 1 -4 0 9 9 3 5 8</code></p>
+<p>The output should be <code>9</code>.</p>
+<p>Now, you should pause reading and think about how you would solve this problem step-by-step.  </p>
+<h3 id="algorithm">Algorithm</h3>
+<p>One way to solve this problem is to check through the integers in the list, one by one, and keep track of the maximum value so far.  When you reach the end of the list, your "maximum value so far" will also be the maximum for the whole list.  </p>
+<p>Let's look at an example:</p>
+<table>
+<thead>
+<tr>
+<th>Integers Scanned</th>
+<th>Maximum So Far</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>4</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>4 1</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4 0</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4 0 9</code></td>
+<td><code>9</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4 0 9 9</code></td>
+<td><code>9</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4 0 9 9 3</code></td>
+<td><code>9</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4 0 9 9 3 5</code></td>
+<td><code>9</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4 0 9 9 3 5 8</code></td>
+<td><code>9</code></td>
+</tr>
+</tbody>
+</table>
+<p>The English description above, however, is not detailed enough for computers to understand.  What is the meaning of "check one-by-one"? "keep track of maximum so far"?  how to tell if we have reached "the end of the list"?</p>
+<p>Let's work out all the details.</p>
+<p>First, we need a concise way of representing the integers in the list.  Borrowing from mathematical notation, let's say that the list <span class="arithmatex">\(L\)</span> contains the integers 
+<span class="arithmatex">\(\langle l_0, l_1, ..., l_{k-1} \rangle\)</span>. To "check one-by-one," we introduce another notation <span class="arithmatex">\(l_i\)</span>, which is the integer currently being "checked".  We begin with <span class="arithmatex">\(i = 0\)</span>, then <span class="arithmatex">\(i = 1\)</span>, then <span class="arithmatex">\(i = 2\)</span>, etc., until <span class="arithmatex">\(i = k-1\)</span>.  At every step, we increase <span class="arithmatex">\(i\)</span> by 1.</p>
+<p>Second, we need a concise way of keeping track of the maximum so far.  We introduce another notation, <span class="arithmatex">\(m\)</span>, to represent the maximum value so far.  When <span class="arithmatex">\(i = 0\)</span>, <span class="arithmatex">\(m = l_0\)</span>.  Since we only scan a single integer, it has to be the maximum.  When we check another integer <span class="arithmatex">\(l_i (i &gt; 0)\)</span>, only two things can happen:</p>
+<ul>
+<li>if this <span class="arithmatex">\(l_i\)</span> is larger than <span class="arithmatex">\(m\)</span>, then <span class="arithmatex">\(l_i\)</span> has to be the maximum so far, so we update <span class="arithmatex">\(m\)</span> to be <span class="arithmatex">\(l_i\)</span>.</li>
+<li>if <span class="arithmatex">\(l_i\)</span> is equal to or smaller than <span class="arithmatex">\(m\)</span>, then <span class="arithmatex">\(m\)</span> is still the maximum value so far.</li>
+</ul>
+<p>We keep doing the above and increase <span class="arithmatex">\(i\)</span>, until we reach the end of the list when (after increasing <span class="arithmatex">\(i\)</span>) we find that <span class="arithmatex">\(i\)</span> is <span class="arithmatex">\(k\)</span>.</p>
+<p>Now, we have enough details to describe step-by-step, how to find the maximum value from a list of integers.  Such sequence of steps, which the computer can take to solve a computational problem, is called an <em>algorithm</em>.</p>
+<h3 id="flowchart">Flowchart</h3>
+<p>There are different ways one can describe an algorithm.  The easiest way I find is to use a diagram called a <em>flowchart</em>.  The flowchart for the algorithm above looks like this.</p>
+<p><img alt="Flowchart" src="figures/max-flowchart/max-flowchart.001.png" /></p>
+<p>There are several components to a flowchart.  We will use the following convention in CS1010:</p>
+<ul>
+<li>An arrow indicates the direction of the flow, i.e., what is the next step of the algorithm.</li>
+<li>A rounded rectangle denotes either the starting (inputs) or ending point (output) of the algorithm.</li>
+<li>A diamond box represents a "question" that can be true or false (yes or no). It indicates a "branch" in the flow.  Which branch we follow is determined by the answer to the question in the box.</li>
+<li>A rectangle represents one or more "operations" (such as initialization or manipulation of data) </li>
+</ul>
+<p>To understand the flowchart above, let's trace it with the sample input.  We will maintain the following table as we trace through the flowchart.
+In the beginning, just before entering "<span class="arithmatex">\(i\)</span> equals <span class="arithmatex">\(k\)</span>?", we have the following:</p>
+<table>
+<thead>
+<tr>
+<th>Integers Scanned</th>
+<th><span class="arithmatex">\(i\)</span></th>
+<th><span class="arithmatex">\(l_i\)</span></th>
+<th><span class="arithmatex">\(k\)</span></th>
+<th>Maximum So Far (<span class="arithmatex">\(m\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>4</code></td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td><code>9</code></td>
+<td><code>4</code></td>
+</tr>
+</tbody>
+</table>
+<p>Subsequently, we enter a "loop", and the values assigned to the symbols at the point after "<span class="arithmatex">\(i\)</span> equals <span class="arithmatex">\(k\)</span>?" can be traced as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Integers Scanned</th>
+<th><span class="arithmatex">\(i\)</span></th>
+<th><span class="arithmatex">\(l_i\)</span></th>
+<th><span class="arithmatex">\(k\)</span></th>
+<th>Maximum So Far (<span class="arithmatex">\(m\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>4 1</code></td>
+<td><code>1</code></td>
+<td><code>1</code></td>
+<td><code>9</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4</code></td>
+<td><code>2</code></td>
+<td><code>-4</code></td>
+<td><code>9</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4 0</code></td>
+<td><code>3</code></td>
+<td><code>0</code></td>
+<td><code>9</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4 0 9</code></td>
+<td><code>4</code></td>
+<td><code>9</code></td>
+<td><code>9</code></td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4 0 9 9</code></td>
+<td><code>5</code></td>
+<td><code>9</code></td>
+<td><code>9</code></td>
+<td><code>9</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4 0 9 9 3</code></td>
+<td><code>6</code></td>
+<td><code>3</code></td>
+<td><code>9</code></td>
+<td><code>9</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4 0 9 9 3 5</code></td>
+<td><code>7</code></td>
+<td><code>5</code></td>
+<td><code>9</code></td>
+<td><code>9</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4 0 9 9 3 5 8</code></td>
+<td><code>8</code></td>
+<td><code>8</code></td>
+<td><code>9</code></td>
+<td><code>9</code></td>
+</tr>
+<tr>
+<td><code>4 1 -4 0 9 9 3 5 8</code></td>
+<td><code>9</code></td>
+<td>``</td>
+<td><code>9</code></td>
+<td><code>9</code></td>
+</tr>
+</tbody>
+</table>
+<p>Please spend some time tracing through the flowchart above.</p>
+<h3 id="variables">Variables</h3>
+<p>There are a few important things to take note of here.  <span class="arithmatex">\(m\)</span>, <span class="arithmatex">\(i\)</span>, <span class="arithmatex">\(k\)</span>, and the list <span class="arithmatex">\(L\)</span> are what we called <em>states</em> or <em>variables</em>.  While in the above, we can think of them as mathematical variables that we can assign <em>values</em> to, in a computer program, a variable is a location in the memory that holds a value.</p>
+<p>We can perform two very basic operations on the variables: reading and writing.  In other words, we can set their values, and we can retrieve their values. </p>
+<p>We can <em>assign</em> the value of one variable to a constant (e.g., set <span class="arithmatex">\(i\)</span> to 1) or to the value of another variable (e.g., set <span class="arithmatex">\(m\)</span> to <span class="arithmatex">\(l_i\)</span>).  In the latter example, we first read the value of <span class="arithmatex">\(l_i\)</span>, from <span class="arithmatex">\(l_i\)</span>'s memory location, and then we write that value to the memory location of <span class="arithmatex">\(m\)</span>.  Once written, the value of <span class="arithmatex">\(m\)</span> will not change until the next time we update the value of <span class="arithmatex">\(m\)</span>.</p>
+<p>It is important to note that, when <span class="arithmatex">\(i\)</span> changes, <span class="arithmatex">\(m\)</span> <em>does not change automatically</em> to the new <span class="arithmatex">\(l_i\)</span>  This behavior is different from that which you may be familiar with in spreadsheet software -- if you set the value of a cell, say <code>A1</code> to be <code>=B1</code>, when the value in cell <code>B1</code> changes, the value <code>A1</code> also changes automatically.</p>
+<p>We can also compare the values of two variables.  We see two examples above: "<span class="arithmatex">\(i\)</span> equals <span class="arithmatex">\(k\)</span>?"  "<span class="arithmatex">\(l_i &gt; m\)</span>?"  When we compare, we read the values of the variables from their memory location and check their relations.</p>
+<p>We can perform arithmetic operations on the variables: addition, subtraction, etc.  We see one example above: "increment <span class="arithmatex">\(i\)</span>" (by 1).  This operation is actually an assignment operation in disguise.  We can write it as "set <span class="arithmatex">\(i\)</span> to <span class="arithmatex">\(i\)</span> + 1".  Here, you see that <span class="arithmatex">\(i\)</span> is referred to twice.  This operation reads the value from the memory location of <span class="arithmatex">\(i\)</span>, adds 1 to it, and then writes the resulting value back to the location of <span class="arithmatex">\(i\)</span>.</p>
+<h3 id="bugs">Bugs</h3>
+<p>If you follow the execution of the algorithm above, step-by-step, using the example input <code>4 1 -4 0 9 9 3 5</code> above, you will obtain the correct maximum value <span class="arithmatex">\(m\)</span> of <code>9</code>.  But does that mean that the algorithm is correct?  The answer is NO.</p>
+<p>For an algorithm to correctly solve the given problem, it has to produce the correct result for all valid inputs to the problem.  If we can find one counterexample, one input where the algorithm does not produce the correct output, then the algorithm is incorrect.  Note that I say <em>does not produce the correct output</em>, which means that either the algorithm <em>produces the wrong output</em> or <em>does not produce any output at all</em>.</p>
+<p>In this case, we say that the algorithm or the program has a <em>bug</em>.  A bug is a defect that causes the algorithm to behave incorrectly.  As a software developer, you will spend some time finding bugs in your code, a process known as <em>debugging</em>.  A <em>debugger</em> is a tool that helps programmers find bugs in their code.</p>
+<p>Before we even start the process of debugging, we first have to know if our algorithm is correct.  Remember that an algorithm is correct only if it produces the correct output only all possible valid inputs.  So, one way to check if an algorithm is correct is to try it with all possible valid inputs.  For the problem we are solving above, however, even though the list is finite, there are infinitely many possible inputs, and so, it is impossible to try all possible valid inputs.  In practice, we <em>craft</em> a smaller set of test inputs to check if the algorithm behaves correctly for these test inputs, and <em>hope</em> that it is correct for all possible inputs.  With experience, you will choose the right set of test inputs to maximize the chances that you will find a bug in your code.  There are also systematic ways of deriving test cases so that the test cases <em>cover</em> different paths of execution of the algorithm, but we won't be covering it in CS1010<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.</p>
+<p>Another way of checking if an algorithm is correct is to reason about the behavior of the algorithm.  We will do this rather informally in CS1010, starting in 1-2 lectures from now.  You get to rigorously prove that an algorithm is correct in a higher-level module (CS3230 Design and Analysis of Algorithms).</p>
+<p>Finally, even if an algorithm is correct, the corresponding program might not be.  Recall that an algorithm is a step-by-step process to solve a problem.  It is what you want your program to do.  You still have to write a program (in C, or other languages) to have the computer do what you want it to do (in other words, to <em>implement the algorithm</em>). This process of translating the algorithm to a computer program, called <em>coding</em> may introduce bugs as well.  But we will worry about this later when we learn to program.</p>
+<p>In the problem set at the end of this lecture, you will see slight variations of the algorithm above.  You should check through them to see whether they are correct or not.</p>
+<h2 id="problem-set">Problem Set</h2>
+<h4 id="problem-21">Problem 2.1</h4>
+<p>The following algorithms are slight variations of the one in the notes above.  The differences are highlighted in red.  Do they correctly find the maximum integer from a finite list of <span class="arithmatex">\(k\)</span> integers (<span class="arithmatex">\(k &gt; 0\)</span>)?  </p>
+<p>If an algorithm is buggy, give a counter-example where the output is incorrect.  In addition, give an example input where the algorithm still produces the correct output, where possible.  </p>
+<p>(a) 
+<img alt="Flowchart" src="figures/max-flowchart/max-flowchart.002.png" /></p>
+<p>(b) 
+<img alt="Flowchart" src="figures/max-flowchart/max-flowchart.003.png" /></p>
+<p>(c) 
+<img alt="Flowchart" src="figures/max-flowchart/max-flowchart.004.png" /></p>
+<p>(d) 
+<img alt="Flowchart" src="figures/max-flowchart/max-flowchart.005.png" /></p>
+<p>(e) 
+<img alt="Flowchart" src="figures/max-flowchart/max-flowchart.006.png" /></p>
+<h4 id="problem-22">Problem 2.2</h4>
+<p>Change the algorithm above to find the minimum value instead of the maximum value from the given list <span class="arithmatex">\(L = \langle l_0, ..., l_{k-1}\rangle\)</span>. You can also assume that the list <span class="arithmatex">\(L\)</span> is finite and <span class="arithmatex">\(k &gt; 0\)</span> for this question.</p>
+<h4 id="problem-23">Problem 2.3</h4>
+<p>Draw the flowchart for an algorithm, that takes in a list of integers <span class="arithmatex">\(L = \langle l_0, ..., l_{k-1}\rangle, k &gt; 0\)</span>, and computes the <em>sum</em> of all the integers.  Think about what variable(s) do you need.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Note that the reverse is not true.  It is possible to have an <em>intractable</em> problem that has a well-defined input, constraints, and conditions that the output must satisfy, but yet cannot be solved by any computer, no matter how powerful the computer is.  E.g., the following problem is intractable: given a program <span class="arithmatex">\(P\)</span> an input <span class="arithmatex">\(i\)</span>, will <span class="arithmatex">\(P\)</span> produce an output when run with <span class="arithmatex">\(i\)</span>?  Or will <span class="arithmatex">\(P\)</span> run forever?  This problem is known as the halting problem.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>The answer is, by the way, always "Yes."&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Software testing is a body of knowledge worthy of an advanced module by itself -- we offer one in CS4218.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="01-program.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1. What is a Program?">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                1. What is a Program?
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="03-func.html" class="md-footer__link md-footer__link--next" aria-label="Next: 3. Functions">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                3. Functions
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

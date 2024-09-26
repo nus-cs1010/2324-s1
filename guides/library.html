@@ -1,0 +1,1884 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/guides/library.html">
+      
+      
+        <link rel="prev" href="messages.html">
+      
+      
+        <link rel="next" href="style.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>CS1010 I/O Library - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-cs1010-io-library" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CS1010 I/O Library
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../notes/01-program.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Unix
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="vim-philosophy.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Vim
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="environments.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    PE Nodes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    C Programming
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    C Programming
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="c-in-cs1010.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    C in CS1010
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="messages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Common Clang Messages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    CS1010 I/O Library
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="library.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    CS1010 I/O Library
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the Library
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using the Library">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linking
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-of-a-single-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading of a Single Value
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reading of a Single Value">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#long-cs1010_read_long" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        long cs1010_read_long()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#double-cs1010_read_double" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        double cs1010_read_double()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#size_t-cs1010_read_size_t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        size_t cs1010_read_size_t()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char-cs1010_read_word" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        char* cs1010_read_word()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char-cs1010_read_line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        char* cs1010_read_line()
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-of-multiple-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading of Multiple Values
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reading of Multiple Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#long-cs1010_read_long_arraysize_t-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        long* cs1010_read_long_array(size_t k)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#double-cs1010_read_double_arraysize_t-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        double* cs1010_read_double_array(size_t k)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char-cs1010_read_word_arraysize_t-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        char** cs1010_read_word_array(size_t k)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char-cs1010_read_line_arraysize_t-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        char** cs1010_read_line_array(size_t k)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#printing-of-a-single-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Printing of a Single Value
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Printing of a Single Value">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#void-cs1010_print_longlong-value-and-void-cs1010_println_longlong-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        void cs1010_print_long(long value) and void cs1010_println_long(long value)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#void-cs1010_print_doubledouble-value-and-void-cs1010_println_doubledouble-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        void cs1010_print_double(double value) and void cs1010_println_double(double value)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#void-cs1010_print_size_tsize_t-value-and-void-cs1010_println_size_tsize_t-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        void cs1010_print_size_t(size_t value) and void cs1010_println_size_t(size_t value)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#void-cs1010_print_stringchar-str-and-void-cs1010_println_stringchar-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        void cs1010_print_string(char *str) and void cs1010_println_string(char *str)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#void-cs1010_print_pointervoid-ptr-and-void-cs1010_println_pointervoid-ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        void cs1010_print_pointer(void *ptr) and void cs1010_println_pointer(void *ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#void-cs1010_print_boolbool-x-and-void-cs1010_println_boolbool-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        void cs1010_print_bool(bool x) and void cs1010_println_bool(bool x)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clearing-screen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clearing screen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="style.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    C Style Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="documentation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    C Documentation Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="clang.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling with Clang
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="exercises.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the Library
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using the Library">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linking
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-of-a-single-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading of a Single Value
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reading of a Single Value">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#long-cs1010_read_long" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        long cs1010_read_long()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#double-cs1010_read_double" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        double cs1010_read_double()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#size_t-cs1010_read_size_t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        size_t cs1010_read_size_t()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char-cs1010_read_word" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        char* cs1010_read_word()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char-cs1010_read_line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        char* cs1010_read_line()
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-of-multiple-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading of Multiple Values
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reading of Multiple Values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#long-cs1010_read_long_arraysize_t-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        long* cs1010_read_long_array(size_t k)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#double-cs1010_read_double_arraysize_t-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        double* cs1010_read_double_array(size_t k)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char-cs1010_read_word_arraysize_t-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        char** cs1010_read_word_array(size_t k)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char-cs1010_read_line_arraysize_t-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        char** cs1010_read_line_array(size_t k)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#printing-of-a-single-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Printing of a Single Value
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Printing of a Single Value">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#void-cs1010_print_longlong-value-and-void-cs1010_println_longlong-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        void cs1010_print_long(long value) and void cs1010_println_long(long value)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#void-cs1010_print_doubledouble-value-and-void-cs1010_println_doubledouble-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        void cs1010_print_double(double value) and void cs1010_println_double(double value)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#void-cs1010_print_size_tsize_t-value-and-void-cs1010_println_size_tsize_t-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        void cs1010_print_size_t(size_t value) and void cs1010_println_size_t(size_t value)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#void-cs1010_print_stringchar-str-and-void-cs1010_println_stringchar-str" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        void cs1010_print_string(char *str) and void cs1010_println_string(char *str)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#void-cs1010_print_pointervoid-ptr-and-void-cs1010_println_pointervoid-ptr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        void cs1010_print_pointer(void *ptr) and void cs1010_println_pointer(void *ptr)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#void-cs1010_print_boolbool-x-and-void-cs1010_println_boolbool-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        void cs1010_print_bool(bool x) and void cs1010_println_bool(bool x)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clearing-screen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clearing screen
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      
+  
+    
+    
+      <li class="md-path__item">
+        <a href="unix-background.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Lab Guides
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="c-in-cs1010.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    C Programming
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="the-cs1010-io-library">The CS1010 I/O Library</h1>
+<p>To help students get started with C programming without worrying too much about the details and pitfalls of using <code>printf</code> and <code>scanf</code>, we provide a simple-to-use library to read and write integers, floating point numbers, and strings.  </p>
+<p>The libraries are pre-installed in <a href="environments.html">CS1010 programming environments</a>, with <code>cs1010.h</code> located under <code>~cs1010/include</code> and <code>libcs1010.a</code> located under <code>~cs1010/lib</code>.  During practical exams, a copy will be provided under your exam home directory (under <code>~/include</code> and <code>~/lib</code>).</p>
+<h2 id="using-the-library">Using the Library</h2>
+<h3 id="header">Header</h3>
+<p>To use the CS1010 I/O library, you should <code>#include</code> the file <code>cs1010.h</code>, like this:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;cs1010.h&quot;</span>
+</code></pre></div></td></tr></table></div>
+<p>at the top of your C program.</p>
+<h3 id="linking">Linking</h3>
+<p>The CS1010 I/O library is provided as the file <code>libcs1010.a</code>.  The <code>Makefile</code> provided by CS1010 is already configured to link to this library.  When you run <code>make</code> to compile your code, this library is linked by default.</p>
+<p>If you wish to manually compile your code, you need to link to the library, by supplying the argument <code>-lcs1010</code> to <code>clang</code>.  Usually, you also need to specify where you can find <code>cs1010.h</code> with the <code>-I</code> flag, and <code>libcs1010.a</code> with the <code>-L</code> flag.  For instance, in the CS1010 programming environment, you would need to compile using the command line:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>clang -I ~cs1010/include -L ~cs1010/lib hello.c -lcs1010
+</code></pre></div></td></tr></table></div></p>
+<h2 id="reading-of-a-single-value">Reading of a Single Value</h2>
+<p>The CS1010 library supports reading of a single numeric value of type <code>long</code>, <code>double</code>, and <code>size_t</code>, as well as reading of strings (both space-separated <em>words</em> and newline-separated <em>lines</em>) from the standard input. </p>
+<h3 id="long-cs1010_read_long"><code>long cs1010_read_long()</code><br></h3>
+<p>Returns a <code>long</code> value from the standard input.  An error message will be printed (to <code>stderr</code>) if the input sequence is not a valid <code>long</code> value -- in which case the value <code>LONG_MAX</code> will be returned.  Example:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">long</span><span class="w"> </span><span class="n">year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_long</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="double-cs1010_read_double"><code>double cs1010_read_double()</code><br></h3>
+<p>Returns a <code>double</code> value from the standard input.  An error message will be printed (to <code>stderr</code>) if the input sequence is not a valid <code>double</code> value -- in which case the value <code>DBL_MAX</code> will be returned. Example:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="n">cap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_double</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="size_t-cs1010_read_size_t"><code>size_t cs1010_read_size_t()</code><br></h3>
+<p>Returns a <code>size_t</code> value from the standard input.  An error message will be printed (to <code>stderr</code>) if the input sequence is not a valid <code>size_t</code> value -- in which case the value <code>0</code> will be returned.  Example:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_size_t</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="char-cs1010_read_word"><code>char* cs1010_read_word()</code><br></h3>
+<p>Returns a <code>char *</code> pointing to the next white-space-separated string from the standard input.  A white-space character is defined based on the standard C function <code>isspace()</code> and includes the space <code></code>, tab <code>\t</code>, and newline <code>\n</code> character.  Returns <code>NULL</code> if there is an error.  If the returned value is non-<code>NULL</code>, the caller is responsible for freeing the memory allocated by calling <code>free</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Usage example of cs1010_read_word()</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_word</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">word</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Deal with error</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Do something with word</span>
+<span class="w">  </span><span class="o">:</span>
+<span class="w">  </span><span class="o">:</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">word</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Suppose the input is:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>hello world
+1234567
+</code></pre></div></td></tr></table></div></p>
+<p>Calling <code>cs1010_read_word()</code> would return the string <code>"hello"</code>.</p>
+<h3 id="char-cs1010_read_line"><code>char* cs1010_read_line()</code><br></h3>
+<p>Returns a <code>char *</code> pointing to the next new-line-separated string from the standard input.  The string returns from <code>cs1010_read_line()</code> includes the newline character (if one is found).
+Returns <code>NULL</code> if there is an error.  If the returned value is non-<code>NULL</code>, the caller is responsible for freeing the memory allocated by calling <code>free</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Usage example of cs1010_read_line()</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_line</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">line</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Deal with error</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Done something with line</span>
+<span class="w">  </span><span class="o">:</span>
+<span class="w">  </span><span class="o">:</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Suppose the input is:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>hello world
+1234567
+</code></pre></div></td></tr></table></div></p>
+<p>Calling <code>cs1010_read_line()</code> would return the string <code>"hello world\n"</code>.</p>
+<h2 id="reading-of-multiple-values">Reading of Multiple Values</h2>
+<p>The CS1010 library also supports the reading of multiple values and returning the values in an array.</p>
+<h3 id="long-cs1010_read_long_arraysize_t-k"><code>long* cs1010_read_long_array(size_t k)</code><br></h3>
+<p>Returns <code>k</code> numbers of <code>long</code> values read from the standard input stored in an array.  An error message will be printed (to <code>stderr</code>) for each input that is not a valid <code>long</code> value -- in which case the value <code>LONG_MAX</code> will be populated in the corresponding array element.  Returns <code>NULL</code> if there is a memory allocation error.  If the returned value is non-<code>NULL</code>, the caller is responsible for freeing the memory allocated by calling <code>free</code>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">size_t</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_size_t</span><span class="p">();</span>
+<span class="kt">long</span><span class="o">*</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_long_array</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Do something with array values</span>
+<span class="w">   </span><span class="o">:</span>
+<span class="w">   </span><span class="o">:</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">values</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="double-cs1010_read_double_arraysize_t-k"><code>double* cs1010_read_double_array(size_t k)</code><br></h3>
+<p>Returns <code>k</code> numbers of <code>double</code> values read from the standard input stored in an array.  An error message will be printed (to <code>stderr</code>) for each input that is not a valid <code>double</code> value -- in which case the value <code>DBL_MAX</code> will be populated in the corresponding array element.
+Returns <code>NULL</code> if there is a memory allocation error.  If the returned value is non-<code>NULL</code>, the caller is responsible for freeing the memory allocated by calling <code>free</code>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">size_t</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_size_t</span><span class="p">();</span>
+<span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_double_array</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Do something with array values</span>
+<span class="w">   </span><span class="o">:</span>
+<span class="w">   </span><span class="o">:</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">values</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="char-cs1010_read_word_arraysize_t-k"><code>char** cs1010_read_word_array(size_t k)</code><br></h3>
+<p>Returns <code>k</code> white-space-separated words read from the standard input stored in an array.  The notion of "word" is the same as <code>cs1010_read_word()</code>.
+Returns <code>NULL</code> if there is a memory allocation error.  If the returned value is non-<code>NULL</code>, the caller is responsible for freeing the memory allocated for each word and the whole array by calling <code>free</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Usage example for cs1010_read_word_array</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">size_t</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_size_t</span><span class="p">();</span>
+<span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_word_array</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">words</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Deal with error</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Do something with the array words</span>
+<span class="w">   </span><span class="o">:</span>
+<span class="w">   </span><span class="o">:</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">words</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Suppose the input is:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>hello world
+1234567
+</code></pre></div></td></tr></table></div></p>
+<p>Calling <code>cs1010_read_word_array(2)</code> would return the array <code>{"hello", "world"}</code>.</p>
+<h3 id="char-cs1010_read_line_arraysize_t-k"><code>char** cs1010_read_line_array(size_t k)</code><br></h3>
+<p>Returns <code>k</code> new-line-separated words read from the standard input stored in an array.  The notion of a line is the same as <code>cs1010_read_line()</code>.
+Returns <code>NULL</code> if there is a memory allocation error.  If the returned value is non-<code>NULL</code>, the caller is responsible for freeing the memory allocated for each line and the whole array by calling <code>free</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Usage example for cs1010_read_line_array</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">size_t</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_size_t</span><span class="p">();</span>
+<span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cs1010_read_line_array</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lines</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Deal with error</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Do something with the array lines</span>
+<span class="w">    </span><span class="o">:</span>
+<span class="w">    </span><span class="o">:</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="n">lines</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Suppose the input is:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>hello world
+1234567
+</code></pre></div></td></tr></table></div></p>
+<p>Calling <code>cs1010_read_line_array(2)</code> would return the array <code>{"hello world\n", "1234567\n"}</code>.</p>
+<h2 id="printing-of-a-single-value">Printing of a Single Value</h2>
+<p>The CS1010 library provides a few convenient functions to format and print <code>long</code> and <code>double</code> values to the standard output.</p>
+<h3 id="void-cs1010_print_longlong-value-and-void-cs1010_println_longlong-value"><code>void cs1010_print_long(long value)</code> and <code>void cs1010_println_long(long value)</code><br></h3>
+<p>Print <code>value</code> to the standard output (with <code>printf</code> format <code>%ld</code>).<br />
+The <code>cs1010_println_long</code> version prints a newline after the value.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="o">:</span>
+<span class="w">  </span><span class="n">cs1010_print_long</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="void-cs1010_print_doubledouble-value-and-void-cs1010_println_doubledouble-value"><code>void cs1010_print_double(double value)</code> and <code>void cs1010_println_double(double value)</code><br></h3>
+<p>Print <code>value</code> to the standard output (with <code>printf</code> format <code>%.4f</code>).
+The <code>cs1010_println_double</code> version prints a newline after the value.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="o">:</span>
+<span class="w">  </span><span class="n">cs1010_println_double</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="void-cs1010_print_size_tsize_t-value-and-void-cs1010_println_size_tsize_t-value"><code>void cs1010_print_size_t(size_t value)</code> and <code>void cs1010_println_size_t(size_t value)</code><br></h3>
+<p>Print <code>value</code> to the standard output (with <code>printf</code> format <code>%zu</code>).
+The <code>cs1010_println_size_t</code> version prints a newline after the value.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="o">:</span>
+<span class="w">  </span><span class="n">cs1010_println_size_t</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="void-cs1010_print_stringchar-str-and-void-cs1010_println_stringchar-str"><code>void cs1010_print_string(char *str)</code> and <code>void cs1010_println_string(char *str)</code><br></h3>
+<p>Print a given string <code>str</code> to the standard output.  These functions are provided for completeness and is a simple wrapper around <code>printf(str)</code> and <code>printf("%s\n", str)</code> repsectively.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="n">cs1010_println_string</span><span class="p">(</span><span class="s">&quot;hello world!&quot;</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div></p>
+<div class="admonition tip">
+<p class="admonition-title">Printing single character</p>
+<p>There is no <code>cs1010_print_char</code> method.  You can use <code>putchar</code> from the C standard library
+for this purpose.</p>
+</div>
+<h3 id="void-cs1010_print_pointervoid-ptr-and-void-cs1010_println_pointervoid-ptr"><code>void cs1010_print_pointer(void *ptr)</code> and <code>void cs1010_println_pointer(void *ptr)</code><br></h3>
+<p>Print a given pointer <code>ptr</code> to the standard output in decimal format.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cs1010_println_pointer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="void-cs1010_print_boolbool-x-and-void-cs1010_println_boolbool-x"><code>void cs1010_print_bool(bool x)</code> and <code>void cs1010_println_bool(bool x)</code><br></h3>
+<p>Print a given boolean value <code>x</code> to the standard output as either <code>true</code> or <code>false</code>.
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cs1010_println_bool</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div></p>
+<h2 id="clearing-screen">Clearing screen</h2>
+<p>The CS1010 library provides a function to clear your screen. 
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="n">cs1010_clear_screen</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div></p>
+<h1 id="optional-installing-the-library">Optional: Installing the Library</h1>
+<p>If you want to install the libraries on your computer for purposes other than CS1010, you can do the following:</p>
+<ol>
+<li>To get an updated copy of the library, clone it from its git repo on GitHub with the command:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>git clone https://github.com/nus-cs1010/libcs1010.git
+</code></pre></div></td></tr></table></div>
+<p>It is recommended you do this in your home directory.</p>
+<p>You should see an output similar to:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>Cloning into &#39;libcs1010&#39;...
+remote: Counting objects: 6, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (6/6), done.
+</code></pre></div></td></tr></table></div></p>
+<p>After that, you should see a subdirectory <code>libcs1010</code> created in your current directory.  Inside, there should be a file called <code>Makefile</code>, and two subdirectories called <code>include</code> and <code>src</code>.  </p>
+<ol>
+<li>To compile the library, run</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make
+</code></pre></div></td></tr></table></div>
+<p>This should compile the file <code>src/cs1010.c</code> and create a static C library named <code>libcs1010.a</code> under the <code>lib</code> directory.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="messages.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Common Clang Messages">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Common Clang Messages
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="style.html" class="md-footer__link md-footer__link--next" aria-label="Next: C Style Guide">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                C Style Guide
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

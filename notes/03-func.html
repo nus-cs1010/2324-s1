@@ -1,0 +1,1796 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/notes/03-func.html">
+      
+      
+        <link rel="prev" href="02-algo.html">
+      
+      
+        <link rel="next" href="04-type.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>3. Functions - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unit-3-functions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3. Functions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-program.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    1. What is a Program?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-algo.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Computational Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Functions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="03-func.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-finding-the-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem: Finding the Range
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-finding-standard-deviation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem: Finding Standard Deviation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-good-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Writing Good Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#another-two-solutions-for-finding-maximum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Another Two Solutions for Finding Maximum
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-finding-a-factorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Finding a Factorial
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursion-function-calling-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursion: Function Calling Itself
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Set
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Set">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-31-getting-mad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 3.1: Getting MAD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-32-ownself-calls-ownself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 3.2: Ownself calls ownself
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-type.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-first-c.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    5. First C Program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-cs1010-io.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    6. CS1010 I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07-arithmetic-ops.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Arithmetic Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-if-else.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Conditional Statement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-logical-exp.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Logical Expression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-assert.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Assertion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-loop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-invariant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Invariant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-call-stack.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Call Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-array.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Fixed-Length Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-pointers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Pointers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-call-by-reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Call by Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-heap.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    17. Heap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-string.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    18. String
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-md-array.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    19. Multidimensional Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-efficiency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    20. Efficiency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-search.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    21. Searching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-sort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Sorting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-tower.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    23. Tower of Hanoi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-permutation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    24. Permutation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-queens.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    25. N-Queens
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-struct.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    26. Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="27-stdio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    27. Standard I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../guides/unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../guides/exercises.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Outcomes:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-finding-the-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem: Finding the Range
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-finding-standard-deviation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem: Finding Standard Deviation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-good-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Writing Good Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#another-two-solutions-for-finding-maximum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Another Two Solutions for Finding Maximum
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-finding-a-factorial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Finding a Factorial
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recursion-function-calling-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursion: Function Calling Itself
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Set
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Set">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-31-getting-mad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 3.1: Getting MAD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problem-32-ownself-calls-ownself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 3.2: Ownself calls ownself
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="01-program.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Notes
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="unit-3-functions">Unit 3: Functions</h1>
+<h2 id="learning-outcomes">Learning Outcomes:</h2>
+<p>After this unit, students should:</p>
+<ul>
+<li>understand the concept of a function: (i) function as a high-level abstraction of lower-level operations; (ii) function as a well-defined solution to a sub-problem with zero or more inputs and (possibly) a returned value.</li>
+<li>be able to see how a problem can be decomposed into sub-problems, each solvable by a function; the functions can then be composed together to solve the original problem;</li>
+<li>understand the concept of local variables that are internal within a function;</li>
+<li>be able to apply "wishful thinking" in decomposing a problem into sub-problems;</li>
+<li>apply wishful thinking in solving a problem recursively -- by making a function invokes itself to solve a simpler version of the same problem.</li>
+</ul>
+<h2 id="problem-finding-the-range">Problem: Finding the Range</h2>
+<p>Let's start with another problem.</p>
+<p>The <em>range</em> of a finite list of at least one integer <span class="arithmatex">\(L\)</span> is defined as the difference between the maximum and the minimum integers in <span class="arithmatex">\(L\)</span>.  For example, the range for <code>4 1 -4 0 9 9 3 5 8</code> is <code>13</code>.  How do we find the range of a given list?</p>
+<p>To find the range of a list, we can break the solution down into three subtasks: first, find the maximum, then, find the minimum, and finally, find the difference between the maximum and the minimum.</p>
+<p>From the previous lecture, you already know how to find the maximum and the minimum (from Problem 2.2). So, in expressing the algorithm to find the range, <em>we can refer to a previous solution to a sub-problem, which we assume we already know how to solve</em>.</p>
+<p>Let's call our solution to find the maximum value from a given list <span class="arithmatex">\(L\)</span> as <span class="arithmatex">\(max\)</span>.  <span class="arithmatex">\(max\)</span> takes as input (i) a list <span class="arithmatex">\(L\)</span> and (ii) <span class="arithmatex">\(k\)</span>, the number of integers in <span class="arithmatex">\(L\)</span>.  It produces, or <em>returns</em>, the maximum value among the integers in <span class="arithmatex">\(L\)</span>.  Borrowing from mathematical notation, we use the notation <span class="arithmatex">\(max(L, k)\)</span> to represent the maximum value of <span class="arithmatex">\(L\)</span>.  Note that, now, we no longer worry about <span class="arithmatex">\(i\)</span> and <span class="arithmatex">\(m\)</span> -- these two variables are now internal, or <em>local</em>, to <span class="arithmatex">\(max(L,k)\)</span>.</p>
+<p>Suppose that <span class="arithmatex">\(min(L,k)\)</span> returns the minimum value among the integers in <span class="arithmatex">\(L\)</span>, then, the algorithm to find the range of <span class="arithmatex">\(L\)</span> can be written in a single line:</p>
+<div class="arithmatex">\[max(L, k) - min(L, k)\]</div>
+<h2 id="functions">Functions</h2>
+<p><span class="arithmatex">\(max\)</span> and <span class="arithmatex">\(min\)</span> are examples of a powerful and important concept with many names: <em>function</em>, <em>procedure</em>, <em>subroutine</em>, <em>method</em>, <em>subprogram</em><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.  In the context of CS1010, we will use the term <em>function</em>.  Functions allow us to solve a problem by thinking about the solution at a higher level.  We are no longer concerned with the implementation details. </p>
+<p>For instance, in the example above, we no longer have to think about checking through the items in the list one by one and maintaining the maximum so far or the minimum so far.  We just have to think about how to compute the range, assuming that we already know how to compute the maximum and the minimum value.</p>
+<p>Such an assumption, that we already know how to solve a subproblem, is known as <em>wishful thinking</em>.  Sometimes, it is useful to solve a problem assuming that you know how to solve the subproblem first and worry about solving the subproblem later.</p>
+<p>For instance, consider the following problem: Given a finite list of <span class="arithmatex">\(k\)</span> integers (<span class="arithmatex">\(k &gt; 0\)</span>), find the mean.</p>
+<p>The algorithm again can be written in one line:</p>
+<div class="arithmatex">\[sum(L, k) / k\]</div>
+<p>if we assume that we have a function <span class="arithmatex">\(sum\)</span> that can help us find the total of all <span class="arithmatex">\(k\)</span> integers.  It turns out, in this case, that you should also know how to solve the subproblem <span class="arithmatex">\(sum\)</span> from Problem 2.3.</p>
+<p>We can then make this into a function itself, <span class="arithmatex">\(mean(L, k)\)</span>, which we can now use to solve other more complex problems.</p>
+<p>Thinking in terms of functions also has another advantage: given a function, we only need to worry about <em>what</em> it does, but not <em>how</em> it is done.   In the <span class="arithmatex">\(max(L,k)\)</span> example above, we do not care if it scans the list <span class="arithmatex">\(L\)</span> from <span class="arithmatex">\(l_0\)</span> to <span class="arithmatex">\(l_{k-1}\)</span>, or from <span class="arithmatex">\(l_{k-1}\)</span> to <span class="arithmatex">\(l_0\)</span>.  We can treat a function as a black box with well-defined behavior -- given one or more inputs, it will produce a value satisfying certain conditions, i.e., it solves a computational problem.</p>
+<p>Many programming languages, including C which we will be using in CS1010, come with a rich set of predefined functions that we can use to help us solve computational problems.  In CS1010, we will also provide you with some functions to help you with your lab assignments.  You will also define your own functions when solving problems with C.  In fact, a C program is just a collection of functions calling each other.</p>
+<p>Note, however, that in C, a function is more general than the description above: a C function may not take in any input, and it may not return any value.</p>
+<p>Before we continue, let's simplify the functions we have written so far.  Let's suppose that we have another function <span class="arithmatex">\(len(L)\)</span> that takes in a list as an input, and returns the number of items in the list.  With this function, we can remove <span class="arithmatex">\(k\)</span> as one of the inputs to the function <span class="arithmatex">\(max\)</span>, <span class="arithmatex">\(min\)</span>, <span class="arithmatex">\(sum\)</span> and <span class="arithmatex">\(mean\)</span>.   Instead of defining <span class="arithmatex">\(mean(L, k)\)</span> to be <span class="arithmatex">\(sum(L, k)/k\)</span>, we can define the function to be <span class="arithmatex">\(mean(L) = sum(L)/len(L)\)</span>.  We can define <span class="arithmatex">\(k\)</span> to be a local variable within <span class="arithmatex">\(max\)</span>, <span class="arithmatex">\(min\)</span>, and <span class="arithmatex">\(sum\)</span>.  We initialize <span class="arithmatex">\(k\)</span> before we compute the respective answers.</p>
+<h2 id="problem-finding-standard-deviation">Problem: Finding Standard Deviation</h2>
+<p>Let's look at another problem: Given <span class="arithmatex">\(L\)</span>, a finite list of <span class="arithmatex">\(k\)</span> integers (<span class="arithmatex">\(k \ge 1\)</span>), find the standard deviation of the integers in <span class="arithmatex">\(L\)</span>.</p>
+<p>First, recall that the (population) standard deviation is given by</p>
+<div class="arithmatex">\[\sqrt{\frac{\sum_{i=0}^{k-1} (l_i - \mu)^2}{k}}\]</div>
+<p>where <span class="arithmatex">\(\mu\)</span> is the mean of the integers in <span class="arithmatex">\(L\)</span>.</p>
+<p>To compute the standard deviation, we first need to compute <span class="arithmatex">\(\mu\)</span>, the mean.   We already know how to do that: <span class="arithmatex">\(mean(L)\)</span>.  Then, we need to compute <span class="arithmatex">\(\sum_{i=0}^{k-1} (l_i - \mu)^2\)</span>.  We can break it down into two subproblems:</p>
+<ul>
+<li>Given a list <span class="arithmatex">\(L\)</span> and a constant value <span class="arithmatex">\(x\)</span>, subtract <span class="arithmatex">\(x\)</span> from every number in <span class="arithmatex">\(L\)</span>, giving us a new list.</li>
+<li>Given a list, square every number in the list, giving us a new list.</li>
+</ul>
+<p>For now, let's apply wishful thinking and assume that we know how to compute the above two steps with functions <span class="arithmatex">\(subtract(L, x)\)</span> and <span class="arithmatex">\(square(L)\)</span>, then, the formula <span class="arithmatex">\(\sum_{i=0}^{k-1} (l_i - \mu)^2\)</span> can be computed by the following steps:</p>
+<ul>
+<li>set <span class="arithmatex">\(\mu\)</span> to <span class="arithmatex">\(mean(L)\)</span></li>
+<li>set <span class="arithmatex">\(L'\)</span> to <span class="arithmatex">\(subtract(L, \mu)\)</span></li>
+<li>set <span class="arithmatex">\(L''\)</span> to <span class="arithmatex">\(square(L')\)</span></li>
+<li>set <span class="arithmatex">\(total\)</span> to <span class="arithmatex">\(sum(L'')\)</span>.</li>
+</ul>
+<p>We can also write it in one line:</p>
+<ul>
+<li>set <span class="arithmatex">\(total\)</span> to <span class="arithmatex">\(sum(square(subtract(L, mean(L))))\)</span></li>
+</ul>
+<p>Now, to compute the standard deviation, we need to divide <span class="arithmatex">\(total\)</span> by <span class="arithmatex">\(len(L)\)</span> and find the square root.  But, finding <span class="arithmatex">\(total\)</span> and dividing the result by <span class="arithmatex">\(len(L)\)</span> is just <span class="arithmatex">\(mean\)</span>.  To compute the square root, we again apply wishful thinking and assume that there is a function <span class="arithmatex">\(sqrt\)</span> to do so.</p>
+<p>We can now compute the standard deviation with one line:</p>
+<div class="arithmatex">\[sqrt(mean(square(subtract(L, mean(L)))))\]</div>
+<p>Using functions, we can easily pass the output from one function as input to another, essentially chaining the functions together, like Lego blocks, to solve problems.  We also see an example of <em>reuse</em> here -- <span class="arithmatex">\(mean\)</span> is used twice with different inputs.</p>
+<p><img alt="Flowchart" src="figures/max-flowchart/max-flowchart.013.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Returning a list</p>
+<p>The above one-liner might seem to be an elegant solution.  When we implement this in C later, it will not be so simple and elegant.  Particularly, it is not trivial to return a list from a function in C.  But, let's worry about that later.</p>
+</div>
+<p>Now that we have seen how to compute standard deviation by breaking it down the four subproblems, <span class="arithmatex">\(sqrt\)</span>, <span class="arithmatex">\(mean\)</span>, <span class="arithmatex">\(square\)</span>, and <span class="arithmatex">\(subtract\)</span>, we have to make sure that things we wish can be done can actually be done.  The C library, and many programming languages, provide a pre-defined method to compute <span class="arithmatex">\(sqrt\)</span>.  We already know how to compute <span class="arithmatex">\(mean\)</span>.  Computing <span class="arithmatex">\(square\)</span> can be done as follows:</p>
+<p><img alt="Flowchart" src="figures/max-flowchart/max-flowchart.011.png" /></p>
+<p>The implementation of <span class="arithmatex">\(subtract\)</span> is similar.</p>
+<h2 id="writing-good-functions">Writing Good Functions</h2>
+<p>To make the functions that you write reusable and composable, you should create your functions in such a way that it <em>does one thing and one thing only</em>.   For instance, consider a different design of the solution above, where we write a function called <span class="arithmatex">\(substract_mean(L)\)</span>, which both calculates the mean of the items in <span class="arithmatex">\(L\)</span> and then subtracts it from every element in <span class="arithmatex">\(L\)</span> (doing two things).  We could still compute the standard deviation with:</p>
+<div class="arithmatex">\[sqrt(mean(square(subtract_mean(L))))\]</div>
+<p>However, we still need another function <span class="arithmatex">\(mean\)</span> that duplicates part of what <span class="arithmatex">\(subtract_mean\)</span> is doing.  Furthermore, suppose we want to subtract a value other than the mean of the elements in the list, then we would need to write another method <span class="arithmatex">\(subtract_X\)</span>, and we would duplicate part of what <span class="arithmatex">\(subtract_mean\)</span> is doing as well.  Instead of having the same code that performs the same thing in two different functions, it is better to avoid repeating ourselves<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup> and write simpler functions that perform only one task.</p>
+<p>A second guideline to writing good functions is that your function should take in all the necessary arguments and only the necessary ones.  Consider <span class="arithmatex">\(mean(L)\)</span> as an example.  An earlier design of this function takes in the length <span class="arithmatex">\(k\)</span> as well: <span class="arithmatex">\(mean(L,k)\)</span>.  But is <span class="arithmatex">\(k\)</span> necessary?  </p>
+<p>Suppose in our usage of <span class="arithmatex">\(mean\)</span>, we may not want to compute the mean for all the elements in the list <span class="arithmatex">\(L\)</span>, but only the mean of the first <span class="arithmatex">\(k\)</span> elements.  Then, having <span class="arithmatex">\(k\)</span> as a input to <span class="arithmatex">\(mean\)</span> makes our <span class="arithmatex">\(mean\)</span> function more flexible.  On the other hand, suppose that we are very sure that <span class="arithmatex">\(mean\)</span> will only be called to compute the mean of all the elements in <span class="arithmatex">\(L\)</span>, and we can derive <span class="arithmatex">\(k\)</span> from <span class="arithmatex">\(L\)</span>, then <span class="arithmatex">\(k\)</span> is no longer a necessary input.  We can simplify the inputs to <span class="arithmatex">\(mean\)</span> from <span class="arithmatex">\(mean(L,k)\)</span> to just <span class="arithmatex">\(mean(L)\)</span>. </p>
+<h2 id="another-two-solutions-for-finding-maximum">Another Two Solutions for Finding Maximum</h2>
+<p>In the previous lecture, you have seen an algorithm to find the maximum value from a list of integers, which involves checking the elements one by one and keeping track of the maximum value so far.</p>
+<p>Now that we have seen what a function is, we can use the concept of wishful thinking to help us solve this problem differently and more elegantly.</p>
+<p>Let's suppose that we have a function <span class="arithmatex">\(max'(L, i, j)\)</span>, that finds the maximum integer among the elements <span class="arithmatex">\(l_i, l_{i+1}, ... l_j\)</span>.  The function <span class="arithmatex">\(max(L, k)\)</span>, which finds the maximum among all elements of <span class="arithmatex">\(L\)</span>, is, therefore, the same as <span class="arithmatex">\(max'(L, 0, k-1)\)</span>.</p>
+<p>Do we know how to solve <span class="arithmatex">\(max'(L, i, j)\)</span> without checking the integers in <span class="arithmatex">\(L\)</span> one by one?  Well, if <span class="arithmatex">\(i\)</span> equals <span class="arithmatex">\(j\)</span>, i.e., there is only one element in the range of <span class="arithmatex">\(l_i, ..., l_j\)</span>, then yes, the function should simply return the value of <span class="arithmatex">\(l_i\)</span>.</p>
+<p>But, what if there are multiple elements in the range? (i.e., <span class="arithmatex">\(i &lt; j\)</span>)?  By wishful thinking, we assume that we already know how to solve smaller (as in a shorter list) problem -- <span class="arithmatex">\(max'(L, i+1, j)\)</span>, so the maximum value for the range of <span class="arithmatex">\(l_i, ..., l_j\)</span> is the larger of the two: either <span class="arithmatex">\(l_i\)</span> or <span class="arithmatex">\(max'(L, i+1, j)\)</span>.  We can express this algorithm as follows:</p>
+<p><img alt="Flowchart" src="figures/max-flowchart/max-flowchart.009.png" /></p>
+<p>Let's trace through the algorithm above, using our previous example: <code>4 1 -4 0 9 9 3 5 8</code>.  Given this list, we compare the first element, <code>4</code>, with the maximum of the rest of the list <code>1 -4 0 9 9 3 5 8</code>, computed with <span class="arithmatex">\(max'(L, 1,8)\)</span>.  With wishful thinking, we know how to solve <span class="arithmatex">\(max'\)</span> already -- we get <span class="arithmatex">\(max'(L,1,8)\)</span> = <code>9</code> as the maximum value of <code>1 -4 0 9 9 3 5 8</code>.  Comparing <code>4</code> and <code>9</code>, <code>9</code> is larger. Thus, the maximum of the whole list is <code>9</code>.</p>
+<p>The solution above involves <span class="arithmatex">\(max'\)</span> calling itself once to solve the problem.  It breaks the problem of finding the maximum in a list of <span class="arithmatex">\(k\)</span> items into the problem of finding the maximum in a list of <span class="arithmatex">\(k-1\)</span> items.</p>
+<p>Now, let's consider a second possibility.  What if we break the list into two lists of (roughly) equal length?   Let's consider the example <code>4 1 -4 0 9 9 3 5</code>.  We keep the list to eight items this time so that it is neater.  We can break the list into two smaller lists: <code>4 1 -4 0</code> and <code>9 9 3 5</code>.  By wishful thinking, we know how to find the maximum among <code>4 1 -4 0</code> (which is <code>4</code>) and <code>9 9 3 5</code> (which is <code>9</code>).  What remains is just to pick the larger of the two and we have the maximum of the two lists!</p>
+<p>Given <span class="arithmatex">\(max'(L, i, j)\)</span>, if we let <span class="arithmatex">\(n = \left\lfloor(i+j)/2\right\rfloor\)</span>, then we can solve <span class="arithmatex">\(max'(L,i,j)\)</span> by solving two smaller, almost equally sized, sub-problems, <span class="arithmatex">\(max'(L,i,n)\)</span> and <span class="arithmatex">\(max'(L,n+1,j)\)</span>.</p>
+<p>We can express this algorithm as follows:</p>
+<p><img alt="Flowchart" src="figures/max-flowchart/max-flowchart.016.png" /></p>
+<p>This problem-solving technique is called <em>divide-and-conquer</em>.  You will see this technique again many times in CS1010, CS2040C, CS3230, and the rest of your computing career.  A nice property of this technique is that, if we have more than one processing unit, we can ask them to compute <span class="arithmatex">\(max'(L,i,n)\)</span> and <span class="arithmatex">\(max'(L,n+1,j)\)</span> in parallel, and thus getting the answer we are looking for, earlier!</p>
+<h2 id="example-finding-a-factorial">Example: Finding a Factorial</h2>
+<p>Let us look at another example of a function before we move on to another topic.  Suppose we want to write a function <span class="arithmatex">\(factorial(n)\)</span> for an integer <span class="arithmatex">\(n\)</span> (<span class="arithmatex">\(n \ge 0\)</span>) that computes <span class="arithmatex">\(n!\)</span>. Recall that <span class="arithmatex">\(n! = n \times n - 1 \times n - 2 \times ... 2 \times 1 = n \times (n-1)!\)</span>.  As a special case, <span class="arithmatex">\(0!\)</span> is defined to be <span class="arithmatex">\(1\)</span>.</p>
+<p>The algorithm to do this can be expressed by the following diagram:</p>
+<p><img alt="Flowchart" src="figures/max-flowchart/max-flowchart.010.png" /></p>
+<p>Let's look at an example.  Let's say we want to compute <span class="arithmatex">\(factorial(4)\)</span>.  We assume we know how to solve this for a smaller problem --  <span class="arithmatex">\(factorial(3)\)</span>, which is 6.  <span class="arithmatex">\(factorial(4)\)</span> is thus 4 <span class="arithmatex">\(\times\)</span> 6, i.e., 24.</p>
+<h2 id="recursion-function-calling-itself">Recursion: Function Calling Itself</h2>
+<p><span class="arithmatex">\(max'\)</span> and <span class="arithmatex">\(factorial\)</span> are examples of functions that call themselves to solve a simpler version of the problem.  This is known as <em>recursion</em>.  We will revisit this concept in much greater detail in the later part of CS1010.</p>
+<h2 id="problem-set">Problem Set</h2>
+<h3 id="problem-31-getting-mad">Problem 3.1: Getting MAD</h3>
+<p>The mean absolute deviation, or MAD, of a set of integers measures how spread out a set of data is.  The <em>absolute deviation</em> is the absolute difference between an element in the list with the mean of values of the list.  The mean absolute deviation is the mean of all the absolute differences.  In other words, given <span class="arithmatex">\(L = \{l_0, ... l_{k-1}\}\)</span>, the MAD of <span class="arithmatex">\(L\)</span> is:</p>
+<div class="arithmatex">\[\frac{\sum_{i=0}^{k-1} |l_i - \mu|}{k}\]</div>
+<p>How do you find MAD by composing various functions we have seen?  Do you need a new function?</p>
+<h3 id="problem-32-ownself-calls-ownself">Problem 3.2: Ownself calls ownself</h3>
+<p>(a) Give an algorithm for finding the sum of all the integers in the list <span class="arithmatex">\(L\)</span> with <span class="arithmatex">\(k\)</span> (<span class="arithmatex">\(k &gt; 0\)</span>) integers that is recursive.</p>
+<p>(b) The function <span class="arithmatex">\(pow(i, j)\)</span> computes <span class="arithmatex">\(i^j\)</span>.  Give an algorithm to compute <span class="arithmatex">\(pow(i, j)\)</span> recursively.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>In software engineering, there is a name for this principle: DRY, which stands for don't repeat yourself.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="02-algo.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2. Computational Problems">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                2. Computational Problems
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="04-type.html" class="md-footer__link md-footer__link--next" aria-label="Next: 4. Types">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                4. Types
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

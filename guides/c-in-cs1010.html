@@ -1,0 +1,2275 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/guides/c-in-cs1010.html">
+      
+      
+        <link rel="prev" href="tmate.html">
+      
+      
+        <link rel="next" href="messages.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>C in CS1010 - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#c-in-cs1010" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              C in CS1010
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../notes/01-program.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Unix
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="vim-philosophy.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Vim
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="environments.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    PE Nodes
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    C Programming
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    C Programming
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    C in CS1010
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="c-in-cs1010.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    C in CS1010
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#banned-in-cs1010" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Banned in CS1010
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Banned in CS1010">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-the-and-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The ++ and -- operators.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. The ++ and -- operators.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-skipping-of-curly-braces-for-single-statement-conditional-or-loop-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Skipping of curly braces for single statement conditional or loop body
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Skipping of curly braces for single statement conditional or loop body">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-nested-conditional-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Nested conditional operator ?:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Nested conditional operator ?:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-global-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Global variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Global variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-using-int-and-short" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Using int and short
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Using int and short">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-the-type-float" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. The type float
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. The type float">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-using-integer-values-for-truefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Using integer values for true/false
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Using integer values for true/false">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-goto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. goto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. goto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discouraged-in-cs1010" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discouraged in CS1010
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Discouraged in CS1010">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-printf-and-scanf-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. printf and scanf Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. printf and scanf Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-switch-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. switch Statements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. switch Statements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-break-and-continue-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. break and continue Statements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. break and continue Statements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-skipping-parenthesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Skipping parenthesis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Skipping parenthesis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-should-be-used-instead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="messages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Common Clang Messages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="library.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    CS1010 I/O Library
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="style.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    C Style Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="documentation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    C Documentation Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="clang.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Compiling with Clang
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="exercises.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#banned-in-cs1010" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Banned in CS1010
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Banned in CS1010">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-the-and-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The ++ and -- operators.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. The ++ and -- operators.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-skipping-of-curly-braces-for-single-statement-conditional-or-loop-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Skipping of curly braces for single statement conditional or loop body
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Skipping of curly braces for single statement conditional or loop body">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-nested-conditional-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Nested conditional operator ?:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Nested conditional operator ?:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-global-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Global variables
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Global variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-using-int-and-short" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Using int and short
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Using int and short">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-the-type-float" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. The type float
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. The type float">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-using-integer-values-for-truefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Using integer values for true/false
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Using integer values for true/false">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-goto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. goto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. goto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#discouraged-in-cs1010" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discouraged in CS1010
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Discouraged in CS1010">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-printf-and-scanf-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. printf and scanf Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. printf and scanf Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-switch-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. switch Statements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. switch Statements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-break-and-continue-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. break and continue Statements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. break and continue Statements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-be-used-instead_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-skipping-parenthesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Skipping parenthesis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Skipping parenthesis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-should-be-used-instead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why should be used instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      
+  
+    
+    
+      <li class="md-path__item">
+        <a href="unix-background.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Lab Guides
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="c-in-cs1010.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    C Programming
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="c-in-cs1010">C in CS1010</h1>
+<p>C is a simple and flexible language, providing programmers with many ways to achieve the same thing.</p>
+<p>Some of these features that C provides, however, could be bug-prone.  Wei Tsang has written enough buggy programs himself and seen enough buggy programs from students.  He feels that some of these features from C are not useful for beginners (or even seasoned programmers).</p>
+<p>Furthermore, some features in C simply encourage bad programming habits that are widely frowned upon.  Some would lead to insecure programs.  </p>
+<p>As such, in CS1010, we <em>ban</em> and <em>discourage</em> the use of certain operators, functions, constructs, and features in C.</p>
+<p>This article summarizes this list.  </p>
+<h2 id="banned-in-cs1010">Banned in CS1010</h2>
+<p>The banned items should not be used in CS1010.  Students should use alternatives.  The teaching staff reserves the right to apply a penalty while grading the assignments and practical exams if these banned features are used.</p>
+<h3 id="1-the-and-operators">1. The <code>++</code> and <code>--</code> operators.</h3>
+<h4 id="why">Why?</h4>
+<ul>
+<li>These operators lead to potential undefined behavior.  E.g., <code>i = i++;</code></li>
+<li>The potential confusion is caused by the difference between <code>i++</code> and <code>++i</code>.</li>
+</ul>
+<h4 id="what-should-be-used-instead">What should be used instead?</h4>
+<ul>
+<li>Use <code>i += 1</code> or <code>i -= 1</code> instead of <code>i++</code> or <code>i--</code></li>
+</ul>
+<h3 id="2-skipping-of-curly-braces-for-single-statement-conditional-or-loop-body">2. Skipping of curly braces for single statement conditional or loop body</h3>
+<h4 id="why_1">Why?</h4>
+<ul>
+<li>Could lead to dangling <code>else</code> confusion</li>
+<li>Easy to forget to put back the <code>{}</code> pair if the body is modified beyond a single statement</li>
+</ul>
+<h4 id="what-should-be-used-instead_1">What should be used instead?</h4>
+<ul>
+<li>Always use <code>{}</code> even if the conditional or loop body contains only a single statement.</li>
+</ul>
+<h3 id="3-nested-conditional-operator">3. Nested conditional operator <code>?:</code></h3>
+<h4 id="why_2">Why?</h4>
+<ul>
+<li>Can get difficult to read, understand, and modify.  Example:</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>a = (x &gt; y) ? ((y &gt; z) ? y : z) : ((x &gt; z) ? x : z);
+</code></pre></div></td></tr></table></div>
+<h4 id="what-should-be-used">What should be used</h4>
+<ul>
+<li>Use nested <code>if-else</code> loop</li>
+</ul>
+<h3 id="4-global-variables">4. Global variables</h3>
+<h4 id="why_3">Why?</h4>
+<ul>
+<li>It makes the code hard to reason about and trace, as you have no idea who will modify these variables.  For instance,  if <code>x</code> is not a global variable, we can safely assert that <code>x</code> is still 1 after calling <code>f()</code>.  If <code>x</code> is a global variable, we can no longer assert anything about <code>x</code>.</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="n">f</span><span class="p">();</span>
+<span class="c1">// { x == 1 }</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="what-should-be-used-instead_2">What should be used instead</h4>
+<ul>
+<li>Declare the variables as local, automatic variables, and pass them around.</li>
+</ul>
+<h3 id="5-using-int-and-short">5. Using <code>int</code> and <code>short</code></h3>
+<h4 id="why_4">Why?</h4>
+<ul>
+<li>C standard guarantees that both <code>short</code> and <code>int</code> are at least 16 bits, which limits its guaranteed range to only -32,768 to 32,767.  This is too small for many purposes.</li>
+<li>We are not concerned about memory usage in CS1010.  If we do want to have precise control over memory, we should be anyway using the types from <code>stdint.h</code>.</li>
+</ul>
+<h4 id="what-should-be-used-instead_3">What should be used instead</h4>
+<ul>
+<li><code>long</code>, which is guaranteed to be at least 32 bits.</li>
+</ul>
+<h4 id="exception">Exception</h4>
+<ul>
+<li>If a function from a C library calls for the use of <code>int</code> and offers no <code>long</code> alternative, then we have to use <code>int</code>.</li>
+</ul>
+<h3 id="6-the-type-float">6. The type <code>float</code></h3>
+<h4 id="why_5">Why?</h4>
+<ul>
+<li>Not enough precision.  It will cause floating-point errors.</li>
+</ul>
+<h4 id="what-should-be-used-instead_4">What should be used instead</h4>
+<ul>
+<li><code>double</code></li>
+</ul>
+<h4 id="exception_1">Exception</h4>
+<ul>
+<li>If a function from a C library calls for the use of <code>float</code> and offers no <code>double</code> alternative, then we have to use <code>float</code>.</li>
+</ul>
+<h3 id="7-using-integer-values-for-truefalse">7. Using integer values for true/false</h3>
+<h4 id="why_6">Why?</h4>
+<ul>
+<li>Confusing and error-prone</li>
+</ul>
+<h4 id="what-should-be-used-instead_5">What should be used instead</h4>
+<ul>
+<li>Use the <code>bool</code> type, and the values <code>true</code> and <code>false</code>.</li>
+</ul>
+<h3 id="8-goto">8. <code>goto</code></h3>
+<h4 id="why_7">Why?</h4>
+<ul>
+<li>makes the logical flow of the code hard to follow and trace</li>
+</ul>
+<h4 id="what-should-be-used-instead_6">What should be used instead</h4>
+<ul>
+<li>combinations of conditionals and loops</li>
+</ul>
+<hr />
+<h2 id="discouraged-in-cs1010">Discouraged in CS1010</h2>
+<p>These are things that are not strictly banned, but their usage is discouraged.  Students should use them only if they know very well what they are doing.  Use at own perils.</p>
+<h3 id="1-printf-and-scanf-functions">1. <code>printf</code> and <code>scanf</code> Functions</h3>
+<h4 id="why_8">Why?</h4>
+<ul>
+<li>Using the wrong format modifier for <code>printf</code> could lead to strange results</li>
+<li>Using the wrong format modifier for <code>scanf</code> could lead to memory corruption</li>
+<li>Need to look up what is the right format modifier to use</li>
+<li>Need to pre-allocate memory for <code>scanf</code> of strings</li>
+<li><code>scanf</code> is not secure</li>
+<li><code>scanf</code> is not a pure function.  Prefers students to learn about the concept of pure functions first.</li>
+<li>etc. etc.</li>
+</ul>
+<h4 id="what-should-be-used-instead_7">What should be used instead</h4>
+<ul>
+<li>The CS1010 I/O library</li>
+</ul>
+<h3 id="2-switch-statements">2. <code>switch</code> Statements</h3>
+<h4 id="why_9">Why?</h4>
+<ul>
+<li>Bug prone (missing <code>break</code> would cause the case to fall through)</li>
+<li>Only works on ordinal types.</li>
+</ul>
+<h4 id="what-should-be-used-instead_8">What should be used instead</h4>
+<ul>
+<li><code>if</code>-<code>else</code> statements</li>
+</ul>
+<h3 id="3-break-and-continue-statements">3. <code>break</code> and <code>continue</code> Statements</h3>
+<h4 id="why_10">Why?</h4>
+<ul>
+<li>Using <code>break</code> and <code>continue</code> complicates the flow of a loop, marks it harder to reason about the correctness of the loop, and is, therefore, bug-prone.  </li>
+</ul>
+<h4 id="what-should-be-used-instead_9">What should be used instead</h4>
+<ul>
+<li>Simple loops with a single entry and a single exit point.  Use flag variables to indicate special conditions to exit or continue with the loop.</li>
+</ul>
+<h3 id="4-skipping-parenthesis">4. Skipping parenthesis</h3>
+<h4 id="why_11">Why?</h4>
+<ul>
+<li>Parenthesis makes it clear to the reader the order of evaluation of arithmetic operations / logical operations.  We should add parenthesis to make sure the intention of the code is clear.</li>
+</ul>
+<h4 id="why-should-be-used-instead">Why should be used instead</h4>
+<ul>
+<li>Parenthesis</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="tmate.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Using tmate">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Using tmate
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="messages.html" class="md-footer__link md-footer__link--next" aria-label="Next: Common Clang Messages">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Common Clang Messages
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

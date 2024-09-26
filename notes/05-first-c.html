@@ -1,0 +1,2346 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs1010.github.io/2324-s1/notes/05-first-c.html">
+      
+      
+        <link rel="prev" href="04-type.html">
+      
+      
+        <link rel="next" href="06-cs1010-io.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37+insiders-4.53.13">
+    
+    
+      
+        <title>5. First C Program - CS1010 Programming Methodology</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fd1ad6e4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cs1010ay2324s1" data-md-color-accent="cs1010ay2324s1">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unit-5-first-c-program" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-header__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS1010 Programming Methodology
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              5. First C Program
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS1010 Programming Methodology" class="md-nav__button md-logo" aria-label="CS1010 Programming Methodology" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS1010 Programming Methodology
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../about.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-program.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    1. What is a Program?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-algo.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Computational Problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-func.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-type.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    5. First C Program
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="05-first-c.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    5. First C Program
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Objectives:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-first-c-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your First C Function
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-first-c-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your First C Program
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Your First C Program">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variable-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variable Declaration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function Declaration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assignment-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assignment Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compilation-warning-and-implicit-type-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compilation Warning and Implicit Type Conversion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-types-in-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Types in C
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other Types in C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signed-vs-unsigned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signed vs. Unsigned
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-set-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Set 5
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Set 5">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 5.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-cs1010-io.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    6. CS1010 I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07-arithmetic-ops.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Arithmetic Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-if-else.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Conditional Statement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-logical-exp.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Logical Expression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-assert.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Assertion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-loop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-invariant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Invariant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-call-stack.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Call Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-array.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Fixed-Length Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-pointers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Pointers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-call-by-reference.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Call by Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-heap.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    17. Heap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-string.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    18. String
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-md-array.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    19. Multidimensional Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-efficiency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    20. Efficiency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-search.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    21. Searching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-sort.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Sorting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-tower.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    23. Tower of Hanoi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-permutation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    24. Permutation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-queens.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    25. N-Queens
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-struct.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    26. Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="27-stdio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    27. Standard I/O
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    
+  
+  
+    <a href="../guides/unix-background.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Guides
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../guides/exercises.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    
+  
+    Exercises
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Readings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Objectives:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-first-c-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your First C Function
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-first-c-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Your First C Program
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Your First C Program">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variable-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variable Declaration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-declaration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function Declaration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assignment-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assignment Statement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compilation-warning-and-implicit-type-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compilation Warning and Implicit Type Conversion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-types-in-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Types in C
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other Types in C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signed-vs-unsigned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signed vs. Unsigned
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-set-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem Set 5
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Set 5">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem 5.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+    
+    
+      <li class="md-path__item">
+        <a href="01-program.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Notes
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="unit-5-first-c-program">Unit 5: First C Program</h1>
+<h2 id="learning-objectives">Learning Objectives:</h2>
+<p>After this unit, students should:</p>
+<ul>
+<li>be able to define functions in C, including the definition of:<ul>
+<li>the function name,</li>
+<li>the parameters of the function,</li>
+<li>return statement type,</li>
+<li>the body of the function, and</li>
+<li>the return statement;</li>
+</ul>
+</li>
+<li>understand the usage of the main function in C programs;</li>
+<li>be able to make function calls in C programs;</li>
+<li>understand how values are assigned to the parameters of functions;</li>
+<li>understand the concept of variable scope;</li>
+<li>be able to write statements in C programs, including:<ul>
+<li>variable declarations,</li>
+<li>assignment statements, and</li>
+<li>statements that include simple expressions (e.g., arithmetic expressions);</li>
+</ul>
+</li>
+<li>understand the need and the purpose of including header files;</li>
+<li>be aware of the different numeric types in C and their respective value ranges;</li>
+<li>be able to use man to lookup information about functions provided by other C libraries</li>
+<li>be aware that CS1010 bans the use of global variables and only allows <code>long</code> and <code>double</code> as numeric types.</li>
+</ul>
+<h2 id="your-first-c-function">Your First C Function</h2>
+<p>In this unit, we will write and compile your first C program.  You have already learned, conceptually, what is a variable, what is a type, and what is a function.  Let's see how we apply these concepts to C.</p>
+<p>To start, let's look at a simple snippet of C code:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">A trivial function to square an integer</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>The code above defines a function named <code>square</code>.  The word <code>int</code> appears <em>before</em> the name <code>square</code>.  <code>int</code> is used to signify an integer type.  Appearing before the name <code>square</code> tells the compiler that <code>square</code> is returning a value of type <code>int</code>.</p>
+<p>After the word <code>square</code>, we write the parameters to the function in parentheses <code>(</code> and <code>)</code>.  In between <code>(</code> and <code>)</code> is <code>int x</code>: <code>x</code> is the name of the parameter, <code>int</code> is the type of that parameter.  Here, <code>x</code> is a variable that stores the value that we wish to compute the square of.</p>
+<p>To summarize, in Line 1, <code>int square(int x)</code> defines a function named <code>square</code> that takes in an integer parameter <code>x</code> and is returning a value, which is also an integer.  This line is known as the <em>header</em> of the function.</p>
+<p>The next three lines are written in between curly brackets <code>{</code> and <code>}</code>.  You will see these used a lot in C and other programming languages with C-like syntaxes, such as JavaScript, C++, and Java.  These curly brackets group a <em>block</em> of <em>statements</em> together.  In this example, this block defines how the function <code>square</code> computes the square of <code>x</code>, and what it returns.  This is the <em>body</em> of the function.</p>
+<p>In this function body, there is only one statement <code>return x * x;</code> within the block.  A <em>statement</em> is a unit in a programming language that expresses either a command to be executed or declares a new variable or function.  The word <code>return</code> says that this function <code>square</code> should return the following value, computed as <code>x * x</code> (<code>x</code> multiply by <code>x</code>).  This statement is terminated by a semicolon <code>;</code>.</p>
+<p><img alt="function anatomy" src="figures/function-anatomy/function-anatomy.001.png" /></p>
+<p>You also see that the line that starts with <code>return</code> is indented.  We use indentation extensively to indicate the body of a block.  Since we can have nested blocks, indentation makes our code easier to read and understand.</p>
+<p>The words <code>int</code> and <code>return</code> that appear above are <em>keywords</em> defined in the C programming language, and they are reserved for the special meaning that they represent (a type and a command to return a value from a function).  We cannot repurpose keywords in C.  For instance, we cannot introduce a variable called <code>int</code>.</p>
+<h2 id="your-first-c-program">Your First C Program</h2>
+<p>We are now ready to write our first C program.  The first program computes the square of the hypotenuse of a right-angled triangle with a base of 4 and a height of 3.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Calculating the hypotenuse of a triangle with base 4 and height 3.</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">hypotenuse_square</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">hypotenuse_square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Remember that a C program consists of a bunch of functions, calling each other.  The most important function is called <code>main</code>, and it is the <em>entry point</em> to the program.  It is where the operating system will begin to execute the program.  Every program must define <em>exactly one function</em> called <code>main</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="o">:</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p><code>main</code> returns an integer of type <code>int</code> to the operating system, to signal to the operating system whether the program exits successfully or not.  In this case, we always return <code>0</code> (success) assuming that nothing goes wrong for simplicity.  This is the second example where you see the keyword <code>return</code> in action.</p>
+<p>In modern C, the <code>main</code> function always returns 0 when it exits.  So, we will skip this statement <code>return 0;</code> from the <code>main</code> function from now on.</p>
+<h3 id="variable-declaration">Variable Declaration</h3>
+<p>In the example above, you also see the lines</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">hypotenuse_square</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p>This is a declaration statement (terminated with a semicolon, again).  Each statement declares a variable with its corresponding type (<code>int</code> here).  We gave each variable a name, here we call the variable <code>hypotenuse_square</code>.</p>
+<p>We have said in <a href="02-algo.html">Unit 2</a> that a variable is a location in memory that holds a value.  There are two main approaches to access this value.  The first is through the address of the memory location.  We will examine this way of accessing a value in great details in <a href="15-pointers.html">Unit 15</a>.  The second approach, which is much more direct and convenient, is to give this location a descriptive variable name, and access the value through its name.  The latter approach is what we will use most of the time.</p>
+<p><em>All variables must be declared with its corresponding type before used in C</em>.  Indicating the type during declaration lets the computing device running the program knows how much memory should be reserved for the value of this variable, and subsequently, how to interpret the binary sequence stored associated with this variable. </p>
+<p>Each declaration is valid only within the <em>scope</em> of its declaration.  A variable is only visible within the innermost block that encloses the declaration, as specified by the <code>{</code> and <code>}</code>.</p>
+<p>In the example above, the variable <code>hypotenuse_square</code> is visible only in the body of <code>main</code>, but not in the body of <code>square</code>.</p>
+<p>We cannot re-declare the same variable (i.e., with the same name), with the same type or otherwise, within the same scope.  Two variables in different blocks, however, are allowed to have the same name.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Example of variable redeclaration.</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">hypotenuse_square</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">hypotenuse_square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">hypotenuse_square</span><span class="p">;</span><span class="w"> </span><span class="c1">// &lt;-- redeclaration</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Compiling the code above would lead to an error on Line 7.</p>
+<div class="admonition tips">
+<p class="admonition-title">Compilation Error vs. Run-Time Errorr</p>
+<p>Errors that occur during compiling is called "compilation error".  In constrast, errors that occured during execution  of a program is called a "run-time error".</p>
+</div>
+<p>The C language allows the declaration of a variable outside any block.  In this case, the scope of the variable is the entire file -- which means that the variable can be accessed and modified from anywhere in the code.  Such a variable is called <em>global variable</em>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Example of a global variable</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">hypotenuse_square</span><span class="p">;</span><span class="w"> </span><span class="c1">// &lt;- global variable</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">hypotenuse_square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>While C allows global variables to be declared and used, the use of global variables is <em>banned</em> in CS1010.  CS1010 allows only a subset of C to be used.  Particularly, C features that are common pitfalls for beginners and bug-prone are banned.  This is so that we can focus this module on problem-solving techniques, rather than the idiosyncrasy of C.</p>
+<h3 id="function-declaration">Function Declaration</h3>
+<p>In C, a function must be either defined or declared before used as well.  In the example above, we define <code>square</code> before <code>main</code>.  If we switch the order of the two, the compiler will complain,  unless we declare the function first.  Declaring a function means that we simply state the return type, the name, and the parameters, <em>without</em> the body.  Here is an example:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Declaring a function square before its use and its definition</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// declaring the function square</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">hypotenuse_square</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">hypotenuse_square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w">  </span><span class="c1">// defining the function square</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="assignment-statement">Assignment Statement</h3>
+<p>The next line of the code shows an example of an assignment statement.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="n">hypotenuse_square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>An assignment operator takes the form of:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">left_hand_side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">right_hand_side</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p>The <code>left_hand_side</code> must be the name of a variable.  We first evaluate the <code>right_hand_side</code> of the assignment statement, find its value, then assign the value to the variable named on the <code>left_hand_side</code>.  Essentially, this step updates the bits in the memory location reserved for the variable <code>left_hand_side</code> to the given value.</p>
+<p>Here, on the right-hand side, we call the function <code>square</code>, which we defined earlier.  We call <code>square</code> with <em>arguments</em> <code>3</code> and <code>4</code> respectively.  When we call <code>square</code> with argument <code>3</code>, we are <em>assigning</em> the parameter <code>x</code> to a value <code>3</code> before we execute the body of <code>square</code>.</p>
+<p>We use the operator <code>+</code> to add the two results together.  The right-hand side should give the value 25, which we then assign to the variable <code>hypotenuse_square</code>.</p>
+<p>Note that we use <code>=</code> equal sign for assignment, NOT for checking equality.  The C notation for checking for equality is <code>==</code> (we will come back to this later).</p>
+<p>All variables must have an assigned value before it is evaluated.  Otherwise, the variable holds an <em>indeterminate</em> value.  Declaring a variable only reserves the slot in the memory.  The value of an uninitialized variable is therefore determined by whatever bit values that happen to occupy that memory slot at the time.</p>
+<h3 id="recap">Recap</h3>
+<p>Before we move on, let's recap some concepts:</p>
+<ul>
+<li>A C program consists of functions, invoking each other.  The function called <code>main</code> is the entry point and is the first function invoked.</li>
+<li>Each function is defined by its returned type, followed by its name, its parameter(s) (within a pair of parenthesis), and its body (within a pair of curly brackets).  </li>
+<li>Each function must be defined or declared before it is used.  </li>
+<li>The function body consists of one or more statements.  We have seen assignment statements (using the <code>=</code> operator) and return statements, using <code>return</code> as the keyword.</li>
+<li>Each variable must be declared before it is used.  A declaration starts with its type followed by its name.  A variable is only visible within its scope.  A variable must be assigned a value before it is evaluated.</li>
+<li>Global variables are banned in CS1010.</li>
+</ul>
+<h3 id="example-2">Example 2</h3>
+<p>Let's change the program slightly, so that instead of computing the square of the hypotenuse, we compute the hypotenuse itself.  Recall that we said C provides a bunch of predefined functions, include <code>sqrt</code>, which computes the square root of a given number.  Since a square root of a number is not necessarily an integer, we need to use a variable with a type that can store a real number.</p>
+<p>To represent real numbers, we commonly use the type <code>float</code> (which is short for a floating-point number -- named so due to how a real number is represented in bits).  A <code>float</code> type can store 32 bits.  To double the precision (64 bits), we can use the type <code>double</code>.  A <code>long double</code> type can store either 80-bits or 128-bits, depending on the implementation.</p>
+<p>But which one does <code>sqrt</code> returns?  To find out the exact <em>specification</em> of a pre-defined function, we can consult the manual (or <code>man</code> for short) pages for the function.</p>
+<p>If you type <code>man sqrt</code> on the command line (or place the cursor on <code>sqrt</code> in <code>vim</code> and type <span class="keys"><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-k">K</kbd></span> in command mode), you will see that the <code>sqrt</code> method has the following specification:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>The <code>sqrt</code> function returns a <code>double</code> precision real number.  We can now modify the program above to the following:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Declaring a function defined externally</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// not recommended</span>
+
+<span class="kt">long</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">hypotenuse_of</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">height</span><span class="p">));</span><span class="w"> </span><span class="c1">// with warning</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">hypotenuse_of</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>Note that the first line declares the function <code>sqrt</code> because we need to declare a function before it is used.  Since <code>sqrt</code> is pre-defined elsewhere, we do not have to supply the function body here.  Such practice of declaring a predefined function ourselves, however, is not recommended.  Different platforms, compilers, libraries, may provide a different specification for the same function.  As such, it is better to use the declaration from the library that provides the predefined function itself.  A library usually provides one or more <em>header files</em>, a set of files that contain function declarations, type definitions, and constant definitions.  In the case of <code>sqrt</code>, its declaration is contained in a header file called <code>math.h</code> (which we found out through consulting the <code>man</code> pages).  To include this file, you add the line <code>#include &lt;math.h&gt;</code> at the top of the program.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Including header files for declaration of external functions</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+
+<span class="kt">long</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">hypotenuse_of</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">height</span><span class="p">));</span><span class="w"> </span><span class="c1">// with warning</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">hypotenuse_of</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition tips">
+<p class="admonition-title">File Extension</p>
+<p>The convention for file extension for a C program is <code>.c</code> and for a C header file is <code>.h</code>.  Even though you are allowed to name the files with any extension you like, you should stick to the convention so that it is clear to other tools/programmers what is the purpose of each file.</p>
+</div>
+<h3 id="compilation-warning-and-implicit-type-conversion">Compilation Warning and Implicit Type Conversion</h3>
+<p>The compiler gives a warning on the expression:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="n">sqrt</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">height</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div></p>
+<p>The warning says <code>implicit conversion from 'long' to 'double' may lose precision [-Wimplicit-int-float-conversion]</code>.</p>
+<p>Recall that we cannot represent floating point numbers (<code>double</code>) exactly in a computer; but we can do that with integers (<code>long</code>). Since the expression <code>square(base) + square(height)</code> returns a <code>long</code> value, and we try to pass it into a function that accepts a <code>double</code>, the compiler warns us about loosing precision.</p>
+<p>A compiler warning does not stop a binary executable from being generated and executed later.  It is a good practice, however, to ensure that your code compiles without any warning.  In this context, the compiler will convert the integer number into floating point number for you.  This conversion from <code>long</code> to <code>double</code> is done implicitly.</p>
+<p>When writing code, it is always better to make the intention explicit.  Thus, to perform an <em>explicit</em> type conversion, we can do <em>type casting</em> in C.  We just need to put the type that we want to convert to in parentheses, like so:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">sum_of_square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">height</span><span class="p">);</span>
+<span class="w">  </span><span class="n">sqrt</span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="n">sum_of_square</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div></p>
+<p>Since we now explicitly tell the compiler that we want to convert <code>long</code> to <code>double</code> (and so willing to accept the lost in precision), the warning goes away.</p>
+<p>Here is the final code:
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Explicitly casting from long to double</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+
+<span class="kt">long</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">hypotenuse_of</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">sum_of_square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">height</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="n">sum_of_square</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">hypotenuse_of</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<h2 id="other-types-in-c">Other Types in C</h2>
+<p>An <code>int</code> variable is usually 32-bits long.  If we only need 16 bits, we use the type <code>short int</code>, or just <code>short</code>.  If we only need 8-bits, we use the type <code>char</code> (short for character).</p>
+<p>Note that the above said an <code>int</code> is <em>usually</em> 32 bits.  Remember (from <a href="01-program.html">Unit 1</a>) that a C program gets compiled into machine code for a specific CPU architecture.  The C language standard only guarantees that an <code>int</code> is at least 16 bits.  Although most C compilers compile <code>int</code> to 32 bits, there is no guarantee!</p>
+<p>If we need something more than an <code>int</code>, we can use <code>long int</code>, or just <code>long</code>.  The C standard guarantees that a <code>long</code> is at least 32 bits.  Depending on the implementation, it sometimes compiled to 32-bits, sometimes 64-bits.  To get even longer, we can use the type <code>long long int</code>, or just <code>long long</code>, which is guaranteed to be at least 64 bits<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<h4 id="signed-vs-unsigned">Signed vs. Unsigned</h4>
+<p>We have seen earlier that interpreting the same sequence of bits as signed or unsigned would result in a different value.  By default, all types in C refer to signed types<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.  If you want a variable that holds only non-negative integers, you can add the keyword <code>unsigned</code> to the front of the type.  Doing so would mean that the range of non-negative values you can store in the variable is doubled, without adding more bits (since the bit used to present the + or - sign is no longer needed).</p>
+<p>For instance, since we know that <code>square</code> can only return a non-zero integer, we can declare it as:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Redefining square with unsigned return type</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>For most practical purposes in CS1010, a (signed) <code>long</code> suffices.  We introduce the notion of <code>signed</code> vs. <code>unsigned</code> for your information so that you know what they are when you come across them in other scenarios.  <em>Mixing <code>signed</code> and <code>unsigned</code> can lead to subtle bugs in your code.</em>  As such, we will avoid mixing them as much as we can, and <em>we will use signed <code>long</code> by default</em> for CS1010.  You may choose to use them appropriately in another context, especially for an embedded system or low-level programming.</p>
+<p>In CS1010, we will only use <code>long</code> and <code>double</code> to represent integers and floating-point numbers.  Again, this is to allow us to focus on problem-solving techniques rather than on issues related to precision.  The only place we should use other types is if the functions that we use requires it (e.g., <code>main</code> must return <code>int</code>, so we have no choice there).</p>
+<div class="admonition note">
+<p class="admonition-title">Unsigned Real Numbers?</p>
+<p>There are no <code>unsigned</code> versions of <code>float</code> and <code>double</code>.  To understand the reason, we have to go further into how floating points numbers are represented in bits.  That is a topic for another module.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">C Pro Tips For Beyond CS1010: <code>stdint.h</code></p>
+<p>Since the number of bits for <code>int</code>, <code>long</code>, and <code>long long</code> could differ, to write a C program that is portable (i.e., works on different platforms, architecture, operating systems), we have two options:</p>
+<ul>
+<li>Do not write a program that assumes a specific number of bits is used for a certain type, or</li>
+<li>Use the type defined in the header file <code>stdint.h</code>: <code>int8_t</code>, <code>uint8_t</code>, <code>int16_t</code>, <code>uint16_t</code>, <code>int32_t</code>, <code>uint32_t</code>, <code>int64_t</code>, <code>uint64_t</code>.  The suffix <code>_t</code> is a convention to indicate that this is a customized type (more on this in later units).  The prefix <code>u</code> indicates that the type is an unsigned type.  The numbers <code>8</code>, <code>16</code>, <code>32</code>, and <code>64</code> indicate the number of bits for each type.  Thus, <code>uint32_t</code> is guaranteed to be of size 32 bits, and can hold unsigned integer values from <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(2^{32}-1\)</span>.</li>
+</ul>
+</div>
+<h2 id="problem-set-5">Problem Set 5</h2>
+<h4 id="problem-51">Problem 5.1</h4>
+<p>In the following valid in C?  Try to compile the program and see if you encounter any compilation error.  What can you infer about what is allowed or not allowed in C?  What could go wrong even if C allows?</p>
+<p>(a)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+<span class="kt">long</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">hypotenuse_of</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">height</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="hll"><span class="w">  </span><span class="n">hypotenuse_of</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// &lt;- use 3.0 and 4.0 instead of int.</span>
+</span><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>(b)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+<span class="kt">long</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">hypotenuse_of</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">height</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="hll"><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hypotenuse_of</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"> </span><span class="c1">// &lt;-- assign to a long variable</span>
+</span><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>(c)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+<span class="kt">long</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">hypotenuse_of</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">height</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="hll"><span class="w">  </span><span class="n">Hypotenuse_Of</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"> </span><span class="c1">// &lt;-- use a different case</span>
+</span><span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>(d)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+<span class="kt">long</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">hypotenuse_of</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="hll"><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">base</span><span class="p">;</span><span class="w"> </span><span class="c1">// &lt;-- declare a new base</span>
+</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">height</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">hypotenuse_of</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>(e)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+<span class="kt">long</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="hll"><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">sqr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="c1">// &lt;-- declare and assign in one go</span>
+</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sqr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">hypotenuse_of</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">height</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">hypotenuse_of</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>(f)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+
+<span class="hll"><span class="kt">long</span><span class="w"> </span><span class="n">sqr</span><span class="p">;</span><span class="w">  </span><span class="c1">// &lt;-- use global variable</span>
+</span><span class="kt">long</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="hll"><span class="w">  </span><span class="n">sqr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+</span><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sqr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="nf">hypotenuse_of</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">height</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">hypotenuse_of</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<p>(g)
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="hll"><span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="c1">// &lt;-- define function within function.</span>
+</span><span class="hll"><span class="w">  </span><span class="p">{</span>
+</span><span class="hll"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+</span><span class="hll"><span class="w">  </span><span class="p">}</span>
+</span><span class="hll">
+</span><span class="hll"><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">hypotenuse_of</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="c1">// &lt;--</span>
+</span><span class="hll"><span class="w">  </span><span class="p">{</span>
+</span><span class="hll"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="n">base</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">square</span><span class="p">(</span><span class="n">height</span><span class="p">));</span>
+</span><span class="hll"><span class="w">  </span><span class="p">}</span>
+</span>
+<span class="w">  </span><span class="n">hypotenuse_of</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Adding more <code>long</code> does not make the integer longer, i.e., there is no <code>long long long int</code>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>To be more precise, the C language standard does not specify the default sign-ness of <code>char</code> and leaves it to implementation.  In CS1010 programming environment, <code>char</code> defaults to <code>signed char</code>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="04-type.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 4. Types">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                4. Types
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="06-cs1010-io.html" class="md-footer__link md-footer__link--next" aria-label="Next: 6. CS1010 I/O">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                6. CS1010 I/O
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2023
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.path", "navigation.prune", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.code.select", "content.code.annotate", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.c7c1ca2c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c4a99efa.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
